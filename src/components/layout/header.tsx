@@ -25,7 +25,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <Image
-              src="/logo.png"      
+              src="/logo.png"
               alt="ELV Technology Solutions"
               width={160}
               height={40}
@@ -52,12 +52,6 @@ export default function Header() {
           <div className="hidden lg:block">
             <SocialLinks />
           </div>
-          <Button
-            asChild
-            className="bg-primary hover:bg-primary/90 text-white text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2 animate-in fade-in zoom-in-50 duration-700"
-          >
-            <Link href="#contact">Contact Us</Link>
-          </Button>
           <div className="lg:hidden">
             <button
               type="button"

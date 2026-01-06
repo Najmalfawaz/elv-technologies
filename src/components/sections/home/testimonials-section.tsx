@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const testimonials = [
   {
@@ -22,18 +23,30 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+
+  const nextTestimonial = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
+  }, [testimonials.length])
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
+  }
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-    }, 5000)
-
-    return () => clearInterval(timer)
-  }, [])
+    if (!isHovered) {
+      const timer = setInterval(nextTestimonial, 5000)
+      return () => clearInterval(timer)
+    }
+  }, [isHovered, nextTestimonial])
 
   return (
     <section className="py-16 bg-gradient-to-br from-red-900 to-red-800 rounded-t-[3rem] md:rounded-t-[4rem] rounded-b-[3rem] md:rounded-b-[4rem] -mt-8 md:-mt-12">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <div 
+        className="mx-auto max-w-4xl px-6 lg:px-8 relative group"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white mb-2">Trusted by Customers</h2>
           <div className="flex items-center justify-center gap-1">
@@ -46,15 +59,15 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="relative min-h-[250px]">
+        <div className="relative min-h-[300px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
+              className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             >
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center">
                 <h3 className="text-xl font-semibold text-white mb-4">What Our Customers Say</h3>
                 <p className="text-white text-lg leading-relaxed mb-6 text-balance">"{testimonial.text}"</p>
                 <div className="text-white">
@@ -66,13 +79,29 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
+        {/* Arrow Controls */}
+        <button 
+          onClick={prevTestimonial} 
+          className="absolute top-1/2 left-0 -translate-y-1/2 bg-white/20 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/40"
+          aria-label="Previous Testimonial"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button 
+          onClick={nextTestimonial} 
+          className="absolute top-1/2 right-0 -translate-y-1/2 bg-white/20 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/40"
+          aria-label="Next Testimonial"
+        >
+          <ChevronRight size={24} />
+        </button>
+
         <div className="flex justify-center gap-2 mt-6">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`h-2 rounded-full transition-all ${
-                index === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/75"
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

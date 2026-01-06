@@ -1,92 +1,89 @@
-"use client"
 
-import { useEffect, useState } from "react"
-import dynamic from "next/dynamic"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
-import HeroSection from "@/components/sections/hero-section"
+"use client";
 
-const VideoShowcase = dynamic(() => import("@/components/sections/video-showcase"), { ssr: false })
-const IntroSection = dynamic(() => import("@/components/sections/intro-section"), { ssr: false })
-const ServicesSlider = dynamic(() => import("@/components/sections/services-slider"), { ssr: false })
-const TestimonialsSection = dynamic(() => import("@/components/sections/testimonials-section"), { ssr: false })
-const ClientsSection = dynamic(() => import("@/components/sections/clients-section"), { ssr: false })
-const PartnersSection = dynamic(() => import("@/components/sections/partners-section"), { ssr: false })
-const ContactSection = dynamic(() => import("@/components/sections/contact-section"), { ssr: false })
+import { useRef, useEffect, useState, ReactNode } from 'react';
+import dynamic from "next/dynamic";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import HeroSection from "@/components/sections/home/hero-section";
+import ContactDialog from "@/components/sections/home/contact-dialog";
 
-export default function HomePage() {
-  const [sectionsVisible, setSectionsVisible] = useState({
-    video: false,
-    intro: false,
-    services: false,
-    testimonials: false,
-    clients: false,
-    partners: false,
-    contact: false,
-  })
+const VideoShowcase = dynamic(() => import("@/components/sections/home/video-showcase"), { ssr: false });
+const IntroSection = dynamic(() => import("@/components/sections/home/intro-section"), { ssr: false });
+const ServicesSlider = dynamic(() => import("@/components/sections/home/services-slider"), { ssr: false });
+const TestimonialsSection = dynamic(() => import("@/components/sections/home/testimonials-section"), { ssr: false });
+const ClientsSection = dynamic(() => import("@/components/sections/home/clients-section"), { ssr: false });
+const PartnersSection = dynamic(() => import("@/components/sections/home/partners-section"), { ssr: false });
+
+function useIntersectionObserver(options: IntersectionObserverInit) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, video: true })), 300),
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, intro: true })), 600),
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, services: true })), 900),
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, testimonials: true })), 1200),
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, clients: true })), 1500),
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, partners: true })), 1800),
-      setTimeout(() => setSectionsVisible((prev) => ({ ...prev, contact: true })), 2100),
-    ]
-    return () => timers.forEach(clearTimeout)
-  }, [])
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsIntersecting(true);
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      }
+    }, options);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [options]);
+
+  return { ref, isIntersecting };
+}
+
+function AnimatedSection({ children }: { children: ReactNode }) {
+  const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-opacity duration-1000 ease-in-out ${isIntersecting ? 'opacity-100' : 'opacity-0'}`}>
+      {children}
+    </div>
+  );
+}
+
+export default function HomePage() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <main>
-        <HeroSection />
-
-        {sectionsVisible.video && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] my-12 md:my-16 lg:my-20">
-            <VideoShowcase />
-          </div>
-        )}
-
-        {sectionsVisible.intro && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]">
-            <IntroSection />
-          </div>
-        )}
-
-        {sectionsVisible.services && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] my-12 md:my-16 lg:my-20">
-            <ServicesSlider />
-          </div>
-        )}
-
-        {sectionsVisible.testimonials && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] my-12 md:my-16 lg:my-20">
-            <TestimonialsSection />
-          </div>
-        )}
-
-        {sectionsVisible.clients && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] my-12 md:my-16 lg:my-20">
-            <ClientsSection />
-          </div>
-        )}
-
-        {sectionsVisible.partners && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] my-12 md:my-16 lg:my-20">
-            <PartnersSection />
-          </div>
-        )}
-
-        {sectionsVisible.contact && (
-          <div className="opacity-0 animate-[fadeIn_0.6s_ease-out_forwards] my-12 md:my-16 lg:my-20">
-            <ContactSection />
-          </div>
-        )}
+        <HeroSection onContactClick={() => setIsContactOpen(true)} />
+        <AnimatedSection>
+          <VideoShowcase />
+        </AnimatedSection>
+        <AnimatedSection>
+          <IntroSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <ServicesSlider />
+        </AnimatedSection>
+        <AnimatedSection>
+          <TestimonialsSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <ClientsSection />
+        </AnimatedSection>
+        <AnimatedSection>
+          <PartnersSection />
+        </AnimatedSection>
       </main>
       <Footer />
+      <ContactDialog open={isContactOpen} onOpenChange={setIsContactOpen} />
     </div>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import MissionVisionValues from "@/components/sections/about/mission-vision-valu
 import CertificationsSection from "@/components/sections/about/certifications-section"
 import ProcessSection from "@/components/sections/about/process-section"
 import SectorsSection from "@/components/sections/about/sectors-section"
-import ContactSection from "@/components/sections/contact-section"
+import ContactDialog from "@/components/sections/home/contact-dialog"
 
 export default function AboutPage() {
   return (
@@ -17,7 +17,6 @@ export default function AboutPage() {
         <CertificationsSection />
         <ProcessSection />
         <SectorsSection />
-        <ContactSection />
       </main>
       <Footer />
     </div>

@@ -145,6 +145,17 @@
     }
   }
 
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -152,5 +163,18 @@
     to {
       opacity: 1;
     }
+  }
+
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% + 100vw));
+    }
+  }
+
+  .group:hover .group-hover\:pause {
+    animation-play-state: paused;
   }
 }
