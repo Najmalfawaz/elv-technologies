@@ -8,11 +8,13 @@ import HeroSection from "@/components/pages/home/hero-section-new";
 import CoreServices from "@/components/pages/home/core-services";
 import WhyChooseUs from "@/components/pages/home/why-choose-us";
 import PartnersAndClients from "@/components/pages/home/partners-and-clients";
-import ContactForm from "@/components/pages/home/contact-form";
+import ContactForm from "@/components/shared/contact-form";
 import VideoSection from "@/components/pages/home/video-section";
+import RecentBlogSection from '@/components/pages/home/recent-blog-section';
 
 export default function HomePage() {
   const contactFormRef = useRef<HTMLDivElement>(null);
+  const partnersRef = useRef<HTMLDivDivElement>(null);
 
   const handleContactClick = () => {
     contactFormRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -27,7 +29,10 @@ export default function HomePage() {
         <WhyChooseUs />
         <SolutionsTabs />
         <TestimonialsSection />
-        <PartnersAndClients />
+        <div ref={partnersRef}>
+          <PartnersAndClients />
+        </div>
+        <RecentBlogSection />
         <FaqSection />
         <div ref={contactFormRef}>
           <ContactForm />

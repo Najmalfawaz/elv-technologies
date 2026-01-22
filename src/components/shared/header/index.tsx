@@ -1,43 +1,38 @@
-'use client';
+'use client'
 
-import Link from "next/link";
-import SocialLinks from "@/components/ui/social-links";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import Image from "next/image";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import Link from "next/link"
+import SocialLinks from "@/components/ui/social-links"
+import { useState } from "react"
+import { Menu, X } from "lucide-react"
+import Image from "next/image"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { solutions } from "@/data/solutions";
-import { Button } from "@/components/ui/button";
-import ContactDialog from "@/components/shared/contact-dialog";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Solutions", href: "/solutions" },
-  { name: "Blog", href: "/blog" },
-  { name: "Partners", href: "/partners" },
-  { name: "Clients", href: "/clients" },
-];
+} from "@/components/ui/accordion"
+import { solutions } from "@/data/solutions"
+import { Button } from "@/components/ui/button"
+import ContactDialog from "@/components/shared/contact-dialog"
+import { usePathname } from "next/navigation"
+import { AnimatePresence, motion } from "framer-motion"
+import { navigation } from "@/data/navigation"
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isContactOpen, setContactOpen] = useState(false);
-  const [showSolutions, setShowSolutions] = useState(false);
-  const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isContactOpen, setContactOpen] = useState(false)
+  const [showSolutions, setShowSolutions] = useState(false)
+  const pathname = usePathname()
+
+  const formatSolutionURL = (title: string) => {
+    if (title.toLowerCase() === 'security & surveillance') {
+      return '/solutions/security-&-surveillance'
+    }
+    if (title.toLowerCase() === 'iptv & smatv') {
+      return '/solutions/iptv-&-smatv'
+    }
+    return `/solutions/${title.toLowerCase().replace(/ & /g, '-').replace(/ /g, "-")}`
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 animate-in fade-in slide-in-from-top-4 duration-700">
@@ -59,7 +54,7 @@ export default function Header() {
           {navigation.map((item, index) => {
             if (item.name === "Solutions") {
               return (
-                <div 
+                <div
                   key={item.name}
                   onMouseEnter={() => setShowSolutions(true)}
                   onMouseLeave={() => setShowSolutions(false)}
@@ -87,7 +82,7 @@ export default function Header() {
                           {solutions.map((solution) => (
                             <Link
                               key={solution.title}
-                              href={`/solutions/${solution.title.toLowerCase().replace(/ /g, "-")}`}
+                              href={formatSolutionURL(solution.title)}
                               className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-100 transition-colors"
                             >
                               <solution.icon className="h-5 w-5 text-primary" />
@@ -155,7 +150,7 @@ export default function Header() {
                         {solutions.map((solution) => (
                           <Link
                             key={solution.title}
-                            href={`/solutions/${solution.title.toLowerCase().replace(/ /g, "-")}`}
+                            href={formatSolutionURL(solution.title)}
                             className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
                             onClick={() => setMobileMenuOpen(false)}
                           >
@@ -188,5 +183,5 @@ export default function Header() {
       )}
       <ContactDialog open={isContactOpen} onOpenChange={setContactOpen} />
     </header>
-  );
+  )
 }

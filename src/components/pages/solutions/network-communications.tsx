@@ -1,4 +1,5 @@
-import { Network, Cable, Wifi, Phone } from "lucide-react"
+
+import { Network, Cable, Wifi, Phone, Router } from "lucide-react"
 
 export function NetworkCommunications() {
   const solutions = [
@@ -57,13 +58,13 @@ export function NetworkCommunications() {
   ]
 
   return (
-    <section id="network-communications" className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <section id="network-communications" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Network and Communications</h2>
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">Network and Communications</h2>
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
               Professional networking services in Abu Dhabi and across the UAE, specializing in structured cabling,
               wired networks, and enterprise-grade wireless solutions. We design and implement standards-compliant
               network infrastructures using proven technologies.
@@ -71,18 +72,24 @@ export function NetworkCommunications() {
           </div>
 
           {/* Introduction */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 mb-12">
-            <p className="text-gray-200 leading-relaxed mb-6">
-              A network is a structured system of interconnected devices that communicate through wired or wireless
-              paths to securely transmit data, voice, and video across an organization. Modern enterprise networks
-              support sub-networks, remote access, centralized monitoring, and policy-based security.
-            </p>
-            <p className="text-gray-200 leading-relaxed">
-              ELV Technology Solutions engineers networks based on proper architecture design, traffic management,
-              redundancy, and security best practices. Network performance depends on hardware selection, RF design,
-              security configuration, cabling quality, and compliance with international standards.
-            </p>
-          </div>
+            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 mb-12 text-white flex flex-col md:flex-row items-center gap-8">
+                <div className="md:w-2/3">
+                    <p className="leading-relaxed mb-6">
+                      A network is a structured system of interconnected devices that communicate through wired or wireless
+                      paths to securely transmit data, voice, and video across an organization. Modern enterprise networks
+                      support sub-networks, remote access, centralized monitoring, and policy-based security.
+                    </p>
+                    <p className="leading-relaxed">
+                      ELV Technology Solutions engineers networks based on proper architecture design, traffic management,
+                      redundancy, and security best practices. Network performance depends on hardware selection, RF design,
+                      security configuration, cabling quality, and compliance with international standards.
+                    </p>
+                </div>
+                <div className="md:w-1/3 flex justify-center">
+                    <Router className="w-48 h-48 text-orange-500 opacity-20" />
+                </div>
+            </div>
+
 
           {/* Solutions Grid */}
           <div className="grid md:grid-cols-2 gap-8">
@@ -91,7 +98,7 @@ export function NetworkCommunications() {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-3xl p-8 md:p-10 text-gray-900 hover:shadow-2xl transition-shadow"
+                  className="bg-white rounded-3xl p-8 md:p-10 text-gray-900 hover:shadow-2xl transition-shadow border border-gray-200"
                 >
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center">

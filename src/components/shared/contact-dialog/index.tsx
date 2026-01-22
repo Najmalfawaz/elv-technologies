@@ -7,12 +7,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle, X } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
+import { CheckCircle } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { emirates } from '@/data/emirates';
 
-const emirates = ['Abu Dhabi', 'Dubai', 'Sharjah', 'Umm Al Quwain', 'Ajman', 'Ras Al Khaimah', 'Fujairah'];
-
-export default function ContactDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+export default function ContactUs({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -70,14 +69,14 @@ export default function ContactDialog({ open, onOpenChange }: { open: boolean; o
           <DialogDescription>Fill out the form to get in touch with our team for customized solutions.</DialogDescription>
         </DialogHeader>
         <div className="flex flex-col md:flex-row relative">
-          <div className="w-full md:w-1/3 bg-primary p-8 text-white flex flex-col justify-center rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
-            <h2 className="text-2xl font-bold mb-2">Talk to an Expert</h2>
-            <p>Get in touch with our team for customized solutions</p>
+          <div className="w-full md:w-1/3 bg-destructive p-8 text-white flex flex-col justify-center rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
+            <h2 className="text-3xl font-bold mb-2 leading-tight">
+              Talk to an<br />
+              <span className="text-4xl">Expert</span>
+            </h2>
+            <p className="text-base mt-4">Get in touch with our team for customized solutions</p>
           </div>
           <div className="w-full md:w-2/3 p-8 relative">
-            <DialogClose className="absolute top-4 right-4 bg-gray-200 text-gray-800 rounded-full p-2 hover:bg-gray-300 transition-colors">
-              <X className="h-6 w-6" />
-            </DialogClose>
             {showSuccess ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <CheckCircle className="text-green-500 w-16 h-16 mx-auto mb-4" />
@@ -126,9 +125,7 @@ export default function ContactDialog({ open, onOpenChange }: { open: boolean; o
                   {errors.requirement && <p className="text-xs text-red-500">{errors.requirement}</p>}
                 </div>
                 <div className="flex justify-end pt-4">
-                  <Button type="submit" className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white px-8 rounded-full" size="lg">
-                    Submit Request
-                  </Button>
+                  <Button type="submit" className="w-full md:w-auto bg-destructive hover:bg-destructive/90 text-white px-8 rounded-full" size="lg">Submit Request</Button>
                 </div>
               </form>
             )}

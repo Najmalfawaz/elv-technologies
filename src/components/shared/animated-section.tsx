@@ -31,13 +31,14 @@ function useIntersectionObserver(options: IntersectionObserverInit) {
   return { ref, isIntersecting };
 }
 
-export default function AnimatedSection({ children }: { children: ReactNode }) {
+export default function AnimatedSection({ children, className }: { children: ReactNode; className?: string }) {
   const { ref, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
 
   return (
     <div
       ref={ref}
-      className={`transition-opacity duration-1000 ease-in-out ${isIntersecting ? 'opacity-100' : 'opacity-0'}`}>
+      className={`transition-opacity duration-1000 ease-in-out ${isIntersecting ? 'opacity-100' : 'opacity-0'} ${className || ''}`.trim()}
+    >
       {children}
     </div>
   );

@@ -46,24 +46,44 @@ const otherCertificates = [
 ];
 
 const CertificateCard = ({ cert }: { cert: { name: string; src: string }}) => (
-    <div className="text-center">
-        <div className="w-full bg-gray-100 rounded-lg overflow-hidden border border-gray-200 p-4">
+    <motion.div 
+        className="group text-center transition-all duration-300 hover:scale-105"
+        variants={itemVariants}
+    >
+        <div className="w-full h-64 bg-white rounded-2xl overflow-hidden border-2 border-gray-100 shadow-sm transition-all duration-300 group-hover:border-red-500 group-hover:shadow-xl flex justify-center items-center p-4">
             <Image
                 src={cert.src}
                 alt={cert.name}
-                width={400}
-                height={300}
-                className="w-full h-auto object-contain"
+                width={200}
+                height={200}
+                className="w-auto h-full object-contain transition-transform duration-300 group-hover:scale-110"
             />
         </div>
-        <p className="mt-3 text-base font-semibold text-gray-800">{cert.name}</p>
-    </div>
+        <p className="mt-4 text-base font-semibold text-gray-800 transition-colors duration-300 group-hover:text-red-600">{cert.name}</p>
+    </motion.div>
+);
+
+const CertificateCategory = ({ title, icon: Icon, certificates, iconBg, iconColor }) => (
+    <motion.div 
+        className="space-y-8"
+        variants={itemVariants}
+    >
+        <div className="flex items-center gap-4">
+            <div className={`rounded-full ${iconBg} p-4`}>
+                <Icon className={`h-8 w-8 ${iconColor}`} />
+            </div>
+            <h3 className="text-3xl font-bold text-slate-800">{title}</h3>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+            {certificates.map(cert => <CertificateCard key={cert.name} cert={cert} />)}
+        </div>
+    </motion.div>
 );
 
 export default function CertificationsSection() {
   return (
     <motion.section 
-        className="bg-gray-50 py-20 lg:py-24"
+        className="bg-white py-20 lg:py-28"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -71,61 +91,37 @@ export default function CertificationsSection() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div className="text-center max-w-4xl mx-auto" variants={itemVariants}>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Our Certifications</h2>
-          <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-            We are certified to the highest standards, reflecting our commitment to quality, safety, environmental responsibility, and regulatory compliance.
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+            Commitment to Excellence
+          </h2>
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+            Our certifications are a testament to our dedication to delivering the highest quality solutions while adhering to international standards for safety, environmental care, and operational excellence.
           </p>
         </motion.div>
 
-        <motion.div 
-            className="mt-16 grid gap-10 md:grid-cols-1 lg:grid-cols-3"
-            variants={sectionVariants}
-        >
-          <motion.div 
-            className="rounded-xl border border-gray-200 bg-white shadow-lg p-6 lg:p-8 space-y-6"
-            variants={itemVariants}
-          >
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-blue-100 p-3">
-                <Award className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-800">ISO Certificates</h3>
-            </div>
-            <div className="space-y-6 pt-2">
-                {isoCertificates.map(cert => <CertificateCard key={cert.name} cert={cert} />)}
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="rounded-xl border border-gray-200 bg-white shadow-lg p-6 lg:p-8 space-y-6"
-            variants={itemVariants}
-          >
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-green-100 p-3">
-                <ShieldCheck className="h-7 w-7 text-green-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-800">Authority Certificates</h3>
-            </div>
-             <div className="space-y-8 pt-2">
-                {authorityCertificates.map(cert => <CertificateCard key={cert.name} cert={cert} />)}
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="rounded-xl border border-gray-200 bg-white shadow-lg p-6 lg:p-8 space-y-6"
-            variants={itemVariants}
-          >
-            <div className="flex items-center gap-4">
-              <div className="rounded-full bg-orange-100 p-3">
-                <Building className="h-7 w-7 text-orange-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-800">Insurance & ICV</h3>
-            </div>
-             <div className="space-y-8 pt-2">
-                {otherCertificates.map(cert => <CertificateCard key={cert.name} cert={cert} />)}
-            </div>
-          </motion.div>
-        </motion.div>
+        <div className="mt-20 grid gap-16 md:grid-cols-1">
+          <CertificateCategory 
+            title="ISO Certifications" 
+            icon={Award} 
+            certificates={isoCertificates} 
+            iconBg="bg-blue-100"
+            iconColor="text-blue-600"
+          />
+          <CertificateCategory 
+            title="Authority Approvals" 
+            icon={ShieldCheck} 
+            certificates={authorityCertificates} 
+            iconBg="bg-green-100"
+            iconColor="text-green-600"
+          />
+          <CertificateCategory 
+            title="Compliance & Insurance" 
+            icon={Building} 
+            certificates={otherCertificates} 
+            iconBg="bg-orange-100"
+            iconColor="text-orange-600"
+          />
+        </div>
       </div>
     </motion.section>
   )

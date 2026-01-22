@@ -1,4 +1,4 @@
-import { Phone, Building } from "lucide-react"
+import { Phone, Building, Hotel, Briefcase, Network } from "lucide-react"
 
 export function IPPhones() {
   const brands = [
@@ -17,6 +17,13 @@ export function IPPhones() {
     "Easy expansion and multi-branch connectivity",
     "Integration with Wi-Fi phones and mobile devices",
     "Cloud and on-premise deployment options",
+  ]
+
+    const suitableFor = [
+    { icon: Hotel, name: "Hotels & Hospitality" },
+    { icon: Briefcase, name: "Corporate Offices" },
+    { icon: Building, name: "Commercial Buildings" },
+    { icon: Network, name: "Multi-site Organizations" },
   ]
 
   return (
@@ -54,23 +61,18 @@ export function IPPhones() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-3xl border border-gray-200 p-8 md:p-10 flex items-center justify-center">
-              <div className="text-center">
-                <Building className="w-24 h-24 mx-auto mb-6 text-orange-600" />
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Suitable For</h4>
-                <div className="space-y-2">
-                  {[
-                    "Hotels & Hospitality",
-                    "Corporate Offices",
-                    "Commercial Buildings",
-                    "Multi-site Organizations",
-                  ].map((item, idx) => (
-                    <div key={idx} className="px-4 py-2 bg-gray-50 rounded-lg">
-                      <span className="text-gray-700 font-medium">{item}</span>
-                    </div>
-                  ))}
+            <div className="bg-white rounded-3xl border border-gray-200 p-8 md:p-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">Suitable For</h3>
+                <div className="grid grid-cols-2 gap-6">
+                  {suitableFor.map((item, idx) => {
+                      const Icon = item.icon
+                      return (
+                        <div key={idx} className="text-center p-4 bg-gray-50 rounded-2xl">
+                            <Icon className="w-10 h-10 mx-auto mb-3 text-orange-600" />
+                          <span className="text-gray-700 font-medium text-sm">{item.name}</span>
+                        </div>
+                  )})}
                 </div>
-              </div>
             </div>
           </div>
 

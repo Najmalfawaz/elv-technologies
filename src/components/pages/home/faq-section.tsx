@@ -1,4 +1,4 @@
-import { faqs } from "@/data/faq";
+import { faq } from "@/data/faq";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export function FaqSection() {
@@ -13,7 +13,7 @@ export function FaqSection() {
             </p>
           </div>
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
+            {faq.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
                 <AccordionContent>{faq.answer}</AccordionContent>

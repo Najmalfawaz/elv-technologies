@@ -1,6 +1,16 @@
-import { Tv, Satellite, Radio, Hotel } from "lucide-react"
+import { Tv, Satellite, Radio, Hotel, Combine, DraftingCompass, Split, SatelliteDish, ServerCog, ClipboardCheck } from "lucide-react"
 
 export function IPTVSolutions() {
+
+    const services = [
+    { icon: Combine, text: "IPTV & SMATV system integration" },
+    { icon: DraftingCompass, text: "System design in Abu Dhabi & UAE" },
+    { icon: Split, text: "IF, RF, IP, and hybrid TV systems" },
+    { icon: SatelliteDish, text: "Satellite dish and antenna installation" },
+    { icon: ServerCog, text: "Headend configuration" },
+    { icon: ClipboardCheck, text: "Testing and commissioning" },
+  ]
+
   return (
     <section id="iptv-smatv" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -104,18 +114,14 @@ export function IPTVSolutions() {
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-8 md:p-12">
             <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-gray-900">Our IPTV & SMATV Services</h3>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {[
-                "IPTV & SMATV system integration",
-                "System design in Abu Dhabi & UAE",
-                "IF, RF, IP, and hybrid TV systems",
-                "Satellite dish and antenna installation",
-                "Headend configuration",
-                "Testing and commissioning",
-              ].map((service, idx) => (
+              {services.map((service, idx) => {
+                const Icon = service.icon;
+                return (
                 <div key={idx} className="bg-white rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-                  <p className="font-medium text-gray-800">{service}</p>
+                  <Icon className="w-10 h-10 mx-auto mb-4 text-orange-600" />
+                  <p className="font-medium text-gray-800">{service.text}</p>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         </div>

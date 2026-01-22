@@ -1,44 +1,42 @@
-'use client'
 
-import { useEffect, useState } from 'react'
-import { ArrowUp } from 'lucide-react'
+'use client';
 
-export default function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false)
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { ArrowUp } from 'lucide-react';
 
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true)
-    } else {
-      setIsVisible(false)
-    }
-  }
+export function ScrollToTop() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
-    })
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility)
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility)
-    }
-  }, [])
+    });
+  };
 
   return (
-    <div className="fixed top-5 right-5 z-50">
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="p-3 rounded-full bg-primary text-white hover:bg-primary/90 transition-opacity duration-300"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp size={24} />
-        </button>
-      )}
-    </div>
-  )
+    <Button
+      variant="outline"
+      size="icon"
+      className={`fixed bottom-4 right-4 h-12 w-12 rounded-full shadow-lg transition-opacity ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      onClick={scrollToTop}
+    >
+      <ArrowUp className="h-6 w-6" />
+    </Button>
+  );
 }

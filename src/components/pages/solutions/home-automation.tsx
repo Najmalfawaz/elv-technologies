@@ -1,4 +1,4 @@
-import { Home, Lightbulb, Lock, Smartphone, Zap, Sun } from "lucide-react"
+import { Home, Lightbulb, Lock, Smartphone, Zap, Sun, Award, Wrench, Scaling, ShieldCheck, Share2, Leaf } from "lucide-react"
 
 export function HomeAutomation() {
   const features = [
@@ -19,8 +19,17 @@ export function HomeAutomation() {
     "Energy-efficient operation",
   ]
 
+  const whyChooseUs = [
+      { icon: Award, text: "Tailored solutions for villas & luxury residences" },
+      { icon: Wrench, text: "Professional installation and programming" },
+      { icon: Scaling, text: "Scalable platforms for future upgrades" },
+      { icon: ShieldCheck, text: "Reliable after-sales service and maintenance" },
+      { icon: Share2, text: "Integration with leading smart home brands" },
+      { icon: Leaf, text: "Energy-efficient and eco-friendly solutions" },
+    ]
+
   return (
-    <section id="home-automation" className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section id="home-automation" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -77,19 +86,16 @@ export function HomeAutomation() {
                 Why Choose ELV Technology Solutions?
               </h3>
               <div className="space-y-4">
-                {[
-                  "Tailored home automation solutions for villas & luxury residences",
-                  "Professional installation and system programming",
-                  "Scalable smart home platforms for future upgrades",
-                  "Reliable after-sales service and maintenance",
-                  "Integration with leading smart home brands",
-                  "Energy-efficient and eco-friendly solutions",
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-orange-50 rounded-2xl p-4">
-                    <div className="w-2 h-2 rounded-full bg-orange-600 mt-2 flex-shrink-0" />
-                    <span className="text-gray-700">{item}</span>
+                {whyChooseUs.map((item, idx) => {
+                    const Icon = item.icon
+                    return (
+                  <div key={idx} className="flex items-start gap-4">
+                     <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-orange-600" />
+                     </div>
+                    <span className="text-gray-700 mt-1">{item.text}</span>
                   </div>
-                ))}
+                )})}
               </div>
             </div>
           </div>

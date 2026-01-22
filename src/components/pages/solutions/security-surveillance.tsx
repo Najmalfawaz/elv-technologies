@@ -1,4 +1,4 @@
-import { Camera, Shield, Users, AlertTriangle, Clock, Building2 } from "lucide-react"
+import { Camera, Shield, Users, AlertTriangle, Clock, Building2, Store, Hotel, Factory, Hospital, School } from "lucide-react"
 
 export function SecuritySurveillance() {
   const subsections = [
@@ -72,11 +72,11 @@ export function SecuritySurveillance() {
 
   const applications = [
     { icon: Building2, name: "Corporate Offices" },
-    { icon: Shield, name: "Retail & Malls" },
-    { icon: Users, name: "Hotels & Hospitality" },
-    { icon: AlertTriangle, name: "Industrial Facilities" },
-    { icon: Clock, name: "Healthcare Institutions" },
-    { icon: Camera, name: "Educational Campuses" },
+    { icon: Store, name: "Retail & Malls" },
+    { icon: Hotel, name: "Hotels & Hospitality" },
+    { icon: Factory, name: "Industrial Facilities" },
+    { icon: Hospital, name: "Healthcare Institutions" },
+    { icon: School, name: "Educational Campuses" },
   ]
 
   return (
@@ -112,8 +112,8 @@ export function SecuritySurveillance() {
               {applications.map((app, index) => {
                 const Icon = app.icon
                 return (
-                  <div key={index} className="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-                    <Icon className="w-12 h-12 mx-auto mb-4 text-orange-600" />
+                  <div key={index} className="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow group">
+                    <Icon className="w-12 h-12 mx-auto mb-4 text-orange-600 transition-transform duration-300 group-hover:scale-110" />
                     <p className="text-sm font-medium text-gray-800">{app.name}</p>
                   </div>
                 )
@@ -122,14 +122,14 @@ export function SecuritySurveillance() {
           </div>
 
           {/* Subsections */}
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {subsections.map((subsection, index) => (
               <div
                 key={index}
-                className="bg-white rounded-3xl border border-gray-200 p-8 md:p-12 hover:shadow-xl transition-shadow"
+                className="bg-white rounded-3xl border border-gray-200 p-8 md:p-12 hover:shadow-xl transition-shadow flex flex-col"
               >
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{subsection.title}</h3>
-                <p className="text-gray-700 mb-6 leading-relaxed">{subsection.description}</p>
+                <p className="text-gray-700 mb-6 leading-relaxed flex-grow">{subsection.description}</p>
                 <ul className="space-y-3">
                   {subsection.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
