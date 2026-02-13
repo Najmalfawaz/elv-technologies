@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "ELV Technology Solutions",
   description: "Leading provider of integrated technology solutions in the UAE.",
   icons: {
-    icon: "/icon.svg",
+    icon: "/images/1.png",
   },
 };
 
