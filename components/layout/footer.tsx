@@ -156,7 +156,7 @@ export default function Footer() {
           >
             <Link href="/" className="flex items-center gap-3 mb-8 group">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo.png"
                 alt="ELV Technology Solutions"
                 width={90}
                 height={90}
