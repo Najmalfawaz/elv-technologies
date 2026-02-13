@@ -49,7 +49,7 @@ const navLinks = [
         ]
       },
       {
-        label: "Network & Comms",
+        label: "Network & Communications",
         href: "/solutions/network-communications",
         items: [
           { label: "Structured Cabling", href: "/solutions/network-communications#structured-cabling" },

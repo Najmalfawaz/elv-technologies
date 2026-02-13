@@ -156,7 +156,7 @@ export default function Footer() {
           >
             <Link href="/" className="flex items-center gap-3 mb-8 group">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.svg"
                 alt="ELV Technology Solutions"
                 width={90}
                 height={90}
@@ -236,7 +236,7 @@ export default function Footer() {
 
           {/* Network & Comms + Home Automation */}
           <div data-footer-animate style={{ animationDelay: "0.5s" }}>
-            <FooterLinkGroup title="Network & Comms" links={networkComms} />
+            <FooterLinkGroup title="Network & Communications" links={networkComms} />
 
             <div className="mt-8">
               <h3 className="text-sm font-semibold text-[#f0f0f0] mb-4 uppercase tracking-[0.15em]">
