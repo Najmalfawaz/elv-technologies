@@ -45,7 +45,12 @@ export const caseStudiesData = [
       "Seamless student and visitor flow with full auditability.",
       "High-performance, secure networking with real-time observability.",
     ],
-    image: "/images/case-studies/guest-house.jpg"
+    image: "/images/case-studies/case-1/1.jpg",
+    gallery: [
+      "/images/case-studies/case-1/1.jpg",
+      "/images/case-studies/case-1/2.jpg",
+      "/images/case-studies/case-1/3.jpg",
+    ]
   },
   {
     slug: "cctv-system-for-bus-shelters-abu-dhabi",
@@ -72,7 +77,11 @@ export const caseStudiesData = [
       "Improved public-space safety and asset protection.",
       "On-time delivery and full client satisfaction.",
     ],
-    image: "/images/case-studies/bus-shelter.jpg"
+    image: "/images/case-studies/case-2/1.jpg",
+    gallery: [
+      "/images/case-studies/case-2/1.jpg",
+      "/images/case-studies/case-2/2.jpg",
+    ]
   },
   {
     slug: "radisson-blu-hotel-abu-dhabi-corniche-av",
@@ -100,7 +109,12 @@ export const caseStudiesData = [
       "Compelling visual impact for events, promotions, and live broadcasts.",
       "A cohesive guest experience across beach, pool, and gym zones.",
     ],
-    image: "/images/case-studies/radisson-blu.jpg"
+    image: "/images/case-studies/case-3/1.jpg",
+    gallery: [
+      "/images/case-studies/case-3/1.jpg",
+      "/images/case-studies/case-3/2.jpg",
+      "/images/case-studies/case-3/3.jpg",
+    ]
   },
   {
     slug: "al-ain-and-abu-dhabi-coop-cctv",
@@ -127,7 +141,12 @@ export const caseStudiesData = [
       "Reduced downtime and predictable performance through AMC.",
       "Mobile and desktop remote access for security and management teams.",
     ],
-    image: "/images/case-studies/al-ain-coop.jpg"
+    image: "/images/case-studies/case -4/1.jpg",
+    gallery: [
+      "/images/case-studies/case -4/1.jpg",
+      "/images/case-studies/case -4/2.jpg",
+      "/images/case-studies/case -4/3.jpg",
+    ]
   },
   {
     slug: "sofitel-dubai-jumeirah-beach-av-upgrade",
@@ -136,25 +155,31 @@ export const caseStudiesData = [
     location: "The Walk — Jumeirah Beach Residence — Dubai",
     overview: "To uphold Sofitel’s luxury standards, ETS upgraded the hotel’s background music (BGM) platform and modernized AV systems in the ballroom and meeting rooms, ensuring refined aesthetics, intuitive control, and future scalability.",
     challenges: [
-        "Integration with existing infrastructure while enabling growth.",
-        "Diverse acoustic and operational needs across poolside, meeting rooms (Antibes, Mentone, Cannes), and the ballroom.",
-        "Discreet, luxury-grade presentation with uncompromised performance.",
+      "Integration with existing infrastructure while enabling growth.",
+      "Diverse acoustic and operational needs across poolside, meeting rooms (Antibes, Mentone, Cannes), and the ballroom.",
+      "Discreet, luxury-grade presentation with uncompromised performance.",
     ],
     solution: {
-        title: "Solution Highlights",
-        components: [
-            { name: "Centralized BGM Rack", details: "PC, professional soundcard, audio DSP, amplifiers, network switch, Dante module, and VC panel within a neatly organized rack. Power management with sequential switching and custom panels for serviceability." },
-            { name: "Poolside A/V Rack", details: "Ceiling speakers with a dedicated control rack (PC, soundcard, DSP, amplifier, network switch, VC panel). Dante panel integration and DSP programming for optimal tuning." },
-            { name: "Meeting Rooms (Antibes, Mentone, Cannes)", details: "High-quality projection and audio systems tailored to presentation needs. Cannes room enhancements with upgraded microphones and integrated audio." },
-            { name: "Ballroom AV", details: "High-performance projector with wide-throw #2 zoom lens and motorized screen. Amplifiers and microphones to deliver intelligible, powerful audio." }
-        ]
+      title: "Solution Highlights",
+      components: [
+        { name: "Centralized BGM Rack", details: "PC, professional soundcard, audio DSP, amplifiers, network switch, Dante module, and VC panel within a neatly organized rack. Power management with sequential switching and custom panels for serviceability." },
+        { name: "Poolside A/V Rack", details: "Ceiling speakers with a dedicated control rack (PC, soundcard, DSP, amplifier, network switch, VC panel). Dante panel integration and DSP programming for optimal tuning." },
+        { name: "Meeting Rooms (Antibes, Mentone, Cannes)", details: "High-quality projection and audio systems tailored to presentation needs. Cannes room enhancements with upgraded microphones and integrated audio." },
+        { name: "Ballroom AV", details: "High-performance projector with wide-throw #2 zoom lens and motorized screen. Amplifiers and microphones to deliver intelligible, powerful audio." }
+      ]
     },
     outcomes: [
-        "A luxury-calibrated AV environment that is intuitive for staff and impressive for guests.",
-        "Centrally managed BGM with room-level nuance and control.",
-        "Scalable, serviceable architecture aligned with future event needs."
+      "A luxury-calibrated AV environment that is intuitive for staff and impressive for guests.",
+      "Centrally managed BGM with room-level nuance and control.",
+      "Scalable, serviceable architecture aligned with future event needs."
     ],
-    image: "/images/case-studies/sofitel.jpg"
+    image: "/images/case-studies/case-5/1.jpg",
+    gallery: [
+      "/images/case-studies/case-5/1.jpg",
+      "/images/case-studies/case-5/2.jpg",
+      "/images/case-studies/case-5/3.jpg",
+      "/images/case-studies/case-5/4.jpg",
+    ]
   },
   {
     slug: "le-meridien-hotel-abu-dhabi-av-upgrade",
@@ -172,125 +197,20 @@ export const caseStudiesData = [
       ]
     },
     outcomes: [
-        "Audibly superior, venue-appropriate soundscapes indoors and outdoors.",
-        "A striking LED platform for events, brand content, and live broadcasts.",
-        "Elevated guest satisfaction and operational flexibility."
+      "Audibly superior, venue-appropriate soundscapes indoors and outdoors.",
+      "A striking LED platform for events, brand content, and live broadcasts.",
+      "Elevated guest satisfaction and operational flexibility."
     ],
     challenges: [],
-    image: "/images/case-studies/le-meridien.jpg"
-  },
-  {
-    slug: "sheraton-abu-dhabi-hotel-av-upgrade",
-    client: "Sheraton Abu Dhabi Hotel & Resort",
-    project: "AV System Upgrade across Ballrooms, Meeting Rooms, Tavern Bar, and Pool Bar",
-    location: "Corniche Rd E — Al Zahiyah — E12 — Abu Dhabi",
-    overview: "ETS modernized the hotel’s AV environment to elevate event quality and streamline daily operations, combining high-brightness projection, premium audio, and intelligent control.",
-    challenges: [
-        "Large-venue visual performance requiring high-lumen projection.",
-        "QSC-based audio integration for consistent clarity.",
-        "User-friendly operation without compromising advanced functionality.",
-        "Interactive, flexible meeting room technology.",
-        "Immersive bar and poolside audio experiences."
-    ],
-    solution: {
-        title: "Solution by Space",
-        components: [
-            { name: "Arzana Ballroom", details: "12,000 ANSI lumens projector with short-zoom lens and 200-inch electric screen. Wireless presenter for seamless facilitation." },
-            { name: "Audio Core", details: "Soundcraft audio mixer with microphones, QSC speakers, subwoofer, and amplifier. Crestron control processor for automated presets and simple operation." },
-            { name: "Meeting Rooms", details: "86-inch all-in-one displays with built-in speakers, camera, and microphone. Native wireless screen sharing for frictionless presentations." },
-            { name: "Ballroom AV", details: "Motorized screens with ultra-short-throw 10,000-lumen projectors. Extron matrix switcher and control processor for seamless routing. Audio amplifier for balanced distribution." },
-            { name: "Tavern Bar & Pool Bar", details: "High-quality speakers, subwoofers, amplifiers, and DSP controller for tailored sound." }
-        ]
-    },
-    outcomes: [
-        "A cohesive, luxury-grade AV experience across venues.",
-        "Simplified operation for hotel teams and external partners.",
-        "Improved event versatility and guest satisfaction."
-    ],
-    image: "/images/case-studies/sheraton.jpg"
-  },
-  {
-    slug: "grand-hyatt-abu-dhabi-wifi",
-    client: "Grand Hyatt Hotel Emirates Pearl",
-    project: "Enterprise-Grade Aruba Wireless Network",
-    location: "West Corniche, Corniche Road — Abu Dhabi",
-    overview: "As a flagship luxury property, the hotel required hospitality-grade wireless connectivity capable of supporting high device density, consistent coverage, and secure separation of guest and operational traffic.",
-    challenges: [
-      "High device density.",
-      "Consistent coverage.",
-      "Secure separation of guest and operational traffic."
-    ],
-    solution: {
-      title: "Solution Overview",
-      points: [
-          "Aruba access points across guest rooms, public areas, meeting rooms, and back-of-house.",
-          "Aruba wireless controllers for centralized configuration and optimization.",
-          "High-density design tailored to hotel and conference environments.",
-          "Network segmentation with captive portal for branded authentication experiences.",
-          "Advanced security with role-based access control and policy enforcement.",
-      ]
-    },
-    outcomes: [
-      "Consistent, high-speed coverage property-wide.",
-      "Reduced connectivity-related complaints and improved guest ratings.",
-      "Secure staff and system access with room to scale for future services.",
-    ],
-    image: "/images/case-studies/grand-hyatt.jpg"
-  },
-  {
-    slug: "ritz-carlton-abu-dhabi-banquet-hall-av",
-    client: "Abu Dhabi National Hotels",
-    project: "New AV System for the Banquet Hall Area",
-    location: "Al Rawdah — Al Maqta — Abu Dhabi",
-    overview: "To accommodate high-profile conferences, weddings, and product launches, the banquet hall required a technology refresh—delivering uniform audio coverage, high-resolution visuals, flexible room configurations, and intuitive control for hotel teams and event partners.",
-    challenges: [
-        "Accommodate high-profile conferences, weddings, and product launches.",
-        "Uniform audio coverage.",
-        "High-resolution visuals.",
-        "Flexible room configurations.",
-        "Intuitive control for hotel teams and event partners."
-    ],
-    solution: {
-      title: "Solution Overview",
-      points: [
-          "Professional loudspeakers and digital signal processing for even SPL and intelligibility.",
-          "High-resolution LED displays and projection for large-format content.",
-          "Wireless and wired microphone ecosystems for presenters and performers.",
-          "Centralized AV control with user-friendly touch panels.",
-          "Integration with lighting and building-management systems.",
-      ]
-    },
-    outcomes: [
-      "Methodical planning to avoid operational disruption; acoustic evaluations prior to install.",
-      "System tuning and staff enablement for confident day-one operation.",
-      "Significantly enhanced production values and venue flexibility for all event types.",
-    ],
-    image: "/images/case-studies/ritz-carlton.jpg"
-  },
-  {
-    slug: "andaz-capital-gate-abu-dhabi-wifi6-upgrade",
-    client: "ANDAZ Capital Gate Abu Dhabi — Hyatt Capital Gate Hotel",
-    project: "Wi-Fi Upgrade to Aruba Wi-Fi 6",
-    location: "6 Al Multaqa St — Al Rawdah — Abu Dhabi",
-    overview: "Seamless, high-speed coverage across guest rooms, public areas, and back-of-house. High device density during peak occupancy and events. Network stability, fast roaming, and secure segmentation for guests, staff, and systems.",
-    challenges: [
-      "Seamless, high-speed coverage.",
-      "High device density.",
-      "Network stability, fast roaming, and secure segmentation.",
-    ],
-    solution: {
-      title: "Solution Highlights",
-      points: [
-          "Deployment of 214 enterprise-grade Aruba access points across the property.",
-          "High-density design with centralized monitoring and management.",
-          "Secure network segmentation and scalable architecture for future services.",
-      ]
-    },
-    outcomes: [
-      "Marked improvement in performance and coverage throughout the hotel.",
-      "Reduced connectivity incidents and enhanced guest satisfaction.",
-      "Future-ready infrastructure aligned with Hyatt/Andaz brand expectations.",
-    ],
-    image: "/images/case-studies/andaz.jpg"
+    image: "/images/case-studies/case-6/1.jpg",
+    gallery: [
+      "/images/case-studies/case-6/1.jpg",
+      "/images/case-studies/case-6/2.jpg",
+      "/images/case-studies/case-6/3.jpg",
+      "/images/case-studies/case-6/4.jpg",
+      "/images/case-studies/case-6/5.jpg",
+      "/images/case-studies/case-6/6.jpg",
+      "/images/case-studies/case-6/7.jpg",
+    ]
   }
 ]

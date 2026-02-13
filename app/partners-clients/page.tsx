@@ -2,7 +2,7 @@
 
 import { HeroSection } from '@/components/partners-clients/hero-section';
 import { PartnersTabs } from '@/components/partners-clients/partners-tabs';
-import { ClientsCarousel } from '@/components/partners-clients/clients-carousel';
+import { ClientsSlider } from '@/components/partners-clients/clients-slider';
 import { CTASection } from '@/components/partners-clients/cta-section';
 
 export default function PartnersAndClientsPage() {
@@ -11,7 +11,7 @@ export default function PartnersAndClientsPage() {
       <main className="isolate">
         <HeroSection />
         <PartnersTabs />
-        <ClientsCarousel />
+        <ClientsSlider />
         <CTASection />
       </main>
     </div>

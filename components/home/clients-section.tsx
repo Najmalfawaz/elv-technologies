@@ -16,48 +16,45 @@ function MarqueeRow({
   speed?: 'slow' | 'normal' | 'fast';
   renderAs?: 'text' | 'image';
 }) {
-  const duplicated = [...items, ...items];
-  const speedClass =
-    speed === 'slow'
-      ? '[animation-duration:45s]'
-      : speed === 'normal'
-      ? '[animation-duration:35s]'
-      : '[animation-duration:25s]';
+  // Use 4x duplicates to ensure no gaps on very wide screens
+  const duplicated = [...items, ...items, ...items, ...items];
 
   return (
-    <div className='relative overflow-hidden group'>
-      {/* Fade edges */}
-      <div className='absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10' />
-      <div className='absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10' />
-
+    <div className='relative w-full py-4 overflow-hidden'>
+      {/* Modern Fade effect using Mask Image */}
       <div
-        className={`flex gap-5 animate-scroll-left ${speedClass} ${
-          direction === 'right' ? '[animation-direction:reverse]' : ''
-        } hover:[animation-play-state:paused]`}>
+        className="flex w-fit gap-8 animate-scroll-left hover:[animation-play-state:paused]"
+        style={{
+          animationDuration: speed === 'slow' ? '120s' : speed === 'normal' ? '80s' : '40s',
+          animationDirection: direction === 'right' ? 'reverse' : 'normal'
+        }}
+      >
         {duplicated.map((item, index) => (
           <div
-            key={
-              renderAs === 'image'
-                ? `${(item as { alt: string }).alt}-${index}`
-                : `${item as string}-${index}`
-            }
-            className='flex-shrink-0 flex items-center justify-center rounded-xl border border-border bg-card px-8 py-5 min-w-[200px] transition-all duration-300 hover:border-foreground/15 hover:shadow-md hover:shadow-foreground/[0.02] hover:-translate-y-0.5'>
+            key={index}
+            className='flex-shrink-0 flex items-center justify-center rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm px-10 py-6 min-w-[220px] h-32 transition-all duration-500 hover:border-red-200 hover:bg-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:-translate-y-1 group/item'
+          >
             {renderAs === 'image' ? (
-              <Image
-                src={(item as { src: string }).src}
-                alt={(item as { alt: string }).alt}
-                width={150}
-                height={50}
-                className='object-contain'
-              />
+              <div className="relative w-32 h-16 filter transition-all duration-500 group-hover/item:scale-110">
+                <Image
+                  src={(item as { src: string }).src}
+                  alt={(item as { alt: string }).alt}
+                  fill
+                  className='object-contain'
+                />
+              </div>
             ) : (
-              <span className='text-sm font-medium text-foreground whitespace-nowrap'>
+              <span className='text-base font-semibold text-slate-700 whitespace-nowrap group-hover/item:text-red-600 transition-colors'>
                 {item as string}
               </span>
             )}
           </div>
         ))}
       </div>
+
+      {/* Gradient Overlays for smooth edge fading */}
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none" />
     </div>
   );
 }
@@ -82,27 +79,34 @@ export default function ClientsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className='py-24 lg:py-32 bg-background'>
-      {/* Clients */}
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+    <section ref={sectionRef} className='py-24 lg:py-32 bg-white overflow-hidden relative'>
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-red-50 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-50 rounded-full blur-[120px]" />
+      </div>
+
+      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+        {/* Clients Header */}
         <div
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-6'
-          }`}>
-          <span className='inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4'>
-            <span className='h-px w-6 bg-accent' />
-            Trusted By
-            <span className='h-px w-6 bg-accent' />
-          </span>
-          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight'>
-            Our Clients
+          className={`text-center mb-16 transition-all duration-1000 ease-out ${isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+            }`}>
+          <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium leading-6 text-red-600 ring-1 ring-inset ring-red-600/10 mb-6 bg-red-50/50">
+            Trusted By Global Leaders
+          </div>
+          <h2 className='text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight lg:text-6xl'>
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">Esteemed Clients</span>
           </h2>
+          <p className="mt-6 text-lg leading-8 text-slate-600 max-w-2xl mx-auto">
+            We take pride in collaborating with visionary organizations across the UAE to deliver world-class technology solutions.
+          </p>
         </div>
       </div>
 
-      <div className='mb-24'>
+      {/* Clients Marquee */}
+      <div className='mb-28'>
         <MarqueeRow
           items={clients}
           direction='left'
@@ -111,29 +115,30 @@ export default function ClientsSection() {
         />
       </div>
 
-      {/* Partners */}
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+        {/* Partners Header */}
         <div
-          className={`text-center mb-12 transition-all duration-700 delay-200 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-6'
-          }`}>
-          <span className='inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-4'>
-            <span className='h-px w-6 bg-accent' />
-            Working Together
-            <span className='h-px w-6 bg-accent' />
-          </span>
-          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight'>
-            Our Partners
+          className={`text-center mb-16 transition-all duration-1000 ease-out delay-300 ${isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+            }`}>
+          <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium leading-6 text-blue-600 ring-1 ring-inset ring-blue-600/10 mb-6 bg-blue-50/50">
+            Technology Ecosystem
+          </div>
+          <h2 className='text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight lg:text-6xl'>
+            Our Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">Partners</span>
           </h2>
+          <p className="mt-6 text-lg leading-8 text-slate-600 max-w-2xl mx-auto">
+            Strategic alliances with world-leading technology vendors to bring the latest innovations to our clients.
+          </p>
         </div>
       </div>
 
+      {/* Partners Marquee */}
       <MarqueeRow
         items={allPartnerLogos}
         direction='right'
-        speed='normal'
+        speed='slow'
         renderAs='image'
       />
     </section>

@@ -122,6 +122,32 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
                 </div>
               </div>
 
+              {study.gallery && study.gallery.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Gallery</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {study.gallery.map((img, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300"
+                      >
+                        <Image
+                          src={img}
+                          alt={`${study.project} - Image ${index + 1}`}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {study.outcomes.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Outcomes</h2>

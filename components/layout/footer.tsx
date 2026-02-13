@@ -277,9 +277,11 @@ export default function Footer() {
           style={{ animationDelay: "0.7s" }}
         >
           <div>
-            <h3 className="text-sm font-semibold text-[#f0f0f0] mb-2 uppercase tracking-[0.15em]">
-              Careers
-            </h3>
+            <Link href="/careers" className="inline-block group">
+              <h3 className="text-sm font-semibold text-[#f0f0f0] mb-2 uppercase tracking-[0.15em] group-hover:text-accent transition-colors">
+                Careers
+              </h3>
+            </Link>
             <p className="text-sm text-[#888] leading-relaxed">
               Interested in joining our team? Submit your CV to{" "}
               <a
@@ -291,13 +293,13 @@ export default function Footer() {
               , and we{"'"}ll be in touch after reviewing your application.
             </p>
           </div>
-          <a
-            href="mailto:info@etssmart.com"
+          <Link
+            href="/careers"
             className="shrink-0 flex items-center gap-2 rounded-full border border-[#333] px-5 py-2.5 text-sm font-medium text-[#e5e5e5] transition-all duration-300 hover:bg-[hsl(0,80%,38%)] hover:text-[#fff] hover:border-[hsl(0,80%,38%)]"
           >
             Apply Now
             <ArrowUpRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
 

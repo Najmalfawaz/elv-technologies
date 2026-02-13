@@ -29,7 +29,7 @@ export function PartnersTabs() {
                                 <TabsTrigger
                                     key={category.title}
                                     value={category.title}
-                                    className="rounded-full px-6 py-3 text-sm font-medium data-[state=active]:bg-blue-600 data-[state=active]:text-white border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                                    className="rounded-full px-6 py-3 text-sm font-medium data-[state=active]:bg-accent data-[state=active]:text-accent-foreground border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
                                 >
                                     {category.title}
                                 </TabsTrigger>
@@ -54,7 +54,7 @@ export function PartnersTabs() {
                                                     key={`${category.title}-${index}`}
                                                     className="flex items-center justify-center p-6 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group"
                                                 >
-                                                    <div className="relative h-16 w-full filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100 transform group-hover:scale-110">
+                                                    <div className="relative h-16 w-full transition-all duration-300 transform group-hover:scale-110">
                                                         <Image
                                                             src={logo.src}
                                                             alt={logo.alt}

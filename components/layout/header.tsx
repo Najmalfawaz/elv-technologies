@@ -18,6 +18,7 @@ import {
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
   {
     label: "Solutions",
     href: "/solutions",
@@ -70,10 +71,9 @@ const navLinks = [
       },
     ],
   },
-  { label: "Services", href: "/services" },
   { label: "Partners & Clients", href: "/partners-clients" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Blogs", href: "/blogs" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const socialLinks = [
@@ -235,8 +235,8 @@ export default function Header() {
                                 <Link
                                   href={sub.href}
                                   className={`flex items-center justify-between rounded-lg px-4 py-2.5 text-[13px] transition-all duration-200 ${activeCategory === sub.label
-                                      ? "bg-accent/5 text-accent"
-                                      : "text-foreground/70 hover:bg-accent/5 hover:text-accent"
+                                    ? "bg-accent/5 text-accent"
+                                    : "text-foreground/70 hover:bg-accent/5 hover:text-accent"
                                     }`}
                                 >
                                   {sub.label}

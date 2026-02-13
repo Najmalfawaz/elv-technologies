@@ -1,10 +1,17 @@
 'use client';
 
 import { solutionsData } from "@/lib/solutions-data";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Shield, Music, Wifi, Home } from "lucide-react"; // Import relevant icons
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+const iconMap = {
+    'security-surveillance': Shield,
+    'audio-visual': Music,
+    'network-communications': Wifi,
+    'home-automation': Home,
+};
 
 export default function SolutionsPageLineup() {
     const verticals = [
@@ -14,39 +21,89 @@ export default function SolutionsPageLineup() {
         solutionsData.homeAutomation
     ];
 
-    return (
-        <section className="py-24 bg-slate-50 dark:bg-slate-950">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                    {verticals.map((vertical) => (
-                        <Link href={`/solutions/${vertical.id}`} key={vertical.id} className="group relative overflow-hidden rounded-3xl bg-white dark:bg-slate-900 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                            {/* Card Image */}
-                            <div className="relative h-64 w-full overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent z-10" />
-                                <Image
-                                    src={`https://placehold.co/800x600/1e293b/ffffff?text=${encodeURIComponent(vertical.title)}`}
-                                    alt={vertical.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute bottom-6 left-6 right-6 z-20">
-                                    <h2 className="text-2xl font-bold text-white mb-2">{vertical.title}</h2>
-                                    <div className="h-1 w-12 bg-red-600 rounded-full group-hover:w-20 transition-all duration-300" />
-                                </div>
-                            </div>
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
 
-                            {/* Card Content */}
-                            <div className="p-8">
-                                <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
-                                    {vertical.description}
-                                </p>
-                                <div className="flex items-center text-red-600 font-semibold group-hover:translate-x-2 transition-transform">
-                                    View Solutions <ArrowRight className="ml-2 h-4 w-4" />
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
+    const itemVariants: any = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "circOut" }
+        }
+    };
+
+    return (
+        <section className="py-24 bg-white">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="grid md:grid-cols-2 gap-10 lg:gap-16"
+                >
+                    {verticals.map((vertical) => {
+                        const Icon = iconMap[vertical.id as keyof typeof iconMap] || Shield;
+                        return (
+                            <motion.div key={vertical.id} variants={itemVariants}>
+                                <Link
+                                    href={`/solutions/${vertical.id}`}
+                                    className="group block relative h-full bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:-translate-y-2"
+                                >
+                                    {/* Image Container with sophisticated overlay */}
+                                    <div className="relative h-80 w-full overflow-hidden">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                                        <Image
+                                            src={vertical.image || `https://placehold.co/800x600/1e293b/ffffff?text=${encodeURIComponent(vertical.title)}`}
+                                            alt={vertical.title}
+                                            fill
+                                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                        />
+
+                                        {/* Floating Icon Badge */}
+                                        <div className="absolute top-6 left-6 z-20 h-14 w-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
+                                            <Icon className="h-7 w-7 text-white" />
+                                        </div>
+
+                                        <div className="absolute bottom-8 left-8 right-8 z-20">
+                                            <h2 className="text-3xl font-bold text-white mb-2 leading-tight">
+                                                {vertical.title}
+                                            </h2>
+                                            <div className="h-1 w-12 bg-red-600 rounded-full transition-all duration-500 group-hover:w-24 group-hover:bg-red-500" />
+                                        </div>
+                                    </div>
+
+                                    {/* Content Area with refined typography */}
+                                    <div className="p-10 flex flex-col h-[calc(100%-320px)]">
+                                        <p className="text-slate-600 text-lg leading-relaxed mb-8 line-clamp-3">
+                                            {vertical.description}
+                                        </p>
+
+                                        <div className="mt-auto flex items-center justify-between">
+                                            <div className="flex items-center text-red-600 font-bold text-sm tracking-wider uppercase group-hover:text-red-700 transition-colors">
+                                                Explore Solutions
+                                                <ArrowRight className="ml-3 h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
+                                            </div>
+
+                                            {/* Sub-item count indicator or subtle accent */}
+                                            <div className="text-[10px] font-black text-slate-100 group-hover:text-slate-200 transition-colors select-none">
+                                                ETS SOLUTIONS
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
             </div>
         </section>
     );

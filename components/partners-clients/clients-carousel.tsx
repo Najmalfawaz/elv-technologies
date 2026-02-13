@@ -32,7 +32,7 @@ export function ClientsCarousel() {
 
                 <div className="relative px-12">
                     <Carousel
-                        plugins={[plugin.current]}
+                        plugins={[plugin.current as any]}
                         className="w-full"
                         onMouseEnter={plugin.current.stop}
                         onMouseLeave={plugin.current.reset}

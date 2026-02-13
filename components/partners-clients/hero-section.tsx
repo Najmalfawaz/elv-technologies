@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ArrowRight, Trophy, Users, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -30,7 +31,7 @@ export function HeroSection() {
               transition={{ duration: 0.5 }}
             >
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                Collaborating for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600">Excellence</span>
+                Collaborating for <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-accent">Excellence</span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-300">
                 We bridge the gap between innovation and execution by partnering with top-tier technology providers and serving a diverse clientele. Together, we build the future.
@@ -41,14 +42,13 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-8 flex items-center justify-center gap-x-6"
+              className="mt-10 flex items-center justify-center gap-x-6"
             >
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100">
-                Become a Partner <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="lg" className="text-white border-white/20 hover:bg-white/10 hover:text-white">
-                View Success Stories
-              </Button>
+              <Link href="/case-studies">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 h-14 px-8 text-lg font-semibold rounded-xl group transition-all duration-300 shadow-lg shadow-red-500/20">
+                  View Our Works <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </div>

@@ -1,0 +1,167 @@
+'use client';
+
+import { blogPosts } from "@/lib/blog-data";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft, Calendar, User, Share2, Facebook, Twitter, Linkedin, CheckCircle2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { motion } from "framer-motion";
+
+interface BlogSlugPageProps {
+    slug: string;
+}
+
+export default function BlogSlugPage({ slug }: BlogSlugPageProps) {
+    const post = blogPosts.find((p) => p.slug === slug);
+
+    if (!post) {
+        notFound();
+    }
+
+    return (
+        <div className="bg-white dark:bg-slate-950 min-h-screen pb-24">
+            {/* Hero Section */}
+            <div className="relative h-[50vh] min-h-[400px] w-full">
+                <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                <div className="absolute inset-0 bg-stone-900/40 dark:bg-slate-950/60" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="mx-auto max-w-4xl w-full px-6 lg:px-8 text-center text-white">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <Link href="/blog" className="inline-flex items-center text-slate-200 hover:text-white mb-8 transition-colors text-sm font-medium">
+                                <ChevronLeft className="mr-1 h-4 w-4" /> Back to Blog
+                            </Link>
+                            <div className="flex justify-center gap-3 mb-6">
+                                <Badge className="bg-accent text-white border-none text-xs py-1 px-3">
+                                    {post.category}
+                                </Badge>
+                            </div>
+                            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl drop-shadow-md">
+                                {post.title}
+                            </h1>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-12">
+                <div className="lg:grid lg:grid-cols-12 lg:gap-16">
+                    {/* Main Content */}
+                    <div className="lg:col-span-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            <div className="flex items-center justify-between flex-wrap gap-4 mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
+                                <div className="flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+                                    <span className="flex items-center gap-2">
+                                        <Calendar className="h-4 w-4 text-accent" />
+                                        {post.date}
+                                    </span>
+                                    <span className="flex items-center gap-2">
+                                        <User className="h-4 w-4 text-accent" />
+                                        {post.author}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mr-2">Share:</span>
+                                    <button className="h-8 w-8 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                                        <Facebook className="h-4 w-4" />
+                                    </button>
+                                    <button className="h-8 w-8 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                                        <Twitter className="h-4 w-4" />
+                                    </button>
+                                    <button className="h-8 w-8 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                                        <Linkedin className="h-4 w-4" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <article className="prose prose-lg prose-slate dark:prose-invert max-w-none">
+                                {post.content.sections.map((section, idx) => {
+                                    switch (section.type) {
+                                        case 'paragraph':
+                                            return <p key={idx} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">{section.content}</p>;
+                                        case 'heading':
+                                            return <h2 key={idx} className="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-6">{section.title}</h2>;
+                                        case 'list':
+                                            return (
+                                                <div key={idx} className="my-8">
+                                                    {section.title && <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">{section.title}</h3>}
+                                                    <ul className="space-y-4">
+                                                        {section.items?.map((item, i) => (
+                                                            <li key={i} className="flex items-start gap-3">
+                                                                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                                                                <span className="text-slate-600 dark:text-slate-300">{item}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            );
+                                        case 'image':
+                                            return (
+                                                <div key={idx} className="my-10 relative aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg">
+                                                    <Image src={section.src!} alt={section.alt!} fill className="object-cover" />
+                                                </div>
+                                            );
+                                        default:
+                                            return null;
+                                    }
+                                })}
+                            </article>
+                        </motion.div>
+                    </div>
+
+                    {/* Sidebar */}
+                    <div className="lg:col-span-4 mt-16 lg:mt-0">
+                        <div className="sticky top-24 space-y-8">
+                            {/* Newsletter / CTA */}
+                            <div className="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl">
+                                <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-600/20 blur-3xl rounded-full" />
+                                <h3 className="text-2xl font-bold mb-4">Transform your connectivity</h3>
+                                <p className="text-slate-400 mb-8 leading-relaxed">
+                                    ELV Technology Solutions delivers future-ready infrastructure for modern businesses. Let's build your network together.
+                                </p>
+                                <Link href="/contact" className="block">
+                                    <Button className="w-full bg-accent hover:bg-red-700 text-white font-bold h-14 rounded-xl shadow-lg shadow-red-500/20 transition-all">
+                                        Partner With Us
+                                    </Button>
+                                </Link>
+                            </div>
+
+                            {/* Author Box */}
+                            <div className="bg-slate-50 dark:bg-slate-900 rounded-3xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm">
+                                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">About the Author</h4>
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="h-12 w-12 rounded-full bg-accent flex items-center justify-center font-bold text-white text-xl shadow-md">
+                                        E
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-slate-900 dark:text-white">ELV Technology Solutions</p>
+                                        <p className="text-xs text-slate-500">Abu Dhabi, UAE</p>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Leading provider of integrated ELV and IT solutions, specializing in fiber-optic cabling, smart building systems, and high-performance networking across the Middle East.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

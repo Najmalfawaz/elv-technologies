@@ -10,11 +10,13 @@ export const solutionsData = {
         title: "1. Security and Surveillance",
         id: "security-surveillance",
         description: "Modern security is no longer about passive monitoring—it’s about intelligent systems that think, analyse, and act in real time.",
+        image: "/images/solutions/security-surveillance/security-survillience.jpg",
         items: [
             {
                 title: "Security and Surveillance",
                 id: "security-surveillance-system",
                 icon: Shield,
+                image: "/images/solutions/security-surveillance/security-survillience.jpg",
                 content: {
                     heading: "AI-Powered Security & Surveillance Solutions in UAE",
                     description: [
@@ -56,6 +58,7 @@ export const solutionsData = {
                 title: "Access Control & Time Attendance",
                 id: "access-control",
                 icon: Lock,
+                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.jpg",
                 content: {
                     heading: "Access Control & Time Attendance System in UAE",
                     description: [
@@ -71,6 +74,7 @@ export const solutionsData = {
                 title: "Gate Barrier",
                 id: "gate-barrier",
                 icon: Shield,
+                image: "/images/solutions/security-surveillance/Gate Barrier.jpg",
                 content: {
                     heading: "Gate Barrier in UAE",
                     description: [
@@ -86,6 +90,7 @@ export const solutionsData = {
                 title: "Nurse Call System",
                 id: "nurse-call",
                 icon: Bell,
+                image: "/images/solutions/security-surveillance/Nurse Call System.jpg",
                 content: {
                     heading: "Nurse Call System in UAE",
                     description: [
@@ -101,6 +106,7 @@ export const solutionsData = {
                 title: "Queue Management System",
                 id: "queue-management",
                 icon: Users,
+                image: "/images/solutions/security-surveillance/Queue Management System.jpg",
                 content: {
                     heading: "Queue Management System in UAE",
                     description: [
@@ -119,6 +125,7 @@ export const solutionsData = {
                 title: "Disabled Toilet Alarm System",
                 id: "disabled-alarm",
                 icon: Accessibility,
+                image: "/images/solutions/security-surveillance/Disabled Toilet Alarm System.jpg",
                 content: {
                     heading: "Disabled Toilet Alaram System in UAE",
                     description: [
@@ -136,11 +143,13 @@ export const solutionsData = {
         title: "2. Audio Visual Solutions",
         id: "audio-visual",
         description: "Advancements in audio-visual technology are reshaping how organizations collaborate, train, and communicate.",
+        image: "/images/solutions/audio-visual/Audio Visual Solutions.jpg",
         items: [
             {
                 title: "Music Systems and BGM Solutions",
                 id: "music-bgm",
                 icon: Music,
+                image: "/images/solutions/audio-visual/Music Systems and BGM Solutions.jpg",
                 content: {
                     heading: "Music Systems and BGM Solutions for Hospitality in UAE",
                     description: [
@@ -198,6 +207,7 @@ export const solutionsData = {
                 title: "Indoor Video Wall",
                 id: "video-wall",
                 icon: MonitorPlay,
+                image: "/images/solutions/audio-visual/Indoor Video Wall.jpg",
                 content: {
                     heading: "Indoor Video Wall in UAE",
                     description: [
@@ -212,6 +222,7 @@ export const solutionsData = {
                 title: "Conference Room",
                 id: "conference-room",
                 icon: Users,
+                image: "/images/solutions/audio-visual/Conference Room.jpg",
                 content: {
                     heading: "Conference Room in UAE",
                     description: [
@@ -227,6 +238,7 @@ export const solutionsData = {
                 title: "Meeting and Boardroom",
                 id: "meeting-boardroom",
                 icon: Users,
+                image: "/images/solutions/audio-visual/Meeting and Boardroom.jpg",
                 content: {
                     heading: "Meeting Room & Boardroom AV Solutions in UAE",
                     description: [
@@ -242,6 +254,7 @@ export const solutionsData = {
                 title: "Digital Signage",
                 id: "digital-signage",
                 icon: Monitor,
+                image: "/images/solutions/audio-visual/Digital Signage.jpg",
                 content: {
                     heading: "Digital Signage in UAE",
                     description: [
@@ -257,6 +270,7 @@ export const solutionsData = {
                 title: "LED Screen",
                 id: "led-screen",
                 icon: MonitorPlay,
+                image: "/images/solutions/audio-visual/LED Screen.jpg",
                 content: {
                     heading: "LED Screen in UAE",
                     description: [
@@ -272,6 +286,7 @@ export const solutionsData = {
                 title: "Control Systems",
                 id: "control-systems",
                 icon: Server,
+                image: "/images/solutions/audio-visual/Control Systems.jpg",
                 content: {
                     heading: "Control Systems in UAE",
                     description: [
@@ -288,6 +303,7 @@ export const solutionsData = {
         title: "3. Network and Communications",
         id: "network-communications",
         description: "ELV Technology Solutions provides professional networking services in Abu Dhabi and across the UAE, specializing in structured cabling, wired networks, and enterprise-grade wireless (Wi-Fi) solutions.",
+        image: "/images/solutions/network-communications/Network and Communications.jpg",
         intro: [
             "We design and implement standards-compliant network infrastructures using proven technologies from Cisco, Aruba Networks, and Ruckus, ensuring secure connectivity, high performance, and long-term scalability. Our solutions are tailored for corporate offices, commercial buildings, healthcare facilities, and educational institutions, delivering reliable network systems built for continuous operation.",
             "A network is a structured system of interconnected devices that communicate through wired or wireless paths to securely transmit data, voice, and video across an organization. Modern enterprise networks support sub-networks, remote access, centralized monitoring, and policy-based security, allowing IT teams to manage users and applications efficiently.",
@@ -299,6 +315,7 @@ export const solutionsData = {
                 title: "Structured Cabling Solutions",
                 id: "structured-cabling",
                 icon: Network,
+                image: "/images/solutions/network-communications/Structured Cabling Solutions.jpg",
                 content: {
                     heading: "Structure Cabling Solutions in UAE",
                     description: [
@@ -338,6 +355,7 @@ export const solutionsData = {
                 title: "Wireless Network Solutions",
                 id: "wireless-network",
                 icon: Wifi,
+                image: "/images/solutions/network-communications/Wireless Network Solutions.jpg",
                 content: {
                     heading: "Wireless Network Solutions in UAE",
                     description: [
@@ -378,6 +396,7 @@ export const solutionsData = {
                 title: "Audio Video Intercom",
                 id: "intercom",
                 icon: Mic2,
+                image: "/images/solutions/network-communications/Audio Video Intercom.jpg",
                 content: {
                     heading: "Audio Video Intercom in UAE",
                     description: [
@@ -404,6 +423,7 @@ export const solutionsData = {
                 title: "Two Way Radio Solutions",
                 id: "radio",
                 icon: Radio,
+                image: "/images/solutions/network-communications/Two Way Radio Solutions.jpg",
                 content: {
                     heading: "Two Way Radio Solutions in UAE",
                     description: [
@@ -429,6 +449,7 @@ export const solutionsData = {
                 title: "IP Phones",
                 id: "ip-phones",
                 icon: Phone,
+                image: "/images/solutions/network-communications/IP Phones.jpg",
                 content: {
                     heading: "IP Phone Systems in UAE",
                     description: [
@@ -467,6 +488,7 @@ export const solutionsData = {
                 title: "IPTV / SMATV",
                 id: "iptv-smatv",
                 icon: Monitor,
+                image: "/images/solutions/network-communications/IPTV  SMATV.jpg",
                 content: {
                     heading: "IPTV & SMATV Solutions in UAE",
                     description: [
@@ -517,6 +539,7 @@ export const solutionsData = {
                 title: "IT Equipment",
                 id: "it-equipment",
                 icon: Cpu,
+                image: "/images/solutions/network-communications/IT Equipment.jpg",
                 content: {
                     heading: "IT Equipment Supply & Installation in UAE",
                     description: [
@@ -534,11 +557,13 @@ export const solutionsData = {
         title: "4. Home Automation & Lighting Control System",
         id: "home-automation",
         description: "ELV Technology Solutions provides advanced home automation and lighting control systems in Abu Dhabi, Dubai, and across the UAE, delivering smart, energy-efficient, and user-friendly solutions.",
+        image: "/images/solutions/home-automation/Home Automation.jpg",
         items: [
             {
                 title: "Home Automation",
                 id: "automation",
                 icon: Home,
+                image: "/images/solutions/home-automation/Home Automation.jpg",
                 content: {
                     heading: "Home Automation & Lighting Control Systems in UAE",
                     description: [
@@ -565,6 +590,7 @@ export const solutionsData = {
                 title: "Lighting Control Systems",
                 id: "lighting-control",
                 icon: Lamp,
+                image: "/images/solutions/home-automation/Lighting Control Systems.jpg",
                 content: {
                     heading: "Lighting Control Systems for Modern Homes",
                     description: [
