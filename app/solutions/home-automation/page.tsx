@@ -1,5 +1,6 @@
 import { solutionsData } from "@/lib/solutions-data";
 import SolutionVerticalHero from "@/components/solutions/solution-vertical-hero";
+import HomeAutomationVideo from "@/components/solutions/home-automation-video";
 import SolutionDetailSection from "@/components/solutions/solution-detail-section";
 import { CTASection } from "@/components/partners-clients/cta-section";
 
@@ -12,6 +13,8 @@ export default function HomeAutomationPage() {
                 title={data.title}
                 description={data.description}
             />
+
+            <HomeAutomationVideo />
 
             <div className="flex flex-col">
                 {data.items.map((item, index) => (

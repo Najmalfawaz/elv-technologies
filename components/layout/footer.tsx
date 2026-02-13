@@ -28,32 +28,32 @@ function XIcon({ className }: { className?: string }) {
 }
 
 const elvSystems = [
-  { label: "Security and Surveillance", href: "/solutions/security-surveillance" },
-  { label: "Access Control & Time Attendance", href: "/solutions/access-control" },
-  { label: "Gate Barrier System", href: "/solutions/gate-barrier" },
-  { label: "Nurse Call System", href: "/solutions/nurse-call" },
-  { label: "Queue Management System", href: "/solutions/queue-management" },
-  { label: "Disabled Toilet Alarm System", href: "/solutions/disabled-toilet-alarm" },
+  { label: "Security and Surveillance", href: "/solutions/security-surveillance#security-surveillance-system" },
+  { label: "Access Control & Time Attendance", href: "/solutions/security-surveillance#access-control" },
+  { label: "Gate Barrier System", href: "/solutions/security-surveillance#gate-barrier" },
+  { label: "Nurse Call System", href: "/solutions/security-surveillance#nurse-call" },
+  { label: "Queue Management System", href: "/solutions/security-surveillance#queue-management" },
+  { label: "Disabled Toilet Alarm System", href: "/solutions/security-surveillance#disabled-alarm" },
 ];
 
 const avSolutions = [
-  { label: "Music and BGM System", href: "/solutions/music-bgm" },
-  { label: "Indoor Video Wall", href: "/solutions/video-wall" },
-  { label: "Conference Room", href: "/solutions/conference-room" },
-  { label: "Meeting Room & Board Room", href: "/solutions/meeting-room" },
-  { label: "Digital Signage", href: "/solutions/digital-signage" },
-  { label: "LED Screen", href: "/solutions/led-screen" },
-  { label: "Control Systems", href: "/solutions/control-systems" },
+  { label: "Music and BGM System", href: "/solutions/audio-visual#music-bgm" },
+  { label: "Indoor Video Wall", href: "/solutions/audio-visual#video-wall" },
+  { label: "Conference Room", href: "/solutions/audio-visual#conference-room" },
+  { label: "Meeting Room & Board Room", href: "/solutions/audio-visual#meeting-boardroom" },
+  { label: "Digital Signage", href: "/solutions/audio-visual#digital-signage" },
+  { label: "LED Screen", href: "/solutions/audio-visual#led-screen" },
+  { label: "Control Systems", href: "/solutions/audio-visual#control-systems" },
 ];
 
 const networkComms = [
-  { label: "Structured Cabling Solutions", href: "/solutions/structured-cabling" },
-  { label: "Wireless Network Solutions", href: "/solutions/wireless-network" },
-  { label: "Audio Video Intercom", href: "/solutions/av-intercom" },
-  { label: "2-Way Radio Solutions", href: "/solutions/two-way-radio" },
-  { label: "IP Phone", href: "/solutions/ip-phone" },
-  { label: "IPTV / SMATV", href: "/solutions/iptv-smatv" },
-  { label: "IT Equipment's", href: "/solutions/it-equipment" },
+  { label: "Structured Cabling Solutions", href: "/solutions/network-communications#structured-cabling" },
+  { label: "Wireless Network Solutions", href: "/solutions/network-communications#wireless-network" },
+  { label: "Audio Video Intercom", href: "/solutions/network-communications#intercom" },
+  { label: "2-Way Radio Solutions", href: "/solutions/network-communications#radio" },
+  { label: "IP Phone", href: "/solutions/network-communications#ip-phones" },
+  { label: "IPTV / SMATV", href: "/solutions/network-communications#iptv-smatv" },
+  { label: "IT Equipment's", href: "/solutions/network-communications#it-equipment" },
 ];
 
 const quickLinks = [
@@ -63,7 +63,7 @@ const quickLinks = [
   { label: "Services", href: "/services" },
   { label: "Partners & Clients", href: "/partners-clients" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Blogs", href: "/blogs" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const socialLinks = [
@@ -243,7 +243,7 @@ export default function Footer() {
                 Home Automation
               </h3>
               <Link
-                href="/solutions/home-automation"
+                href="/solutions/home-automation#automation"
                 className="text-sm text-[#888] transition-all duration-300 hover:text-[#e5e5e5] hover:translate-x-1 inline-block"
               >
                 Home Automation & Lighting Control System

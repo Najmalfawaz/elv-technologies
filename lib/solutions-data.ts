@@ -106,7 +106,7 @@ export const solutionsData = {
                 title: "Queue Management System",
                 id: "queue-management",
                 icon: Users,
-                image: "/images/solutions/security-surveillance/Queue Management System.jpg",
+                image: "/images/solutions/security-surveillance/Queue.jpeg",
                 content: {
                     heading: "Queue Management System in UAE",
                     description: [
@@ -300,7 +300,7 @@ export const solutionsData = {
         ]
     },
     networkAndCommunications: {
-        title: "3. Network and Communications",
+        title: "3. Network & Communications",
         id: "network-communications",
         description: "ELV Technology Solutions provides professional networking services in Abu Dhabi and across the UAE, specializing in structured cabling, wired networks, and enterprise-grade wireless (Wi-Fi) solutions.",
         image: "/images/solutions/network-communications/Network and Communications.jpg",
@@ -317,7 +317,7 @@ export const solutionsData = {
                 icon: Network,
                 image: "/images/solutions/network-communications/Structured Cabling Solutions.jpg",
                 content: {
-                    heading: "Structure Cabling Solutions in UAE",
+                    heading: "Structured Cabling Solutions in UAE",
                     description: [
                         "ELV Technology Solutions provides comprehensive structured cabling solutions in Abu Dhabi and across the UAE, delivering high-performance copper and fibre cabling systems for commercial buildings, offices, and data centre environments.",
                         "We offer end-to-end structured cabling services, from design and implementation to testing and commissioning, ensuring reliable and standards-compliant network infrastructure."

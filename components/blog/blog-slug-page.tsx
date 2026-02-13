@@ -29,6 +29,7 @@ export default function BlogSlugPage({ slug }: BlogSlugPageProps) {
                     src={post.image}
                     alt={post.title}
                     fill
+                    sizes="100vw"
                     className="object-cover"
                     priority
                 />
@@ -114,7 +115,7 @@ export default function BlogSlugPage({ slug }: BlogSlugPageProps) {
                                         case 'image':
                                             return (
                                                 <div key={idx} className="my-10 relative aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg">
-                                                    <Image src={section.src!} alt={section.alt!} fill className="object-cover" />
+                                                    <Image src={section.src!} alt={section.alt!} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 1000px" className="object-cover" />
                                                 </div>
                                             );
                                         default:

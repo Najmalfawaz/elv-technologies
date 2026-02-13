@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ELV Technology Solutions",
   description: "Leading provider of integrated technology solutions in the UAE.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

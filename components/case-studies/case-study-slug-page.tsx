@@ -33,6 +33,7 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
           src={study.image}
           alt={study.project}
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -139,6 +140,7 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
                           src={img}
                           alt={`${study.project} - Image ${index + 1}`}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />

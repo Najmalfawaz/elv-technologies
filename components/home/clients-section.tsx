@@ -40,6 +40,7 @@ function MarqueeRow({
                   src={(item as { src: string }).src}
                   alt={(item as { alt: string }).alt}
                   fill
+                  sizes="(max-width: 768px) 100vw, 220px"
                   className='object-contain'
                 />
               </div>

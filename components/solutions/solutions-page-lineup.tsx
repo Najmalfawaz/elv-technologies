@@ -65,6 +65,7 @@ export default function SolutionsPageLineup() {
                                             src={vertical.image || `https://placehold.co/800x600/1e293b/ffffff?text=${encodeURIComponent(vertical.title)}`}
                                             alt={vertical.title}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                         />
 
