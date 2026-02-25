@@ -1,13 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { jobOpenings } from '@/lib/careers-data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Briefcase, Clock, ChevronDown } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
-export default function JobOpeningsList() {
+interface Job {
+    id: string;
+    title: string;
+    type: string;
+    department: string;
+    location: string;
+    description: string;
+    requirements: string[];
+}
+
+export default function JobOpeningsList({ initialJobs }: { initialJobs: Job[] }) {
+    const jobOpenings = initialJobs || [];
+
     return (
         <div className="py-12">
             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">Current Openings</h2>

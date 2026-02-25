@@ -6,9 +6,10 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, User, ArrowRight } from 'lucide-react';
-import { blogPosts } from '@/lib/blog-data';
 
-export default function BlogList() {
+export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
+    const blogPosts = initialPosts || [];
+
     return (
         <section className="py-24 bg-white dark:bg-slate-950">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">

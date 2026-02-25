@@ -306,7 +306,7 @@ export default function Header() {
               </div>
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-accent px-6 py-2.5 text-[13px] font-semibold text-accent-foreground transition-all duration-300 hover:bg-accent/90 hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5 active:translate-y-0"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
               >
                 Contact Us
               </Link>
@@ -462,7 +462,7 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground transition-all duration-300 hover:bg-accent/90"
+              className="flex items-center justify-center rounded-full bg-red-600 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-red-700"
             >
               Contact Us
             </Link>

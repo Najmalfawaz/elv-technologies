@@ -1,6 +1,5 @@
 'use client';
 
-import { blogPosts } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,12 +10,10 @@ import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 
 interface BlogSlugPageProps {
-    slug: string;
+    post: any;
 }
 
-export default function BlogSlugPage({ slug }: BlogSlugPageProps) {
-    const post = blogPosts.find((p) => p.slug === slug);
-
+export default function BlogSlugPage({ post }: BlogSlugPageProps) {
     if (!post) {
         notFound();
     }
@@ -92,7 +89,7 @@ export default function BlogSlugPage({ slug }: BlogSlugPageProps) {
                             </div>
 
                             <article className="prose prose-lg prose-slate dark:prose-invert max-w-none">
-                                {post.content.sections.map((section, idx) => {
+                                {post.content.sections.map((section: any, idx: number) => {
                                     switch (section.type) {
                                         case 'paragraph':
                                             return <p key={idx} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">{section.content}</p>;
@@ -103,7 +100,7 @@ export default function BlogSlugPage({ slug }: BlogSlugPageProps) {
                                                 <div key={idx} className="my-8">
                                                     {section.title && <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">{section.title}</h3>}
                                                     <ul className="space-y-4">
-                                                        {section.items?.map((item, i) => (
+                                                        {section.items?.map((item: string, i: number) => (
                                                             <li key={i} className="flex items-start gap-3">
                                                                 <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                                                                 <span className="text-slate-600 dark:text-slate-300">{item}</span>

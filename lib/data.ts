@@ -1,9 +1,9 @@
 export const heroSectionData = {
   heading: {
-    line1: "Welcome to",
-    line2: "ELV Technology Solutions!",
+    line1: "Welcome to ELV",
+    line2: "Technology Solutions!",
   },
-  subheading: "A Leading Audio-Visual & ELV Company in Abu Dhabi, UAE",
+  subheading: "A Leading Audio-Visual &\nELV Company in Abu Dhabi, UAE",
   buttons: {
     primary: {
       text: "Talk to an Expert",
@@ -43,7 +43,7 @@ export const introSectionData = {
 
 export const faqSectionData = {
   heading: "Frequently Asked Questions",
-  subheading: "Everything you need to know about our ELV and Audio-Visual solutions. Can\'t find what you\'re looking for? Contact our team directly.",
+  subheading: "Everything you need to know about our ELV and Audio-Visual solutions. Can't find what you're looking for? Contact our team directly.",
   button: {
     text: "Ask us on WhatsApp",
     link: "https://wa.me/971547922800",

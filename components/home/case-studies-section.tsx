@@ -1,39 +1,37 @@
 'use client';
 
-import { caseStudiesData } from "@/lib/case-studies-data";
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { caseStudiesData } from '@/lib/case-studies-data';
 
-export default function CaseStudiesSection() {
+export default function CaseStudiesSection({ initialData }: { initialData?: any[] }) {
     // Only show the first 3 for a cleaner home page look
     const featuredStudies = caseStudiesData.slice(0, 3);
 
     return (
-        <section className="py-24 relative overflow-hidden bg-white">
-            {/* Background Accents */}
-            <div className="absolute top-0 right-0 -z-10 translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-50/50 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 left-0 -z-10 -translate-x-1/2 translate-y-1/2 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[120px]" />
+        <section className="py-24 relative overflow-hidden bg-white/40 backdrop-blur-3xl border-b border-neutral-200/60">
+            {/* Background Accents - Subtle Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                     <div className="max-w-2xl">
-                        <Badge variant="outline" className="mb-4 text-red-600 border-red-200 bg-red-50/50">
+                        <Badge variant="outline" className="mb-6 rounded-full px-4 py-1.5 text-sm font-medium text-accent border-accent/20 bg-accent/5">
                             Our Success Stories
                         </Badge>
-                        <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-                            Proven <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">Results</span>,
-                            Global Expertise
+                        <h2 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-5xl">
+                            Proven <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/70">Results</span>, Global Expertise
                         </h2>
-                        <p className="mt-4 text-lg text-slate-600">
+                        <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
                             Explore how we've helped leading organizations across the UAE transform their infrastructure with cutting-edge technology.
                         </p>
                     </div>
 
-                    <Button asChild variant="ghost" className="hidden md:flex text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors group">
+                    <Button asChild variant="outline" className="hidden md:flex rounded-full px-6 h-12 text-sm font-semibold border-neutral-300 hover:bg-neutral-100 hover:text-foreground transition-all group">
                         <Link href="/case-studies" className="flex items-center">
                             View All Case Studies <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
@@ -51,18 +49,18 @@ export default function CaseStudiesSection() {
                     {featuredStudies.map((study, index) => (
                         <div key={study.slug}>
                             <Link href={`/case-studies/${study.slug}`} className="group block h-full">
-                                <div className="relative h-full flex flex-col bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:-translate-y-2">
+                                <div className="relative h-full flex flex-col bg-white rounded-3xl overflow-hidden border border-neutral-200/60 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-2">
                                     {/* Image Header */}
-                                    <div className="relative h-64 w-full overflow-hidden">
+                                    <div className="relative h-64 w-full overflow-hidden bg-neutral-100">
                                         <Image
                                             src={study.image}
                                             alt={study.project}
                                             fill
-                                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                            className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                                        <div className="absolute bottom-4 left-4 right-4 text-white">
-                                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider opacity-90 mb-1">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                                        <div className="absolute bottom-5 left-5 right-5 text-white">
+                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider mb-2 border border-white/20">
                                                 <Building2 className="h-3 w-3" />
                                                 {study.client}
                                             </div>
@@ -71,23 +69,23 @@ export default function CaseStudiesSection() {
 
                                     {/* Content */}
                                     <div className="p-8 flex flex-col flex-grow">
-                                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-red-600 transition-colors line-clamp-2">
+                                        <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors line-clamp-2 leading-tight">
                                             {study.project}
                                         </h3>
 
-                                        <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
-                                            <MapPin className="h-4 w-4 text-red-500 shrink-0" />
+                                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
+                                            <MapPin className="h-4 w-4 text-accent/80 shrink-0" />
                                             <span className="truncate">{study.location}</span>
                                         </div>
 
-                                        <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
+                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-8 flex-grow">
                                             {study.overview}
                                         </p>
 
-                                        <div className="pt-4 border-t border-slate-50 mt-auto flex items-center justify-between">
-                                            <span className="text-sm font-bold text-red-600 flex items-center group/btn">
-                                                View details
-                                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                                        <div className="pt-5 border-t border-neutral-100 mt-auto flex items-center justify-between">
+                                            <span className="text-sm font-semibold text-accent flex items-center group/btn relative overflow-hidden">
+                                                <span className="relative z-10">Read full study</span>
+                                                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
                                             </span>
                                         </div>
                                     </div>
@@ -99,9 +97,9 @@ export default function CaseStudiesSection() {
 
                 {/* Mobile View All Button */}
                 <div className="mt-12 flex justify-center md:hidden">
-                    <Button asChild className="w-full h-14 bg-red-600 hover:bg-red-700 rounded-2xl shadow-lg shadow-red-600/20">
+                    <Button asChild className="w-full rounded-full h-12 bg-accent hover:bg-accent/90 text-white font-semibold shadow-lg shadow-accent/20">
                         <Link href="/case-studies">
-                            View All Case Studies <ArrowRight className="ml-2 h-5 w-5" />
+                            View All Case Studies <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                 </div>

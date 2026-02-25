@@ -1,28 +1,47 @@
 import HeroSection from "@/components/home/hero-section";
+import VideoSection from "@/components/home/video-section";
 import IntroSection from "@/components/home/intro-section";
-import ServicesSection from "@/components/home/services-section";
-import WhyChooseUsSection from "@/components/home/why-choose-us-section";
-import SlideshowSection from "@/components/home/slideshow-section";
-import ClientsSection from "@/components/home/clients-section";
 import CaseStudiesSection from "@/components/home/case-studies-section";
-import BlogBannerSection from "@/components/home/blog-banner-section";
+import ServicesBannerSection from "@/components/home/services-banner-section";
+import ServicesSection from "@/components/home/services-section";
+import CertificationsSection from "@/components/home/certifications-section";
+import ClientsSection from "@/components/home/clients-section";
 import ReviewsSection from "@/components/home/reviews-section";
+import PartnersSection from "@/components/home/partners-section";
+import IndustriesSection from "@/components/home/industries-section";
 import CTASection from "@/components/home/cta-section";
 import FAQSection from "@/components/home/faq-section";
 
-export default function HomeLayout() {
+export default function HomeLayout({ initialData }: { initialData: any }) {
+  const { caseStudies, blogs, testimonials, faqs } = initialData || {};
+
   return (
     <main>
+      {/* 1. Hero */}
       <HeroSection />
-      <IntroSection />
-      <ServicesSection />
-      {/* <SlideshowSection /> */}
-      <WhyChooseUsSection />
+      {/* 2. Video */}
+      <VideoSection />
+      {/* 3. Our Clients */}
       <ClientsSection />
-      <CaseStudiesSection />
-      <BlogBannerSection />
+      {/* 4. About Us Banner */}
+      <IntroSection />
+      {/* 5. Featured Case Studies */}
+      <CaseStudiesSection initialData={caseStudies} />
+      {/* 6. Our Services like a banner */}
+      <ServicesBannerSection />
+      {/* 7. Our Core Solutions */}
+      <ServicesSection />
+      {/* 8. Our Certifications */}
+      <CertificationsSection />
+      {/* 9. Testimonials (Reviews) */}
       <ReviewsSection />
-      <FAQSection />
+      {/* 10. Our Partners */}
+      <PartnersSection />
+      {/* 11. Industries We Work With */}
+      <IndustriesSection />
+
+      {/* 12. Contact Us & FAQ */}
+      <FAQSection initialData={faqs} />
       <CTASection />
     </main>
   );

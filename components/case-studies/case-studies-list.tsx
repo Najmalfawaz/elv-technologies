@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { caseStudiesData } from "@/lib/case-studies-data";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MapPin, Search, Building2 } from "lucide-react";
@@ -19,12 +18,13 @@ const CATEGORIES = [
   'Hospitality'
 ];
 
-export default function CaseStudiesList() {
+export default function CaseStudiesList({ initialData }: { initialData: any[] }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredStudies = useMemo(() => {
-    return caseStudiesData.filter(study => {
+    const data = initialData || [];
+    return data.filter(study => {
       const matchesSearch =
         study.project.toLowerCase().includes(searchQuery.toLowerCase()) ||
         study.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -70,8 +70,8 @@ export default function CaseStudiesList() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${activeCategory === cat
-                    ? 'bg-red-600 text-white shadow-lg shadow-red-600/20 scale-105'
-                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:border-red-200 hover:text-red-600 shadow-sm'
+                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/20 scale-105'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:border-red-200 hover:text-red-600 shadow-sm'
                   }`}
               >
                 {cat}

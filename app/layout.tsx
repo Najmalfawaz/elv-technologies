@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
-import Chatbot from "@/components/chatbot/chatbot";
-import ScrollToTop from "@/components/layout/scroll-to-top";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-background text-foreground`}>
-        <Header />
-        <main className="pt-20 lg:pt-[88px]">{children}</main>
-        <Footer />
-        <ScrollToTop />
-        <Chatbot />
+        {children}
       </body>
     </html>
   );

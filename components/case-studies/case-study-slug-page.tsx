@@ -1,6 +1,5 @@
 'use client';
 
-import { caseStudiesData } from "@/lib/case-studies-data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,20 +9,38 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 
-interface CaseStudySlugPageProps {
-  slug: string;
+interface CaseStudySolution {
+  title: string;
+  components?: Array<{
+    name: string;
+    details: string;
+  }>;
+  points?: string[];
 }
 
-export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
-  const studyIndex = caseStudiesData.findIndex((s) => s.slug === slug);
-  const study = caseStudiesData[studyIndex];
+interface CaseStudy {
+  slug: string;
+  project: string;
+  client: string;
+  image: string;
+  overview: string;
+  challenges: string[];
+  solution: CaseStudySolution;
+  gallery?: string[];
+  outcomes: string[];
+  location: string;
+}
 
+interface CaseStudySlugPageProps {
+  study: CaseStudy;
+  prevStudy?: CaseStudy;
+  nextStudy?: CaseStudy;
+}
+
+export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseStudySlugPageProps) {
   if (!study) {
     notFound();
   }
-
-  const prevStudy = studyIndex > 0 ? caseStudiesData[studyIndex - 1] : null;
-  const nextStudy = studyIndex < caseStudiesData.length - 1 ? caseStudiesData[studyIndex + 1] : null;
 
   return (
     <div className="bg-white dark:bg-slate-950 min-h-screen">
@@ -84,7 +101,7 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">The Challenge</h2>
                   <div className="bg-slate-50 dark:bg-slate-900/50 border-l-4 border-red-600 p-6 rounded-r-lg">
                     <ul className="space-y-3 mt-0">
-                      {study.challenges.map((challenge, index) => (
+                      {study.challenges.map((challenge: string, index: number) => (
                         <li key={index} className="flex items-start text-slate-700 dark:text-slate-300">
                           <div className="mt-1.5 mr-3 h-2 w-2 rounded-full bg-red-600 flex-shrink-0" />
                           <span>{challenge}</span>
@@ -111,7 +128,7 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
                   {study.solution.points && (
                     <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
                       <ul className="space-y-3">
-                        {study.solution.points.map((point, index) => (
+                        {study.solution.points.map((point: string, index: number) => (
                           <li key={index} className="flex items-start text-slate-700 dark:text-slate-300">
                             <CheckCircle className="mt-1 mr-3 h-5 w-5 text-red-600 flex-shrink-0" />
                             <span>{point}</span>
@@ -127,7 +144,7 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
                 <div className="mb-12">
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Gallery</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {study.gallery.map((img, index) => (
+                    {study.gallery.map((img: string, index: number) => (
                       <motion.div
                         key={index}
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -154,7 +171,7 @@ export default function CaseStudySlugPage({ slug }: CaseStudySlugPageProps) {
                 <div>
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Outcomes</h2>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    {study.outcomes.map((outcome, index) => (
+                    {study.outcomes.map((outcome: string, index: number) => (
                       <div key={index} className="flex items-start bg-green-50 dark:bg-green-900/10 p-4 rounded-lg border border-green-100 dark:border-green-900/20">
                         <CheckCircle className="mt-0.5 mr-3 h-5 w-5 text-green-600 dark:text-green-500 flex-shrink-0" />
                         <span className="text-slate-700 dark:text-slate-300 font-medium">{outcome}</span>

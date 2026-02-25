@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { reviews, Review } from "@/lib/reviews"; // Import reviews and Review interface
+import { reviews } from "@/lib/reviews";
 
 export default function ReviewsSection() {
   const [currentReview, setCurrentReview] = useState(0);
@@ -23,59 +23,56 @@ export default function ReviewsSection() {
 
   const goToReview = useCallback(
     (index: number) => {
-      if (isTransitioning) return;
+      if (isTransitioning || reviews.length === 0) return;
       setIsTransitioning(true);
       setCurrentReview(index);
       setTimeout(() => setIsTransitioning(false), 500);
     },
-    [isTransitioning]
+    [isTransitioning, reviews.length]
   );
 
   const nextReview = useCallback(() => {
+    if (reviews.length === 0) return;
     goToReview((currentReview + 1) % reviews.length);
-  }, [currentReview, goToReview]);
+  }, [currentReview, goToReview, reviews.length]);
 
   const prevReview = useCallback(() => {
+    if (reviews.length === 0) return;
     goToReview((currentReview - 1 + reviews.length) % reviews.length);
-  }, [currentReview, goToReview]);
+  }, [currentReview, goToReview, reviews.length]);
 
   useEffect(() => {
+    if (reviews.length === 0) return;
     const timer = setInterval(nextReview, 6000);
     return () => clearInterval(timer);
-  }, [nextReview]);
+  }, [nextReview, reviews.length]);
+
+  if (reviews.length === 0) return null;
 
   return (
     <section
       ref={sectionRef}
-      className='relative py-16 lg:py-24 bg-accent text-accent-foreground overflow-hidden'
+      className='relative py-10 lg:py-16 bg-[#0a0a0a] overflow-hidden text-white'
     >
-      {/* Background pattern */}
-      <div className='absolute inset-0 opacity-[0.03]'>
-        <div
-          className='absolute inset-0'
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, hsl(var(--background)) 1px, transparent 0)',
-            backgroundSize: '40px 40px',
-          }}
-        />
-      </div>
+      {/* Background ambient glowing spheres */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] translate-y-1/3 translate-x-1/3 pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-[0.02] pointer-events-none bg-repeat mix-blend-overlay" />
 
-      <div className='relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <div className='relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10'>
         {/* Header */}
         <div
-          className={`text-center mb-14 transition-all duration-700 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center mb-8 transition-all duration-700 ${isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+            }`}
         >
           {/* Sub-headline */}
-          <div className='flex items-center justify-center gap-3 mb-4'>
-            <span className='text-sm font-medium text-accent-foreground/60 tracking-widest uppercase'>
+          <div className='flex items-center justify-center gap-3 mb-6'>
+            <span className='text-sm font-semibold text-accent tracking-widest uppercase'>
               Trusted by Customers
             </span>
-            <span className='text-sm font-bold text-accent-foreground'>5.0</span>
+            <span className='text-sm font-bold text-white'>5.0</span>
             <div className='flex items-center gap-0.5'>
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -85,36 +82,39 @@ export default function ReviewsSection() {
               ))}
             </div>
           </div>
-          <h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance'>
+          <h2 className='text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-2'>
             What Our Customers Say
           </h2>
         </div>
 
         {/* Review carousel */}
         <div
-          className={`relative max-w-3xl mx-auto transition-all duration-1000 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-12'
-          }`}
+          className={`relative max-w-4xl mx-auto transition-all duration-1000 ${isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-12'
+            }`}
           style={{ transitionDelay: '200ms' }}
         >
-          <div className='relative overflow-hidden rounded-2xl bg-background/[0.06] p-8 sm:p-12 min-h-[300px] flex items-center border border-background/10'>
+          {/* Glassmorphism Card */}
+          <div className='relative overflow-hidden rounded-2xl bg-[#1e1e1e] border border-white/5 p-6 sm:p-8 min-h-[220px] flex items-center shadow-xl group transition-colors duration-500'>
+            {/* Soft inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 pointer-events-none" />
+
             {/* Quote icon */}
-            <Quote className='absolute top-6 right-6 h-12 w-12 text-accent-foreground/10' />
+            <Quote className='absolute top-8 right-8 h-20 w-20 text-white/5 group-hover:text-accent/10 transition-colors duration-500' />
+
             {reviews.map((review, index) => (
               <div
                 key={index}
-                className={`w-full transition-all duration-600 absolute inset-0 p-8 sm:p-12 flex flex-col justify-center ${
-                  index === currentReview
-                    ? 'opacity-100 translate-x-0'
-                    : index < currentReview
-                      ? 'opacity-0 -translate-x-full'
-                      : 'opacity-0 translate-x-full'
-                }`}
+                className={`w-full transition-all duration-700 absolute inset-0 p-6 sm:p-8 flex flex-col justify-center ${index === currentReview
+                  ? 'opacity-100 translate-x-0'
+                  : index < currentReview
+                    ? 'opacity-0 -translate-x-full'
+                    : 'opacity-0 translate-x-full'
+                  }`}
               >
                 {/* Top section with stars and date */}
-                <div className='flex items-center gap-4 mb-6'>
+                <div className='flex items-center gap-4 mb-8 relative z-10'>
                   <div className='flex items-center gap-1'>
                     {[...Array(review.rating)].map((_, i) => (
                       <Star
@@ -123,44 +123,43 @@ export default function ReviewsSection() {
                       />
                     ))}
                   </div>
-                  <span className='text-sm text-accent-foreground/60'>{review.date}</span>
+                  <span className='text-sm font-medium text-neutral-400'>{review.date}</span>
                   {review.isNew && (
-                    <span className='px-2 py-0.5 text-xs font-semibold text-accent bg-accent-foreground rounded-md'>
-                      NEW
+                    <span className='px-3 py-1 text-[10px] font-bold tracking-wider text-accent bg-accent/20 rounded-full uppercase border border-accent/30'>
+                      New
                     </span>
                   )}
                 </div>
 
                 {/* Quote */}
-                <blockquote className='text-lg sm:text-xl leading-relaxed text-accent-foreground'>
-                  {review.content}
+                <blockquote className='text-base sm:text-lg lg:text-xl leading-relaxed text-white font-medium relative z-10'>
+                  "{review.content}"
                 </blockquote>
               </div>
             ))}
           </div>
 
-          {/* Navigation */}
-          <div className='mt-8 flex items-center justify-center gap-5'>
+          {/* Navigation Controls */}
+          <div className='mt-8 flex items-center justify-center gap-6'>
             <button
               type='button'
               onClick={prevReview}
-              className='flex h-11 w-11 items-center justify-center rounded-full border border-accent-foreground/15 text-accent-foreground/60 transition-all duration-300 hover:bg-background/10 hover:text-accent-foreground'
+              className='flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-neutral-400 transition-all duration-300 hover:bg-accent hover:border-accent hover:text-white hover:scale-110 shadow-lg'
               aria-label='Previous review'
             >
-              <ChevronLeft className='h-4 w-4' />
+              <ChevronLeft className='h-5 w-5' />
             </button>
 
-            <div className='flex items-center gap-2'>
+            <div className='flex items-center gap-3'>
               {reviews.map((_, index) => (
                 <button
                   key={`dot-${index}`}
                   type='button'
                   onClick={() => goToReview(index)}
-                  className={`rounded-full transition-all duration-500 ${
-                    index === currentReview
-                      ? 'h-2 w-8 bg-accent-foreground'
-                      : 'h-2 w-2 bg-accent-foreground/20 hover:bg-accent-foreground/40'
-                  }`}
+                  className={`rounded-full transition-all duration-500 ${index === currentReview
+                    ? 'h-2 w-10 bg-gradient-to-r from-accent to-orange-400'
+                    : 'h-2 w-2 bg-white/20 hover:bg-white/40'
+                    }`}
                   aria-label={`Go to review ${index + 1}`}
                 />
               ))}
@@ -169,10 +168,10 @@ export default function ReviewsSection() {
             <button
               type='button'
               onClick={nextReview}
-              className='flex h-11 w-11 items-center justify-center rounded-full border border-accent-foreground/15 text-accent-foreground/60 transition-all duration-300 hover:bg-background/10 hover:text-accent-foreground'
+              className='flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-neutral-400 transition-all duration-300 hover:bg-accent hover:border-accent hover:text-white hover:scale-110 shadow-lg'
               aria-label='Next review'
             >
-              <ChevronRight className='h-4 w-4' />
+              <ChevronRight className='h-5 w-5' />
             </button>
           </div>
         </div>

@@ -1,144 +1,73 @@
 'use client';
 
-import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { heroSectionData } from "@/lib/data";
 
 export default function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const goToSlide = useCallback((index: number) => {
-      if (index < 0 || index >= heroSectionData.slides.length) return;
-      setCurrentSlide(index);
-  }, []);
-
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === heroSectionData.slides.length - 1 ? 0 : prev + 1));
-  }, []);
-
-  useEffect(() => {
-      const timer = setTimeout(() => setIsLoaded(true), 100);
-      const slideInterval = setInterval(nextSlide, 6000);
-      return () => {
-          clearTimeout(timer);
-          clearInterval(slideInterval);
-      };
-  }, [nextSlide]);
-
-  return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
-      {/* Background Slideshow */}
-      {heroSectionData.slides.map((slide, index) => (
-        <div
-          key={slide.src}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? "opacity-40" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            className="object-cover"
-            priority={index === 0}
-            sizes="100vw"
-          />
-        </div>
-      ))}
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-32 pb-24">
-        <div className="max-w-2xl">
-            {/* Heading */}
-            <h1
-                className={`text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight transition-all duration-700 ease-out ${
-                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: '100ms' }}
-            >
-                {heroSectionData.heading.line1}
-                <br />
-                {heroSectionData.heading.line2}
-            </h1>
-
-            {/* Red accent line */}
-            <div
-                className={`mt-5 transition-all duration-700 ease-out ${
-                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: '200ms' }}
-            >
-                <div className="h-1 w-16 bg-accent rounded-full" />
+    return (
+        <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden flex items-center min-h-[85vh]">
+            {/* Background Image & Overlay */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src={heroSectionData.slides[0].src}
+                    alt="Hero Background"
+                    fill
+                    className="object-cover opacity-15"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 to-white/95" />
             </div>
 
-            {/* Description */}
-            <p
-                className={`mt-6 text-lg sm:text-xl max-w-lg transition-all duration-700 ease-out text-neutral-200 ${
-                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: '300ms' }}
-            >
-                {heroSectionData.subheading}
-            </p>
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
-            {/* CTA Buttons */}
-            <div
-                className={`mt-10 flex flex-wrap gap-4 transition-all duration-700 ease-out ${
-                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: '400ms' }}
-            >
-                <Link
-                    href={heroSectionData.buttons.primary.link}
-                    className="group inline-flex items-center gap-2.5 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent/90 hover:shadow-xl hover:shadow-accent/20 hover:-translate-y-0.5 active:translate-y-0"
-                >
-                    {heroSectionData.buttons.primary.text}
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </Link>
-                <Link
-                    href={heroSectionData.buttons.secondary.link}
-                    className="group inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/5 backdrop-blur-md px-7 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0"
-                >
-                    <Play className="h-4 w-4" />
-                    {heroSectionData.buttons.secondary.text}
-                </Link>
+                    {/* Left Column */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                        {/* Heading */}
+                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-extrabold tracking-tight leading-[1.05] text-[#2c2a29]">
+                            {heroSectionData.heading.line1}
+                            <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e4511d] via-[#a8334c] to-[#6d2753]">
+                                {heroSectionData.heading.line2}
+                            </span>
+                        </h1>
+                    </motion.div>
+
+                    {/* Right Column */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        className="lg:pl-4 lg:mt-6"
+                    >
+                        <p className="text-lg md:text-xl text-[#4a4a4a] leading-relaxed mb-10 max-w-xl whitespace-pre-line">
+                            {heroSectionData.subheading}
+                        </p>
+
+                        <div className="flex flex-wrap items-center gap-10">
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-white px-8 py-3.5 text-base font-medium transition-colors"
+                            >
+                                Contact Us <ArrowRight className="h-5 w-5 font-light" />
+                            </Link>
+                            <Link
+                                href="/case-studies"
+                                className="group inline-flex items-center gap-2 text-slate-900 font-medium text-base hover:text-[#ea580c] transition-colors"
+                            >
+                                Case Studies <ArrowRight className="h-5 w-5 font-light transition-transform group-hover:translate-x-1" />
+                            </Link>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
-        </div>
-      </div>
-
-      {/* Slide Indicators */}
-      <div
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 transition-opacity duration-500 ${
-              isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}>
-          {heroSectionData.slides.map((_, index) => (
-              <button
-                  key={index}
-                  type="button"
-                  onClick={() => goToSlide(index)}
-                  className={`rounded-full transition-all duration-300 ${
-                      index === currentSlide
-                          ? "h-2.5 w-8 bg-accent"
-                          : "h-2.5 w-2.5 bg-white/30 hover:bg-white/50"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-              />
-          ))}
-      </div>
-
-      {/* Slide Counter */}
-      <div className={`absolute bottom-8 right-8 z-10 hidden lg:block transition-opacity duration-500 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-      }`}>
-          <span className="text-sm font-medium text-white/50">
-              {String(currentSlide + 1).padStart(2, "0")}{" "}
-              <span className="text-white/25">/</span>{" "}
-              {String(heroSectionData.slides.length).padStart(2, "0")}
-          </span>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }

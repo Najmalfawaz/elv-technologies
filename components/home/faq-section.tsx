@@ -23,9 +23,8 @@ function FAQItem({
 
   return (
     <div
-      className={`border-b border-border last:border-b-0 transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
+      className={`border-b border-border last:border-b-0 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
       style={{ transitionDelay: `${index * 60}ms` }}
     >
       <button
@@ -35,18 +34,16 @@ function FAQItem({
         aria-expanded={isOpen}
       >
         <span
-          className={`text-base sm:text-lg font-semibold transition-colors duration-300 ${
-            isOpen ? "text-accent" : "text-foreground group-hover:text-accent"
-          }`}
+          className={`text-base sm:text-lg font-semibold transition-colors duration-300 ${isOpen ? "text-accent" : "text-foreground group-hover:text-accent"
+            }`}
         >
           {faq.question}
         </span>
         <span
-          className={`shrink-0 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
-            isOpen
-              ? "bg-accent border-accent text-[#ffffff] rotate-0"
-              : "border-border text-muted-foreground group-hover:border-accent group-hover:text-accent rotate-0"
-          }`}
+          className={`shrink-0 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${isOpen
+            ? "bg-accent border-accent text-[#ffffff] rotate-0"
+            : "border-border text-muted-foreground group-hover:border-accent group-hover:text-accent rotate-0"
+            }`}
         >
           {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
         </span>
@@ -67,7 +64,7 @@ function FAQItem({
   );
 }
 
-export default function FAQSection() {
+export default function FAQSection({ initialData }: { initialData?: any[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [isVisible, setIsVisible] = useState(false);
   const [showAll, setShowAll] = useState(false);
@@ -98,14 +95,13 @@ export default function FAQSection() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-secondary/50">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Left heading */}
           <div
-            className={`lg:col-span-2 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
+            className={`lg:col-span-2 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
           >
             <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4">
               <span className="h-px w-6 bg-accent" />

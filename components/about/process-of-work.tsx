@@ -3,126 +3,166 @@
 import {
   Search,
   PenTool,
-  Package,
-  Settings,
-  GraduationCap,
+  GitCommit,
+  CheckSquare,
+  Rocket,
+  HeadphonesIcon
 } from "lucide-react";
-import AnimateOnScroll from "@/components/ui/animate-on-scroll";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
-const steps = [
+const processes = [
   {
-    num: "1",
-    title: "Needs Analysis",
     icon: Search,
-    paragraphs: [
-      "We start by understanding your goals, space requirements, and overall technology vision.",
-      "Our team performs an on-site assessment to evaluate the environment and identify any technical considerations.",
-      "Based on our findings, we propose the most effective solution that aligns with your timeline and budget.",
-    ],
+    title: "1. Requirement Analysis",
+    description: "We engage in detailed discussions to gather client requirements, evaluating feasibility according to industry standards, timelines, and budgets.",
+    color: "from-blue-500 to-indigo-500",
+    bgAccent: "bg-blue-50 text-blue-500 border-blue-100",
   },
   {
-    num: "2",
-    title: "Design",
     icon: PenTool,
-    paragraphs: [
-      "Using the insights gathered, our engineers craft a tailored concept design for your AV, and ELV systems.",
-      "We prepare detailed layouts, drawings, and BOQs using advanced design software.",
-      "Every element is planned carefully to ensure the system delivers seamless performance and reliability.",
-    ],
+    title: "2. System Design",
+    description: "Our certified engineers use CAD tools to develop optimal system designs, incorporating cutting-edge technologies.",
+    color: "from-indigo-500 to-purple-500",
+    bgAccent: "bg-indigo-50 text-indigo-500 border-indigo-100",
   },
   {
-    num: "3",
-    title: "Procurement & Integration",
-    icon: Package,
-    paragraphs: [
-      "We procure premium equipment from trusted global manufacturers to ensure long-term quality.",
-      "Our technical team handles the full installation process, maintaining strict adherence to safety and industry standards.",
-      "All components are verified and tested during installation to guarantee proper integration.",
-    ],
+    icon: GitCommit,
+    title: "3. Project Execution",
+    description: "Expert project managers oversee implementation, adhering to strict Quality Management Standards (QMS) and schedules.",
+    color: "from-purple-500 to-pink-500",
+    bgAccent: "bg-purple-50 text-purple-500 border-purple-100",
   },
   {
-    num: "4",
-    title: "System Configuration & Validation",
-    icon: Settings,
-    paragraphs: [
-      "We configure the system to match your operational requirements and ensure it functions intuitively for the end user.",
-      "Each feature undergoes rigorous validation and performance testing to confirm flawless operation.",
-      "Any adjustments needed are made during this stage to achieve optimal results.",
-    ],
+    icon: CheckSquare,
+    title: "4. Testing & Commissioning",
+    description: "Rigorous testing of equipment, system configurations, and integration performance is conducted prior to site handover.",
+    color: "from-pink-500 to-red-500",
+    bgAccent: "bg-pink-50 text-pink-500 border-pink-100",
   },
   {
-    num: "5",
-    title: "Handover, Training & Ongoing Care",
-    icon: GraduationCap,
-    paragraphs: [
-      "We deliver hands-on training sessions so your team can confidently operate every part of the system.",
-      "Our ongoing technical support ensures smooth day-to-day operation.",
-      "We also offer annual maintenance plans to keep your systems updated, secure, and performing at their peak.",
-    ],
+    icon: Rocket,
+    title: "5. Handover & Training",
+    description: "We provide comprehensive operational and maintenance training, equipping clients with all necessary tools and documentation.",
+    color: "from-red-500 to-orange-500",
+    bgAccent: "bg-red-50 text-red-500 border-red-100",
+  },
+  {
+    icon: HeadphonesIcon,
+    title: "6. AMC & Maintenance",
+    description: "Our 24/7 dedicated support team ensures uninterrupted system performance through preventive and corrective maintenance.",
+    color: "from-orange-500 to-amber-500",
+    bgAccent: "bg-amber-50 text-amber-500 border-amber-100",
   },
 ];
 
 export default function ProcessOfWork() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end end"],
+  });
+
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
-    <section className="py-24">
-      <div className="mx-auto max-w-5xl px-6">
-        <AnimateOnScroll animation="fade-in-up">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-              Our Process of Work
-            </h2>
-            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-accent" />
+    <section className="relative py-32 bg-slate-50 overflow-hidden" ref={containerRef}>
+      {/* Background abstract elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[20%] left-[-10%] w-[40%] h-[40%] rounded-full bg-red-100/50 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-100/50 blur-[150px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24 text-center"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-slate-800 mb-6 backdrop-blur-md shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
+            OUR APPROACH
           </div>
-        </AnimateOnScroll>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900">
+              How We Work
+            </span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600 font-medium leading-relaxed">
+            Our proven methodology guarantees the delivery of high-quality technology solutions, from initial consultation to long-term support.
+          </p>
+        </motion.div>
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-6 top-0 bottom-0 hidden w-px bg-border md:left-1/2 md:block" />
+        <div className="relative mx-auto max-w-5xl">
+          {/* Animated SVG Path for Timeline */}
+          <div className="absolute left-[28px] md:left-1/2 top-4 bottom-4 w-1 -translate-x-1/2 hidden md:block">
+            <div className="h-full w-full bg-slate-200 rounded-full" />
+            <motion.div
+              className="absolute top-0 w-full rounded-full bg-gradient-to-b from-blue-500 via-purple-500 to-red-500 origin-top"
+              style={{ scaleY: pathLength }}
+            />
+          </div>
 
-          <div className="space-y-12">
-            {steps.map((step, idx) => (
-              <AnimateOnScroll
-                key={step.num}
-                animation={idx % 2 === 0 ? "slide-in-left" : "slide-in-right"}
-                delay={idx * 100}
-              >
-                <div
-                  className={`relative flex flex-col gap-6 md:flex-row ${idx % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
-                >
-                  {/* Content */}
-                  <div className="md:w-1/2">
-                    <div
-                      className={`rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${idx % 2 === 0 ? "md:mr-12" : "md:ml-12"}`}
+          <div className="space-y-12 md:space-y-24">
+            {processes.map((process, index) => {
+              const isEven = index % 2 === 0;
+
+              return (
+                <div key={process.title} className="relative flex flex-col md:flex-row items-center gap-6 md:gap-16">
+                  {/* Timeline Dot for Mobile */}
+                  <div className="absolute left-6 top-6 h-full w-0.5 bg-slate-200 md:hidden -z-10" />
+
+                  {/* Left Side (Content or Empty Space) */}
+                  <div className={`w-full md:w-1/2 flex justify-start ${isEven ? 'md:justify-end' : ''}`}>
+                    <motion.div
+                      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.6, type: "spring", stiffness: 50 }}
+                      className={`group relative w-[calc(100%-3rem)] ml-12 md:ml-0 md:w-full max-w-lg rounded-3xl bg-white p-8 shadow-xl shadow-slate-200/50 border border-slate-100 transition-all duration-300 hover:border-slate-300 hover:shadow-2xl ${isEven ? 'md:text-right' : 'md:text-left'}`}
                     >
-                      <div className="mb-4 flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-                          <step.icon className="h-5 w-5" />
+                      <div className={`absolute top-0 h-1 w-0 group-hover:w-full transition-all duration-500 left-0 bg-gradient-to-r ${process.color}`} />
+
+                      <div className={`mb-6 flex ${isEven ? 'md:justify-end' : 'md:justify-start'}`}>
+                        <div className={`flex h-16 w-16 items-center justify-center rounded-2xl border shadow-md transition-transform duration-300 group-hover:scale-110 ${process.bgAccent}`}>
+                          <process.icon className="h-8 w-8" />
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">
-                          {step.num}. {step.title}
-                        </h3>
                       </div>
-                      <div className="space-y-3">
-                        {step.paragraphs.map((p) => (
-                          <p
-                            key={p}
-                            className="text-sm leading-relaxed text-muted-foreground"
-                          >
-                            {p}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
+
+                      <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight">
+                        {process.title}
+                      </h3>
+                      <p className="text-slate-600 font-medium leading-relaxed">
+                        {process.description}
+                      </p>
+                    </motion.div>
                   </div>
 
-                  {/* Timeline dot */}
-                  <div className="absolute left-6 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-accent bg-card md:left-1/2 md:block" style={{ top: "1.5rem" }} />
+                  {/* Center Dot (Desktop Only) */}
+                  <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ delay: 0.2, type: "spring" }}
+                      className="w-14 h-14 rounded-full bg-white border border-slate-100 shadow-xl shadow-slate-200/50 flex items-center justify-center z-10"
+                    >
+                      <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${process.color} animate-pulse`} />
+                    </motion.div>
+                  </div>
 
-                  {/* Spacer */}
-                  <div className="hidden md:block md:w-1/2" />
+                  {/* Right Side (Content or Empty Space) */}
+                  <div className="hidden md:block w-1/2">
+                    {/* Empty space to act as flex layout balancer */}
+                  </div>
                 </div>
-              </AnimateOnScroll>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

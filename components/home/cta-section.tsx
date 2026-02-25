@@ -20,14 +20,13 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-secondary/50">
+    <section ref={sectionRef} className="py-24 lg:py-32 bg-white border-t border-slate-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
-          className={`relative rounded-3xl bg-accent overflow-hidden transition-all duration-1000 ${
-            isVisible
+          className={`relative rounded-3xl bg-accent overflow-hidden transition-all duration-1000 ${isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-12"
-          }`}
+            }`}
         >
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-[0.04]">
