@@ -1,5 +1,7 @@
 'use client';
 
+import { caseStudiesData } from '@/lib/case-studies-data';
+
 import { useEffect, useState } from 'react';
 import {
     Table,
@@ -27,10 +29,12 @@ export default function CaseStudiesAdminPage() {
 
     async function fetchCaseStudies() {
         try {
-            const res = await fetch('/api/admin/case-studies', { cache: 'no-store' });
-            const data = await res.json();
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 500));
 
-            if (res.ok && Array.isArray(data)) {
+            const data = caseStudiesData;
+
+            if (Array.isArray(data)) {
                 setCaseStudies(data);
             } else {
                 setCaseStudies([]);
@@ -49,16 +53,10 @@ export default function CaseStudiesAdminPage() {
         if (!confirm('Are you sure you want to delete this case study?')) return;
 
         try {
-            const res = await fetch(`/api/admin/case-studies/${id}`, {
-                method: 'DELETE',
-            });
-
-            if (res.ok) {
-                setCaseStudies(caseStudies.filter(c => c.id !== id));
-                toast.success('Case study deleted successfully');
-            } else {
-                throw new Error('Failed to delete');
-            }
+            // Simulate deletion
+            await new Promise(resolve => setTimeout(resolve, 500));
+            setCaseStudies(caseStudies.filter(c => c.id !== id && c.slug !== id));
+            toast.success('Case study deleted successfully');
         } catch (error) {
             toast.error('Failed to delete case study');
         }

@@ -1,5 +1,7 @@
 'use client';
 
+import { blogPosts } from '@/lib/blog-data';
+
 import { useEffect, useState } from 'react';
 import {
     Table,
@@ -27,10 +29,12 @@ export default function BlogsAdminPage() {
 
     async function fetchBlogs() {
         try {
-            const res = await fetch('/api/admin/blogs', { cache: 'no-store' });
-            const data = await res.json();
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 500));
 
-            if (res.ok && Array.isArray(data)) {
+            const data = blogPosts;
+
+            if (Array.isArray(data)) {
                 setBlogs(data);
             } else {
                 setBlogs([]);
@@ -49,16 +53,10 @@ export default function BlogsAdminPage() {
         if (!confirm('Are you sure you want to delete this blog?')) return;
 
         try {
-            const res = await fetch(`/api/admin/blogs/${id}`, {
-                method: 'DELETE',
-            });
-
-            if (res.ok) {
-                setBlogs(blogs.filter(b => b.id !== id));
-                toast.success('Blog deleted successfully');
-            } else {
-                throw new Error('Failed to delete');
-            }
+            // Simulate deletion
+            await new Promise(resolve => setTimeout(resolve, 500));
+            setBlogs(blogs.filter(b => b.id !== id && b.slug !== id));
+            toast.success('Blog deleted successfully');
         } catch (error) {
             toast.error('Failed to delete blog');
         }

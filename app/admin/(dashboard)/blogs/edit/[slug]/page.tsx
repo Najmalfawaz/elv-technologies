@@ -3,6 +3,7 @@
 import { useEffect, useState, use } from 'react';
 import { BlogForm } from '@/components/admin/blogs/blog-form';
 import { toast } from 'sonner';
+import { blogPosts } from '@/lib/blog-data';
 
 export default function EditBlogPage({ params }: { params: Promise<{ slug: string }> }) {
     const resolvedParams = use(params);
@@ -12,9 +13,10 @@ export default function EditBlogPage({ params }: { params: Promise<{ slug: strin
     useEffect(() => {
         async function fetchBlog() {
             try {
-                const res = await fetch('/api/admin/content');
-                const data = await res.json();
-                const found = data.blogs?.find((b: any) => b.slug === resolvedParams.slug);
+                // Simulate delay
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                const found = blogPosts.find((b: any) => b.slug === resolvedParams.slug);
                 if (found) {
                     setBlog(found);
                 } else {
