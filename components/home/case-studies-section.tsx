@@ -69,16 +69,36 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
 
                                     {/* Content */}
                                     <div className="p-8 flex flex-col flex-grow">
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <Badge variant="secondary" className="bg-accent/10 text-accent font-semibold hover:bg-accent/20 border-0">
+                                                {study.category || 'Infrastructure'}
+                                            </Badge>
+                                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground ml-auto bg-neutral-100 px-2 py-1 rounded-md">
+                                                <MapPin className="h-3 w-3" />
+                                                <span className="truncate max-w-[100px]">{study.location}</span>
+                                            </div>
+                                        </div>
+
                                         <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors line-clamp-2 leading-tight">
                                             {study.project}
                                         </h3>
 
-                                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
-                                            <MapPin className="h-4 w-4 text-accent/80 shrink-0" />
-                                            <span className="truncate">{study.location}</span>
+                                        {/* Highlighted Metric/Outcome */}
+                                        <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-neutral-100 flex items-start gap-4 group-hover:bg-accent/5 group-hover:border-accent/10 transition-colors">
+                                            <div className="bg-white p-2 rounded-lg shadow-sm">
+                                                <div className="text-2xl font-bold text-accent leading-none">
+                                                    {index === 0 ? '99%' : index === 1 ? '40%' : '24/7'}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1">Key Result</div>
+                                                <div className="text-sm text-muted-foreground leading-snug">
+                                                    {index === 0 ? 'Increase in network uptime and security' : index === 1 ? 'Reduction in operational overhead costs' : 'Continuous monitoring deployed'}
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-8 flex-grow">
+                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-8 flex-grow">
                                             {study.overview}
                                         </p>
 

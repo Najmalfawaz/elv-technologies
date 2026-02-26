@@ -1,4 +1,22 @@
-export const caseStudiesData = [
+export type CaseStudy = {
+  slug: string;
+  client: string;
+  project: string;
+  location: string;
+  category?: string;
+  overview: string;
+  challenges?: string[];
+  solution: {
+    title: string;
+    components?: { name: string; details: string; }[];
+    points?: string[];
+  };
+  outcomes: string[];
+  image: string;
+  gallery: string[];
+};
+
+export const caseStudiesData: CaseStudy[] = [
   {
     slug: "guest-house-building-at-zones-corp",
     client: "Abu Dhabi Ports Company (PJSC)",

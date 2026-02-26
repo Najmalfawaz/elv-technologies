@@ -35,7 +35,7 @@ export default function IntroSection() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-snug"
                         >
-                            <span className="text-[#e4511d]">Innovating Infrastructure,</span> Securing Your Future with Advanced Technology Systems.
+                            <span className="text-[#e4511d]">Future-Proof Your Operations.</span> Secure, scale, and simplify your infrastructure.
                         </motion.h2>
 
                         <motion.div
@@ -62,13 +62,13 @@ export default function IntroSection() {
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                         >
                             <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 text-white leading-snug">
-                                Premier Integration Specialists in the UAE
+                                Transform complexity into a competitive advantage.
                             </h3>
                             <p className="text-neutral-300 text-sm lg:text-base leading-relaxed mb-4 font-medium">
-                                At ELV Technology Solutions, we design, supply, and integrate robust communication networks, state-of-the-art security systems, and immersive audio-visual environments.
+                                Don't let outdated technology bottleneck your growth. We design, deploy, and manage intelligent networks, robust security, and seamless AV environments tailored to your organization's unique workflows.
                             </p>
                             <p className="text-neutral-400 text-xs lg:text-sm leading-relaxed mb-8">
-                                Our commitment to engineering excellence ensures every implementation is scalable, secure, and intuitive. We empower organizations to operate efficiently in an increasingly connected infrastructure landscape.
+                                Experience zero-downtime integrations and intuitive systems that empower your team to work faster, safer, and smarter from day one.
                             </p>
 
                             {/* Stats Grid */}

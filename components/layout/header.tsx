@@ -173,11 +173,11 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group shrink-0">
               <Image
-                src="/images/logo.png"
+                src="/images/logo_new.png"
                 alt="ELV Technology Solutions"
-                width={90}
-                height={90}
-                className="w-auto transition-transform duration-300 group-hover:scale-105"
+                width={155}
+                height={155}
+                className="w-[155px] h-auto transition-transform duration-300 group-hover:scale-105"
                 priority
               />
             </Link>

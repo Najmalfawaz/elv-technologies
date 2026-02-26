@@ -156,10 +156,10 @@ export default function Footer() {
           >
             <Link href="/" className="flex items-center gap-3 mb-8 group">
               <Image
-                src="/images/logo.png"
+                src="/images/logo_new.png"
                 alt="ELV Technology Solutions"
-                width={90}
-                height={90}
+                width={155}
+                height={155}
                 className="w-auto transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
