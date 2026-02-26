@@ -55,9 +55,13 @@ export default function ReviewsSection() {
       className='relative py-10 lg:py-16 bg-[#0a0a0a] overflow-hidden text-white'
     >
       {/* Background ambient glowing spheres */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] translate-y-1/3 translate-x-1/3 pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-[0.02] pointer-events-none bg-repeat mix-blend-overlay" />
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2 pointer-events-none z-0" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] translate-y-1/3 translate-x-1/3 pointer-events-none z-0" />
+
+      {/* Right Half Pattern Background */}
+      <div className="absolute inset-y-0 right-0 w-full md:w-1/2 flex items-center justify-end pointer-events-none overflow-hidden z-0">
+        <div className="w-[120%] max-w-[800px] aspect-square bg-[url('/images/logo-pattern.svg')] bg-right bg-no-repeat bg-contain opacity-[0.08] translate-x-1/4"></div>
+      </div>
 
       <div className='relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10'>
         {/* Header */}

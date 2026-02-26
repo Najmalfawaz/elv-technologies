@@ -25,14 +25,14 @@ export default function ServicesBannerSection() {
     ];
 
     return (
-        <section className="py-20 sm:py-24 bg-gradient-to-r from-[#e4511d] via-[#a8334c] to-[#6d2753] relative overflow-hidden text-white">
+        <section className="py-20 sm:py-24 bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#0f172a] relative overflow-hidden text-white border-y border-white/5 group/banner">
             {/* Background Patterns */}
-            <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-[0.05] pointer-events-none bg-repeat mix-blend-overlay" />
-            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
+            <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-[0.03] pointer-events-none bg-repeat mix-blend-overlay z-0" />
+            <div className="absolute inset-0 opacity-[0.04] z-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
 
             {/* Decorative Glow */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-black/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none transition-transform duration-1000 group-hover/banner:translate-y-10 z-0" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none transition-transform duration-1000 group-hover/banner:-translate-y-10 z-0" />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -70,12 +70,13 @@ export default function ServicesBannerSection() {
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: 0.1 * index }}
-                                    className="bg-white rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center text-center group shadow-2xl hover:-translate-y-2 transition-transform duration-300"
+                                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center text-center group/card shadow-xl hover:-translate-y-2 hover:border-blue-400/30 hover:bg-white/10 transition-all duration-300 relative overflow-hidden"
                                 >
-                                    <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                                        <service.icon className="w-8 h-8" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+                                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 text-neutral-300 group-hover/card:border-blue-500/30 group-hover/card:text-blue-400 group-hover/card:scale-110 transition-all duration-500 relative z-10">
+                                        <service.icon className="w-8 h-8" strokeWidth={1.5} />
                                     </div>
-                                    <h4 className="font-bold text-slate-800 text-sm sm:text-base leading-snug group-hover:text-accent transition-colors duration-300 whitespace-pre-line">
+                                    <h4 className="font-bold text-white text-sm sm:text-base leading-snug group-hover/card:text-white transition-colors duration-300 whitespace-pre-line relative z-10">
                                         {service.title}
                                     </h4>
                                 </motion.div>

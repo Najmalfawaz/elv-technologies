@@ -18,8 +18,10 @@ export default function IntroSection() {
 
     return (
         <section ref={ref} className="py-12 sm:py-16 lg:py-20 bg-[#18181b] text-white overflow-hidden relative">
-            {/* New Premium Background: Glowing Orbs & Subtle Noise */}
-            <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 pointer-events-none mix-blend-overlay"></div>
+            {/* Right Half Pattern Background */}
+            <div className="absolute inset-y-0 right-0 w-full md:w-1/2 flex items-center justify-end pointer-events-none overflow-hidden z-0">
+                <div className="w-[120%] max-w-[800px] aspect-square bg-[url('/images/logo-pattern.svg')] bg-right bg-no-repeat bg-contain opacity-[0.08] translate-x-1/4"></div>
+            </div>
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#e4511d]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#e4511d]/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
