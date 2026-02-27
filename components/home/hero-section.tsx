@@ -15,6 +15,7 @@ export default function HeroSection() {
                     src={heroSectionData.slides[0].src}
                     alt="Hero Background"
                     fill
+                    sizes="100vw"
                     className="object-cover opacity-15"
                     priority
                 />

@@ -50,7 +50,7 @@ function FAQItem({
       </button>
       <div
         ref={contentRef}
-        className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="overflow-hidden transition-all duration-500 ease-out"
         style={{
           maxHeight: isOpen ? contentRef.current?.scrollHeight || 500 : 0,
           opacity: isOpen ? 1 : 0,

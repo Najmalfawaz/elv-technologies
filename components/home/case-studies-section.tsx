@@ -56,6 +56,7 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                             src={study.image}
                                             alt={study.project}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />

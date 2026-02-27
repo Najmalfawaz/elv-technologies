@@ -43,6 +43,7 @@ export default function CertificationsSection() {
                                     src={cert.image}
                                     alt={cert.text}
                                     fill
+                                    sizes="(max-width: 640px) 112px, 160px"
                                     className="object-contain p-4 sm:p-6 transition-transform duration-500"
                                 />
                             </div>
