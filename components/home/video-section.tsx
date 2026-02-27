@@ -12,7 +12,7 @@ export default function VideoSection() {
         muted
         loop
       >
-        <source src="/images/home/slides/videos/hero.mp4" type="video/mp4" />
+        <source src="/images/home/slides/videos/hero_new.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </section>
