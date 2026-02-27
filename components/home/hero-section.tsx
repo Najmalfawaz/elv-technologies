@@ -31,7 +31,7 @@ export default function HeroSection() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         {/* Heading */}
-                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-extrabold tracking-tight leading-[1.05] text-[#2c2a29]">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[76px] font-extrabold tracking-tight leading-[1.1] text-[#2c2a29]">
                             {heroSectionData.heading.line1}
                             <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e4511d] via-[#a8334c] to-[#6d2753]">

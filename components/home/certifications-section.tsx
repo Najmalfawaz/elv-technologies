@@ -29,26 +29,27 @@ export default function CertificationsSection() {
                     </p>
                 </motion.div>
 
-                <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 lg:gap-16">
+                <div className="flex flex-wrap justify-center items-end gap-x-6 gap-y-10 sm:gap-12 lg:gap-16">
                     {certifications.map((cert, index) => (
                         <motion.div
                             key={cert.text}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                             transition={{ duration: 0.5, delay: 0.1 * index }}
-                            className="group relative"
+                            className="group relative flex flex-col items-center hover:z-50"
                         >
-                            <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center p-6 transition-all duration-300 group-hover:shadow-lg group-hover:border-accent/20 group-hover:-translate-y-1">
+                            <div className="relative w-28 h-28 sm:w-40 sm:h-40 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center p-4 sm:p-6 transition-all duration-300 group-hover:shadow-lg group-hover:border-accent/20 sm:group-hover:-translate-y-1">
                                 <Image
                                     src={cert.image}
                                     alt={cert.text}
                                     fill
-                                    className="object-contain p-6 transition-transform duration-500"
+                                    className="object-contain p-4 sm:p-6 transition-transform duration-500"
                                 />
                             </div>
-                            {/* Tooltip on hover */}
-                            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-max max-w-[200px] text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                <span className="text-xs font-medium text-slate-700 bg-white shadow-xl border border-slate-100 px-3 py-1.5 rounded-lg block">
+
+                            {/* Mobile explicit label / Desktop tooltip */}
+                            <div className="mt-3 sm:mt-0 sm:absolute sm:-bottom-12 sm:left-1/2 sm:-translate-x-1/2 w-[120px] sm:w-max sm:max-w-[200px] text-center sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
+                                <span className="text-[11px] sm:text-xs font-medium text-slate-600 sm:text-slate-700 sm:bg-white sm:shadow-xl sm:border border-slate-100 sm:px-3 sm:py-1.5 rounded-lg block leading-tight sm:leading-normal">
                                     {cert.text}
                                 </span>
                             </div>
