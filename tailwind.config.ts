@@ -61,6 +61,29 @@ const config: Config = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        elv: {
+          primary: {
+            red: '#D61F26',
+            dark: '#9F1419',
+            light: '#F05A5F',
+          },
+          background: {
+            main: '#0F1115',
+            surface: '#171A21',
+            alt: '#1E222B',
+          },
+          text: {
+            primary: '#EDEFF2',
+            secondary: '#A6ABB5',
+            muted: '#6C7380',
+          },
+          accent: {
+            blue: '#2F5B8A',
+          },
+          border: {
+            divider: '#2A2F3A',
+          }
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
