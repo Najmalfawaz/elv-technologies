@@ -20,7 +20,7 @@ export default function IndustriesSection() {
 
             {/* Right Half Pattern Background (from Reviews section) */}
             <div className="absolute top-0 right-0 w-full md:w-1/2 flex justify-end pointer-events-none overflow-hidden z-0">
-                <div className="w-[120%] max-w-[800px] aspect-square bg-[url('/images/logo-pattern.svg')] bg-right-top bg-no-repeat bg-contain opacity-[0.04] translate-x-1/4 -translate-y-1/4"></div>
+                <div className="w-[120%] max-w-[800px] aspect-square bg-[url('/images/logo-pattern.png')] bg-right-top bg-no-repeat bg-contain opacity-[0.04] translate-x-1/4 -translate-y-1/4"></div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

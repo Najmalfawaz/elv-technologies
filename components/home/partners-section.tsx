@@ -19,10 +19,10 @@ function MarqueeRow({
 
     const getSpeed = () => {
         switch (speed) {
-            case 'fast': return '40s';
-            case 'normal': return '60s';
-            case 'slow': return '90s';
-            default: return '60s';
+            case 'fast': return '70s';
+            case 'normal': return '110s';
+            case 'slow': return '160s';
+            default: return '110s';
         }
     }
 

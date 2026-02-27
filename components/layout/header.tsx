@@ -175,9 +175,9 @@ export default function Header() {
               <Image
                 src="/images/logo_new.png"
                 alt="ELV Technology Solutions"
-                width={155}
-                height={155}
-                className="w-[155px] h-auto transition-transform duration-300 group-hover:scale-105"
+                width={200}
+                height={200}
+                className="w-[200px] sm:w-[220px] h-auto transition-transform duration-300 group-hover:scale-105"
                 priority
               />
             </Link>

@@ -19,30 +19,37 @@ export default function HomeLayout({ initialData }: { initialData: any }) {
     <main>
       {/* 1. Hero */}
       <HeroSection />
-      {/* 2. Video */}
-      <VideoSection />
-      {/* 3. Our Clients */}
-      <ClientsSection />
-      {/* 4. About Us Banner */}
-      <IntroSection />
-      {/* 5. Featured Case Studies */}
-      <CaseStudiesSection initialData={caseStudies} />
-      {/* 6. Our Services like a banner */}
-      <ServicesBannerSection />
-      {/* 7. Our Core Solutions */}
-      <ServicesSection />
-      {/* 8. Our Certifications */}
-      <CertificationsSection />
-      {/* 9. Testimonials (Reviews) */}
-      <ReviewsSection />
-      {/* 10. Our Partners */}
-      <PartnersSection />
-      {/* 11. Industries We Work With */}
-      <IndustriesSection />
 
-      {/* 12. Contact Us & FAQ */}
-      <FAQSection initialData={faqs} />
-      <CTASection />
+      {/* 2. Video - Sticky Background */}
+      <div className="sticky top-0 z-0">
+        <VideoSection />
+      </div>
+
+      {/* Content wrapper that slides over the sticky video */}
+      <div className="relative z-10 bg-background flex flex-col">
+        {/* 3. Our Clients */}
+        <ClientsSection />
+        {/* 4. About Us Banner */}
+        <IntroSection />
+        {/* 5. Featured Case Studies */}
+        <CaseStudiesSection initialData={caseStudies} />
+        {/* 6. Our Services like a banner */}
+        <ServicesBannerSection />
+        {/* 7. Our Core Solutions */}
+        <ServicesSection />
+        {/* 8. Our Certifications */}
+        <CertificationsSection />
+        {/* 9. Testimonials (Reviews) */}
+        <ReviewsSection />
+        {/* 10. Our Partners */}
+        <PartnersSection />
+        {/* 11. Industries We Work With */}
+        <IndustriesSection />
+
+        {/* 12. Contact Us & FAQ */}
+        <FAQSection initialData={faqs} />
+        <CTASection />
+      </div>
     </main>
   );
 }

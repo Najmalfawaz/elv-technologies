@@ -10,9 +10,9 @@ export default function IntroSection() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     const stats = [
-        { value: "150+", label: "Successful\nDeployments" },
+        { value: "100+", label: "Successful\nDeployments" },
         { value: "50+", label: "Enterprise\nClients" },
-        { value: "10+", label: "Years of\nExcellence" },
+        { value: "7+", label: "Years of\nExcellence" },
         { value: "24/7", label: "Dedicated\nSupport" },
     ];
 

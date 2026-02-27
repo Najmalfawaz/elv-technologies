@@ -20,7 +20,7 @@ function MarqueeRow({
       <div
         className="flex w-fit gap-6 sm:gap-10 animate-scroll-left hover:[animation-play-state:paused]"
         style={{
-          animationDuration: speed === 'slow' ? '100s' : '50s',
+          animationDuration: speed === 'slow' ? '160s' : '80s',
           animationDirection: direction === 'right' ? 'reverse' : 'normal'
         }}
       >

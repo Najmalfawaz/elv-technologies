@@ -158,9 +158,9 @@ export default function Footer() {
               <Image
                 src="/images/logo_new.png"
                 alt="ELV Technology Solutions"
-                width={155}
-                height={155}
-                className="w-auto transition-transform duration-300 group-hover:scale-105"
+                width={200}
+                height={200}
+                className="w-[200px] sm:w-[220px] h-auto transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
             <p className="text-sm leading-relaxed text-[#888] mb-8 max-w-xs">

@@ -107,40 +107,42 @@ export default function ReviewsSection() {
             {/* Quote icon */}
             <Quote className='absolute top-8 right-8 h-20 w-20 text-white/5 group-hover:text-accent/10 transition-colors duration-500' />
 
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className={`w-full transition-all duration-700 absolute inset-0 p-6 sm:p-8 flex flex-col justify-center ${index === currentReview
-                  ? 'opacity-100 translate-x-0'
-                  : index < currentReview
-                    ? 'opacity-0 -translate-x-full'
-                    : 'opacity-0 translate-x-full'
-                  }`}
-              >
-                {/* Top section with stars and date */}
-                <div className='flex items-center gap-4 mb-8 relative z-10'>
-                  <div className='flex items-center gap-1'>
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star
-                        key={`star-${index}-${i}`}
-                        className='h-5 w-5 fill-yellow-400 text-yellow-400'
-                      />
-                    ))}
+            <div className="grid w-full relative z-10">
+              {reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className={`col-start-1 row-start-1 w-full transition-all duration-700 flex flex-col justify-center ${index === currentReview
+                    ? 'opacity-100 translate-x-0 z-10 pointer-events-auto'
+                    : index < currentReview
+                      ? 'opacity-0 -translate-x-full z-0 pointer-events-none'
+                      : 'opacity-0 translate-x-full z-0 pointer-events-none'
+                    }`}
+                >
+                  {/* Top section with stars and date */}
+                  <div className='flex items-center gap-4 mb-6 relative z-10'>
+                    <div className='flex items-center gap-1'>
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star
+                          key={`star-${index}-${i}`}
+                          className='h-5 w-5 fill-yellow-400 text-yellow-400'
+                        />
+                      ))}
+                    </div>
+                    <span className='text-sm font-medium text-neutral-400'>{review.date}</span>
+                    {review.isNew && (
+                      <span className='px-3 py-1 text-[10px] font-bold tracking-wider text-accent bg-accent/20 rounded-full uppercase border border-accent/30'>
+                        New
+                      </span>
+                    )}
                   </div>
-                  <span className='text-sm font-medium text-neutral-400'>{review.date}</span>
-                  {review.isNew && (
-                    <span className='px-3 py-1 text-[10px] font-bold tracking-wider text-accent bg-accent/20 rounded-full uppercase border border-accent/30'>
-                      New
-                    </span>
-                  )}
-                </div>
 
-                {/* Quote */}
-                <blockquote className='text-base sm:text-lg lg:text-xl leading-relaxed text-white font-medium relative z-10'>
-                  "{review.content}"
-                </blockquote>
-              </div>
-            ))}
+                  {/* Quote */}
+                  <blockquote className='text-base sm:text-lg lg:text-xl leading-relaxed text-white font-medium relative z-10'>
+                    "{review.content}"
+                  </blockquote>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Navigation Controls */}
