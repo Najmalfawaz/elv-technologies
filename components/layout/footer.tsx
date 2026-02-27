@@ -144,7 +144,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#7A0C0C] text-[#e5e5e5]">
+    <footer ref={footerRef} className="bg-[#0a0a0a] text-[#e5e5e5]">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
