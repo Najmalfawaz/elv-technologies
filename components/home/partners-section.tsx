@@ -98,7 +98,7 @@ export default function PartnersSection() {
 
             <div className='relative flex flex-col gap-2'>
                 <MarqueeRow items={row1} direction='left' speed='slow' />
-                <MarqueeRow items={row2} direction='right' speed='normal' />
+                <MarqueeRow items={row2} direction='right' speed='slow' />
                 <MarqueeRow items={row3} direction='left' speed='slow' />
 
                 {/* Gradient fades for the edges */}

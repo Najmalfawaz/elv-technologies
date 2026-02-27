@@ -144,7 +144,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#0a0a0a] text-[#e5e5e5]">
+    <footer ref={footerRef} className="bg-[#7A0C0C] text-[#e5e5e5]">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
@@ -163,7 +163,7 @@ export default function Footer() {
                 className="w-[200px] sm:w-[220px] h-auto transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
-            <p className="text-sm leading-relaxed text-[#888] mb-8 max-w-xs">
+            <p className="text-sm leading-relaxed text-white mb-8 max-w-xs">
               ELV Technology Solutions one of the best ELV & Audio-Visual
               Integrators in Abu Dhabi.
             </p>
@@ -272,7 +272,7 @@ export default function Footer() {
 
         {/* Careers */}
         <div
-          className="mt-12 rounded-2xl border border-[#1a1a1a] p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-colors hover:border-[#333]"
+          className="mt-12 rounded-2xl bg-black border border-[#1a1a1a] p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-colors hover:border-[#333]"
           data-footer-animate
           style={{ animationDelay: "0.7s" }}
         >
@@ -307,11 +307,11 @@ export default function Footer() {
       <div className="border-t border-[#1a1a1a]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-[#555]">
+            <p className="text-xs text-white">
               ELV Technology Solutions - Sole Proprietorship LLC. All rights
               reserved.
             </p>
-            <p className="text-xs text-[#555]">Abu Dhabi, UAE</p>
+            <p className="text-xs text-white">Abu Dhabi, UAE</p>
           </div>
         </div>
       </div>
