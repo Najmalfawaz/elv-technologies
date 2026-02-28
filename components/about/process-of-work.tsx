@@ -1,58 +1,50 @@
 "use client";
 
 import {
-  Search,
+  Lightbulb,
   PenTool,
-  GitCommit,
-  CheckSquare,
-  Rocket,
-  HeadphonesIcon
+  Settings,
+  CheckCircle,
+  ShieldCheck
 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const processes = [
   {
-    icon: Search,
-    title: "1. Requirement Analysis",
-    description: "We engage in detailed discussions to gather client requirements, evaluating feasibility according to industry standards, timelines, and budgets.",
+    icon: Lightbulb,
+    title: "1. Needs Analysis",
+    description: "We start by understanding your goals, space requirements, and overall technology vision. Our team performs an on-site assessment to evaluate the environment. Based on findings, we propose the most effective solution aligning with your timeline and budget.",
     color: "from-blue-500 to-indigo-500",
     bgAccent: "bg-blue-50 text-blue-500 border-blue-100",
   },
   {
     icon: PenTool,
-    title: "2. System Design",
-    description: "Our certified engineers use CAD tools to develop optimal system designs, incorporating cutting-edge technologies.",
+    title: "2. Design",
+    description: "Using gathered insights, our engineers craft a tailored concept design for your AV and ELV systems. We prepare detailed layouts, drawings, and BOQs using advanced software to ensure seamless performance.",
     color: "from-indigo-500 to-purple-500",
     bgAccent: "bg-indigo-50 text-indigo-500 border-indigo-100",
   },
   {
-    icon: GitCommit,
-    title: "3. Project Execution",
-    description: "Expert project managers oversee implementation, adhering to strict Quality Management Standards (QMS) and schedules.",
+    icon: Settings,
+    title: "3. Procurement & Integration",
+    description: "We procure premium equipment from trusted global manufacturers. Our technical team handles the full installation process, maintaining strict adherence to safety standards, verifying all components to guarantee proper integration.",
     color: "from-purple-500 to-pink-500",
     bgAccent: "bg-purple-50 text-purple-500 border-purple-100",
   },
   {
-    icon: CheckSquare,
-    title: "4. Testing & Commissioning",
-    description: "Rigorous testing of equipment, system configurations, and integration performance is conducted prior to site handover.",
+    icon: CheckCircle,
+    title: "4. System Configuration & Validation",
+    description: "We configure the system to match operational requirements and ensure intuitive use. Each feature undergoes rigorous validation and performance testing to confirm flawless operation, making any necessary adjustments for optimal results.",
     color: "from-pink-500 to-red-500",
     bgAccent: "bg-pink-50 text-pink-500 border-pink-100",
   },
   {
-    icon: Rocket,
-    title: "5. Handover & Training",
-    description: "We provide comprehensive operational and maintenance training, equipping clients with all necessary tools and documentation.",
+    icon: ShieldCheck,
+    title: "5. Handover, Training & Ongoing Care",
+    description: "We deliver hands-on training so your team can confidently operate the system. Ongoing technical support ensures smooth day-to-day operation, and we offer annual maintenance plans to keep your systems updated, secure, and performing at their peak.",
     color: "from-red-500 to-orange-500",
     bgAccent: "bg-red-50 text-red-500 border-red-100",
-  },
-  {
-    icon: HeadphonesIcon,
-    title: "6. AMC & Maintenance",
-    description: "Our 24/7 dedicated support team ensures uninterrupted system performance through preventive and corrective maintenance.",
-    color: "from-orange-500 to-amber-500",
-    bgAccent: "bg-amber-50 text-amber-500 border-amber-100",
   },
 ];
 
@@ -113,7 +105,7 @@ export default function ProcessOfWork() {
               const isEven = index % 2 === 0;
 
               return (
-                <div key={process.title} className="relative flex flex-col md:flex-row items-center gap-6 md:gap-16">
+                <div key={process.title} className={`relative flex flex-col md:flex-row items-center gap-6 md:gap-16 ${!isEven ? 'md:flex-row-reverse' : ''}`}>
                   {/* Timeline Dot for Mobile */}
                   <div className="absolute left-6 top-6 h-full w-0.5 bg-slate-200 md:hidden -z-10" />
 

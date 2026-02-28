@@ -10,8 +10,8 @@ export default function IntroSection() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     const stats = [
-        { value: "100+", label: "Successful\nDeployments" },
-        { value: "50+", label: "Enterprise\nClients" },
+        { value: "2k+", label: "Successful\nProjects" },
+        { value: "500+", label: "Enterprise\nClients" },
         { value: "7+", label: "Years of\nExcellence" },
         { value: "24/7", label: "Dedicated\nSupport" },
     ];
@@ -35,7 +35,7 @@ export default function IntroSection() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-snug"
                         >
-                            <span className="text-[#e4511d]">Future-Proof Your Operations.</span> Secure, scale, and simplify your infrastructure.
+                            <span className="block text-[#e4511d] mb-2">Future-Proof Your Operations.</span> Secure, scale, and simplify Your ELV, AV & Home Automations.
                         </motion.h2>
 
                         <motion.div

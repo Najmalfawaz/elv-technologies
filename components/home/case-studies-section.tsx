@@ -61,9 +61,8 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                                         <div className="absolute bottom-5 left-5 right-5 text-white">
-                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider mb-2 border border-white/20">
-                                                <Building2 className="h-3 w-3" />
-                                                {study.client}
+                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider border border-white/20 line-clamp-1">
+                                                {study.project}
                                             </div>
                                         </div>
                                     </div>
@@ -80,8 +79,8 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                             </div>
                                         </div>
 
-                                        <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors line-clamp-2 leading-tight">
-                                            {study.project}
+                                        <h3 className="text-xl font-extrabold text-foreground mb-4 group-hover:text-accent transition-colors line-clamp-2 leading-tight">
+                                            {study.client}
                                         </h3>
 
                                         {/* Highlighted Metric/Outcome */}

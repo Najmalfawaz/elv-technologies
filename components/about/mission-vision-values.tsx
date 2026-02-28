@@ -17,7 +17,7 @@ export default function MissionVisionValues() {
       {/* Background abstract elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-red-100/50 blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-amber-100/50 blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-slate-100/80 blur-[100px]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       </div>
 
@@ -54,12 +54,12 @@ export default function MissionVisionValues() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="group relative h-full rounded-[2rem] border border-slate-100 bg-white p-10 shadow-xl shadow-slate-200/50 transition-all duration-500 hover:border-amber-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/10"
+            className="group relative h-full rounded-[2rem] border border-slate-100 bg-white p-10 shadow-xl shadow-slate-200/50 transition-all duration-500 hover:border-slate-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-500/10"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
 
             <div className="relative z-10">
-              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-white border border-slate-100 text-amber-500 shadow-md shadow-amber-500/10 group-hover:scale-110 group-hover:bg-amber-50 group-hover:border-amber-200 transition-all duration-500">
+              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-white border border-slate-100 text-slate-600 shadow-md shadow-slate-500/10 group-hover:scale-110 group-hover:bg-slate-50 group-hover:border-slate-200 transition-all duration-500">
                 <Eye className="h-8 w-8" />
               </div>
               <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight">

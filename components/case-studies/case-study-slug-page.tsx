@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 interface CaseStudySolution {
   title: string;
@@ -42,21 +44,46 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
     notFound();
   }
 
+  // Combine main image and gallery for the hero slider
+  const allImages = [study.image, ...(study.gallery || [])];
+
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true },
+    [Autoplay({ delay: 4000 })]
+  );
+
   return (
     <div className="bg-white dark:bg-slate-950 min-h-screen">
       {/* Hero Section */}
-      <div className="relative h-[60vh] min-h-[500px] w-full">
-        <Image
-          src={study.image}
-          alt={study.project}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-slate-900/30" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="mx-auto max-w-7xl w-full px-6 lg:px-8 pb-16">
+      <div className="relative h-[60vh] min-h-[500px] w-full overflow-hidden" ref={allImages.length > 1 ? emblaRef : undefined}>
+        {allImages.length > 1 ? (
+          <div className="flex h-full w-full">
+            {allImages.map((img, i) => (
+              <div key={i} className="relative flex-[0_0_100%] min-w-0 h-full w-full">
+                <Image
+                  src={img}
+                  alt={`${study.project} - Slide ${i + 1}`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority={i === 0}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Image
+            src={study.image}
+            alt={study.project}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-slate-900/30 pointer-events-none" />
+        <div className="absolute inset-0 flex items-end pointer-events-none">
+          <div className="mx-auto max-w-7xl w-full px-6 lg:px-8 pb-16 pointer-events-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,7 +105,10 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-24">
+      <div
+        className="mx-auto max-w-7xl px-6 lg:px-8 py-16 lg:py-24 select-none"
+        onContextMenu={(e) => e.preventDefault()}
+      >
         <div className="lg:grid lg:grid-cols-12 lg:gap-12">
           {/* Main Content */}
           <div className="lg:col-span-8">
@@ -151,7 +181,7 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300"
+                        className="relative aspect-[4/3] rounded-2xl overflow-hidden group border border-slate-200 dark:border-slate-800 shadow-sm transition-all duration-300"
                       >
                         <Image
                           src={img}
@@ -160,7 +190,7 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
+                        <div className="absolute inset-0 bg-slate-900/10 transition-colors duration-300" />
                       </motion.div>
                     ))}
                   </div>
@@ -225,18 +255,18 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
           {prevStudy ? (
             <Link href={`/case-studies/${prevStudy.slug}`} className="group flex flex-col items-start p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-red-500 dark:hover:border-red-500 transition-colors">
               <span className="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Previous Project
+                <ArrowLeft className="mr-2 h-4 w-4" /> Previous Success
               </span>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">{prevStudy.project}</span>
+              <span className="text-lg font-bold text-slate-900 dark:text-white">{prevStudy.client}</span>
             </Link>
           ) : <div />}
 
           {nextStudy ? (
             <Link href={`/case-studies/${nextStudy.slug}`} className="group flex flex-col items-end text-right p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-red-500 dark:hover:border-red-500 transition-colors">
               <span className="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400">
-                Next Project <ArrowRight className="ml-2 h-4 w-4" />
+                Next Success <ArrowRight className="ml-2 h-4 w-4" />
               </span>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">{nextStudy.project}</span>
+              <span className="text-lg font-bold text-slate-900 dark:text-white">{nextStudy.client}</span>
             </Link>
           ) : <div />}
         </div>

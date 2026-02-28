@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { sectors } from "@/lib/about-data";
 
+import Image from "next/image";
+
 export default function Sectors() {
   return (
     <section className="relative py-32 bg-slate-950 overflow-hidden">
@@ -37,7 +39,7 @@ export default function Sectors() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sectors.map((sector, index) => (
             <motion.div
               key={sector.name}
@@ -45,23 +47,23 @@ export default function Sectors() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
-              className="group relative flex flex-col items-center justify-center p-8 rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative aspect-[4/3] flex flex-col items-center justify-end p-8 rounded-3xl overflow-hidden cursor-pointer border border-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-500"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Image
+                src={sector.image}
+                alt={sector.name}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-80"
+              />
 
-              <div className="relative z-10 flex flex-col items-center gap-6">
-                {/* Empty circle for icon (since original didn't have lucide icons for sectors) */}
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-black/50 border border-white/10 text-slate-400 shadow-lg group-hover:scale-110 border-red-500/30 group-hover:bg-red-500/10 transition-all duration-500">
-                  <div className="w-8 h-8 rounded-full border-2 border-slate-500 group-hover:border-red-400 border-dashed" />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/10" />
 
-                <h3 className="text-center font-bold text-slate-300 group-hover:text-white transition-colors">
+              <div className="relative z-10 w-full text-center">
+                <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors drop-shadow-md">
                   {sector.name}
                 </h3>
               </div>
-
-              {/* Corner accent line visible on hover */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-3xl" />
             </motion.div>
           ))}
         </div>

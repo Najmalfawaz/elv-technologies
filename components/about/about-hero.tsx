@@ -47,9 +47,9 @@ export default function AboutHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-serif text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm"
         >
-          <span className="block text-slate-900">ELV Technology Solutions</span>
-          <span className="mt-2 block bg-gradient-to-r from-red-600 via-amber-600 to-red-600 bg-clip-text text-transparent">
-            The Best Audio-Visual Integrators in UAE
+          <span className="block text-slate-900">ELV Technology Solution!!!</span>
+          <span className="mt-2 block text-red-600">
+            The Best Audio-Visual Integrators in UAE !!!
           </span>
         </motion.h1>
 

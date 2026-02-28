@@ -42,36 +42,44 @@ export default function TrustedPartner() {
 
             <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl mb-6">
               Your Trusted Partner <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-amber-600">
+              <span className="text-red-600">
                 in Technology
               </span>
             </h2>
-            <p className="mt-6 text-lg text-slate-600 font-medium leading-relaxed max-w-xl">
-              Our commitment to excellence and innovation has made us a leader in the technology solutions industry. We provide end-to-end services that you can rely on.
-            </p>
 
-            <ul className="mt-10 grid gap-4">
-              {features.map((feature, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="group flex items-center gap-4 rounded-xl border border-slate-200 bg-white/50 p-4 transition-all hover:bg-white hover:border-red-200 hover:shadow-md"
-                >
-                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-red-50 border border-red-100 group-hover:bg-red-100 group-hover:border-red-200 transition-colors">
-                    <CheckCircle className="h-5 w-5 text-red-500 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <span className="text-slate-700 font-semibold text-sm transition-colors">{feature}</span>
-                </motion.li>
-              ))}
-            </ul>
+            <div className="mt-8 space-y-6 text-lg text-slate-600 font-medium leading-relaxed max-w-xl">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                We represent reputed global manufacturers and serve a wide customer base across multiple market sectors throughout the UAE.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Our highly skilled professional team is equipped to manage the complex requirements of large-scale projects with precision and efficiency. The high standards we maintain have earned us lasting trust from business owners, architects, consultants, and contractors alike.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Our clients are consistently assured of the best-in-class design, delivery, installation, integration, and maintenance services, setting us apart as a reliable and innovative partner in the technology solutions industry.
+              </motion.p>
+            </div>
           </motion.div>
 
           {/* Image */}
           <div className="relative lg:sticky lg:top-32 h-fit">
-            <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-red-500/20 to-amber-500/20 blur-2xl opacity-50" />
+            <div className="absolute -inset-4 rounded-[3rem] bg-red-500/20 blur-2xl opacity-50" />
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -80,7 +88,7 @@ export default function TrustedPartner() {
               className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-2xl group"
             >
               <Image
-                src="/images/aboutUS/About us.png"
+                src="/images/aboutUS/AboutUS.jpeg"
                 alt="Trusted Partner"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -89,14 +97,14 @@ export default function TrustedPartner() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
               {/* Floating Badge */}
-              <div className="absolute bottom-8 left-8 right-8">
-                <div className="rounded-2xl border border-white/20 bg-white/90 p-6 backdrop-blur-xl shadow-xl transform transition-transform group-hover:-translate-y-2">
-                  <div className="flex items-center gap-3 mb-2">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
+                <div className="rounded-2xl border border-white/20 bg-white/90 p-4 sm:p-5 backdrop-blur-xl shadow-xl transform transition-transform group-hover:-translate-y-1">
+                  <div className="flex items-center gap-3 mb-1.5">
                     <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-xs font-bold tracking-widest text-slate-800 uppercase">Our Promise</span>
+                    <span className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-800 uppercase">Our Promise</span>
                   </div>
-                  <p className="font-bold text-slate-900 text-lg">
-                    "Delivering Excellence & Innovation <br /> in Every Project"
+                  <p className="font-bold text-slate-900 text-sm sm:text-base leading-snug">
+                    "Delivering Excellence & Innovation in Every Project"
                   </p>
                 </div>
               </div>

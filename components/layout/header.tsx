@@ -79,7 +79,7 @@ const navLinks = [
 const socialLinks = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/elvtechnologysolutions/",
+    href: "https://www.instagram.com/elv_technology_solutions/",
     icon: Instagram,
   },
   {

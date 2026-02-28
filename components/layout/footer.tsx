@@ -69,7 +69,7 @@ const quickLinks = [
 const socialLinks = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/elvtechnologysolutions/",
+    href: "https://www.instagram.com/elv_technology_solutions/",
     icon: Instagram,
   },
   {
@@ -103,7 +103,7 @@ function FooterLinkGroup({
 }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold text-[#f0f0f0] mb-5 uppercase tracking-[0.15em]">
+      <h3 className="text-sm font-semibold text-white mb-5 uppercase tracking-[0.15em]">
         {title}
       </h3>
       <ul className="flex flex-col gap-3">
@@ -111,7 +111,7 @@ function FooterLinkGroup({
           <li key={link.label}>
             <Link
               href={link.href}
-              className="text-sm text-[#888] transition-all duration-300 hover:text-[#e5e5e5] hover:translate-x-1 inline-block"
+              className="text-sm text-slate-100 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
             >
               {link.label}
             </Link>
@@ -144,7 +144,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[#0a0a0a] text-[#e5e5e5]">
+    <footer ref={footerRef} className="bg-slate-500 text-slate-300">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
@@ -176,9 +176,9 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 group"
               >
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-[#555] transition-colors group-hover:text-[#e5e5e5]" />
-                <p className="text-sm text-[#888] transition-colors group-hover:text-[#e5e5e5]">
-                  P.O. Box 36815 Grand Outlet Building, M01, Al Danah E18_02 Al
+                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-slate-200 transition-colors group-hover:text-white" />
+                <p className="text-sm text-white font-medium transition-colors group-hover:text-white">
+                  P.O. Box 36815 Grand Outlet Building, M01, Al Danah E18_02 <br /> Al
                   Falah St., Abu Dhabi, UAE
                 </p>
               </a>
@@ -186,8 +186,8 @@ export default function Footer() {
                 href="mailto:info@etssmart.com"
                 className="flex items-center gap-3 group"
               >
-                <Mail className="h-4 w-4 shrink-0 text-[#555] transition-colors group-hover:text-[#e5e5e5]" />
-                <span className="text-sm text-[#888] transition-colors group-hover:text-[#e5e5e5]">
+                <Mail className="h-4 w-4 shrink-0 text-slate-200 transition-colors group-hover:text-white" />
+                <span className="text-sm text-white font-medium transition-colors group-hover:text-white">
                   info@etssmart.com
                 </span>
               </a>
@@ -195,8 +195,8 @@ export default function Footer() {
                 href="tel:+971547922800"
                 className="flex items-center gap-3 group"
               >
-                <Phone className="h-4 w-4 shrink-0 text-[#555] transition-colors group-hover:text-[#e5e5e5]" />
-                <span className="text-sm text-[#888] transition-colors group-hover:text-[#e5e5e5]">
+                <Phone className="h-4 w-4 shrink-0 text-slate-200 transition-colors group-hover:text-white" />
+                <span className="text-sm text-white font-medium transition-colors group-hover:text-white">
                   +971 2441 8186
                 </span>
               </a>
@@ -210,7 +210,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#222] text-[#888] transition-all duration-300 hover:bg-[hsl(0,80%,38%)] hover:text-[#fff] hover:border-[hsl(0,80%,38%)] hover:scale-110"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-white transition-all duration-300 hover:bg-[hsl(0,80%,38%)] hover:text-[#fff] hover:border-[hsl(0,80%,38%)] hover:scale-110"
                   aria-label={social.label}
                 >
                   <social.icon className="h-3.5 w-3.5" />
@@ -239,12 +239,12 @@ export default function Footer() {
             <FooterLinkGroup title="Network & Communications" links={networkComms} />
 
             <div className="mt-8">
-              <h3 className="text-sm font-semibold text-[#f0f0f0] mb-4 uppercase tracking-[0.15em]">
+              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-[0.15em]">
                 Home Automation
               </h3>
               <Link
                 href="/solutions/home-automation#automation"
-                className="text-sm text-[#888] transition-all duration-300 hover:text-[#e5e5e5] hover:translate-x-1 inline-block"
+                className="text-sm text-slate-100 transition-all duration-300 hover:text-white font-medium hover:translate-x-1 inline-block"
               >
                 Home Automation & Lighting Control System
               </Link>
@@ -272,21 +272,21 @@ export default function Footer() {
 
         {/* Careers */}
         <div
-          className="mt-12 rounded-2xl bg-black border border-[#1a1a1a] p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-colors hover:border-[#333]"
+          className="mt-12 rounded-2xl bg-white/10 border border-white/20 p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-colors hover:border-white/40"
           data-footer-animate
           style={{ animationDelay: "0.7s" }}
         >
           <div>
             <Link href="/careers" className="inline-block group">
-              <h3 className="text-sm font-semibold text-[#f0f0f0] mb-2 uppercase tracking-[0.15em] group-hover:text-accent transition-colors">
+              <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[0.15em] group-hover:text-accent transition-colors">
                 Careers
               </h3>
             </Link>
-            <p className="text-sm text-[#888] leading-relaxed">
+            <p className="text-sm text-slate-100 leading-relaxed font-medium">
               Interested in joining our team? Submit your CV to{" "}
               <a
                 href="mailto:info@etssmart.com"
-                className="text-[#e5e5e5] underline underline-offset-4 decoration-[#555] transition-colors hover:decoration-[#e5e5e5]"
+                className="text-white underline underline-offset-4 decoration-white/50 transition-colors hover:decoration-white"
               >
                 info@etssmart.com
               </a>
@@ -295,7 +295,7 @@ export default function Footer() {
           </div>
           <Link
             href="/careers"
-            className="shrink-0 flex items-center gap-2 rounded-full border border-[#333] px-5 py-2.5 text-sm font-medium text-[#e5e5e5] transition-all duration-300 hover:bg-[hsl(0,80%,38%)] hover:text-[#fff] hover:border-[hsl(0,80%,38%)]"
+            className="shrink-0 flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[hsl(0,80%,38%)] hover:text-[#fff] hover:border-[hsl(0,80%,38%)]"
           >
             Apply Now
             <ArrowUpRight className="h-4 w-4" />
@@ -304,7 +304,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[#1a1a1a]">
+      <div className="border-t border-white/20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white">

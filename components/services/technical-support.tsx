@@ -12,12 +12,12 @@ export default function TechnicalSupport() {
   const capabilityIcons = [Shield, Monitor];
 
   return (
-    <section className="py-24 bg-elv-background-main relative overflow-hidden">
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-elv-primary-red/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-elv-accent-blue/10 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#0F1115_70%,transparent_100%)]" />
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-red-100/50 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-slate-200/50 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#fff_70%,transparent_100%)]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
@@ -29,40 +29,40 @@ export default function TechnicalSupport() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-elv-border-divider bg-elv-background-surface px-4 py-1.5 text-xs font-medium text-elv-text-secondary mb-6 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-xs font-medium text-slate-600 mb-6 backdrop-blur-md">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-elv-primary-light opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-elv-primary-red"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
               </span>
               EXPERT SUPPORT
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-elv-text-primary mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
+              <span className="text-slate-900">
                 {technicalSupport.title}
               </span>
             </h2>
             <div className="space-y-4">
               {technicalSupport.description.map((text, idx) => (
-                <p key={idx} className="text-lg leading-relaxed text-elv-text-muted">
+                <p key={idx} className="text-lg leading-relaxed text-slate-600">
                   {text}
                 </p>
               ))}
             </div>
 
             {/* Key Features / Highlights Box */}
-            <div className="mt-8 p-6 bg-elv-background-alt backdrop-blur-xl rounded-[2rem] border border-elv-border-divider shadow-2xl">
-              <h3 className="font-semibold text-elv-text-primary mb-4 flex items-center gap-2">
-                <div className="p-2 rounded-lg bg-elv-primary-red/10 border border-elv-primary-red/20">
-                  <Server className="w-5 h-5 text-elv-primary-red" />
+            <div className="mt-8 p-6 bg-white backdrop-blur-xl rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/50">
+              <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                <div className="p-2 rounded-lg bg-red-50 border border-red-100">
+                  <Server className="w-5 h-5 text-red-600" />
                 </div>
                 Key Service Highlights
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {['24/7 Monitoring', 'Rapid Response', 'Certified Engineers', 'Proactive Maintenance'].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-elv-text-secondary bg-elv-background-alt p-3 rounded-xl border border-elv-border-divider">
-                    <div className="w-1.5 h-1.5 rounded-full bg-elv-primary-red shadow-[0_0_10px_rgba(214,31,38,0.8)]" />
-                    {item}
+                  <li key={item} className="flex items-center gap-3 text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
+                    <span className="font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -74,7 +74,7 @@ export default function TechnicalSupport() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[500px] w-full overflow-hidden rounded-[2rem] shadow-2xl border border-elv-border-divider group"
+            className="relative h-[500px] w-full overflow-hidden rounded-[2rem] shadow-2xl border border-slate-100 group shadow-slate-200/50"
           >
             <Image
               src={technicalSupport.image}
@@ -83,9 +83,9 @@ export default function TechnicalSupport() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Glass Overlay on Image */}
-            <div className="absolute inset-0 bg-gradient-to-t from-elv-background-main/90 via-elv-background-main/30 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 p-6 bg-elv-background-surface/50 backdrop-blur-xl rounded-2xl border border-elv-border-divider text-elv-text-primary shadow-2xl">
-              <p className="font-medium text-elv-text-primary">Ensuring operational continuity for critical systems across the UAE.</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/20 backdrop-blur-xl rounded-2xl border border-white/30 text-white shadow-xl">
+              <p className="font-medium text-slate-100">Ensuring operational continuity for critical systems across the UAE.</p>
             </div>
           </motion.div>
         </div>
@@ -98,10 +98,10 @@ export default function TechnicalSupport() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl font-extrabold text-elv-text-primary tracking-tight">
+            <h3 className="text-4xl font-extrabold text-slate-900 tracking-tight">
               {technicalSupport.capabilities.title}
             </h3>
-            <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-elv-primary-red to-transparent opacity-70" />
+            <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-70" />
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-2">
@@ -112,25 +112,25 @@ export default function TechnicalSupport() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2 }}
-                className="group relative overflow-hidden rounded-[2rem] bg-elv-background-alt p-8 border border-elv-border-divider backdrop-blur-xl transition-all hover:bg-elv-background-surface hover:border-elv-border-divider/50"
+                className="group relative overflow-hidden rounded-[2rem] bg-white p-8 border border-slate-100 backdrop-blur-xl transition-all hover:border-red-100 shadow-xl shadow-slate-200/50"
               >
-                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                  {idx === 0 ? <Shield className="w-48 h-48 text-elv-text-primary" /> : <Monitor className="w-48 h-48 text-elv-text-primary" />}
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
+                  {idx === 0 ? <Shield className="w-48 h-48 text-slate-900" /> : <Monitor className="w-48 h-48 text-slate-900" />}
                 </div>
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-black/50 text-elv-primary-red group-hover:text-elv-text-primary group-hover:bg-elv-primary-red ring-1 ring-elv-border-divider group-hover:ring-elv-primary-red/50 transition-all shadow-lg">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 group-hover:text-red-600 group-hover:bg-red-50 ring-1 ring-slate-100 group-hover:ring-red-100 transition-all shadow-sm">
                       {idx === 0 ? <Shield className="h-7 w-7" /> : <Monitor className="h-7 w-7" />}
                     </div>
-                    <h4 className="text-2xl font-bold text-elv-text-primary tracking-tight">{section.title}</h4>
+                    <h4 className="text-2xl font-bold text-slate-900 tracking-tight">{section.title}</h4>
                   </div>
 
                   <ul className="space-y-4">
                     {section.items.map((item) => (
-                      <li key={item} className="flex items-start gap-4 p-4 rounded-xl bg-elv-background-alt border border-elv-border-divider group-hover:border-elv-border-divider transition-colors">
-                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-elv-primary-red opacity-80" />
-                        <span className="text-elv-text-secondary leading-relaxed text-sm font-medium">{item}</span>
+                      <li key={item} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-colors">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500 opacity-80" />
+                        <span className="text-slate-600 leading-relaxed text-sm font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -148,7 +148,7 @@ export default function TechnicalSupport() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl font-extrabold text-elv-text-primary tracking-tight">
+            <h3 className="text-4xl font-extrabold text-slate-900 tracking-tight">
               {technicalSupport.whyChooseUs.title}
             </h3>
           </motion.div>
@@ -163,12 +163,12 @@ export default function TechnicalSupport() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex flex-col items-center text-center p-8 rounded-[2rem] bg-elv-background-alt border border-elv-border-divider backdrop-blur-md group hover:bg-elv-background-surface hover:border-elv-primary-red/30 transition-all"
+                  className="flex flex-col items-center text-center p-8 rounded-[2rem] bg-white border border-slate-100 backdrop-blur-md group hover:border-red-100 transition-all shadow-sm hover:shadow-xl hover:shadow-slate-200/50"
                 >
-                  <div className="mb-6 h-16 w-16 flex items-center justify-center rounded-2xl bg-black/50 text-elv-text-secondary border border-elv-border-divider group-hover:bg-elv-primary-red/10 group-hover:border-elv-primary-red/30 group-hover:text-elv-primary-red transition-all transform group-hover:scale-110 shadow-lg">
+                  <div className="mb-6 h-16 w-16 flex items-center justify-center rounded-2xl bg-slate-50 text-slate-400 border border-slate-200 group-hover:bg-red-50 group-hover:border-red-100 group-hover:text-red-600 transition-all transform group-hover:scale-110 shadow-sm">
                     <Icon className="h-8 w-8" />
                   </div>
-                  <p className="font-semibold text-elv-text-secondary group-hover:text-elv-text-primary transition-colors">{item}</p>
+                  <p className="font-bold text-slate-600 group-hover:text-slate-900 transition-colors">{item}</p>
                 </motion.div>
               );
             })}

@@ -35,7 +35,7 @@ export default function HeroSection() {
                         <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[76px] font-extrabold tracking-tight leading-[1.1] text-[#2c2a29]">
                             {heroSectionData.heading.line1}
                             <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e4511d] via-[#a8334c] to-[#6d2753]">
+                            <span>
                                 {heroSectionData.heading.line2}
                             </span>
                         </h1>
