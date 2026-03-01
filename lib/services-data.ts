@@ -57,7 +57,7 @@ export const servicesData = {
   },
   amc: {
     title: 'AMC (Annual Maintenance Contract)',
-    image: '/images/services/amc.jpg',
+    image: '/images/services/amc.jpeg',
     description: [
       'ELV Technology Solutions provides professional Annual Maintenance Contracts (AMC) for IT, ELV, AV, and security systems across Abu Dhabi, Dubai, and the UAE. We understand the importance of keeping your systems running smoothly—any failure in IT or ELV infrastructure affects business operations, safety, and productivity.',
       'Our AMC service ensures your systems receive regular maintenance, fast support, and proactive monitoring, giving you uninterrupted performance and peace of mind throughout the year.',
