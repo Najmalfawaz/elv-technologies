@@ -51,7 +51,7 @@ export default function Certifications() {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
 
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col flex-1">
                 <div className="mb-6 flex items-center gap-4 border-b border-slate-100 pb-6">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-red-500 border border-slate-100 shadow-md group-hover:scale-110 group-hover:border-red-200 group-hover:bg-red-50 transition-all duration-300">
                     <group.icon className="h-6 w-6" />
@@ -61,7 +61,7 @@ export default function Certifications() {
                   </h3>
                 </div>
 
-                <p className="mb-8 text-sm text-slate-600 font-medium leading-relaxed h-[60px]">
+                <p className="mb-8 text-sm text-slate-600 font-medium leading-relaxed">
                   {group.description}
                 </p>
 

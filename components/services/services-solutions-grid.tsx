@@ -7,14 +7,17 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ServicesSolutionsGrid() {
-    // Extract all solution items from the nested structure
+    // Extract all solution items from the nested structure and attach their parent category ID
     const allSolutions = [
-        ...solutionsData.securityAndSurveillance.items,
-        ...solutionsData.audioVisual.items,
-        ...solutionsData.networkAndCommunications.items,
-        ...solutionsData.homeAutomation.items,
+        ...solutionsData.securityAndSurveillance.items.map(item => ({ ...item, categoryId: solutionsData.securityAndSurveillance.id })),
+        ...solutionsData.audioVisual.items.map(item => ({ ...item, categoryId: solutionsData.audioVisual.id })),
+        ...solutionsData.networkAndCommunications.items.map(item => ({ ...item, categoryId: solutionsData.networkAndCommunications.id })),
+        ...solutionsData.homeAutomation.items.map(item => ({ ...item, categoryId: solutionsData.homeAutomation.id })),
     ];
 
+    // ... rest unchanged up to the Link
+
+    // Snippet for line replacement
     // Specific list requested by user to highlight
     const priorityList = [
         'Access Control & Time Attendance',
@@ -111,7 +114,7 @@ export default function ServicesSolutionsGrid() {
                                         ))}
                                     </ul>
                                     <Link
-                                        href={`/solutions/${solution.id}`} // Assuming routing structure or just fallback
+                                        href={`/solutions/${solution.categoryId}#${solution.id}`}
                                         className="inline-flex items-center justify-between w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-semibold text-slate-900 group-hover:bg-red-50 group-hover:border-red-200 transition-colors"
                                     >
                                         Learn more

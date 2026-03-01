@@ -85,7 +85,7 @@ export default function Amc() {
             </div>
 
             {/* Image Card */}
-            <div className="relative h-72 rounded-[2rem] overflow-hidden border border-slate-100 group shrink-0">
+            <div className="relative h-96 md:h-[400px] lg:h-[450px] rounded-[2rem] overflow-hidden border border-slate-100 group shrink-0">
               <Image
                 src={amc.image}
                 alt="AMC Services"
