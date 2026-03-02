@@ -70,6 +70,7 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
                                 alt={item.title}
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                                priority={index === 0}
                                 className="object-cover transition-transform duration-500 hover:scale-105"
                             />
                         </div>
@@ -110,6 +111,7 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
                                 alt={`${item.title} secondary features`}
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                                priority={index === 0}
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
