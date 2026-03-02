@@ -151,14 +151,14 @@ export const solutionsData = {
         id: "audio-visual",
         description: "Advancements in audio-visual technology are reshaping how organizations collaborate, train, and communicate.",
         image: "/images/solutions/audio-visual/Audio Visual Solutions.jpg",
-        image2: "/images/solutions/audio-visual/atomesus (14).png",
+        image2: "/images/solutions/audio-visual/hero1.png",
         items: [
             {
                 title: "Music Systems and BGM Solutions",
                 id: "music-bgm",
                 icon: Music,
                 image: "/images/solutions/audio-visual/Music Systems and BGM Solutions.jpg",
-                image2: "/images/solutions/audio-visual/atomesus (15).png",
+                image2: "/images/solutions/audio-visual/Music Systems and BGM Solutions1.png",
                 content: {
                     heading: "Music Systems and BGM Solutions for Hospitality in UAE",
                     description: [
@@ -217,7 +217,7 @@ export const solutionsData = {
                 id: "video-wall",
                 icon: MonitorPlay,
                 image: "/images/solutions/audio-visual/Indoor Video Wall.jpg",
-                image2: "/images/solutions/audio-visual/atomesus.png",
+                image2: "/images/solutions/audio-visual/Indoor Video Wall1.png",
                 content: {
                     heading: "Indoor Video Wall in UAE",
                     description: [
@@ -233,7 +233,7 @@ export const solutionsData = {
                 id: "conference-room",
                 icon: Users,
                 image: "/images/solutions/audio-visual/Conference Room.jpg",
-                image2: "/images/solutions/audio-visual/atomesus (1).png",
+                image2: "/images/solutions/audio-visual/Conference Room1.png",
                 content: {
                     heading: "Conference Room in UAE",
                     description: [
@@ -250,7 +250,7 @@ export const solutionsData = {
                 id: "meeting-boardroom",
                 icon: Users,
                 image: "/images/solutions/audio-visual/Meeting and Boardroom.jpg",
-                image2: "/images/solutions/audio-visual/atomesus (5).png",
+                image2: "/images/solutions/audio-visual/Meeting and Boardroom1.png",
                 content: {
                     heading: "Meeting Room & Boardroom AV Solutions in UAE",
                     description: [
@@ -267,7 +267,7 @@ export const solutionsData = {
                 id: "digital-signage",
                 icon: Monitor,
                 image: "/images/solutions/audio-visual/Digital Signage.jpg",
-                image2: "/images/solutions/audio-visual/atomesus (2).png",
+                image2: "/images/solutions/audio-visual/Digital Signage1.png",
                 content: {
                     heading: "Digital Signage in UAE",
                     description: [
@@ -284,7 +284,7 @@ export const solutionsData = {
                 id: "led-screen",
                 icon: MonitorPlay,
                 image: "/images/solutions/audio-visual/LED Screen.jpg",
-                image2: "/images/solutions/audio-visual/atomesus (3).png",
+                image2: "/images/solutions/audio-visual/LED Screen1.png",
                 content: {
                     heading: "LED Screen in UAE",
                     description: [
@@ -301,7 +301,7 @@ export const solutionsData = {
                 id: "control-systems",
                 icon: Server,
                 image: "/images/solutions/audio-visual/Control Systems.jpg",
-                image2: "/images/solutions/audio-visual/atomesus (4).png",
+                image2: "/images/solutions/audio-visual/Control Systems1.png",
                 content: {
                     heading: "Control Systems in UAE",
                     description: [
@@ -318,8 +318,8 @@ export const solutionsData = {
         title: "3. Network & Communications",
         id: "network-communications",
         description: "ELV Technology Solutions provides professional networking services in Abu Dhabi and across the UAE, specializing in structured cabling, wired networks, and enterprise-grade wireless (Wi-Fi) solutions.",
-        image: "/images/solutions/network-communications/atomesus (7).png",
-        image2: "/images/solutions/network-communications/atomesus (7).png",
+        image: "/images/solutions/network-communications/hero.png",
+        image2: "/images/solutions/network-communications/hero.png",
         intro: [
             "We design and implement standards-compliant network infrastructures using proven technologies from Cisco, Aruba Networks, and Ruckus, ensuring secure connectivity, high performance, and long-term scalability. Our solutions are tailored for corporate offices, commercial buildings, healthcare facilities, and educational institutions, delivering reliable network systems built for continuous operation.",
             "A network is a structured system of interconnected devices that communicate through wired or wireless paths to securely transmit data, voice, and video across an organization. Modern enterprise networks support sub-networks, remote access, centralized monitoring, and policy-based security, allowing IT teams to manage users and applications efficiently.",
@@ -332,7 +332,7 @@ export const solutionsData = {
                 id: "structured-cabling",
                 icon: Network,
                 image: "/images/solutions/network-communications/Structured Cabling Solutions.jpg",
-                image2: "/images/solutions/network-communications/atomesus (6).png",
+                image2: "/images/solutions/network-communications/Structured Cabling Solutions1.png",
                 content: {
                     heading: "Structured Cabling Solutions in UAE",
                     description: [
@@ -373,7 +373,7 @@ export const solutionsData = {
                 id: "wireless-network",
                 icon: Wifi,
                 image: "/images/solutions/network-communications/Wireless Network Solutions.jpg",
-                image2: "/images/solutions/network-communications/atomesus (8).png",
+                image2: "/images/solutions/network-communications/Wireless Network Solutions1.png",
                 content: {
                     heading: "Wireless Network Solutions in UAE",
                     description: [
@@ -415,7 +415,7 @@ export const solutionsData = {
                 id: "intercom",
                 icon: Mic2,
                 image: "/images/solutions/network-communications/Audio Video Intercom.jpg",
-                image2: "/images/solutions/network-communications/atomesus (9).png",
+                image2: "/images/solutions/network-communications/Audio Video Intercom1.png",
                 content: {
                     heading: "Audio Video Intercom in UAE",
                     description: [
@@ -443,7 +443,7 @@ export const solutionsData = {
                 id: "radio",
                 icon: Radio,
                 image: "/images/solutions/network-communications/Two Way Radio Solutions.jpg",
-                image2: "/images/solutions/network-communications/atomesus (10).png",
+                image2: "/images/solutions/network-communications/Two Way Radio Solutions1.png",
                 content: {
                     heading: "Two Way Radio Solutions in UAE",
                     description: [
@@ -470,7 +470,7 @@ export const solutionsData = {
                 id: "ip-phones",
                 icon: Phone,
                 image: "/images/solutions/network-communications/IP Phones.jpg",
-                image2: "/images/solutions/network-communications/atomesus (11).png",
+                image2: "/images/solutions/network-communications/IP Phones1.png",
                 content: {
                     heading: "IP Phone Systems in UAE",
                     description: [
@@ -510,7 +510,7 @@ export const solutionsData = {
                 id: "iptv-smatv",
                 icon: Monitor,
                 image: "/images/solutions/network-communications/IPTV  SMATV.jpg",
-                image2: "/images/solutions/network-communications/atomesus (12).png",
+                image2: "/images/solutions/network-communications/IPTV  SMATV1.png",
                 content: {
                     heading: "IPTV & SMATV Solutions in UAE",
                     description: [
@@ -562,7 +562,7 @@ export const solutionsData = {
                 id: "it-equipment",
                 icon: Cpu,
                 image: "/images/solutions/network-communications/IT Equipment.jpg",
-                image2: "/images/solutions/network-communications/atomesus (13).png",
+                image2: "/images/solutions/network-communications/IT Equipment1.png",
                 content: {
                     heading: "IT Equipment Supply & Installation in UAE",
                     description: [
@@ -580,15 +580,15 @@ export const solutionsData = {
         title: "4. Home Automation & Lighting Control System",
         id: "home-automation",
         description: "ELV Technology Solutions provides advanced home automation and lighting control systems in Abu Dhabi, Dubai, and across the UAE, delivering smart, energy-efficient, and user-friendly solutions.",
-        image: "/images/solutions/home-automation/atomesus (2).png",
-        image2: "/images/solutions/home-automation/atomesus.png",
+        image: "/images/solutions/home-automation/hero.png",
+        image2: "/images/solutions/home-automation/hero1.png",
         items: [
             {
                 title: "Home Automation",
                 id: "automation",
                 icon: Home,
                 image: "/images/solutions/home-automation/Home Automation.jpg",
-                image2: "/images/solutions/home-automation/atomesus (1).png",
+                image2: "/images/solutions/home-automation/Home Automation1.png",
                 content: {
                     heading: "Home Automation & Lighting Control Systems in UAE",
                     description: [
@@ -616,7 +616,7 @@ export const solutionsData = {
                 id: "lighting-control",
                 icon: Lamp,
                 image: "/images/solutions/home-automation/Lighting Control Systems.jpg",
-                image2: "/images/solutions/home-automation/atomesus.png",
+                image2: "/images/solutions/home-automation/hero1.png",
                 content: {
                     heading: "Lighting Control Systems for Modern Homes",
                     description: [
