@@ -27,7 +27,8 @@ export const ImageUpload = ({
             <div className="relative aspect-video w-full max-w-[400px] mt-2 rounded-2xl overflow-hidden group">
                 <Image
                     fill
-                    src={value}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+src={value}
                     alt="Upload"
                     className="object-cover transition-transform group-hover:scale-105"
                 />

@@ -80,7 +80,8 @@ export default function TechnicalSupport() {
               src={technicalSupport.image}
               alt={technicalSupport.title}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Glass Overlay on Image */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />

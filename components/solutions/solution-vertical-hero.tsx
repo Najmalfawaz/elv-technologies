@@ -19,7 +19,8 @@ export default function SolutionVerticalHero({ title, description, bgImage }: Pr
                         src={bgImage}
                         alt={`${title} background`}
                         fill
-                        priority
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+priority
                         className="object-cover object-center"
                     />
                 ) : (

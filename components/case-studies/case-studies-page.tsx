@@ -25,7 +25,9 @@ export default function CaseStudiesPage() {
                     className="w-full h-full object-cover rounded-t-lg"
                     src={study.image}
                     alt={study.project}
-                    layout="fill"
+                    layout="fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+"
                   />
                 </div>
                 <div className="p-6">

@@ -90,7 +90,8 @@ export default function Amc() {
                 src={amc.image}
                 alt="AMC Services"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80" />
               <div className="absolute bottom-6 left-6 right-6">

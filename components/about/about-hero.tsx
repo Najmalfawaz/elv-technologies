@@ -12,7 +12,8 @@ export default function AboutHero() {
           src="/images/aboutUS/hero.jpeg"
           alt="ELV Technologies Background"
           fill
-          className="object-cover opacity-40"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+className="object-cover opacity-40"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/60 to-slate-50/90" />
