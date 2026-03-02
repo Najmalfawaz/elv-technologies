@@ -37,8 +37,8 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
     return (
         <section id={item.id} className={`py-20 ${index % 2 === 0 ? 'bg-white dark:bg-slate-950' : 'bg-slate-50 dark:bg-slate-900/50'}`}>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${!isImageRight ? 'lg:flex-row-reverse' : ''}`}>
-
+                {/* Block 1: First Image & First Half of Text */}
+                <div className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center mb-24`}>
                     {/* Content Side */}
                     <div className="flex-1 space-y-8">
                         <div className="flex items-center gap-4">
@@ -55,24 +55,11 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
                         </h3>
 
                         <div className="prose prose-slate dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
-                            {item.content.description.map((desc: string, i: number) => (
+                            {/* First half of description */}
+                            {item.content.description.slice(0, Math.ceil(item.content.description.length / 2)).map((desc: string, i: number) => (
                                 <p key={i}>{desc}</p>
                             ))}
                         </div>
-
-                        {points && points.length > 0 && (
-                            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-                                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Key Features & Applications</h4>
-                                <ul className="grid sm:grid-cols-2 gap-3">
-                                    {points.slice(0, 8).map((point: string, i: number) => (
-                                        <li key={i} className="flex items-start text-sm text-gray-600 dark:text-gray-300">
-                                            <CheckCircle className="h-4 w-4 text-red-500 mr-3 mt-1 shrink-0" />
-                                            <span>{point}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
                     </div>
 
                     {/* Image Side */}
@@ -85,14 +72,49 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                                 className="object-cover transition-transform duration-500 hover:scale-105"
                             />
-
-                            {/* Overlay Badge */}
-                            <div className="absolute bottom-6 left-6 bg-white/95 dark:bg-slate-900/95 backdrop-blur px-6 py-3 rounded-xl shadow-lg border-l-4 border-red-600">
-                                <p className="font-bold text-gray-900 dark:text-white">{item.title}</p>
-                            </div>
                         </div>
                     </div>
+                </div>
 
+                {/* Block 2: Second Image & Second Half of Text + Features */}
+                <div className={`flex flex-col lg:flex-row-reverse gap-12 lg:gap-20 items-start`}>
+                    {/* Content Side */}
+                    <div className="flex-1 space-y-8">
+                        <div className="prose prose-slate dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+                            {/* Second half of description */}
+                            {item.content.description.slice(Math.ceil(item.content.description.length / 2)).map((desc: string, i: number) => (
+                                <p key={i}>{desc}</p>
+                            ))}
+                        </div>
+
+                        {points && points.length > 0 && (
+                            <div className="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                                <h4 className="font-semibold text-gray-900 dark:text-white mb-6 text-lg">Key Features & Applications</h4>
+                                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-4">
+                                    {points.slice(0, 8).map((point: string, i: number) => (
+                                        <li key={i} className="flex items-start text-sm text-gray-600 dark:text-gray-300">
+                                            <CheckCircle className="h-5 w-5 text-red-500 rounded-full bg-red-50 mr-3 shrink-0" />
+                                            <span className="leading-snug pt-0.5">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Image Side */}
+                    <div className="flex-1 w-full sticky top-32">
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-slate-200 dark:shadow-slate-900/50 group">
+                            <Image
+                                src={(item as any).image2 || item.image || "/images/placeholders/default.jpg"}
+                                alt={`${item.title} secondary features`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

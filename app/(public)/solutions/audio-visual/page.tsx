@@ -11,6 +11,7 @@ export default function AudioVisualPage() {
             <SolutionVerticalHero
                 title={data.title}
                 description={data.description}
+                bgImage={data.image}
             />
 
             <div className="flex flex-col">

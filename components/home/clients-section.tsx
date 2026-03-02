@@ -13,16 +13,8 @@ export default function ClientsSection() {
   // Embla setup: show 5 logos (20%), move 1 at a time, loop infinitely
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'start', slidesToScroll: 1 },
-    [Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: false })]
+    [Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })]
   );
-
-  const onLogoClick = useCallback(() => {
-    if (!emblaApi) return;
-    const autoplay = emblaApi.plugins().autoplay;
-    if (autoplay) {
-      autoplay.stop(); // Stop completely on click
-    }
-  }, [emblaApi]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,8 +46,7 @@ export default function ClientsSection() {
               {clients.map((item, index) => (
                 <div
                   key={index}
-                  className="flex-[0_0_50%] sm:flex-[0_0_33.33%] lg:flex-[0_0_20%] min-w-0 pl-4 sm:pl-8 cursor-pointer group"
-                  onClick={onLogoClick}
+                  className="flex-[0_0_50%] sm:flex-[0_0_33.33%] lg:flex-[0_0_20%] min-w-0 pl-4 sm:pl-8 group"
                 >
                   <div className="relative w-full h-full flex items-center justify-center transition-transform duration-500 hover:scale-110">
                     <div className="relative w-full h-24 sm:h-32">

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface Props {
     title: string;
@@ -11,11 +12,24 @@ interface Props {
 export default function SolutionVerticalHero({ title, description, bgImage }: Props) {
     return (
         <div className="relative isolate overflow-hidden bg-slate-900 py-24 sm:py-32">
-            {/* Background with placeholder or pattern */}
-            <div className="absolute inset-0 -z-10 bg-slate-900">
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/50 z-10" />
-                {/* Could use actual image here later using bgImage */}
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:20px_20px]" />
+            {/* Background Image Layer */}
+            <div className="absolute inset-0 -z-20 bg-slate-950">
+                {bgImage ? (
+                    <Image
+                        src={bgImage}
+                        alt={`${title} background`}
+                        fill
+                        priority
+                        className="object-cover object-center"
+                    />
+                ) : (
+                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:20px_20px]" />
+                )}
+            </div>
+
+            {/* Gradient Overlays for Readability (MUST be above image, below text) */}
+            <div className="absolute inset-0 -z-10 bg-slate-900/40">
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-transparent" />
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-20">

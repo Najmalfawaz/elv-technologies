@@ -12,6 +12,7 @@ export default function HomeAutomationPage() {
             <SolutionVerticalHero
                 title={data.title}
                 description={data.description}
+                bgImage={data.image}
             />
 
             <HomeAutomationVideo />

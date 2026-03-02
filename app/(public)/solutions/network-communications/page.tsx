@@ -11,6 +11,7 @@ export default function NetworkCommunicationsPage() {
             <SolutionVerticalHero
                 title={data.title}
                 description={data.description}
+                bgImage={data.image}
             />
 
             {/* Intro text specific to this section */}

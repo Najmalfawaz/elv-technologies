@@ -9,10 +9,10 @@ export default function ServicesPage() {
   return (
     <main>
       <Hero />
-      <ServicesSolutionsGrid />
       <TechnicalSupport />
       <Programming />
       <Amc />
+      <ServicesSolutionsGrid />
     </main>
   );
 }

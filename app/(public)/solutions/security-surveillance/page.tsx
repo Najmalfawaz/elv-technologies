@@ -11,6 +11,7 @@ export default function SecuritySurveillancePage() {
             <SolutionVerticalHero
                 title={data.title}
                 description={data.description}
+                bgImage={data.image}
             />
 
             <div className="flex flex-col">

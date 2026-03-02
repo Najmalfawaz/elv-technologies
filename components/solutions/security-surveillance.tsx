@@ -3,19 +3,33 @@
 import { solutionsData } from "@/lib/solutions-data";
 import { CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function SecuritySurveillance() {
     const { securityAndSurveillance } = solutionsData;
 
     return (
-        <section id={securityAndSurveillance.id} className="py-20 bg-white dark:bg-slate-950">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section id={securityAndSurveillance.id} className="relative py-20 overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/images/solutions/security-surveillance/hero.png"
+                    alt="Security and Surveillance Background"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                />
+                {/* Overlay to ensure text readability */}
+                <div className="absolute inset-0 bg-white/90 dark:bg-slate-950/90" />
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:text-center mb-16">
                     <h2 className="text-base font-semibold leading-7 text-red-600">Integrated Security</h2>
                     <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
                         {securityAndSurveillance.title}
                     </p>
-                    <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+                    <p className="mt-6 text-lg leading-8 text-gray-800 dark:text-gray-300 font-medium">
                         {securityAndSurveillance.description}
                     </p>
                 </div>
