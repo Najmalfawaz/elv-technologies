@@ -25,16 +25,18 @@ export default function CaseStudiesPage() {
                     className="w-full h-full object-cover rounded-t-lg"
                     src={study.image}
                     alt={study.project}
-                    layout="fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
-                  <h2 className="text-xl font-bold text-gray-900">
-                    {study.project}
+                  <h2 className="text-xl font-bold text-gray-900 line-clamp-2">
+                    {study.client}
                   </h2>
-                  <p className="mt-2 text-base text-gray-600 line-clamp-3">
+                  <h3 className="mt-1.5 text-sm font-semibold text-red-600 line-clamp-2">
+                    {study.project}
+                  </h3>
+                  <p className="mt-3 text-base text-gray-600 line-clamp-3">
                     {study.overview}
                   </p>
                   <div className="mt-4 flex items-center text-red-600 font-semibold">

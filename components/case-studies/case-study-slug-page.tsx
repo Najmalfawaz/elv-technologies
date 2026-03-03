@@ -31,6 +31,7 @@ interface CaseStudy {
   gallery?: string[];
   outcomes: string[];
   location: string;
+  category?: string;
 }
 
 interface CaseStudySlugPageProps {
@@ -94,12 +95,15 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
               </Link>
               <div className="flex flex-wrap gap-3 mb-4">
                 <Badge className="bg-red-600 hover:bg-red-700 text-white border-none text-sm py-1 px-3">
-                  {study.client}
+                  {study.category || 'Infrastructure'}
                 </Badge>
               </div>
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl max-w-4xl">
-                {study.project}
+                {study.client}
               </h1>
+              <h2 className="mt-4 text-xl sm:text-2xl font-medium text-slate-200 max-w-3xl">
+                {study.project}
+              </h2>
             </motion.div>
           </div>
         </div>
