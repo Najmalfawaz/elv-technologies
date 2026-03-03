@@ -14,8 +14,7 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
 
     return (
         <section className="py-24 relative overflow-hidden bg-white/40 backdrop-blur-3xl border-b border-neutral-200/60">
-            {/* Background Accents - Subtle Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+            {/* Background Accents - Subdued */}
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">

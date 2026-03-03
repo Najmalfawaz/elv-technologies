@@ -1,7 +1,7 @@
 export const heroSectionData = {
   heading: {
-    line1: "Welcome to ELV",
-    line2: "Technology Solutions!",
+    line1: "Welcome to",
+    line2: "ELV Technology Solutions!",
   },
   subheading: "A Leading Audio-Visual &\nELV Company in Abu Dhabi, UAE",
   buttons: {

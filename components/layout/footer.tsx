@@ -79,7 +79,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/elv-technology-solutions-llc/",
+    href: "https://www.linkedin.com/company/elv-technology-solutions-abu-dhabi/",
     icon: Linkedin,
   },
   {
@@ -164,7 +164,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm leading-relaxed text-white mb-8 max-w-xs">
-              ELV Technology Solutions one of the best ELV & Audio-Visual
+              ELV Technology Solutions, one of the best ELV & Audio-Visual
               Integrators in Abu Dhabi.
             </p>
 

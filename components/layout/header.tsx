@@ -89,7 +89,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/elv-technology-solutions-llc/",
+    href: "https://www.linkedin.com/company/elv-technology-solutions-abu-dhabi/",
     icon: Linkedin,
   },
   {

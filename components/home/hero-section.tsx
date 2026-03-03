@@ -32,10 +32,10 @@ export default function HeroSection() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         {/* Heading */}
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[76px] font-extrabold tracking-tight leading-[1.1] text-[#2c2a29]">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[72px] font-extrabold tracking-tight leading-[1.1] text-[#2c2a29]">
                             {heroSectionData.heading.line1}
                             <br />
-                            <span>
+                            <span className="whitespace-nowrap">
                                 {heroSectionData.heading.line2}
                             </span>
                         </h1>
