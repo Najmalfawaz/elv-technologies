@@ -10,6 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { caseStudiesData } from "@/lib/case-studies-data";
+import { useState } from "react";
 
 interface CaseStudySolution {
   title: string;
@@ -40,7 +42,37 @@ interface CaseStudySlugPageProps {
   nextStudy?: CaseStudy;
 }
 
-export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseStudySlugPageProps) {
+export default function CaseStudySlugPage({ study: initialStudy, prevStudy, nextStudy }: CaseStudySlugPageProps) {
+  const [studyNavIndex, setStudyNavIndex] = useState(() => {
+    return caseStudiesData.findIndex(s => s.slug === initialStudy.slug);
+  });
+
+  const getNext = (currentIndex: number) => {
+    return caseStudiesData[(currentIndex + 1) % caseStudiesData.length];
+  };
+
+  const getPrev = (currentIndex: number) => {
+    return caseStudiesData[(currentIndex - 1 + caseStudiesData.length) % caseStudiesData.length];
+  };
+
+  const [currentPrev, setCurrentPrev] = useState(getPrev(studyNavIndex));
+  const [currentNext, setCurrentNext] = useState(getNext(studyNavIndex));
+
+  const handleNextClick = () => {
+    if (!currentNext) return;
+    const nextIdx = caseStudiesData.findIndex(s => s.slug === currentNext.slug);
+    setCurrentPrev(caseStudiesData[nextIdx]);
+    setCurrentNext(getNext(nextIdx));
+  };
+
+  const handlePrevClick = () => {
+    if (!currentPrev) return;
+    const prevIdx = caseStudiesData.findIndex(s => s.slug === currentPrev.slug);
+    setCurrentNext(caseStudiesData[prevIdx]);
+    setCurrentPrev(getPrev(prevIdx));
+  };
+
+  const study = initialStudy;
   if (!study) {
     notFound();
   }
@@ -256,22 +288,32 @@ export default function CaseStudySlugPage({ study, prevStudy, nextStudy }: CaseS
 
         {/* Navigation */}
         <div className="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {prevStudy ? (
-            <Link href={`/case-studies/${prevStudy.slug}`} className="group flex flex-col items-start p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-red-500 dark:hover:border-red-500 transition-colors">
-              <span className="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400">
+          {currentPrev ? (
+            <div className="group flex flex-col items-start p-6 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
+              <button
+                onClick={handlePrevClick}
+                className="flex items-center text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 mb-2 transition-colors cursor-pointer"
+              >
                 <ArrowLeft className="mr-2 h-4 w-4" /> Previous Success
-              </span>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">{prevStudy.client}</span>
-            </Link>
+              </button>
+              <Link href={`/case-studies/${currentPrev.slug}`} className="text-lg font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors">
+                {currentPrev.client}
+              </Link>
+            </div>
           ) : <div />}
 
-          {nextStudy ? (
-            <Link href={`/case-studies/${nextStudy.slug}`} className="group flex flex-col items-end text-right p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-red-500 dark:hover:border-red-500 transition-colors">
-              <span className="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-2 group-hover:text-red-600 dark:group-hover:text-red-400">
+          {currentNext ? (
+            <div className="group flex flex-col items-end text-right p-6 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
+              <button
+                onClick={handleNextClick}
+                className="flex items-center text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 mb-2 transition-colors cursor-pointer"
+              >
                 Next Success <ArrowRight className="ml-2 h-4 w-4" />
-              </span>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">{nextStudy.client}</span>
-            </Link>
+              </button>
+              <Link href={`/case-studies/${currentNext.slug}`} className="text-lg font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors">
+                {currentNext.client}
+              </Link>
+            </div>
           ) : <div />}
         </div>
       </div>
