@@ -37,8 +37,8 @@ export default function Programming() {
               src={programming.image}
               alt={programming.title}
               fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/80 via-slate-900/20 to-transparent" />
 
@@ -46,7 +46,6 @@ className="object-cover transition-transform duration-700 group-hover:scale-105"
             <div className="absolute bottom-8 left-8 right-8">
               <div className="backdrop-blur-md bg-white/20 border border-white/30 p-6 rounded-2xl shadow-xl">
                 <div className="flex items-center gap-3 text-white font-semibold mb-2">
-                  <Terminal className="w-5 h-5 text-red-400" />
                   Advanced Integration
                 </div>
                 <p className="text-slate-100 text-sm leading-relaxed font-medium">Delivering bespoke control systems that seamlessly unify your technological infrastructure.</p>
