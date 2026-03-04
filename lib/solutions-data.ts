@@ -60,7 +60,7 @@ export const solutionsData = {
                 title: "Access Control & Time Attendance",
                 id: "access-control",
                 icon: Lock,
-                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.png",
+                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.jpeg",
                 image2: "/images/solutions/security-surveillance/Access Control&Time Attendance1.png",
                 content: {
                     heading: "Access Control & Time Attendance System in UAE",
