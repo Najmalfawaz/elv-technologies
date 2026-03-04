@@ -41,7 +41,7 @@ export default function TrustedPartner() {
             </div>
 
             <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl mb-6">
-              Your Trusted Partner <br />
+              Your Trusted Partner <br className="hidden sm:block" />
               <span className="text-red-600">
                 in Technology
               </span>
