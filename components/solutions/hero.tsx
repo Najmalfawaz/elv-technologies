@@ -27,7 +27,8 @@ export default function SolutionsHero() {
                             Solutions
                         </div>
                         <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-7xl mb-8">
-                            Transforming Ideas into <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">Technology&nbsp;Solutions</span>
+                            Transforming Ideas into <br className="hidden sm:block" />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">Technology&nbsp;Solutions</span>
                         </h1>
                         <p className="text-xl leading-9 text-slate-600 max-w-2xl mx-auto">
                             Comprehensive, integrated systems designed for security, audio-visual, networking, and automation across the UAE's modern landscape.

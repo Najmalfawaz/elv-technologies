@@ -13,7 +13,7 @@ const values = [
 
 export default function MissionVisionValues() {
   return (
-    <section className="relative py-32 overflow-hidden bg-slate-50">
+    <section className="relative pt-12 pb-24 overflow-hidden bg-slate-50">
       {/* Background abstract elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-red-600/5 blur-[120px]" />

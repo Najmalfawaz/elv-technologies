@@ -60,7 +60,7 @@ export const solutionsData = {
                 title: "Access Control & Time Attendance",
                 id: "access-control",
                 icon: Lock,
-                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.png",
+                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.jpeg",
                 image2: "/images/solutions/security-surveillance/Access Control&Time Attendance1.png",
                 content: {
                     heading: "Access Control & Time Attendance System in UAE",
@@ -331,7 +331,7 @@ export const solutionsData = {
                 title: "Structured Cabling Solutions",
                 id: "structured-cabling",
                 icon: Network,
-                image: "/images/solutions/network-communications/Structured Cabling Solutions.jpg",
+                image: "/images/solutions/network-communications/Structured Cabling Solutions.jpeg",
                 image2: "/images/solutions/network-communications/Structured Cabling Solutions1.png",
                 content: {
                     heading: "Structured Cabling Solutions in UAE",
