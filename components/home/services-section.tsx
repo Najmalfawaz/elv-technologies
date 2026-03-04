@@ -62,7 +62,7 @@ export default function ServicesSection() {
 
       {/* Glowing Orbs */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none transition-transform duration-1000 group-hover/section:translate-y-10" />
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[100px] translate-y-1/3 pointer-events-none transition-transform duration-1000 group-hover/section:-translate-y-10" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[100px] translate-y-1/3 pointer-events-none transition-transform duration-1000 group-hover/section:-translate-y-10" />
 
       {/* Right Half Logo Watermark */}
       <div className="absolute inset-y-0 right-0 w-full md:w-1/2 flex items-center justify-end pointer-events-none overflow-hidden z-0">
@@ -81,7 +81,7 @@ export default function ServicesSection() {
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
             Intelligent Infrastructure <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-orange-400">Built to Scale</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-red-500">Built to Scale</span>
           </h2>
           <p className="text-lg text-neutral-400 leading-relaxed max-w-2xl mx-auto font-medium">
             Discover our comprehensive suite of advanced technology systems designed to secure, connect, and empower your organization.
@@ -98,7 +98,7 @@ export default function ServicesSection() {
               style={{ animationDelay: `${(i + 1) * 0.15}s` }}
             >
               <Link href={category.href} className="block h-full outline-none">
-                <div className="relative h-full bg-[#18181b]/80 backdrop-blur-xl p-8 flex flex-col transition-all duration-500 hover:-translate-y-3 relative overflow-hidden group/card rounded-3xl border border-white/5 hover:border-accent/30 hover:shadow-[0_0_40px_-10px_rgba(228,81,29,0.3)] hover:bg-[#1e1e24] group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-[#0a0a0a]">
+                <div className="relative h-full bg-[#18181b]/80 backdrop-blur-xl p-8 flex flex-col transition-all duration-500 hover:-translate-y-3 relative overflow-hidden group/card rounded-3xl border border-white/5 hover:border-accent/30 hover:shadow-[0_0_40px_-10px_rgba(220,38,38,0.3)] hover:bg-[#1e1e24] group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-[#0a0a0a]">
 
                   {/* Subtle Gradient Hover Background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />

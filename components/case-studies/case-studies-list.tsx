@@ -3,9 +3,8 @@
 import { useState, useMemo } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MapPin, Search, Building2 } from "lucide-react";
+import { ArrowRight, MapPin, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -109,12 +108,12 @@ export default function CaseStudiesList({ initialData }: { initialData: any[] })
 
                     <CardHeader className="p-6 pb-2">
                       <div className="flex items-center gap-2 mb-3">
-                        <Badge variant="secondary" className="bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300 hover:bg-red-100">
-                          {study.client}
-                        </Badge>
+                        <span className="text-sm font-semibold text-red-600 dark:text-red-400 line-clamp-2">
+                          {study.project}
+                        </span>
                       </div>
                       <h3 className="text-xl font-bold leading-tight text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-2">
-                        {study.project}
+                        {study.client}
                       </h3>
                     </CardHeader>
 
