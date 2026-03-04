@@ -16,8 +16,8 @@ export default function MissionVisionValues() {
     <section className="relative pt-12 pb-24 overflow-hidden bg-slate-50">
       {/* Background abstract elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-red-600/5 blur-[120px]" />
-        <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-red-600/5 blur-[120px]" />
+        <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-blue-600/5 blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-emerald-600/5 blur-[120px]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
       </div>
 
@@ -70,15 +70,15 @@ export default function MissionVisionValues() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-red-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10"
+            className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-blue-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col h-full">
-              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25 group-hover:scale-110 group-hover:shadow-red-500/40 transition-all duration-500">
+              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25 group-hover:scale-110 group-hover:shadow-blue-500/40 transition-all duration-500">
                 <Eye className="h-8 w-8" />
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-red-700 transition-colors">
+              <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-blue-700 transition-colors">
                 Our Vision
               </h3>
               <p className="leading-relaxed text-slate-600">
@@ -96,15 +96,15 @@ export default function MissionVisionValues() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-red-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10"
+            className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-emerald-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col h-full">
-              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25 group-hover:scale-110 group-hover:shadow-red-500/40 transition-all duration-500">
+              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-500/25 group-hover:scale-110 group-hover:shadow-emerald-500/40 transition-all duration-500">
                 <Heart className="h-8 w-8" />
               </div>
-              <h3 className="mb-6 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-red-700 transition-colors">
+              <h3 className="mb-6 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-emerald-700 transition-colors">
                 Our Values
               </h3>
               <ul className="space-y-4">
@@ -116,7 +116,7 @@ export default function MissionVisionValues() {
                     transition={{ delay: 0.3 + (idx * 0.1) }}
                     className="flex items-start gap-3 text-sm leading-relaxed text-slate-600 font-medium"
                   >
-                    <div className="mt-1 flex items-center justify-center w-5 h-5 rounded-full bg-red-100 text-red-600 shrink-0">
+                    <div className="mt-1 flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 shrink-0">
                       <ArrowRight className="w-3 h-3" />
                     </div>
                     {value}

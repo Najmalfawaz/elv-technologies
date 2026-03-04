@@ -40,8 +40,8 @@ export default function TrustedPartner() {
               RELIABILITY & TRUST
             </div>
 
-            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-6xl mb-6">
-              Your Trusted Partner <br className="hidden sm:block" />
+            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl lg:text-5xl mb-6">
+              Your Trusted Partner<br />
               <span className="text-red-600">
                 in Technology
               </span>
@@ -95,19 +95,6 @@ export default function TrustedPartner() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-              {/* Floating Badge */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-                <div className="rounded-2xl border border-white/20 bg-white/90 p-4 sm:p-5 backdrop-blur-xl shadow-xl transform transition-transform group-hover:-translate-y-1">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-800 uppercase">Our Promise</span>
-                  </div>
-                  <p className="font-bold text-slate-900 text-sm sm:text-base leading-snug">
-                    "Delivering Excellence & Innovation in Every Project"
-                  </p>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>

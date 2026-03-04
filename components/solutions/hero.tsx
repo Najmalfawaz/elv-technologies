@@ -21,13 +21,13 @@ export default function SolutionsHero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="max-w-3xl"
+                        className="max-w-4xl"
                     >
                         <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium leading-6 text-red-600 ring-1 ring-inset ring-red-600/10 mb-8 bg-red-50/50">
                             Solutions
                         </div>
-                        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl mb-8">
-                            Transforming Ideas into <br className="hidden sm:block" />
+                        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl mb-8">
+                            Transforming Ideas into<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">Technology Solutions</span>
                         </h1>
                         <p className="text-xl leading-9 text-slate-600 max-w-2xl mx-auto">
