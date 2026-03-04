@@ -259,8 +259,13 @@ export const caseStudiesData: CaseStudy[] = [
       "Simplified operation for hotel teams and external partners.",
       "Improved event versatility and guest satisfaction.",
     ],
-    image: "/placeholder-case-study.jpg",
-    gallery: ["/placeholder-case-study.jpg"]
+    image: "/images/case-studies/case-7/1.jpg",
+    gallery: [
+      "/images/case-studies/case-7/1.jpg",
+      "/images/case-studies/case-7/2.jpg",
+      "/images/case-studies/case-7/3.jpg",
+      "/images/case-studies/case-7/4.jpg",
+    ]
   },
   {
     slug: "grand-hyatt-abu-dhabi-hotel-wifi-modernization",
@@ -286,8 +291,11 @@ export const caseStudiesData: CaseStudy[] = [
       "Secure staff and system access with room to scale for future services.",
     ],
     challenges: [],
-    image: "/placeholder-case-study.jpg",
-    gallery: ["/placeholder-case-study.jpg"]
+    image: "/images/case-studies/case-8/1.jpg",
+    gallery: [
+      "/images/case-studies/case-8/1.jpg",
+      "/images/case-studies/case-8/2.jpg",
+    ]
   },
   {
     slug: "ritz-carlton-abu-dhabi-grand-canal-av-upgrade",
@@ -311,8 +319,14 @@ export const caseStudiesData: CaseStudy[] = [
       "Significantly enhanced production values and venue flexibility for all event types."
     ],
     challenges: [],
-    image: "/placeholder-case-study.jpg",
-    gallery: ["/placeholder-case-study.jpg"]
+    image: "/images/case-studies/case-9/1.jpg",
+    gallery: [
+      "/images/case-studies/case-9/1.jpg",
+      "/images/case-studies/case-9/2.jpg",
+      "/images/case-studies/case-9/3.jpg",
+      "/images/case-studies/case-9/4.jpg",
+      "/images/case-studies/case-9/5.jpg",
+    ]
   },
   {
     slug: "andaz-capital-gate-abu-dhabi-wifi6-upgrade",
@@ -336,7 +350,10 @@ export const caseStudiesData: CaseStudy[] = [
       "Future‑ready infrastructure aligned with Hyatt/Andaz brand expectations."
     ],
     challenges: [],
-    image: "/placeholder-case-study.jpg",
-    gallery: ["/placeholder-case-study.jpg"]
+    image: "/images/case-studies/case-10/1.jpg",
+    gallery: [
+      "/images/case-studies/case-10/1.jpg",
+      "/images/case-studies/case-10/2.jpg",
+    ]
   }
 ]
