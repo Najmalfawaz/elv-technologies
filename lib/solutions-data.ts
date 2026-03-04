@@ -60,7 +60,7 @@ export const solutionsData = {
                 title: "Access Control & Time Attendance",
                 id: "access-control",
                 icon: Lock,
-                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.jpeg",
+                image: "/images/solutions/security-surveillance/Access Control&Time Attendance.png",
                 image2: "/images/solutions/security-surveillance/Access Control&Time Attendance1.png",
                 content: {
                     heading: "Access Control & Time Attendance System in UAE",
@@ -157,8 +157,8 @@ export const solutionsData = {
                 title: "Music Systems and BGM Solutions",
                 id: "music-bgm",
                 icon: Music,
-                image: "/images/solutions/audio-visual/Music Systems and BGM Solutions.jpg",
-                image2: "/images/solutions/audio-visual/Music Systems and BGM Solutions1.png",
+                image: "/images/solutions/audio-visual/Music Systems and BGM Solutions1.png",
+                image2: "/images/solutions/audio-visual/Music Systems and BGM Solutions.jpg",
                 content: {
                     heading: "Music Systems and BGM Solutions for Hospitality in UAE",
                     description: [
@@ -216,8 +216,8 @@ export const solutionsData = {
                 title: "Indoor Video Wall",
                 id: "video-wall",
                 icon: MonitorPlay,
-                image: "/images/solutions/audio-visual/Indoor Video Wall.jpg",
-                image2: "/images/solutions/audio-visual/Indoor Video Wall1.png",
+                image: "/images/solutions/audio-visual/Indoor Video Wall1.png",
+                image2: "/images/solutions/audio-visual/Indoor Video Wall.jpg",
                 content: {
                     heading: "Indoor Video Wall in UAE",
                     description: [
@@ -232,8 +232,8 @@ export const solutionsData = {
                 title: "Conference Room",
                 id: "conference-room",
                 icon: Users,
-                image: "/images/solutions/audio-visual/Conference Room.jpg",
-                image2: "/images/solutions/audio-visual/Conference Room1.png",
+                image: "/images/solutions/audio-visual/Conference Room1.png",
+                image2: "/images/solutions/audio-visual/Conference Room.jpg",
                 content: {
                     heading: "Conference Room in UAE",
                     description: [
@@ -249,8 +249,8 @@ export const solutionsData = {
                 title: "Meeting and Boardroom",
                 id: "meeting-boardroom",
                 icon: Users,
-                image: "/images/solutions/audio-visual/Meeting and Boardroom.jpg",
-                image2: "/images/solutions/audio-visual/Meeting and Boardroom1.png",
+                image: "/images/solutions/audio-visual/Meeting and Boardroom1.png",
+                image2: "/images/solutions/audio-visual/Meeting and Boardroom.jpg",
                 content: {
                     heading: "Meeting Room & Boardroom AV Solutions in UAE",
                     description: [
@@ -266,8 +266,8 @@ export const solutionsData = {
                 title: "Digital Signage",
                 id: "digital-signage",
                 icon: Monitor,
-                image: "/images/solutions/audio-visual/Digital Signage.jpg",
-                image2: "/images/solutions/audio-visual/Digital Signage1.png",
+                image: "/images/solutions/audio-visual/Digital Signage1.png",
+                image2: "/images/solutions/audio-visual/Digital Signage.jpg",
                 content: {
                     heading: "Digital Signage in UAE",
                     description: [
@@ -283,8 +283,8 @@ export const solutionsData = {
                 title: "LED Screen",
                 id: "led-screen",
                 icon: MonitorPlay,
-                image: "/images/solutions/audio-visual/LED Screen.jpg",
-                image2: "/images/solutions/audio-visual/LED Screen1.png",
+                image: "/images/solutions/audio-visual/LED Screen1.png",
+                image2: "/images/solutions/audio-visual/LED Screen.jpg",
                 content: {
                     heading: "LED Screen in UAE",
                     description: [
@@ -300,8 +300,8 @@ export const solutionsData = {
                 title: "Control Systems",
                 id: "control-systems",
                 icon: Server,
-                image: "/images/solutions/audio-visual/Control Systems.jpg",
-                image2: "/images/solutions/audio-visual/Control Systems1.png",
+                image: "/images/solutions/audio-visual/Control Systems1.png",
+                image2: "/images/solutions/audio-visual/Control Systems.jpg",
                 content: {
                     heading: "Control Systems in UAE",
                     description: [
