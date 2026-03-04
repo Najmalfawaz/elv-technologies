@@ -38,57 +38,59 @@ export default function MissionVisionValues() {
           </motion.div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Mission */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-red-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
+          <div className="flex flex-col gap-8">
+            {/* Mission */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-red-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25 group-hover:scale-110 group-hover:shadow-red-500/40 transition-all duration-500">
-                <Target className="h-8 w-8" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-500/25 group-hover:scale-110 group-hover:shadow-red-500/40 transition-all duration-500">
+                  <Target className="h-8 w-8" />
+                </div>
+                <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-red-700 transition-colors">
+                  Our Mission
+                </h3>
+                <p className="leading-relaxed text-slate-600">
+                  To deliver end-to-end technology solutions that exceed client
+                  expectations through innovative design, reliable implementation,
+                  and future-ready support infrastructure.
+                </p>
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-red-700 transition-colors">
-                Our Mission
-              </h3>
-              <p className="leading-relaxed text-slate-600">
-                To deliver end-to-end technology solutions that exceed client
-                expectations through innovative design, reliable implementation,
-                and future-ready support infrastructure.
-              </p>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Vision */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-blue-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
+            {/* Vision */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="group relative h-full rounded-[2rem] border border-slate-200/60 bg-white/60 p-10 shadow-xl shadow-slate-200/50 backdrop-blur-2xl transition-all duration-500 hover:border-blue-200 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem] pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25 group-hover:scale-110 group-hover:shadow-blue-500/40 transition-all duration-500">
-                <Eye className="h-8 w-8" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25 group-hover:scale-110 group-hover:shadow-blue-500/40 transition-all duration-500">
+                  <Eye className="h-8 w-8" />
+                </div>
+                <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-blue-700 transition-colors">
+                  Our Vision
+                </h3>
+                <p className="leading-relaxed text-slate-600">
+                  To continue as a leading provider of Audio Visual Solutions, ELV
+                  Systems, Security & Surveillance, and Home Automation
+                  technologies in Abu Dhabi and all over the UAE by consistently
+                  delivering excellence and maximizing value for our clients.
+                </p>
               </div>
-              <h3 className="mb-4 text-2xl font-bold text-slate-900 tracking-tight group-hover:text-blue-700 transition-colors">
-                Our Vision
-              </h3>
-              <p className="leading-relaxed text-slate-600">
-                To continue as a leading provider of Audio Visual Solutions, ELV
-                Systems, Security & Surveillance, and Home Automation
-                technologies in Abu Dhabi and all over the UAE by consistently
-                delivering excellence and maximizing value for our clients.
-              </p>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Values */}
           <motion.div
