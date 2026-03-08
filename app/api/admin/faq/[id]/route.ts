@@ -27,14 +27,13 @@ export async function PATCH(
 ) {
     try {
         const body = await req.json();
-        const { question, answer, category } = body;
+        const { question, answer } = body;
 
         const faq = await prisma.fAQ.update({
             where: { id: params.id },
             data: {
                 question,
-                answer,
-                category
+                answer
             }
         });
 

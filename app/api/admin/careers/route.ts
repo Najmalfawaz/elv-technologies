@@ -16,7 +16,7 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { title, location, type, description } = body;
+        const { title, location, type, description, department, requirements } = body;
 
         const career = await prisma.career.create({
             data: {
@@ -24,8 +24,8 @@ export async function POST(req: Request) {
                 location,
                 type,
                 description,
-                requirements: [], // Initialize as empty array since we removed the field from form
-                department: 'General' // Default department
+                requirements: requirements || [],
+                department: department || 'General'
             }
         });
 

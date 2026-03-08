@@ -15,11 +15,11 @@ export default function Hero() {
           src={hero.image}
           alt={hero.title}
           fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-className="object-cover opacity-40"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover opacity-100"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/60 to-slate-50/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-slate-50/80" />
       </div>
 
       {/* Dynamic Background Effects */}

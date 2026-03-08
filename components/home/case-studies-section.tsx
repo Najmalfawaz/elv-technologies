@@ -6,11 +6,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { caseStudiesData } from '@/lib/case-studies-data';
-
 export default function CaseStudiesSection({ initialData }: { initialData?: any[] }) {
     // Only show the first 3 for a cleaner home page look
-    const featuredStudies = caseStudiesData.slice(0, 3);
+    const featuredStudies = initialData && initialData.length > 0 ? initialData.slice(0, 3) : [];
 
     return (
         <section className="py-24 relative overflow-hidden bg-white/40 backdrop-blur-3xl border-b border-neutral-200/60">
@@ -58,9 +56,12 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                                        <div className="absolute bottom-5 left-5 right-5 text-white">
-                                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider border border-white/20 line-clamp-1">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                                        <div className="absolute bottom-6 left-6 right-6 text-white drop-shadow-lg">
+                                            <h3 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2 group-hover:text-accent/10 transition-colors">
+                                                {study.client}
+                                            </h3>
+                                            <div className="text-sm font-medium text-neutral-200 line-clamp-2 leading-snug">
                                                 {study.project}
                                             </div>
                                         </div>
@@ -73,38 +74,18 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                                 {study.category || 'Infrastructure'}
                                             </Badge>
                                             <div className="flex items-center gap-1.5 text-xs text-muted-foreground ml-auto bg-neutral-100 px-2 py-1 rounded-md">
-                                                <MapPin className="h-3 w-3" />
-                                                <span className="truncate max-w-[100px]">{study.location}</span>
+                                                <MapPin className="h-3 w-3 text-accent" />
+                                                <span className="truncate max-w-[150px]">{study.location}</span>
                                             </div>
                                         </div>
 
-                                        <h3 className="text-xl font-extrabold text-foreground mb-4 group-hover:text-accent transition-colors line-clamp-2 leading-tight">
-                                            {study.client}
-                                        </h3>
-
-                                        {/* Highlighted Metric/Outcome */}
-                                        <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-neutral-100 flex items-start gap-4 group-hover:bg-accent/5 group-hover:border-accent/10 transition-colors">
-                                            <div className="bg-white p-2 rounded-lg shadow-sm">
-                                                <div className="text-2xl font-bold text-accent leading-none">
-                                                    {index === 0 ? '99%' : index === 1 ? '40%' : '24/7'}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-neutral-900 uppercase tracking-wider mb-1">Key Result</div>
-                                                <div className="text-sm text-muted-foreground leading-snug">
-                                                    {index === 0 ? 'Increase in network uptime and security' : index === 1 ? 'Reduction in operational overhead costs' : 'Continuous monitoring deployed'}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-8 flex-grow">
+                                        <p className="text-muted-foreground text-base leading-relaxed line-clamp-3 mb-8 flex-grow">
                                             {study.overview}
                                         </p>
 
                                         <div className="pt-5 border-t border-neutral-100 mt-auto flex items-center justify-between">
-                                            <span className="text-sm font-semibold text-accent flex items-center group/btn relative overflow-hidden">
-                                                <span className="relative z-10">Read full study</span>
-                                                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                                            <span className="text-sm font-bold text-accent px-4 py-2 rounded-full border border-accent/20 bg-accent/5 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                                                Read full study <ArrowRight className="inline-block ml-2 h-4 w-4" />
                                             </span>
                                         </div>
                                     </div>

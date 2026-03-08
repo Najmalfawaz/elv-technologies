@@ -52,7 +52,7 @@ export default function ServicesBannerSection() {
                             transition={{ duration: 0.6, delay: 0.1 }}
                             className="text-white/80 mb-6 text-sm sm:text-base"
                         >
-                            From seamless system integrations to robust software development, we provide comprehensive IT solutions tailored to your business needs.
+                            From seamless system integrations to comprehensive ELV, AV, Home Automation, and IT Solutions tailored to your business needs.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}

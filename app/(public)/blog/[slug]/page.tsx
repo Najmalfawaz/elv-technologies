@@ -12,5 +12,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         notFound();
     }
 
+    // We no longer need to parse JSON sections since React Quill outputs HTML strings
     return <BlogSlugPage post={post} />;
 }

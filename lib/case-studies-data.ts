@@ -71,6 +71,65 @@ export const caseStudiesData: CaseStudy[] = [
     ]
   },
   {
+    slug: "ritz-carlton-abu-dhabi-grand-canal-av-upgrade",
+    client: "Abu Dhabi National Hotels",
+    project: "New AV System for the Banquet Hall Area",
+    location: "Al Rawdah — Al Maqta — Abu Dhabi",
+    overview: "To accommodate high‑profile conferences, weddings, and product launches, the banquet hall required a technology refresh—delivering uniform audio coverage, high‑resolution visuals, flexible room configurations, and intuitive control for hotel teams and event partners.",
+    solution: {
+      title: "Solution Overview & Implementation",
+      points: [
+        "Professional loudspeakers and digital signal processing for even SPL and intelligibility.",
+        "High‑resolution LED displays and projection for large‑format content.",
+        "Wireless and wired microphone ecosystems for presenters and performers.",
+        "Centralized AV control with user‑friendly touch panels.",
+        "Integration with lighting and building‑management systems.",
+        "Methodical planning to avoid operational disruption; acoustic evaluations prior to install.",
+        "System tuning and staff enablement for confident day‑one operation."
+      ]
+    },
+    outcomes: [
+      "Significantly enhanced production values and venue flexibility for all event types."
+    ],
+    challenges: [],
+    image: "/images/case-studies/case-9/1.jpg",
+    gallery: [
+      "/images/case-studies/case-9/1.jpg",
+      "/images/case-studies/case-9/2.jpg",
+      "/images/case-studies/case-9/3.jpg",
+      "/images/case-studies/case-9/4.jpg",
+      "/images/case-studies/case-9/5.jpg",
+    ]
+  },
+  {
+    slug: "andaz-capital-gate-abu-dhabi-wifi6-upgrade",
+    client: "ANDAZ Capital Gate Abu Dhabi — Hyatt Capital Gate Hotel",
+    project: "Wi‑Fi Upgrade to Aruba Wi‑Fi 6",
+    location: "6 Al Multaqa St — Al Rawdah — Abu Dhabi",
+    overview: "Seamless, high‑speed coverage across guest rooms, public areas, and back‑of‑house. High device density during peak occupancy and events. Network stability, fast roaming, and secure segmentation for guests, staff, and systems.",
+    solution: {
+      title: "Solution Highlights & Implementation",
+      points: [
+        "Deployment of 214 enterprise‑grade Aruba access points across the property.",
+        "High‑density design with centralized monitoring and management.",
+        "Secure network segmentation and scalable architecture for future services.",
+        "Detailed RF planning and a phased roll‑out to minimize impact on operations.",
+        "Thorough testing, optimization, and handover to the hotel IT team."
+      ]
+    },
+    outcomes: [
+      "Marked improvement in performance and coverage throughout the hotel.",
+      "Reduced connectivity incidents and enhanced guest satisfaction.",
+      "Future‑ready infrastructure aligned with Hyatt/Andaz brand expectations."
+    ],
+    challenges: [],
+    image: "/images/case-studies/case-10/1.jpg",
+    gallery: [
+      "/images/case-studies/case-10/1.jpg",
+      "/images/case-studies/case-10/2.jpg",
+    ]
+  },
+  {
     slug: "cctv-system-for-bus-shelters-abu-dhabi",
     client: "Abu Dhabi Department of Transport (DoT)",
     project: "CCTV System Installation for 200+ Shelters",
@@ -295,65 +354,6 @@ export const caseStudiesData: CaseStudy[] = [
     gallery: [
       "/images/case-studies/case-8/1.jpg",
       "/images/case-studies/case-8/2.jpg",
-    ]
-  },
-  {
-    slug: "ritz-carlton-abu-dhabi-grand-canal-av-upgrade",
-    client: "Abu Dhabi National Hotels",
-    project: "New AV System for the Banquet Hall Area",
-    location: "Al Rawdah — Al Maqta — Abu Dhabi",
-    overview: "To accommodate high‑profile conferences, weddings, and product launches, the banquet hall required a technology refresh—delivering uniform audio coverage, high‑resolution visuals, flexible room configurations, and intuitive control for hotel teams and event partners.",
-    solution: {
-      title: "Solution Overview & Implementation",
-      points: [
-        "Professional loudspeakers and digital signal processing for even SPL and intelligibility.",
-        "High‑resolution LED displays and projection for large‑format content.",
-        "Wireless and wired microphone ecosystems for presenters and performers.",
-        "Centralized AV control with user‑friendly touch panels.",
-        "Integration with lighting and building‑management systems.",
-        "Methodical planning to avoid operational disruption; acoustic evaluations prior to install.",
-        "System tuning and staff enablement for confident day‑one operation."
-      ]
-    },
-    outcomes: [
-      "Significantly enhanced production values and venue flexibility for all event types."
-    ],
-    challenges: [],
-    image: "/images/case-studies/case-9/1.jpg",
-    gallery: [
-      "/images/case-studies/case-9/1.jpg",
-      "/images/case-studies/case-9/2.jpg",
-      "/images/case-studies/case-9/3.jpg",
-      "/images/case-studies/case-9/4.jpg",
-      "/images/case-studies/case-9/5.jpg",
-    ]
-  },
-  {
-    slug: "andaz-capital-gate-abu-dhabi-wifi6-upgrade",
-    client: "ANDAZ Capital Gate Abu Dhabi — Hyatt Capital Gate Hotel",
-    project: "Wi‑Fi Upgrade to Aruba Wi‑Fi 6",
-    location: "6 Al Multaqa St — Al Rawdah — Abu Dhabi",
-    overview: "Seamless, high‑speed coverage across guest rooms, public areas, and back‑of‑house. High device density during peak occupancy and events. Network stability, fast roaming, and secure segmentation for guests, staff, and systems.",
-    solution: {
-      title: "Solution Highlights & Implementation",
-      points: [
-        "Deployment of 214 enterprise‑grade Aruba access points across the property.",
-        "High‑density design with centralized monitoring and management.",
-        "Secure network segmentation and scalable architecture for future services.",
-        "Detailed RF planning and a phased roll‑out to minimize impact on operations.",
-        "Thorough testing, optimization, and handover to the hotel IT team."
-      ]
-    },
-    outcomes: [
-      "Marked improvement in performance and coverage throughout the hotel.",
-      "Reduced connectivity incidents and enhanced guest satisfaction.",
-      "Future‑ready infrastructure aligned with Hyatt/Andaz brand expectations."
-    ],
-    challenges: [],
-    image: "/images/case-studies/case-10/1.jpg",
-    gallery: [
-      "/images/case-studies/case-10/1.jpg",
-      "/images/case-studies/case-10/2.jpg",
     ]
   }
 ]

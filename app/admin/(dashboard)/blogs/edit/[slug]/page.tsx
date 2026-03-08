@@ -3,24 +3,28 @@
 import { useEffect, useState, use } from 'react';
 import { BlogForm } from '@/components/admin/blogs/blog-form';
 import { toast } from 'sonner';
-import { blogPosts } from '@/lib/blog-data';
 
-export default function EditBlogPage({ params }: { params: Promise<{ slug: string }> }) {
-    const resolvedParams = use(params);
+
+export default function EditBlogPage({ params }: { params: { slug: string } }) {
+    const resolvedParams = params;
     const [blog, setBlog] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchBlog() {
             try {
-                // Simulate delay
-                await new Promise(resolve => setTimeout(resolve, 500));
+                const res = await fetch('/api/admin/blogs');
+                const blogs = await res.json();
 
-                const found = blogPosts.find((b: any) => b.slug === resolvedParams.slug);
-                if (found) {
-                    setBlog(found);
+                if (res.ok && Array.isArray(blogs)) {
+                    const found = blogs.find((b: any) => b.slug === resolvedParams.slug);
+                    if (found) {
+                        setBlog(found);
+                    } else {
+                        toast.error('Blog not found');
+                    }
                 } else {
-                    toast.error('Blog not found');
+                    toast.error('Failed to load blog');
                 }
             } catch (error) {
                 toast.error('Failed to load blog');

@@ -8,10 +8,79 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
+import DOMPurify from "isomorphic-dompurify";
 
 interface BlogSlugPageProps {
     post: any;
 }
+
+const formatContent = (content: string) => {
+    if (!content) return '';
+
+    // If it already strongly looks like HTML, return as-is
+    if (/<[a-z][\s\S]*>/i.test(content)) {
+        return content;
+    }
+
+    // Otherwise, parse plain text into HTML
+    const lines = content.split('\n');
+    let html = '';
+    let inList = false;
+
+    const isHeading = (text: string) => {
+        if (text.endsWith('?')) return true;
+        // Short lines that aren't sentences or list items
+        if (text.length < 100 && !text.endsWith('.') && !text.endsWith(',') && text.split(' ').length < 12) {
+            return true;
+        }
+        return false;
+    };
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+
+        if (!line) {
+            if (inList) {
+                html += '</ul>';
+                inList = false;
+            }
+            html += '<br />';
+            continue;
+        }
+
+        if (inList) {
+            if (isHeading(line) || line.length > 150) {
+                html += '</ul>';
+                inList = false;
+            } else {
+                html += `<li>${line}</li>`;
+                continue;
+            }
+        }
+
+        const prevLine = i > 0 ? lines[i - 1].trim() : '';
+        if (prevLine.endsWith(':') && line.length < 150 && !line.endsWith(':')) {
+            html += '<ul>';
+            html += `<li>${line}</li>`;
+            inList = true;
+            continue;
+        }
+
+        if (line.endsWith(':')) {
+            html += `<h3><strong>${line}</strong></h3>`;
+        } else if (line.endsWith('?') || isHeading(line)) {
+            html += `<h2><strong>${line}</strong></h2>`;
+        } else {
+            html += `<p>${line}</p>`;
+        }
+    }
+
+    if (inList) {
+        html += '</ul>';
+    }
+
+    return html;
+};
 
 export default function BlogSlugPage({ post }: BlogSlugPageProps) {
     if (!post) {
@@ -67,7 +136,7 @@ export default function BlogSlugPage({ post }: BlogSlugPageProps) {
                                 <div className="flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                                     <span className="flex items-center gap-2">
                                         <Calendar className="h-4 w-4 text-accent" />
-                                        {post.date}
+                                        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                     </span>
                                     <span className="flex items-center gap-2">
                                         <User className="h-4 w-4 text-accent" />
@@ -88,38 +157,16 @@ export default function BlogSlugPage({ post }: BlogSlugPageProps) {
                                 </div>
                             </div>
 
-                            <article className="prose prose-lg prose-slate dark:prose-invert max-w-none">
-                                {post.content.sections.map((section: any, idx: number) => {
-                                    switch (section.type) {
-                                        case 'paragraph':
-                                            return <p key={idx} className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">{section.content}</p>;
-                                        case 'heading':
-                                            return <h2 key={idx} className="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-6">{section.title}</h2>;
-                                        case 'list':
-                                            return (
-                                                <div key={idx} className="my-8">
-                                                    {section.title && <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">{section.title}</h3>}
-                                                    <ul className="space-y-4">
-                                                        {section.items?.map((item: string, i: number) => (
-                                                            <li key={i} className="flex items-start gap-3">
-                                                                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                                                                <span className="text-slate-600 dark:text-slate-300">{item}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            );
-                                        case 'image':
-                                            return (
-                                                <div key={idx} className="my-10 relative aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg">
-                                                    <Image src={section.src!} alt={section.alt!} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 1000px" className="object-cover" />
-                                                </div>
-                                            );
-                                        default:
-                                            return null;
-                                    }
-                                })}
-                            </article>
+                            <article
+                                className="prose prose-lg prose-slate dark:prose-invert max-w-none prose-img:rounded-2xl
+                                    prose-ul:list-none prose-ul:pl-0
+                                    prose-li:text-slate-700 prose-li:dark:text-slate-300
+                                    [&>ul>li]:relative [&>ul>li]:pl-8 [&>ul>li]:mb-4 last:[&>ul>li]:mb-0
+                                    [&>ul>li::before]:absolute [&>ul>li::before]:left-0 [&>ul>li::before]:top-1.5 [&>ul>li::before]:w-6 [&>ul>li::before]:h-6 [&>ul>li::before]:content-['']
+                                    [&>ul>li::before]:bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNkYzI2MjYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjIgMTEuMDhWMTJhMTAgMTAgMCAxIDEtNS45My05LjE0Ii8+PHBhdGggZD0ibTkgMTEgMyAzTDIyIDQiLz48L3N2Zz4=')] [&>ul>li::before]:bg-no-repeat [&>ul>li::before]:bg-center [&>ul>li::before]:bg-contain
+                                "
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(formatContent(post.content)) }}
+                            />
                         </motion.div>
                     </div>
 

@@ -34,6 +34,8 @@ model CaseStudy {
   gallery     String[]
   outcomes    String[]
   location    String
+  isFeatured  Boolean  @default(false)
+  priority    Int      @default(100)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -52,12 +54,10 @@ model Career {
 
 model Testimonial {
   id          String   @id @default(cuid())
-  name        String
-  role        String
-  company     String
   content     String   @db.Text
-  image       String?
   rating      Int      @default(5)
+  date        String
+  isNew       Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

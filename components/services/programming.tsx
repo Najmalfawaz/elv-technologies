@@ -97,14 +97,6 @@ export default function Programming() {
               ))}
             </div>
 
-            <div className="mt-10">
-              <Link href="/contact" className="group flex items-center gap-2 rounded-full bg-white text-slate-900 px-8 py-4 text-sm font-bold transition-all hover:bg-red-600 hover:text-white hover:shadow-xl hover:shadow-red-600/20 w-fit">
-                <CheckCircle2 className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
-                Request Commissioning
-                <ArrowRight className="w-4 h-4 ml-2 opacity-70 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
           </motion.div>
         </div>
       </div>

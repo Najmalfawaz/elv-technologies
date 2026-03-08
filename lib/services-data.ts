@@ -18,23 +18,48 @@ export const servicesData = {
       title: 'Our Technical Support & Service Capabilities',
       sections: [
         {
-          title: 'ELV (Extra-Low Voltage) Systems',
+          title: 'Security and Surveillance (ELV)',
           items: [
-            'CCTV and surveillance solutions',
-            'Access control and time attendance systems',
-            'Structured cabling and fibre infrastructure',
-            'Intercom and IP telephony systems',
-          ],
+            'Security and Surveillance Systems',
+            'Access Control & Time Attendance',
+            'Gate Barrier',
+            'Nurse Call System',
+            'Queue Management System',
+            'Disabled Toilet Alarm System'
+          ]
         },
         {
-          title: 'AV (Audio-Visual) Systems',
+          title: 'Audio Visual (AV) Systems',
           items: [
-            'Meeting room and boardroom AV setups',
-            'Video conferencing and collaboration solutions',
-            'Sound systems and display integrations',
-          ],
+            'Music Systems and BGM Solutions',
+            'Indoor Video Wall',
+            'Conference Room',
+            'Meeting and Boardroom',
+            'Digital Signage',
+            'LED Screen',
+            'Control Systems'
+          ]
         },
-      ],
+        {
+          title: 'Network & Communications',
+          items: [
+            'Structured Cabling Solutions',
+            'Wireless Network Solutions',
+            'Audio Video Intercom',
+            'Two Way Radio Solutions',
+            'IP Phones',
+            'IPTV / SMATV',
+            'IT Equipment'
+          ]
+        },
+        {
+          title: 'Home Automation',
+          items: [
+            'Home Automation Solutions',
+            'Lighting Control Systems'
+          ]
+        }
+      ]
     },
     whyChooseUs: {
       title: 'Why Choose ELV Technology Solutions',
@@ -67,7 +92,7 @@ export const servicesData = {
       description: 'We provide preventive and corrective maintenance for:',
       items: [
         'Access Control Systems',
-        'CCTV Systems (DVR, NVR, Cameras, and related devices)',
+        'CCTV Systems',
         'Centralized SMATV / IPTV Systems',
         'Telephone & IP Phone Systems',
         'Public Address (PA) Systems',

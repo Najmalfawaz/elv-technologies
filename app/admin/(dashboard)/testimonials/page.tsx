@@ -14,6 +14,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Pencil, Trash2, Star } from 'lucide-react';
 import { toast } from 'sonner';
@@ -24,15 +25,14 @@ export default function TestimonialsAdminPage() {
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState<any>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
     // Form state
     const [formData, setFormData] = useState({
-        name: '',
-        role: '',
-        company: '',
         content: '',
         rating: 5,
-        image: ''
+        date: '',
+        isNew: false
     });
 
     useEffect(() => { fetchContent(); }, []);
@@ -40,21 +40,17 @@ export default function TestimonialsAdminPage() {
     useEffect(() => {
         if (editing) {
             setFormData({
-                name: editing.name,
-                role: editing.role || '',
-                company: editing.company || '',
                 content: editing.content,
                 rating: editing.rating,
-                image: editing.image || ''
+                date: editing.date || '',
+                isNew: editing.isNew || false
             });
         } else {
             setFormData({
-                name: '',
-                role: '',
-                company: '',
                 content: '',
                 rating: 5,
-                image: ''
+                date: '',
+                isNew: false
             });
         }
     }, [editing, isDialogOpen]);
@@ -70,6 +66,7 @@ export default function TestimonialsAdminPage() {
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSaving(true);
 
         try {
             const url = editing
@@ -84,21 +81,27 @@ export default function TestimonialsAdminPage() {
                 body: JSON.stringify(formData)
             });
 
+            const responseData = await res.json();
+
             if (res.ok) {
-                const saved = await res.json();
                 if (editing) {
-                    setTestimonials(testimonials.map(t => t.id === editing.id ? saved : t));
-                    toast.success('Testimonial updated');
+                    setTestimonials(testimonials.map(t => t.id === editing.id ? responseData : t));
+                    toast.success('Testimonial updated successfully!');
                 } else {
-                    setTestimonials([saved, ...testimonials]);
-                    toast.success('Testimonial added');
+                    setTestimonials([responseData, ...testimonials]);
+                    toast.success('Testimonial added successfully!');
                 }
                 setIsDialogOpen(false);
                 setEditing(null);
             } else {
-                throw new Error('Failed to save');
+                throw new Error(responseData.error || 'Failed to save testimonial');
             }
-        } catch (error) { toast.error('Error saving'); }
+        } catch (error: any) {
+            toast.error(error.message || 'An unexpected error occurred while saving.');
+            console.error('Save error:', error);
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     async function deleteItem(id: string) {
@@ -131,67 +134,54 @@ export default function TestimonialsAdminPage() {
                     <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                         <DialogHeader><DialogTitle>{editing ? 'Edit Review' : 'Add Review'}</DialogTitle></DialogHeader>
                         <form onSubmit={handleSave} className="space-y-4 py-4">
-                            <div className="flex gap-4">
-                                <div className="w-1/3">
-                                    <Label>Client Image</Label>
-                                    <div className="mt-2">
-                                        <ImageUpload
-                                            value={formData.image}
-                                            onChange={(url) => setFormData({ ...formData, image: url })}
-                                            onRemove={() => setFormData({ ...formData, image: '' })}
-                                            endpoint="imageUploader"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="w-2/3 space-y-4">
+                            <div className="space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <Label>Client Name</Label>
+                                        <Label>Review Date</Label>
                                         <Input
-                                            value={formData.name}
-                                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                            type="date"
+                                            max={new Date().toISOString().split('T')[0]}
+                                            value={formData.date}
+                                            onChange={e => setFormData({ ...formData, date: e.target.value })}
                                             required
                                         />
                                     </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <Label>Role</Label>
-                                            <Input
-                                                value={formData.role}
-                                                onChange={e => setFormData({ ...formData, role: e.target.value })}
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label>Company</Label>
-                                            <Input
-                                                value={formData.company}
-                                                onChange={e => setFormData({ ...formData, company: e.target.value })}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label>Rating (1-5)</Label>
-                                        <Input
-                                            type="number"
-                                            min="1"
-                                            max="5"
-                                            value={formData.rating}
-                                            onChange={e => setFormData({ ...formData, rating: Number(e.target.value) })}
-                                            required
+                                    <div className="space-y-4">
+                                        <Label>Rating: {formData.rating}</Label>
+                                        <Slider
+                                            min={1}
+                                            max={5}
+                                            step={0.5}
+                                            value={[formData.rating]}
+                                            onValueChange={([val]) => setFormData({ ...formData, rating: val })}
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <Label>Review Content</Label>
+                                <div className="flex items-center justify-between">
+                                    <Label>Review Content</Label>
+                                    <span className="text-xs text-slate-500">
+                                        {formData.content.trim() ? formData.content.trim().split(/\s+/).length : 0} / 50 words
+                                    </span>
+                                </div>
                                 <Textarea
                                     value={formData.content}
-                                    onChange={e => setFormData({ ...formData, content: e.target.value })}
+                                    onChange={e => {
+                                        const text = e.target.value;
+                                        const words = text.trim() ? text.trim().split(/\s+/) : [];
+                                        if (words.length <= 50 || text.length < formData.content.length) {
+                                            setFormData({ ...formData, content: text });
+                                        }
+                                    }}
                                     rows={4}
                                     required
                                 />
                             </div>
-                            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700">Save Testimonial</Button>
+                            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700" disabled={isSaving}>
+                                {isSaving ? 'Saving...' : 'Save Testimonial'}
+                            </Button>
                         </form>
                     </DialogContent>
                 </Dialog>
@@ -202,8 +192,7 @@ export default function TestimonialsAdminPage() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Author</TableHead>
-                                <TableHead>Company</TableHead>
+                                <TableHead>Date</TableHead>
                                 <TableHead>Rating</TableHead>
                                 <TableHead>Content</TableHead>
                                 <TableHead className="text-right">Actions</TableHead>
@@ -217,11 +206,7 @@ export default function TestimonialsAdminPage() {
                             ) : (
                                 testimonials.map((t) => (
                                     <TableRow key={t.id}>
-                                        <TableCell className="font-medium">
-                                            <div>{t.name}</div>
-                                            <div className="text-xs text-slate-500">{t.role}</div>
-                                        </TableCell>
-                                        <TableCell>{t.company}</TableCell>
+                                        <TableCell className="font-medium whitespace-nowrap">{t.date}</TableCell>
                                         <TableCell><div className="flex items-center gap-1">{t.rating} <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" /></div></TableCell>
                                         <TableCell className="max-w-md truncate">{t.content}</TableCell>
                                         <TableCell className="text-right space-x-2">

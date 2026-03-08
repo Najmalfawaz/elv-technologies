@@ -42,7 +42,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
                                         <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4">
                                             <span className="flex items-center gap-1">
                                                 <Calendar className="h-3 w-3" />
-                                                {post.date}
+                                                {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                             </span>
                                             <span className="flex items-center gap-1">
                                                 <User className="h-3 w-3" />
@@ -53,7 +53,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
                                             {post.title}
                                         </h3>
                                         <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3">
-                                            {post.description}
+                                            {post.excerpt || post.description}
                                         </p>
                                     </CardContent>
                                     <CardFooter className="p-6 pt-0 mt-auto">

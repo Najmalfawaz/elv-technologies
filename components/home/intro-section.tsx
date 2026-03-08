@@ -67,7 +67,7 @@ export default function IntroSection() {
                             <p className="text-neutral-300 text-sm lg:text-base leading-relaxed mb-4 font-medium">
                                 Don't let outdated technology bottleneck your growth. We design, deploy, and manage intelligent networks, robust security, and seamless AV environments tailored to your organization's unique workflows.
                             </p>
-                            <p className="text-neutral-400 text-xs lg:text-sm leading-relaxed mb-8">
+                            <p className="text-neutral-400 text-sm lg:text-base leading-relaxed mb-8">
                                 Experience zero-downtime integrations and intuitive systems that empower your team to work faster, safer, and smarter from day one.
                             </p>
 

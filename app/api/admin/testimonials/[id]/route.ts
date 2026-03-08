@@ -27,17 +27,15 @@ export async function PATCH(
 ) {
     try {
         const body = await req.json();
-        const { name, role, company, content, rating, image } = body;
+        const { content, rating, date, isNew } = body;
 
         const testimonial = await prisma.testimonial.update({
             where: { id: params.id },
             data: {
-                name,
-                role,
-                company,
                 content,
                 rating: Number(rating),
-                image
+                date,
+                isNew: Boolean(isNew)
             }
         });
 

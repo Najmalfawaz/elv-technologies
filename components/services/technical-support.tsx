@@ -80,8 +80,8 @@ export default function TechnicalSupport() {
               src={technicalSupport.image}
               alt={technicalSupport.title}
               fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Glass Overlay on Image */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
@@ -105,39 +105,45 @@ className="object-cover transition-transform duration-700 group-hover:scale-105"
             <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-70" />
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2">
-            {technicalSupport.capabilities.sections.map((section, idx) => (
-              <motion.div
-                key={section.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
-                className="group relative overflow-hidden rounded-[2rem] bg-white p-8 border border-slate-100 backdrop-blur-xl transition-all hover:border-red-100 shadow-xl shadow-slate-200/50"
-              >
-                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
-                  {idx === 0 ? <Shield className="w-48 h-48 text-slate-900" /> : <Monitor className="w-48 h-48 text-slate-900" />}
-                </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {technicalSupport.capabilities.sections.map((section, idx) => {
+              // Cycle through 4 distinct icons for the 4 categories
+              const Icons = [Shield, Monitor, Server, CheckCircle];
+              const SectionIcon = Icons[idx % Icons.length];
 
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 group-hover:text-red-600 group-hover:bg-red-50 ring-1 ring-slate-100 group-hover:ring-red-100 transition-all shadow-sm">
-                      {idx === 0 ? <Shield className="h-7 w-7" /> : <Monitor className="h-7 w-7" />}
-                    </div>
-                    <h4 className="text-2xl font-bold text-slate-900 tracking-tight">{section.title}</h4>
+              return (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="group relative overflow-hidden rounded-[2rem] bg-white p-6 border border-slate-100 backdrop-blur-xl transition-all hover:border-red-100 shadow-xl shadow-slate-200/50 flex flex-col h-full"
+                >
+                  <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
+                    <SectionIcon className="w-32 h-32 text-slate-900" />
                   </div>
 
-                  <ul className="space-y-4">
-                    {section.items.map((item) => (
-                      <li key={item} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-colors">
-                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500 opacity-80" />
-                        <span className="text-slate-600 leading-relaxed text-sm font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="relative z-10 flex flex-col flex-grow">
+                    <div className="flex flex-col gap-4 mb-6">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 group-hover:text-red-600 group-hover:bg-red-50 ring-1 ring-slate-100 group-hover:ring-red-100 transition-all shadow-sm">
+                        <SectionIcon className="h-6 w-6" />
+                      </div>
+                      <h4 className="text-xl font-bold text-slate-900 tracking-tight leading-snug">{section.title}</h4>
+                    </div>
+
+                    <ul className="space-y-3">
+                      {section.items.map((item) => (
+                        <li key={item} className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-colors">
+                          <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500 opacity-80" />
+                          <span className="text-slate-600 leading-snug text-sm font-medium">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
 

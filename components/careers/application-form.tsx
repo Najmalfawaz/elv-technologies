@@ -12,7 +12,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Upload, CheckCircle2, Loader2, FileText, X } from 'lucide-react';
-import { jobOpenings } from '@/lib/careers-data';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
@@ -25,7 +24,11 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function ApplicationForm() {
+interface ApplicationFormProps {
+    jobRoles: string[];
+}
+
+export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -142,9 +145,9 @@ export default function ApplicationForm() {
                                     <SelectValue placeholder="Select a role" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {jobOpenings.map((job) => (
-                                        <SelectItem key={job.id} value={job.title}>
-                                            {job.title}
+                                    {jobRoles.map((title) => (
+                                        <SelectItem key={title} value={title}>
+                                            {title}
                                         </SelectItem>
                                     ))}
                                     <SelectItem value="Other">Other / General Interest</SelectItem>

@@ -5,7 +5,8 @@ import {
   PenTool,
   Settings,
   CheckCircle,
-  ShieldCheck
+  ShieldCheck,
+  Wrench
 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -41,10 +42,17 @@ const processes = [
   },
   {
     icon: ShieldCheck,
-    title: "5. Handover, Training & Ongoing Care",
-    description: "We deliver hands-on training so your team can confidently operate the system. Ongoing technical support ensures smooth day-to-day operation, and we offer annual maintenance plans to keep your systems updated, secure, and performing at their peak.",
+    title: "5. Handover & Training",
+    description: "We conduct comprehensive handover sessions and provide hands-on training so your team can confidently operate every part of the system. Documentation and user guidelines are provided to ensure smooth day-to-day operation.",
     color: "from-red-500 to-orange-500",
     bgAccent: "bg-red-50 text-red-500 border-red-100",
+  },
+  {
+    icon: Wrench,
+    title: "6. After-Sales Support & Maintenance",
+    description: "Our commitment continues even after project completion. We provide responsive technical support to assist with any operational needs. We also offer Annual Maintenance Contracts (AMC), preventive maintenance, system updates, and performance checks to ensure your systems remain secure, efficient, and operating at peak performance.",
+    color: "from-orange-500 to-amber-500",
+    bgAccent: "bg-orange-50 text-orange-500 border-orange-100",
   },
 ];
 

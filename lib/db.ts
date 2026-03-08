@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { blogPosts } from "@/lib/blog-data";
-import { caseStudiesData } from "@/lib/case-studies-data";
+// import { blogPosts } from "@/lib/blog-data";
 
 export const getDb = async () => {
     return prisma;
@@ -9,9 +8,15 @@ export const getDb = async () => {
 export const getCollection = async (collection: string) => {
     switch (collection) {
         case "blogs":
-            return blogPosts;
+            return prisma.blog.findMany({ orderBy: { createdAt: 'desc' } });
         case "case-studies":
-            return caseStudiesData;
+            return prisma.caseStudy.findMany({
+                orderBy: [
+                    { isFeatured: 'desc' },
+                    { priority: 'asc' },
+                    { createdAt: 'desc' }
+                ]
+            });
         case "careers":
             return prisma.career.findMany();
         case "testimonials":

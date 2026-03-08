@@ -11,6 +11,10 @@ import { toast } from 'sonner';
 import { Save, X, Plus, Trash2 } from 'lucide-react';
 import { ImageUpload } from '@/components/admin/image-upload';
 import { SuccessDialog } from '@/components/admin/success-dialog';
+import dynamic from 'next/dynamic';
+
+const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
+import 'react-quill/dist/quill.snow.css';
 
 interface BlogFormProps {
     initialData?: any;
@@ -27,17 +31,26 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
         author: 'ELV Technology Solutions',
         category: '',
         image: '',
-        content: {
-            sections: []
-        }
+        content: '',
+        date: new Date().toISOString().split('T')[0]
     });
 
-    // Handle content parsing if it comes as string from DB
-    if (isEditing && typeof formData.content === 'string') {
+    if (initialData && !formData.date) {
+        formData.date = initialData.date ? new Date(initialData.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+    }
+
+    // Handle initial data parsing if it's the old JSON sections format (migration fallback)
+    if (isEditing && formData.content && typeof formData.content === 'string') {
         try {
-            formData.content = JSON.parse(formData.content);
+            const parsed = JSON.parse(formData.content);
+            if (parsed.sections) {
+                // If it's the old format, we just show a warning or clear it out.
+                // For a proper migration, a DB script should convert it, 
+                // but we will protect the editor from crashing here.
+                formData.content = '<p><em>Content needs migration from old format...</em></p>';
+            }
         } catch (e) {
-            formData.content = { sections: [] };
+            // It's likely already standard HTML, leave it be.
         }
     }
 
@@ -62,7 +75,8 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
 
             const payload = {
                 ...formData,
-                content: JSON.stringify(formData.content),
+                // React-Quill outputs string HTML by default, no need to stringify
+                content: formData.content,
                 // map excerpt from description if needed, logic handled in state init
             };
 
@@ -90,29 +104,14 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
         router.refresh();
     };
 
-    const addSection = (type: 'paragraph' | 'heading' | 'list') => {
-        const newSection = {
-            type,
-            content: type === 'paragraph' ? '' : undefined,
-            title: type === 'heading' || type === 'list' ? '' : undefined,
-            items: type === 'list' ? [''] : undefined
-        };
-        setFormData({
-            ...formData,
-            content: {
-                ...formData.content,
-                sections: [...formData.content.sections, newSection]
-            }
-        });
-    };
-
-    const removeSection = (index: number) => {
-        const sections = [...formData.content.sections];
-        sections.splice(index, 1);
-        setFormData({
-            ...formData,
-            content: { ...formData.content, sections }
-        });
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            ['link', 'image'],
+            ['clean']
+        ],
     };
 
     return (
@@ -209,119 +208,33 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
                                     onChange={e => setFormData({ ...formData, author: e.target.value })}
                                 />
                             </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="date">Publish Date</Label>
+                                <Input
+                                    id="date"
+                                    type="date"
+                                    value={formData.date}
+                                    onChange={e => setFormData({ ...formData, date: e.target.value })}
+                                />
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
 
                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between">
-                        <CardTitle className="text-lg">Blog Content Sections</CardTitle>
-                        <div className="flex gap-2">
-                            <Button type="button" variant="outline" size="sm" onClick={() => addSection('paragraph')}>
-                                + Paragraph
-                            </Button>
-                            <Button type="button" variant="outline" size="sm" onClick={() => addSection('heading')}>
-                                + Heading
-                            </Button>
-                            <Button type="button" variant="outline" size="sm" onClick={() => addSection('list')}>
-                                + List
-                            </Button>
-                        </div>
+                    <CardHeader>
+                        <CardTitle className="text-lg">Blog Content</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6">
-                        {formData.content.sections.map((section: any, index: number) => (
-                            <div key={index} className="relative p-4 border rounded-lg bg-slate-50/50">
-                                <Button
-                                    type="button"
-                                    variant="ghost"
-                                    size="icon"
-                                    className="absolute top-2 right-2 text-red-500"
-                                    onClick={() => removeSection(index)}
-                                >
-                                    <Trash2 className="h-4 w-4" />
-                                </Button>
-
-                                <div className="space-y-4">
-                                    <div className="text-xs font-bold text-slate-400 uppercase">{section.type}</div>
-
-                                    {(section.type === 'heading' || section.type === 'list') && (
-                                        <div className="space-y-2">
-                                            <Label>Title</Label>
-                                            <Input
-                                                value={section.title}
-                                                onChange={e => {
-                                                    const sections = [...formData.content.sections];
-                                                    sections[index].title = e.target.value;
-                                                    setFormData({ ...formData, content: { ...formData.content, sections } });
-                                                }}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {section.type === 'paragraph' && (
-                                        <div className="space-y-2">
-                                            <Label>Content</Label>
-                                            <Textarea
-                                                value={section.content}
-                                                onChange={e => {
-                                                    const sections = [...formData.content.sections];
-                                                    sections[index].content = e.target.value;
-                                                    setFormData({ ...formData, content: { ...formData.content, sections } });
-                                                }}
-                                                rows={4}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {section.type === 'list' && (
-                                        <div className="space-y-2">
-                                            <Label>List Items</Label>
-                                            {section.items.map((item: string, i: number) => (
-                                                <div key={i} className="flex gap-2 mb-2">
-                                                    <Input
-                                                        value={item}
-                                                        onChange={e => {
-                                                            const sections = [...formData.content.sections];
-                                                            sections[index].items[i] = e.target.value;
-                                                            setFormData({ ...formData, content: { ...formData.content, sections } });
-                                                        }}
-                                                    />
-                                                    <Button
-                                                        type="button"
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        onClick={() => {
-                                                            const sections = [...formData.content.sections];
-                                                            sections[index].items.splice(i, 1);
-                                                            setFormData({ ...formData, content: { ...formData.content, sections } });
-                                                        }}
-                                                    >
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </Button>
-                                                </div>
-                                            ))}
-                                            <Button
-                                                type="button"
-                                                variant="outline"
-                                                size="sm"
-                                                onClick={() => {
-                                                    const sections = [...formData.content.sections];
-                                                    sections[index].items.push('');
-                                                    setFormData({ ...formData, content: { ...formData.content, sections } });
-                                                }}
-                                            >
-                                                <Plus className="h-4 w-4 mr-1" /> Add Item
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                        {formData.content.sections.length === 0 && (
-                            <div className="text-center py-12 border-2 border-dashed rounded-lg text-slate-400">
-                                No sections added yet. Use the buttons above to build your post.
-                            </div>
-                        )}
+                    <CardContent>
+                        <div className="bg-white rounded-md">
+                            <QuillEditor
+                                theme="snow"
+                                value={formData.content}
+                                onChange={(value) => setFormData({ ...formData, content: value })}
+                                modules={modules}
+                                className="h-[400px] mb-12"
+                            />
+                        </div>
                     </CardContent>
                 </Card>
             </form>

@@ -40,7 +40,7 @@ export default function HomeLayout({ initialData }: { initialData: any }) {
         {/* 8. Our Certifications */}
         <CertificationsSection />
         {/* 9. Testimonials (Reviews) */}
-        <ReviewsSection />
+        <ReviewsSection testimonials={testimonials} />
         {/* 10. Our Partners */}
         <PartnersSection />
         {/* 11. Industries We Work With */}

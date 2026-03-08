@@ -9,17 +9,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const CATEGORIES = [
-  'All',
-  'Security',
-  'Audio Visual',
-  'Networking',
-  'Hospitality'
-];
-
 export default function CaseStudiesList({ initialData }: { initialData: any[] }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredStudies = useMemo(() => {
     const data = initialData || [];
@@ -29,53 +20,24 @@ export default function CaseStudiesList({ initialData }: { initialData: any[] })
         study.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
         study.overview.toLowerCase().includes(searchQuery.toLowerCase());
 
-      const categoryMap: Record<string, string[]> = {
-        'Security': ['CCTV', 'Access Control', 'Barrier', 'Surveillance'],
-        'Audio Visual': ['Audio', 'AV', 'Sound', 'LED', 'Projector', 'Music'],
-        'Networking': ['Network', 'Wi-Fi', 'Cabling', 'IP Phone', 'Aruba'],
-        'Hospitality': ['Hotel', 'Resort', 'Radisson', 'Sheraton', 'Hyatt', 'Sofitel', 'Le Meridien', 'Andaz', 'Ritz']
-      };
-
-      const matchesCategory =
-        activeCategory === 'All' ||
-        categoryMap[activeCategory]?.some(keyword =>
-          study.project.toLowerCase().includes(keyword.toLowerCase()) ||
-          study.overview.toLowerCase().includes(keyword.toLowerCase())
-        );
-
-      return matchesSearch && matchesCategory;
+      return matchesSearch;
     });
-  }, [searchQuery, activeCategory]);
+  }, [searchQuery]);
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        {/* Search & Filter Controls */}
-        <div className="flex flex-col lg:flex-row gap-6 mb-16 items-start lg:items-center justify-between p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
-          <div className="relative w-full lg:max-w-md group">
+        {/* Search Control */}
+        <div className="flex flex-col mb-16 items-start justify-start p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm w-full lg:w-1/2 min-w-[300px]">
+          <div className="relative w-full group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 group-focus-within:text-red-500 transition-colors" />
             <Input
               placeholder="Search by project, client, or technology..."
-              className="pl-12 h-14 bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-2xl focus-visible:ring-red-500/20 focus-visible:border-red-500 transition-all shadow-sm"
+              className="pl-12 h-14 bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-2xl focus-visible:ring-red-500/20 focus-visible:border-red-500 transition-all shadow-sm w-full"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${activeCategory === cat
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-600/20 scale-105'
-                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 hover:border-red-200 hover:text-red-600 shadow-sm'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
           </div>
         </div>
 
@@ -155,10 +117,9 @@ export default function CaseStudiesList({ initialData }: { initialData: any[] })
               className="mt-6"
               onClick={() => {
                 setSearchQuery('');
-                setActiveCategory('All');
               }}
             >
-              Clear all filters
+              Clear search
             </Button>
           </motion.div>
         )}

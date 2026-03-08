@@ -1,6 +1,5 @@
 'use client';
 
-import { blogPosts } from '@/lib/blog-data';
 
 import { useEffect, useState } from 'react';
 import {
@@ -29,16 +28,14 @@ export default function BlogsAdminPage() {
 
     async function fetchBlogs() {
         try {
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 500));
+            const res = await fetch('/api/admin/blogs', { cache: 'no-store' });
+            const data = await res.json();
 
-            const data = blogPosts;
-
-            if (Array.isArray(data)) {
+            if (res.ok && Array.isArray(data)) {
                 setBlogs(data);
             } else {
                 setBlogs([]);
-                toast.error('Failed to load blogs');
+                if (!res.ok) toast.error('Failed to load blogs');
             }
         } catch (error) {
             console.error(error);
@@ -53,10 +50,15 @@ export default function BlogsAdminPage() {
         if (!confirm('Are you sure you want to delete this blog?')) return;
 
         try {
-            // Simulate deletion
-            await new Promise(resolve => setTimeout(resolve, 500));
-            setBlogs(blogs.filter(b => b.id !== id && b.slug !== id));
-            toast.success('Blog deleted successfully');
+            const res = await fetch(`/api/admin/blogs/${id}`, {
+                method: 'DELETE',
+            });
+            if (res.ok) {
+                setBlogs(blogs.filter(b => b.id !== id));
+                toast.success('Blog deleted successfully');
+            } else {
+                throw new Error('Failed to delete');
+            }
         } catch (error) {
             toast.error('Failed to delete blog');
         }
@@ -117,7 +119,7 @@ export default function BlogsAdminPage() {
                                     <TableRow key={blog.slug}>
                                         <TableCell className="font-medium">{blog.title}</TableCell>
                                         <TableCell>{blog.category}</TableCell>
-                                        <TableCell>{blog.date}</TableCell>
+                                        <TableCell>{new Date(blog.date).toLocaleDateString()}</TableCell>
                                         <TableCell className="text-right space-x-2">
                                             <Button variant="outline" size="icon" asChild>
                                                 <Link href={`/admin/blogs/edit/${blog.slug}`}>

@@ -12,11 +12,11 @@ export default function AboutHero() {
           src="/images/aboutUS/hero.jpeg"
           alt="ELV Technologies Background"
           fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-className="object-cover opacity-40"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover opacity-100"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/60 to-slate-50/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-slate-50/80" />
       </div>
 
       {/* Dynamic Background Effects */}
@@ -47,9 +47,11 @@ className="object-cover opacity-40"
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-serif text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm"
         >
-          <span className="block text-slate-900">ELV Technology Solution!!!</span>
-          <span className="mt-2 block text-red-600">
-            The Best Audio-Visual Integrators in UAE !!!
+          <span className="block text-slate-900">
+            ELV Technology Solution<span className="text-red-600">s</span> !!!
+          </span>
+          <span className="mt-2 block text-slate-900">
+            The Best Audio-Visual <span className="text-red-600">Integrator</span> in UAE!!!
           </span>
         </motion.h1>
 
@@ -61,8 +63,10 @@ className="object-cover opacity-40"
         >
           ETS is one of the top technology integrators and solution providers
           in the UAE, specializing in security and surveillance systems, Audio
-          Visual (AV) solutions, Extra Low Voltage (ELV) systems, and Home
-          Automation technologies.
+          Visual (AV) <span className="text-red-600">Solutions,</span> Extra
+          Low Voltage (ELV) <span className="text-red-600">Systems,</span>{" "}
+          <span className="text-red-600">IT</span> and Home Automation{" "}
+          <span className="text-red-600">Solutions.</span>
         </motion.p>
       </div>
 

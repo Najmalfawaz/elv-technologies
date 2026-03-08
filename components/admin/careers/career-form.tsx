@@ -19,11 +19,13 @@ interface CareerFormProps {
 export function CareerForm({ initialData, isEditing }: CareerFormProps) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState(initialData || {
-        title: '',
-        location: 'Abu Dhabi, UAE',
-        type: 'Full-time',
-        description: '',
+    const [formData, setFormData] = useState({
+        title: initialData?.title || '',
+        department: initialData?.department || '',
+        location: initialData?.location || 'Abu Dhabi, UAE',
+        type: initialData?.type || 'Full-time',
+        description: initialData?.description || '',
+        requirements: initialData?.requirements ? initialData.requirements.join('\n') : '',
     });
 
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
@@ -31,7 +33,7 @@ export function CareerForm({ initialData, isEditing }: CareerFormProps) {
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.title || !formData.location || !formData.type || !formData.description) {
+        if (!formData.title || !formData.location || !formData.type || !formData.description || !formData.department || !formData.requirements) {
             toast.error('Please fill in all required fields');
             return;
         }
@@ -45,10 +47,15 @@ export function CareerForm({ initialData, isEditing }: CareerFormProps) {
 
             const method = isEditing ? 'PATCH' : 'POST';
 
+            const payload = {
+                ...formData,
+                requirements: formData.requirements.split('\n').map((req: string) => req.trim()).filter(Boolean)
+            };
+
             const res = await fetch(url, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             });
 
             if (res.ok) {
@@ -99,15 +106,27 @@ export function CareerForm({ initialData, isEditing }: CareerFormProps) {
                         <CardTitle className="text-lg">Job Details</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="title">Job Title</Label>
-                            <Input
-                                id="title"
-                                value={formData.title}
-                                onChange={e => setFormData({ ...formData, title: e.target.value })}
-                                placeholder="e.g. Senior Network Engineer"
-                                required
-                            />
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="title">Job Title</Label>
+                                <Input
+                                    id="title"
+                                    value={formData.title}
+                                    onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                    placeholder="e.g. Senior Network Engineer"
+                                    required
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="department">Department</Label>
+                                <Input
+                                    id="department"
+                                    value={formData.department}
+                                    onChange={e => setFormData({ ...formData, department: e.target.value })}
+                                    placeholder="e.g. Engineering"
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -140,7 +159,19 @@ export function CareerForm({ initialData, isEditing }: CareerFormProps) {
                                 value={formData.description}
                                 onChange={e => setFormData({ ...formData, description: e.target.value })}
                                 rows={6}
-                                placeholder="Briefly describe the role and requirements..."
+                                placeholder="Briefly describe the role and responsibilities..."
+                                required
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="requirements">Requirements (One per line)</Label>
+                            <Textarea
+                                id="requirements"
+                                value={formData.requirements}
+                                onChange={e => setFormData({ ...formData, requirements: e.target.value })}
+                                rows={6}
+                                placeholder="Bachelor's degree in..."
                                 required
                             />
                         </div>

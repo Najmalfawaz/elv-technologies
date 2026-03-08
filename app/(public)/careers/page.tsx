@@ -19,7 +19,7 @@ export default async function CareersPage() {
                     </div>
                     <div className="lg:col-span-5 mt-16 lg:mt-12">
                         <div className="sticky top-24">
-                            <ApplicationForm />
+                            <ApplicationForm jobRoles={jobOpenings.map(job => job.title)} />
                         </div>
                     </div>
                 </div>

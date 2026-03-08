@@ -13,7 +13,7 @@ function FAQItem({
   index,
   isVisible,
 }: {
-  faq: (typeof faqs)[0];
+  faq: any;
   isOpen: boolean;
   onToggle: () => void;
   index: number;
@@ -70,8 +70,9 @@ export default function FAQSection({ initialData }: { initialData?: any[] }) {
   const [showAll, setShowAll] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
+  const displayFaqs = initialData && initialData.length > 0 ? initialData : faqs;
   const initialVisibleCount = 4;
-  const visibleFaqs = showAll ? faqs : faqs.slice(0, initialVisibleCount);
+  const visibleFaqs = showAll ? displayFaqs : displayFaqs.slice(0, initialVisibleCount);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -140,7 +141,7 @@ export default function FAQSection({ initialData }: { initialData?: any[] }) {
               ))}
             </div>
 
-            {faqs.length > initialVisibleCount && (
+            {displayFaqs.length > initialVisibleCount && (
               <div className="mt-8 text-center">
                 {showAll ? (
                   <button

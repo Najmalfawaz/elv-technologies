@@ -13,8 +13,5 @@ export default async function CaseStudyPage({ params }: { params: { slug: string
     notFound();
   }
 
-  const prevStudy = index > 0 ? caseStudies[index - 1] : undefined;
-  const nextStudy = index < caseStudies.length - 1 ? caseStudies[index + 1] : undefined;
-
-  return <CaseStudySlugPage study={study as any} prevStudy={prevStudy as any} nextStudy={nextStudy as any} />;
+  return <CaseStudySlugPage study={study as any} allStudies={caseStudies as any} />;
 }

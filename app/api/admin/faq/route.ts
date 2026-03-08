@@ -5,13 +5,12 @@ import { prisma } from '@/lib/prisma';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { question, answer, category } = body;
+        const { question, answer } = body;
 
         const faq = await prisma.fAQ.create({
             data: {
                 question,
-                answer,
-                category: category || ''
+                answer
             }
         });
 

@@ -85,13 +85,13 @@ export default function Amc() {
             </div>
 
             {/* Image Card */}
-            <div className="relative h-96 md:h-[400px] lg:h-[450px] rounded-[2rem] overflow-hidden border border-slate-100 group shrink-0">
+            <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden border border-slate-100 group shrink-0 bg-slate-100">
               <Image
                 src={amc.image}
                 alt="AMC Services"
                 fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80" />
               <div className="absolute bottom-6 left-6 right-6">

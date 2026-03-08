@@ -1,6 +1,5 @@
 'use client';
 
-import { caseStudiesData } from '@/lib/case-studies-data';
 
 import { useEffect, useState } from 'react';
 import {
@@ -29,12 +28,9 @@ export default function CaseStudiesAdminPage() {
 
     async function fetchCaseStudies() {
         try {
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 500));
-
-            const data = caseStudiesData;
-
-            if (Array.isArray(data)) {
+            const res = await fetch('/api/admin/case-studies');
+            if (res.ok) {
+                const data = await res.json();
                 setCaseStudies(data);
             } else {
                 setCaseStudies([]);
@@ -53,10 +49,13 @@ export default function CaseStudiesAdminPage() {
         if (!confirm('Are you sure you want to delete this case study?')) return;
 
         try {
-            // Simulate deletion
-            await new Promise(resolve => setTimeout(resolve, 500));
-            setCaseStudies(caseStudies.filter(c => c.id !== id && c.slug !== id));
-            toast.success('Case study deleted successfully');
+            const res = await fetch(`/api/admin/case-studies/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                setCaseStudies(caseStudies.filter(c => c.id !== id && c.slug !== id));
+                toast.success('Case study deleted successfully');
+            } else {
+                toast.error('Failed to delete case study');
+            }
         } catch (error) {
             toast.error('Failed to delete case study');
         }
@@ -115,7 +114,14 @@ export default function CaseStudiesAdminPage() {
                             ) : (
                                 filtered.map((cs) => (
                                     <TableRow key={cs.slug}>
-                                        <TableCell className="font-medium">{cs.client}</TableCell>
+                                        <TableCell className="font-medium">
+                                            {cs.client}
+                                            {cs.isFeatured && (
+                                                <span className="ml-2 inline-flex items-center rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-semibold text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
+                                                    Priority
+                                                </span>
+                                            )}
+                                        </TableCell>
                                         <TableCell>{cs.project}</TableCell>
                                         <TableCell>{cs.location}</TableCell>
                                         <TableCell className="text-right space-x-2">

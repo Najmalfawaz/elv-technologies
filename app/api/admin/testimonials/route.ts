@@ -5,16 +5,14 @@ import { prisma } from '@/lib/prisma';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, role, company, content, rating, image } = body;
+        const { content, rating, date, isNew } = body;
 
         const testimonial = await prisma.testimonial.create({
             data: {
-                name,
-                role: role || '',
-                company: company || '',
                 content,
                 rating: Number(rating),
-                image
+                date,
+                isNew: Boolean(isNew)
             }
         });
 

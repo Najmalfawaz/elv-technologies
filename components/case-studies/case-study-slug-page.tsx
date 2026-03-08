@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,8 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { caseStudiesData } from "@/lib/case-studies-data";
-import { useState } from "react";
+import DOMPurify from "isomorphic-dompurify";
 
 interface CaseStudySolution {
   title: string;
@@ -20,6 +20,7 @@ interface CaseStudySolution {
     details: string;
   }>;
   points?: string[];
+  html?: string;
 }
 
 interface CaseStudy {
@@ -38,44 +39,19 @@ interface CaseStudy {
 
 interface CaseStudySlugPageProps {
   study: CaseStudy;
-  prevStudy?: CaseStudy;
-  nextStudy?: CaseStudy;
+  allStudies: CaseStudy[];
 }
 
-export default function CaseStudySlugPage({ study: initialStudy, prevStudy, nextStudy }: CaseStudySlugPageProps) {
-  const [studyNavIndex, setStudyNavIndex] = useState(() => {
-    return caseStudiesData.findIndex(s => s.slug === initialStudy.slug);
-  });
-
-  const getNext = (currentIndex: number) => {
-    return caseStudiesData[(currentIndex + 1) % caseStudiesData.length];
-  };
-
-  const getPrev = (currentIndex: number) => {
-    return caseStudiesData[(currentIndex - 1 + caseStudiesData.length) % caseStudiesData.length];
-  };
-
-  const [currentPrev, setCurrentPrev] = useState(getPrev(studyNavIndex));
-  const [currentNext, setCurrentNext] = useState(getNext(studyNavIndex));
-
-  const handleNextClick = () => {
-    if (!currentNext) return;
-    const nextIdx = caseStudiesData.findIndex(s => s.slug === currentNext.slug);
-    setCurrentPrev(caseStudiesData[nextIdx]);
-    setCurrentNext(getNext(nextIdx));
-  };
-
-  const handlePrevClick = () => {
-    if (!currentPrev) return;
-    const prevIdx = caseStudiesData.findIndex(s => s.slug === currentPrev.slug);
-    setCurrentNext(caseStudiesData[prevIdx]);
-    setCurrentPrev(getPrev(prevIdx));
-  };
-
-  const study = initialStudy;
+export default function CaseStudySlugPage({ study, allStudies }: CaseStudySlugPageProps) {
   if (!study) {
     notFound();
   }
+
+  const currentIndex = allStudies.findIndex(s => s.slug === study.slug);
+  const [focusedIndex, setFocusedIndex] = useState(currentIndex);
+
+  const currentPrevStudy = focusedIndex > 0 ? allStudies[focusedIndex - 1] : null;
+  const currentNextStudy = focusedIndex < allStudies.length - 1 ? allStudies[focusedIndex + 1] : null;
 
   // Combine main image and gallery for the hero slider
   const allImages = [study.image, ...(study.gallery || [])];
@@ -182,26 +158,24 @@ export default function CaseStudySlugPage({ study: initialStudy, prevStudy, next
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">The Solution</h2>
                 <div className="space-y-6">
                   <p className="font-medium text-slate-900 dark:text-white text-xl">{study.solution.title}</p>
-                  {study.solution.components?.map((component, index) => (
-                    <div key={index} className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-                      <h3 className="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                        <CheckCircle className="h-5 w-5 text-red-600" />
-                        {component.name}
-                      </h3>
-                      <p className="mt-2 text-slate-600 dark:text-slate-400 pl-7">{component.details}</p>
-                    </div>
-                  ))}
-                  {study.solution.points && (
-                    <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-                      <ul className="space-y-3">
-                        {study.solution.points.map((point: string, index: number) => (
-                          <li key={index} className="flex items-start text-slate-700 dark:text-slate-300">
-                            <CheckCircle className="mt-1 mr-3 h-5 w-5 text-red-600 flex-shrink-0" />
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+
+                  {/* Render Quill HTML dynamically styled to look strictly identical to legacy boxes */}
+                  {study.solution.html ? (
+                    <div
+                      className="prose prose-slate dark:prose-invert max-w-none 
+                        [&>ul]:list-none [&>ul]:space-y-3 [&>ul]:bg-slate-50 [&>ul]:dark:bg-slate-900/50 [&>ul]:py-6 [&>ul]:px-8 md:[&>ul]:px-10 [&>ul]:rounded-2xl [&>ul]:border [&>ul]:border-slate-100 [&>ul]:dark:border-slate-800
+                        [&>ul>li]:text-slate-600 [&>ul>li]:dark:text-slate-300 [&>ul>li]:m-0 [&>ul>li]:leading-normal [&>ul>li]:text-base
+                        [&>ul>li]:relative [&>ul>li]:pl-10
+                        [&>ul>li::before]:absolute [&>ul>li::before]:left-0 [&>ul>li::before]:top-[4px] [&>ul>li::before]:w-[22px] [&>ul>li::before]:h-[22px] [&>ul>li::before]:content-['']
+                        [&>ul>li::before]:bg-top [&>ul>li::before]:bg-no-repeat [&>ul>li::before]:bg-contain
+                        [&>ul>li::before]:bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2224%22%20height=%2224%22%20viewBox=%220%200%2024%2024%20%22%20fill=%22none%22%20stroke=%22%23ef4444%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%3E%3Cpath%20d=%22M22%2011.08V12a10%2010%200%201%201-5.93-9.14%22/%3E%3Cpath%20d=%22M9%2011l3%203L22%204%22/%3E%3C/svg%3E')]
+                        prose-strong:text-slate-900 prose-strong:dark:text-white prose-strong:text-base prose-strong:font-bold prose-strong:block prose-strong:mb-0.5
+                        prose-p:m-0
+                      "
+                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(study.solution.html) }}
+                    />
+                  ) : (
+                    <div className="text-slate-500 italic">Solution details are being updated...</div>
                   )}
                 </div>
               </div>
@@ -288,30 +262,38 @@ export default function CaseStudySlugPage({ study: initialStudy, prevStudy, next
 
         {/* Navigation */}
         <div className="mt-20 pt-10 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {currentPrev ? (
-            <div className="group flex flex-col items-start p-6 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
-              <button
-                onClick={handlePrevClick}
-                className="flex items-center text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 mb-2 transition-colors cursor-pointer"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" /> Previous Success
-              </button>
-              <Link href={`/case-studies/${currentPrev.slug}`} className="text-lg font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors">
-                {currentPrev.client}
+          {currentPrevStudy ? (
+            <div className="group flex flex-col items-start p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-red-500/30 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all">
+              {focusedIndex > 0 ? (
+                <button
+                  onClick={() => setFocusedIndex(focusedIndex - 1)}
+                  className="flex items-center text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 mb-2 transition-colors cursor-pointer focus:outline-none"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" /> Previous Success
+                </button>
+              ) : (
+                <div className="h-6 mb-2" /> // Spacer to keep layout steady when button is hidden
+              )}
+              <Link href={`/case-studies/${currentPrevStudy.slug}`} className="text-lg font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors w-full text-left">
+                {currentPrevStudy.client}
               </Link>
             </div>
           ) : <div />}
 
-          {currentNext ? (
-            <div className="group flex flex-col items-end text-right p-6 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
-              <button
-                onClick={handleNextClick}
-                className="flex items-center text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 mb-2 transition-colors cursor-pointer"
-              >
-                Next Success <ArrowRight className="ml-2 h-4 w-4" />
-              </button>
-              <Link href={`/case-studies/${currentNext.slug}`} className="text-lg font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors">
-                {currentNext.client}
+          {currentNextStudy ? (
+            <div className="group flex flex-col items-end text-right p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-red-500/30 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all">
+              {focusedIndex < allStudies.length - 1 ? (
+                <button
+                  onClick={() => setFocusedIndex(focusedIndex + 1)}
+                  className="flex items-center text-sm text-slate-500 hover:text-red-500 dark:text-slate-400 mb-2 transition-colors cursor-pointer focus:outline-none"
+                >
+                  Next Success <ArrowRight className="ml-2 h-4 w-4" />
+                </button>
+              ) : (
+                <div className="h-6 mb-2" /> // Spacer
+              )}
+              <Link href={`/case-studies/${currentNextStudy.slug}`} className="text-lg font-bold text-slate-900 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition-colors w-full text-right">
+                {currentNextStudy.client}
               </Link>
             </div>
           ) : <div />}

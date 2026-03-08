@@ -8,9 +8,23 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import { Save, X, Plus, Trash2, List } from 'lucide-react';
+import { Save, X, Plus, Trash2, List, Info } from 'lucide-react';
 import { ImageUpload } from '@/components/admin/image-upload';
 import { SuccessDialog } from '@/components/admin/success-dialog';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
+
+const modules = {
+    toolbar: [
+        [{ 'header': [2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['link', 'image'],
+        ['clean']
+    ],
+};
 
 interface CaseStudyFormProps {
     initialData?: any;
@@ -29,11 +43,13 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
         challenges: [],
         solution: {
             title: 'Engineered and Implemented Solution',
-            components: []
+            html: ''
         },
         outcomes: [],
         image: '',
-        gallery: []
+        gallery: [],
+        isFeatured: false,
+        priority: initialData?.priority || 0
     });
 
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
@@ -86,20 +102,10 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
         });
     };
 
-    const removeItem = (field: 'challenges' | 'outcomes' | 'gallery', index: number) => {
+    const removeItem = (field: 'gallery', index: number) => {
         const items = [...formData[field]];
         items.splice(index, 1);
         setFormData({ ...formData, [field]: items });
-    };
-
-    const addComponent = () => {
-        setFormData({
-            ...formData,
-            solution: {
-                ...formData.solution,
-                components: [...formData.solution.components, { name: '', details: '' }]
-            }
-        });
     };
 
     return (
@@ -147,6 +153,34 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
                                 <Label htmlFor="location">Location</Label>
                                 <Input id="location" value={formData.location} onChange={e => setFormData({ ...formData, location: e.target.value })} />
                             </div>
+                            <div className="pt-2">
+                                <Label htmlFor="isFeatured" className="flex items-center gap-2 cursor-pointer font-bold text-slate-800 dark:text-slate-200">
+                                    <input
+                                        type="checkbox"
+                                        id="isFeatured"
+                                        checked={formData.isFeatured}
+                                        onChange={e => setFormData({ ...formData, isFeatured: e.target.checked })}
+                                        className="w-4 h-4 text-red-600 focus:ring-red-500 rounded border-slate-300"
+                                    />
+                                    Feature on Home / Priority
+                                </Label>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 ml-6">Priority case studies always appear first on the frontend case studies listing.</p>
+                            </div>
+                            {formData.isFeatured && (
+                                <div className="space-y-2 pt-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <Label htmlFor="priority">Display Priority (Rank)</Label>
+                                    <Input
+                                        type="number"
+                                        id="priority"
+                                        value={formData.priority}
+                                        onChange={e => setFormData({ ...formData, priority: parseInt(e.target.value) || 0 })}
+                                        min={1}
+                                        max={100}
+                                        className="w-32"
+                                    />
+                                    <p className="text-[10px] text-slate-400 italic">Sets the sorting order. 1 is highest priority. Lower numbers appear first.</p>
+                                </div>
+                            )}
                         </CardContent>
                     </Card>
 
@@ -197,75 +231,62 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
 
                 <div className="grid gap-6 md:grid-cols-2">
                     <Card>
-                        <CardHeader className="flex flex-row items-center justify-between">
-                            <CardTitle className="text-lg">Challenges</CardTitle>
-                            <Button type="button" variant="outline" size="sm" onClick={() => addItem('challenges')}>+ Add</Button>
+                        <CardHeader className="pb-3">
+                            <CardTitle className="text-lg flex items-center gap-2">Challenges</CardTitle>
+                            <p className="text-sm text-slate-500 flex items-center gap-1"><Info className="h-4 w-4" /> Type each challenge on a new line. It will automatically bullet them.</p>
                         </CardHeader>
-                        <CardContent className="space-y-2">
-                            {formData.challenges.map((c: string, i: number) => (
-                                <div key={i} className="flex gap-2">
-                                    <Input value={c} onChange={e => {
-                                        const challenges = [...formData.challenges];
-                                        challenges[i] = e.target.value;
-                                        setFormData({ ...formData, challenges });
-                                    }} />
-                                    <Button type="button" variant="ghost" size="icon" onClick={() => removeItem('challenges', i)}><Trash2 className="h-4 w-4" /></Button>
-                                </div>
-                            ))}
+                        <CardContent>
+                            <Textarea
+                                rows={8}
+                                placeholder="Challenge 1&#10;Challenge 2&#10;Challenge 3"
+                                value={formData.challenges.join('\n')}
+                                onChange={e => setFormData({ ...formData, challenges: e.target.value.split('\n').filter(Boolean) })}
+                            />
                         </CardContent>
                     </Card>
 
                     <Card>
-                        <CardHeader className="flex flex-row items-center justify-between">
-                            <CardTitle className="text-lg">Outcomes</CardTitle>
-                            <Button type="button" variant="outline" size="sm" onClick={() => addItem('outcomes')}>+ Add</Button>
+                        <CardHeader className="pb-3">
+                            <CardTitle className="text-lg flex items-center gap-2">Outcomes</CardTitle>
+                            <p className="text-sm text-slate-500 flex items-center gap-1"><Info className="h-4 w-4" /> Type each outcome on a new line. It will automatically list them.</p>
                         </CardHeader>
-                        <CardContent className="space-y-2">
-                            {formData.outcomes.map((o: string, i: number) => (
-                                <div key={i} className="flex gap-2">
-                                    <Input value={o} onChange={e => {
-                                        const outcomes = [...formData.outcomes];
-                                        outcomes[i] = e.target.value;
-                                        setFormData({ ...formData, outcomes });
-                                    }} />
-                                    <Button type="button" variant="ghost" size="icon" onClick={() => removeItem('outcomes', i)}><Trash2 className="h-4 w-4" /></Button>
-                                </div>
-                            ))}
+                        <CardContent>
+                            <Textarea
+                                rows={8}
+                                placeholder="Outcome 1&#10;Outcome 2&#10;Outcome 3"
+                                value={formData.outcomes.join('\n')}
+                                onChange={e => setFormData({ ...formData, outcomes: e.target.value.split('\n').filter(Boolean) })}
+                            />
                         </CardContent>
                     </Card>
                 </div>
 
                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between">
-                        <CardTitle>Solution Components</CardTitle>
-                        <Button type="button" variant="outline" size="sm" onClick={addComponent}>+ Add Component</Button>
+                    <CardHeader>
+                        <CardTitle>Solution</CardTitle>
+                        <p className="text-sm text-slate-500">Provide the detailed solution implemented. Use the rich text editor to format as needed.</p>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        {formData.solution.components.map((comp: any, i: number) => (
-                            <div key={i} className="p-4 border rounded-lg space-y-3 relative">
-                                <Button type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-red-500" onClick={() => {
-                                    const components = [...formData.solution.components];
-                                    components.splice(i, 1);
-                                    setFormData({ ...formData, solution: { ...formData.solution, components } });
-                                }}><Trash2 className="h-4 w-4" /></Button>
-                                <div className="space-y-2">
-                                    <Label>Component Name (e.g., CCTV System)</Label>
-                                    <Input value={comp.name} onChange={e => {
-                                        const components = [...formData.solution.components];
-                                        components[i].name = e.target.value;
-                                        setFormData({ ...formData, solution: { ...formData.solution, components } });
-                                    }} />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>Details</Label>
-                                    <Textarea value={comp.details} onChange={e => {
-                                        const components = [...formData.solution.components];
-                                        components[i].details = e.target.value;
-                                        setFormData({ ...formData, solution: { ...formData.solution, components } });
-                                    }} />
-                                </div>
+                        <div className="space-y-2">
+                            <Label>Solution Title</Label>
+                            <Input
+                                value={formData.solution.title}
+                                onChange={e => setFormData({ ...formData, solution: { ...formData.solution, title: e.target.value } })}
+                                placeholder="E.g., Engineered and Implemented Solution"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            {/* Form Input Container */}
+                            <div className="bg-white [&_.ql-editor]:min-h-[300px] [&_.ql-editor]:text-base [&_.ql-editor]:text-slate-700">
+                                <QuillEditor
+                                    theme="snow"
+                                    value={formData.solution.html || ''}
+                                    onChange={(content) => setFormData({ ...formData, solution: { ...formData.solution, html: content } })}
+                                    modules={modules}
+                                    className="rounded-md"
+                                />
                             </div>
-                        ))}
+                        </div>
                     </CardContent>
                 </Card>
             </form>

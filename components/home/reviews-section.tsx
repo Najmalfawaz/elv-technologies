@@ -2,9 +2,16 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { reviews } from "@/lib/reviews";
 
-export default function ReviewsSection() {
+interface Testimonial {
+  content: string;
+  rating: number;
+  date: string;
+  isNew?: boolean;
+}
+
+export default function ReviewsSection({ testimonials }: { testimonials?: Testimonial[] }) {
+  const reviews = testimonials || [];
   const [currentReview, setCurrentReview] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

@@ -41,7 +41,6 @@ export default function FaqAdminPage() {
         const itemData = {
             question: formData.get('question'),
             answer: formData.get('answer'),
-            category: formData.get('category'),
         };
 
         try {
@@ -109,10 +108,6 @@ export default function FaqAdminPage() {
                                 <Input name="question" defaultValue={editing?.question} required />
                             </div>
                             <div className="space-y-2">
-                                <Label>Category</Label>
-                                <Input name="category" defaultValue={editing?.category} placeholder="e.g. General, Services" />
-                            </div>
-                            <div className="space-y-2">
                                 <Label>Answer</Label>
                                 <Textarea name="answer" defaultValue={editing?.answer} rows={5} required />
                             </div>
@@ -127,8 +122,7 @@ export default function FaqAdminPage() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="w-[30%]">Question</TableHead>
-                                <TableHead className="w-[15%]">Category</TableHead>
+                                <TableHead className="w-[40%]">Question</TableHead>
                                 <TableHead>Answer Preview</TableHead>
                                 <TableHead className="text-right">Actions</TableHead>
                             </TableRow>
@@ -137,12 +131,11 @@ export default function FaqAdminPage() {
                             {loading ? (
                                 <TableRow><TableCell colSpan={4} className="text-center">Loading...</TableCell></TableRow>
                             ) : faqs.length === 0 ? (
-                                <TableRow><TableCell colSpan={4} className="text-center">No FAQs found.</TableCell></TableRow>
+                                <TableRow><TableCell colSpan={3} className="text-center">No FAQs found.</TableCell></TableRow>
                             ) : (
                                 faqs.map((f) => (
                                     <TableRow key={f.id}>
                                         <TableCell className="font-medium">{f.question}</TableCell>
-                                        <TableCell><span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">{f.category || 'General'}</span></TableCell>
                                         <TableCell className="max-w-xs truncate text-slate-500">{f.answer}</TableCell>
                                         <TableCell className="text-right space-x-2">
                                             <Button variant="outline" size="icon" onClick={() => { setEditing(f); setIsDialogOpen(true); }}>
