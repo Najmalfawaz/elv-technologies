@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Bot, X, Send, Sparkles, User, MessageCircle, Phone, ArrowRight, ExternalLink } from 'lucide-react';
+import { X, User, Phone, Send, Skull } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -130,7 +131,11 @@ export default function Chatbot() {
           className="pointer-events-auto group relative flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600 text-white shadow-[0_20px_50px_-10px_rgba(220,38,38,0.5)] transition-all overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          {isOpen ? <X className="relative z-10 w-7 h-7" /> : <MessageCircle className="relative z-10 w-7 h-7" />}
+          {isOpen ? <X className="relative z-10 w-7 h-7" /> : (
+            <div className="relative z-10 w-10 h-10 flex items-center justify-center">
+              <Skull className="w-8 h-8 text-white transition-transform group-hover:scale-110" />
+            </div>
+          )}
         </motion.button>
       </div>
 
@@ -140,14 +145,14 @@ export default function Chatbot() {
             initial={{ opacity: 0, scale: 0.95, y: 20, transformOrigin: 'bottom right' }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed bottom-28 right-6 w-[380px] h-[550px] max-h-[calc(100vh-140px)] bg-white/80 backdrop-blur-2xl shadow-[0_30px_90px_-20px_rgba(0,0,0,0.3)] rounded-[32px] flex flex-col overflow-hidden border border-white/40 z-50"
+            className="fixed bottom-28 right-6 w-[380px] h-[550px] max-h-[calc(100vh-140px)] bg-zinc-950/90 backdrop-blur-2xl shadow-[0_30px_90px_-20px_rgba(0,0,0,0.7)] rounded-[32px] flex flex-col overflow-hidden border border-white/10 z-50 ring-1 ring-white/5"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 text-white pb-10">
+            <div className="bg-gradient-to-b from-zinc-900 to-black p-6 text-white pb-10 border-b border-red-900/30">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-                    <Bot size={28} />
+                  <div className="w-12 h-12 rounded-2xl bg-red-600/10 flex items-center justify-center border border-red-600/20 shadow-[0_0_20px_rgba(220,38,38,0.2)]">
+                    <Skull className="w-7 h-7 text-red-500" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg leading-tight">ETS Assistant</h3>
@@ -167,8 +172,8 @@ export default function Chatbot() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 -mt-6 bg-white rounded-t-[32px] p-6 overflow-y-auto space-y-6 relative">
-              <div className="absolute inset-0 bg-[url('/images/logo-pattern.svg')] bg-center bg-no-repeat bg-[length:400px] opacity-[0.02] pointer-events-none" />
+            <div className="flex-1 -mt-6 bg-black rounded-t-[32px] p-6 overflow-y-auto space-y-6 relative border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+              <div className="absolute inset-0 bg-[url('/images/logo-pattern.svg')] bg-center bg-no-repeat bg-[length:400px] opacity-[0.03] invert pointer-events-none" />
 
               {messages.map((msg) => (
                 <div
@@ -176,13 +181,17 @@ export default function Chatbot() {
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2`}
                 >
                   <div className={`flex items-end gap-2 max-w-[85%] ${msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${msg.sender === 'user' ? 'bg-gray-100 text-gray-600' : 'bg-red-50 text-red-600'}`}>
-                      {msg.sender === 'user' ? <User size={14} /> : <Bot size={14} />}
+                    <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden ${msg.sender === 'user' ? 'bg-gray-100 text-gray-600' : 'bg-red-50'}`}>
+                      {msg.sender === 'user' ? <User size={14} /> : (
+                        <div className="w-full h-full flex items-center justify-center bg-red-100 text-red-600">
+                          <Skull size={16} />
+                        </div>
+                      )}
                     </div>
                     <div
                       className={`px-4 py-3 rounded-2xl text-[14px] leading-relaxed shadow-sm ${msg.sender === 'user'
-                          ? 'bg-red-600 text-white rounded-br-none'
-                          : 'bg-gray-50 border border-gray-100 text-gray-800 rounded-bl-none'
+                        ? 'bg-red-600 text-white rounded-br-none shadow-[0_4px_12px_rgba(220,38,38,0.2)]'
+                        : 'bg-zinc-900 border border-white/10 text-zinc-200 rounded-bl-none'
                         }`}
                     >
                       {msg.sender === 'user' ? msg.text : (
@@ -198,14 +207,14 @@ export default function Chatbot() {
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="flex items-end gap-2">
-                    <div className="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center">
-                      <Bot size={14} />
+                    <div className="w-8 h-8 rounded-full bg-red-100 flex-shrink-0 flex items-center justify-center text-red-600">
+                      <Skull size={16} />
                     </div>
-                    <div className="bg-gray-50 border border-gray-100 px-4 py-3 rounded-2xl rounded-bl-none">
+                    <div className="bg-zinc-900 border border-white/10 px-4 py-3 rounded-2xl rounded-bl-none">
                       <div className="flex gap-1.5">
-                        <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-bounce [animation-duration:0.6s]"></span>
-                        <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-bounce [animation-duration:0.6s] [animation-delay:0.2s]"></span>
-                        <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-bounce [animation-duration:0.6s] [animation-delay:0.4s]"></span>
+                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce [animation-duration:0.6s]"></span>
+                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce [animation-duration:0.6s] [animation-delay:0.2s]"></span>
+                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce [animation-duration:0.6s] [animation-delay:0.4s]"></span>
                       </div>
                     </div>
                   </div>
@@ -215,18 +224,18 @@ export default function Chatbot() {
             </div>
 
             {/* Quick Actions */}
-            <div className="px-6 py-4 bg-white border-t border-gray-50 flex gap-2 overflow-x-auto no-scrollbar">
+            <div className="px-6 py-4 bg-zinc-950 border-t border-white/5 flex gap-2 overflow-x-auto no-scrollbar">
               <a
                 href="https://wa.me/971547922800"
                 target="_blank"
-                className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 text-green-700 text-xs font-bold border border-green-100 hover:bg-green-100 transition-colors"
+                className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-400 text-xs font-bold border border-green-500/20 hover:bg-green-500/20 transition-colors"
               >
                 <Phone size={14} /> WhatsApp Expert
               </a>
               <Button
                 variant="outline"
                 size="sm"
-                className="flex-shrink-0 rounded-full text-xs font-bold border-gray-200"
+                className="flex-shrink-0 rounded-full text-xs font-bold border-white/10 bg-zinc-900 hover:bg-zinc-800 text-zinc-300"
                 onClick={() => {
                   setInputValue("I need a quotation for a project");
                 }}
@@ -238,20 +247,20 @@ export default function Chatbot() {
             {/* Input Footer */}
             <form
               onSubmit={handleSendMessage}
-              className="p-6 bg-white border-t border-gray-50 flex gap-3 items-center"
+              className="p-6 bg-zinc-950 border-t border-white/5 flex gap-3 items-center"
             >
               <div className="flex-1 relative">
                 <input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask me anything..."
-                  className="w-full bg-gray-50 border-none rounded-2xl px-5 py-3.5 text-sm focus:ring-2 focus:ring-red-100 transition-all outline-none"
+                  className="w-full bg-zinc-900 border border-white/5 rounded-2xl px-5 py-3.5 text-sm text-white focus:ring-2 focus:ring-red-600/20 transition-all outline-none placeholder:text-zinc-600"
                 />
               </div>
               <Button
                 type="submit"
                 disabled={!inputValue.trim()}
-                className="h-12 w-12 rounded-2xl bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-200 transition-all active:scale-95 disabled:opacity-50 disabled:shadow-none"
+                className="h-12 w-12 rounded-2xl bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-900/20 transition-all active:scale-95 disabled:opacity-50 disabled:shadow-none"
               >
                 <Send size={18} />
               </Button>

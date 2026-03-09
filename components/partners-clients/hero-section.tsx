@@ -68,7 +68,7 @@ export function HeroSection() {
             </div>
             <div className="flex flex-col items-center gap-2 bg-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
               <Trophy className="h-8 w-8 text-yellow-400 mb-2" />
-              <span className="text-3xl font-bold">2k+</span>
+              <span className="text-3xl font-bold">500+</span>
               <span className="text-gray-400 font-normal">Happy Clients</span>
             </div>
             <div className="flex flex-col items-center gap-2 bg-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
