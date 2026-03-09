@@ -89,12 +89,15 @@ export function AdminSidebar() {
 
     return (
         <Sidebar className="border-r border-slate-200 dark:border-slate-800">
-            <SidebarHeader className="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
-                <Link href="/admin" className="flex items-center gap-3">
-                    <div className="bg-red-600 p-1.5 rounded-lg">
-                        <div className="text-white font-black text-xs">ELV</div>
+            <SidebarHeader className="h-16 flex items-center px-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+                <Link href="/admin" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+                    <div className="relative h-10 w-40">
+                        <img
+                            src="/images/1.png"
+                            alt="ELV Technologies"
+                            className="h-full w-auto object-contain"
+                        />
                     </div>
-                    <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">Admin Hub</span>
                 </Link>
             </SidebarHeader>
 
@@ -108,8 +111,8 @@ export function AdminSidebar() {
                                         asChild
                                         isActive={pathname === item.url}
                                         className={`h-11 rounded-xl px-4 transition-all duration-200 ${pathname === item.url
-                                                ? "bg-red-600 text-white hover:bg-red-700 hover:text-white shadow-lg shadow-red-600/20"
-                                                : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white"
+                                            ? "bg-red-600 text-white hover:bg-red-700 hover:text-white shadow-lg shadow-red-600/20"
+                                            : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white"
                                             }`}
                                     >
                                         <Link href={item.url} className="flex items-center gap-3 font-medium">
@@ -137,8 +140,8 @@ export function AdminSidebar() {
                                             asChild
                                             isActive={isActive}
                                             className={`h-11 rounded-xl px-4 transition-all duration-200 ${isActive
-                                                    ? "bg-red-600 text-white hover:bg-red-700 hover:text-white shadow-lg shadow-red-600/20"
-                                                    : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white"
+                                                ? "bg-red-600 text-white hover:bg-red-700 hover:text-white shadow-lg shadow-red-600/20"
+                                                : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white"
                                                 }`}
                                         >
                                             <Link href={item.url} className="flex items-center gap-3 font-medium">

@@ -31,7 +31,7 @@ export default function SolutionsHero() {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">Technology Solutions</span>
                         </h1>
                         <p className="text-xl leading-9 text-slate-600 max-w-2xl mx-auto">
-                            Comprehensive, integrated systems designed for security, audio-visual, networking, and automation across the UAE's modern landscape.
+                            End-to-end AV, Security, IT, Networking, and Automation solutions engineered for the UAE’s next-generation spaces.
                         </p>
                     </motion.div>
                 </div>

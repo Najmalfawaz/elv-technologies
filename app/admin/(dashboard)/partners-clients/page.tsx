@@ -208,42 +208,44 @@ export default function PartnersClientsPage() {
                     </div>
                     <Card>
                         <CardContent className="pt-6">
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Logo</TableHead>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead>Website</TableHead>
-                                        <TableHead>Category</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {partners.map((p) => (
-                                        <TableRow key={p.id}>
-                                            <TableCell>
-                                                {p.logo && <img src={p.logo} alt={p.name} className="h-8 w-auto object-contain" />}
-                                            </TableCell>
-                                            <TableCell className="font-medium">{p.name}</TableCell>
-                                            <TableCell>
-                                                {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline flex items-center gap-1">
-                                                    Visit <ExternalLink className="h-3 w-3" />
-                                                </a>}
-                                            </TableCell>
-                                            <TableCell><span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">{p.category || 'N/A'}</span></TableCell>
-                                            <TableCell className="text-right space-x-2">
-                                                <Button variant="outline" size="icon" onClick={() => { setEditingPartner(p); setIsPartnerOpen(true); }}>
-                                                    <Pencil className="h-4 w-4" />
-                                                </Button>
-                                                <Button variant="outline" size="icon" className="text-red-500" onClick={() => deletePartner(p.id)}>
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </TableCell>
+                            <div className="rounded-md border overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className="min-w-[80px]">Logo</TableHead>
+                                            <TableHead className="min-w-[150px]">Name</TableHead>
+                                            <TableHead className="min-w-[120px]">Website</TableHead>
+                                            <TableHead className="min-w-[120px]">Category</TableHead>
+                                            <TableHead className="text-right min-w-[100px]">Actions</TableHead>
                                         </TableRow>
-                                    ))}
-                                    {partners.length === 0 && !loading && <TableRow><TableCell colSpan={5} className="text-center">No partners found.</TableCell></TableRow>}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {partners.map((p) => (
+                                            <TableRow key={p.id}>
+                                                <TableCell>
+                                                    {p.logo && <img src={p.logo} alt={p.name} className="h-8 w-auto object-contain" />}
+                                                </TableCell>
+                                                <TableCell className="font-medium">{p.name}</TableCell>
+                                                <TableCell>
+                                                    {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline flex items-center gap-1">
+                                                        Visit <ExternalLink className="h-3 w-3" />
+                                                    </a>}
+                                                </TableCell>
+                                                <TableCell><span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">{p.category || 'N/A'}</span></TableCell>
+                                                <TableCell className="text-right space-x-2">
+                                                    <Button variant="outline" size="icon" onClick={() => { setEditingPartner(p); setIsPartnerOpen(true); }}>
+                                                        <Pencil className="h-4 w-4" />
+                                                    </Button>
+                                                    <Button variant="outline" size="icon" className="text-red-500" onClick={() => deletePartner(p.id)}>
+                                                        <Trash2 className="h-4 w-4" />
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                        {partners.length === 0 && !loading && <TableRow><TableCell colSpan={5} className="text-center">No partners found.</TableCell></TableRow>}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
@@ -282,36 +284,38 @@ export default function PartnersClientsPage() {
                     </div>
                     <Card>
                         <CardContent className="pt-6">
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Logo</TableHead>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead>Category</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {clients.map((c) => (
-                                        <TableRow key={c.id}>
-                                            <TableCell>
-                                                {c.logo && <img src={c.logo} alt={c.name} className="h-8 w-auto object-contain" />}
-                                            </TableCell>
-                                            <TableCell className="font-medium">{c.name}</TableCell>
-                                            <TableCell><span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">{c.category || 'N/A'}</span></TableCell>
-                                            <TableCell className="text-right space-x-2">
-                                                <Button variant="outline" size="icon" onClick={() => { setEditingClient(c); setIsClientOpen(true); }}>
-                                                    <Pencil className="h-4 w-4" />
-                                                </Button>
-                                                <Button variant="outline" size="icon" className="text-red-500" onClick={() => deleteClient(c.id)}>
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </TableCell>
+                            <div className="rounded-md border overflow-x-auto">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className="min-w-[80px]">Logo</TableHead>
+                                            <TableHead className="min-w-[150px]">Name</TableHead>
+                                            <TableHead className="min-w-[120px]">Category</TableHead>
+                                            <TableHead className="text-right min-w-[100px]">Actions</TableHead>
                                         </TableRow>
-                                    ))}
-                                    {clients.length === 0 && !loading && <TableRow><TableCell colSpan={4} className="text-center">No clients found.</TableCell></TableRow>}
-                                </TableBody>
-                            </Table>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {clients.map((c) => (
+                                            <TableRow key={c.id}>
+                                                <TableCell>
+                                                    {c.logo && <img src={c.logo} alt={c.name} className="h-8 w-auto object-contain" />}
+                                                </TableCell>
+                                                <TableCell className="font-medium">{c.name}</TableCell>
+                                                <TableCell><span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800 dark:bg-slate-800 dark:text-slate-200">{c.category || 'N/A'}</span></TableCell>
+                                                <TableCell className="text-right space-x-2">
+                                                    <Button variant="outline" size="icon" onClick={() => { setEditingClient(c); setIsClientOpen(true); }}>
+                                                        <Pencil className="h-4 w-4" />
+                                                    </Button>
+                                                    <Button variant="outline" size="icon" className="text-red-500" onClick={() => deleteClient(c.id)}>
+                                                        <Trash2 className="h-4 w-4" />
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                        {clients.length === 0 && !loading && <TableRow><TableCell colSpan={4} className="text-center">No clients found.</TableCell></TableRow>}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>

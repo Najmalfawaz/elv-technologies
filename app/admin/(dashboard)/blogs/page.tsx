@@ -96,50 +96,52 @@ export default function BlogsAdminPage() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Title</TableHead>
-                                <TableHead>Category</TableHead>
-                                <TableHead>Date</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {loading ? (
+                    <div className="rounded-md border overflow-x-auto">
+                        <Table>
+                            <TableHeader>
                                 <TableRow>
-                                    <TableCell colSpan={4} className="text-center py-8 text-slate-500">Loading blogs...</TableCell>
+                                    <TableHead className="min-w-[200px]">Title</TableHead>
+                                    <TableHead className="min-w-[120px]">Category</TableHead>
+                                    <TableHead className="min-w-[120px]">Date</TableHead>
+                                    <TableHead className="text-right min-w-[100px]">Actions</TableHead>
                                 </TableRow>
-                            ) : filteredBlogs.length === 0 ? (
-                                <TableRow>
-                                    <TableCell colSpan={4} className="text-center py-8 text-slate-500">No blogs found.</TableCell>
-                                </TableRow>
-                            ) : (
-                                filteredBlogs.map((blog) => (
-                                    <TableRow key={blog.slug}>
-                                        <TableCell className="font-medium">{blog.title}</TableCell>
-                                        <TableCell>{blog.category}</TableCell>
-                                        <TableCell>{new Date(blog.date).toLocaleDateString()}</TableCell>
-                                        <TableCell className="text-right space-x-2">
-                                            <Button variant="outline" size="icon" asChild>
-                                                <Link href={`/admin/blogs/edit/${blog.slug}`}>
-                                                    <Pencil className="h-4 w-4" />
-                                                </Link>
-                                            </Button>
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                className="text-red-500 hover:text-red-600 border-red-100 hover:bg-red-50"
-                                                onClick={() => deleteBlog(blog.id)}
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </TableCell>
+                            </TableHeader>
+                            <TableBody>
+                                {loading ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center py-8 text-slate-500">Loading blogs...</TableCell>
                                     </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
+                                ) : filteredBlogs.length === 0 ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center py-8 text-slate-500">No blogs found.</TableCell>
+                                    </TableRow>
+                                ) : (
+                                    filteredBlogs.map((blog) => (
+                                        <TableRow key={blog.slug}>
+                                            <TableCell className="font-medium">{blog.title}</TableCell>
+                                            <TableCell>{blog.category}</TableCell>
+                                            <TableCell>{new Date(blog.date).toLocaleDateString()}</TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                <Button variant="outline" size="icon" asChild>
+                                                    <Link href={`/admin/blogs/edit/${blog.slug}`}>
+                                                        <Pencil className="h-4 w-4" />
+                                                    </Link>
+                                                </Button>
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    className="text-red-500 hover:text-red-600 border-red-100 hover:bg-red-50"
+                                                    onClick={() => deleteBlog(blog.id)}
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

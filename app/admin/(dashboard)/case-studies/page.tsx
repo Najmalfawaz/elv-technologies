@@ -93,57 +93,59 @@ export default function CaseStudiesAdminPage() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Client</TableHead>
-                                <TableHead>Project</TableHead>
-                                <TableHead>Location</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {loading ? (
+                    <div className="rounded-md border overflow-x-auto text-sm">
+                        <Table>
+                            <TableHeader>
                                 <TableRow>
-                                    <TableCell colSpan={4} className="text-center py-8 text-slate-500">Loading...</TableCell>
+                                    <TableHead className="min-w-[180px]">Client</TableHead>
+                                    <TableHead className="min-w-[180px]">Project</TableHead>
+                                    <TableHead className="min-w-[120px]">Location</TableHead>
+                                    <TableHead className="text-right min-w-[100px]">Actions</TableHead>
                                 </TableRow>
-                            ) : filtered.length === 0 ? (
-                                <TableRow>
-                                    <TableCell colSpan={4} className="text-center py-8 text-slate-500">No case studies found.</TableCell>
-                                </TableRow>
-                            ) : (
-                                filtered.map((cs) => (
-                                    <TableRow key={cs.slug}>
-                                        <TableCell className="font-medium">
-                                            {cs.client}
-                                            {cs.isFeatured && (
-                                                <span className="ml-2 inline-flex items-center rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-semibold text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
-                                                    Priority
-                                                </span>
-                                            )}
-                                        </TableCell>
-                                        <TableCell>{cs.project}</TableCell>
-                                        <TableCell>{cs.location}</TableCell>
-                                        <TableCell className="text-right space-x-2">
-                                            <Button variant="outline" size="icon" asChild>
-                                                <Link href={`/admin/case-studies/edit/${cs.slug}`}>
-                                                    <Pencil className="h-4 w-4" />
-                                                </Link>
-                                            </Button>
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                className="text-red-500 hover:text-red-600 border-red-100 hover:bg-red-50"
-                                                onClick={() => deleteCaseStudy(cs.id)}
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </TableCell>
+                            </TableHeader>
+                            <TableBody>
+                                {loading ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center py-8 text-slate-500">Loading...</TableCell>
                                     </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
+                                ) : filtered.length === 0 ? (
+                                    <TableRow>
+                                        <TableCell colSpan={4} className="text-center py-8 text-slate-500">No case studies found.</TableCell>
+                                    </TableRow>
+                                ) : (
+                                    filtered.map((cs) => (
+                                        <TableRow key={cs.slug}>
+                                            <TableCell className="font-medium">
+                                                {cs.client}
+                                                {cs.isFeatured && (
+                                                    <span className="ml-2 inline-flex items-center rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-semibold text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
+                                                        Priority
+                                                    </span>
+                                                )}
+                                            </TableCell>
+                                            <TableCell>{cs.project}</TableCell>
+                                            <TableCell>{cs.location}</TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                <Button variant="outline" size="icon" asChild>
+                                                    <Link href={`/admin/case-studies/edit/${cs.slug}`}>
+                                                        <Pencil className="h-4 w-4" />
+                                                    </Link>
+                                                </Button>
+                                                <Button
+                                                    variant="outline"
+                                                    size="icon"
+                                                    className="text-red-500 hover:text-red-600 border-red-100 hover:bg-red-50"
+                                                    onClick={() => deleteCaseStudy(cs.id)}
+                                                >
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

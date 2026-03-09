@@ -189,39 +189,41 @@ export default function TestimonialsAdminPage() {
 
             <Card>
                 <CardContent className="pt-6">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Date</TableHead>
-                                <TableHead>Rating</TableHead>
-                                <TableHead>Content</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {loading ? (
-                                <TableRow><TableCell colSpan={5} className="text-center">Loading...</TableCell></TableRow>
-                            ) : testimonials.length === 0 ? (
-                                <TableRow><TableCell colSpan={5} className="text-center">No testimonials found.</TableCell></TableRow>
-                            ) : (
-                                testimonials.map((t) => (
-                                    <TableRow key={t.id}>
-                                        <TableCell className="font-medium whitespace-nowrap">{t.date}</TableCell>
-                                        <TableCell><div className="flex items-center gap-1">{t.rating} <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" /></div></TableCell>
-                                        <TableCell className="max-w-md truncate">{t.content}</TableCell>
-                                        <TableCell className="text-right space-x-2">
-                                            <Button variant="outline" size="icon" onClick={() => { setEditing(t); setIsDialogOpen(true); }}>
-                                                <Pencil className="h-4 w-4" />
-                                            </Button>
-                                            <Button variant="outline" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteItem(t.id)}>
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
+                    <div className="rounded-md border overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="min-w-[120px]">Date</TableHead>
+                                    <TableHead className="min-w-[100px]">Rating</TableHead>
+                                    <TableHead className="min-w-[300px]">Content</TableHead>
+                                    <TableHead className="text-right min-w-[100px]">Actions</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {loading ? (
+                                    <TableRow><TableCell colSpan={5} className="text-center">Loading...</TableCell></TableRow>
+                                ) : testimonials.length === 0 ? (
+                                    <TableRow><TableCell colSpan={5} className="text-center">No testimonials found.</TableCell></TableRow>
+                                ) : (
+                                    testimonials.map((t) => (
+                                        <TableRow key={t.id}>
+                                            <TableCell className="font-medium whitespace-nowrap">{t.date}</TableCell>
+                                            <TableCell><div className="flex items-center gap-1">{t.rating} <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" /></div></TableCell>
+                                            <TableCell className="max-w-md truncate">{t.content}</TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                <Button variant="outline" size="icon" onClick={() => { setEditing(t); setIsDialogOpen(true); }}>
+                                                    <Pencil className="h-4 w-4" />
+                                                </Button>
+                                                <Button variant="outline" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteItem(t.id)}>
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

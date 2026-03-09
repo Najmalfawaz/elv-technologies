@@ -77,42 +77,44 @@ export default function CareersAdminPage() {
 
             <Card>
                 <CardContent className="pt-6">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Title</TableHead>
-                                <TableHead>Location</TableHead>
-                                <TableHead>Type</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {loading ? (
-                                <TableRow><TableCell colSpan={4} className="text-center">Loading...</TableCell></TableRow>
-                            ) : careers.length === 0 ? (
-                                <TableRow><TableCell colSpan={4} className="text-center">No careers found. Add one above.</TableCell></TableRow>
-                            ) : (
-                                careers.map((job) => (
-                                    <TableRow key={job.id}>
-                                        <TableCell className="font-medium">{job.title}</TableCell>
-                                        <TableCell>{job.location}</TableCell>
-                                        <TableCell>{job.type}</TableCell>
-                                        <TableCell className="text-right space-x-2">
-                                            {/* Edit capability to be added later if needed */}
-                                            {/* <Button variant="outline" size="icon" asChild>
-                                                <Link href={`/admin/careers/edit/${job.id}`}>
-                                                    <Pencil className="h-4 w-4" />
-                                                </Link>
-                                            </Button> */}
-                                            <Button variant="outline" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteJob(job.id)}>
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
+                    <div className="rounded-md border overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="min-w-[200px]">Title</TableHead>
+                                    <TableHead className="min-w-[150px]">Location</TableHead>
+                                    <TableHead className="min-w-[100px]">Type</TableHead>
+                                    <TableHead className="text-right min-w-[100px]">Actions</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {loading ? (
+                                    <TableRow><TableCell colSpan={4} className="text-center">Loading...</TableCell></TableRow>
+                                ) : careers.length === 0 ? (
+                                    <TableRow><TableCell colSpan={4} className="text-center">No careers found. Add one above.</TableCell></TableRow>
+                                ) : (
+                                    careers.map((job) => (
+                                        <TableRow key={job.id}>
+                                            <TableCell className="font-medium">{job.title}</TableCell>
+                                            <TableCell>{job.location}</TableCell>
+                                            <TableCell>{job.type}</TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                {/* Edit capability to be added later if needed */}
+                                                {/* <Button variant="outline" size="icon" asChild>
+                                                    <Link href={`/admin/careers/edit/${job.id}`}>
+                                                        <Pencil className="h-4 w-4" />
+                                                    </Link>
+                                                </Button> */}
+                                                <Button variant="outline" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteJob(job.id)}>
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

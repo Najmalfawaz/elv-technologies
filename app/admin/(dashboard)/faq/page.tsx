@@ -119,37 +119,39 @@ export default function FaqAdminPage() {
 
             <Card>
                 <CardContent className="pt-6">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-[40%]">Question</TableHead>
-                                <TableHead>Answer Preview</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {loading ? (
-                                <TableRow><TableCell colSpan={4} className="text-center">Loading...</TableCell></TableRow>
-                            ) : faqs.length === 0 ? (
-                                <TableRow><TableCell colSpan={3} className="text-center">No FAQs found.</TableCell></TableRow>
-                            ) : (
-                                faqs.map((f) => (
-                                    <TableRow key={f.id}>
-                                        <TableCell className="font-medium">{f.question}</TableCell>
-                                        <TableCell className="max-w-xs truncate text-slate-500">{f.answer}</TableCell>
-                                        <TableCell className="text-right space-x-2">
-                                            <Button variant="outline" size="icon" onClick={() => { setEditing(f); setIsDialogOpen(true); }}>
-                                                <Pencil className="h-4 w-4" />
-                                            </Button>
-                                            <Button variant="outline" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteItem(f.id)}>
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
+                    <div className="rounded-md border overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="min-w-[250px] w-[40%]">Question</TableHead>
+                                    <TableHead className="min-w-[250px]">Answer Preview</TableHead>
+                                    <TableHead className="text-right min-w-[100px]">Actions</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {loading ? (
+                                    <TableRow><TableCell colSpan={4} className="text-center">Loading...</TableCell></TableRow>
+                                ) : faqs.length === 0 ? (
+                                    <TableRow><TableCell colSpan={3} className="text-center">No FAQs found.</TableCell></TableRow>
+                                ) : (
+                                    faqs.map((f) => (
+                                        <TableRow key={f.id}>
+                                            <TableCell className="font-medium">{f.question}</TableCell>
+                                            <TableCell className="max-w-xs truncate text-slate-500">{f.answer}</TableCell>
+                                            <TableCell className="text-right space-x-2">
+                                                <Button variant="outline" size="icon" onClick={() => { setEditing(f); setIsDialogOpen(true); }}>
+                                                    <Pencil className="h-4 w-4" />
+                                                </Button>
+                                                <Button variant="outline" size="icon" className="text-red-500 hover:bg-red-50" onClick={() => deleteItem(f.id)}>
+                                                    <Trash2 className="h-4 w-4" />
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

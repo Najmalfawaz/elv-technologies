@@ -13,11 +13,11 @@ export default function SecuritySurveillance() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/images/solutions/security-surveillance/hero.png"
+                    src="/images/solutions/security-surveillance/hero2.png"
                     alt="Security and Surveillance Background"
                     fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-center"
                     priority
                 />
                 {/* Overlay to ensure text readability */}

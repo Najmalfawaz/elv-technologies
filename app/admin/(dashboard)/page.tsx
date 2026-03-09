@@ -24,10 +24,12 @@ export default function AdminDashboard() {
         testimonials: 0,
         careers: 0,
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchStats() {
             try {
+                setLoading(true);
                 const res = await fetch("/api/admin/content");
                 const data = await res.json();
                 setStats({
@@ -38,6 +40,8 @@ export default function AdminDashboard() {
                 });
             } catch (error) {
                 console.error("Failed to fetch stats", error);
+            } finally {
+                setLoading(false);
             }
         }
         fetchStats();
@@ -94,16 +98,9 @@ export default function AdminDashboard() {
                     </p>
                 </motion.div>
 
-                <div className="flex items-center gap-3">
-                    <Link href="/admin/blogs/new">
-                        <Button className="bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl px-6 h-12 shadow-lg shadow-red-600/20 transition-all hover:scale-[1.02] active:scale-[0.98]">
-                            <Plus className="mr-2 h-5 w-5" /> New Post
-                        </Button>
-                    </Link>
-                </div>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                 {cards.map((card, index) => (
                     <motion.div
                         key={card.title}
@@ -114,7 +111,7 @@ export default function AdminDashboard() {
                         <Card className="group relative overflow-hidden border-none shadow-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all duration-300 rounded-[2rem]">
                             <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                             <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10">
-                                <CardTitle className="text-base font-bold text-slate-500 dark:text-slate-400">
+                                <CardTitle className="text-sm sm:text-base font-bold text-slate-500 dark:text-slate-400">
                                     {card.title}
                                 </CardTitle>
                                 <div className={`p-2 rounded-xl bg-slate-100 dark:bg-slate-800 ${card.iconColor} group-hover:scale-110 transition-transform duration-300`}>
@@ -123,7 +120,11 @@ export default function AdminDashboard() {
                             </CardHeader>
                             <CardContent className="relative z-10">
                                 <div className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white">
-                                    {card.value}
+                                    {loading ? (
+                                        <div className="h-10 w-16 bg-slate-200 dark:bg-slate-800 animate-pulse rounded-lg" />
+                                    ) : (
+                                        card.value
+                                    )}
                                 </div>
                                 <Link
                                     href={card.href}
@@ -217,6 +218,6 @@ export default function AdminDashboard() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
+        </div >
     );
 }
