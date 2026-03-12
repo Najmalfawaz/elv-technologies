@@ -48,10 +48,10 @@ export default function AboutHero() {
           className="font-serif text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm"
         >
           <span className="block text-slate-900">
-            ELV Technology Solution<span className="text-red-600">s</span> !!!
+            ELV Technology Solutions !!!
           </span>
           <span className="mt-2 block text-slate-900">
-            The Best Audio-Visual <span className="text-red-600">Integrator</span> in UAE!!!
+            The Best Audio-Visual Integrator in UAE!!!
           </span>
         </motion.h1>
 
@@ -63,10 +63,8 @@ export default function AboutHero() {
         >
           ETS is one of the top technology integrators and solution providers
           in the UAE, specializing in security and surveillance systems, Audio
-          Visual (AV) <span className="text-red-600">Solutions,</span> Extra
-          Low Voltage (ELV) <span className="text-red-600">Systems,</span>{" "}
-          <span className="text-red-600">IT</span> and Home Automation{" "}
-          <span className="text-red-600">Solutions.</span>
+          Visual (AV) Solutions, Extra Low Voltage (ELV) Systems, IT and Home
+          Automation Solutions.
         </motion.p>
       </div>
 

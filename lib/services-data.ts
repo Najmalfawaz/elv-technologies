@@ -91,6 +91,7 @@ export const servicesData = {
       title: 'Systems We Cover Under Our AMC',
       description: 'We provide preventive and corrective maintenance for:',
       items: [
+        'Audio Visual (AV) Systems',
         'Access Control Systems',
         'CCTV Systems',
         'Centralized SMATV / IPTV Systems',
