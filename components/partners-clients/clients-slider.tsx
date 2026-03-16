@@ -64,6 +64,8 @@ export function ClientsSlider() {
                                                                 src={client.src}
                                                                 alt={client.alt}
                                                                 fill
+                                                                quality={100}
+                                                                unoptimized
                                                                 className="object-contain"
                                                                 sizes="(max-width: 768px) 33vw, 20vw"
                                                             />

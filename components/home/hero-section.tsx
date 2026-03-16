@@ -36,7 +36,7 @@ export default function HeroSection() {
                         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[47px] xl:text-[54px] font-extrabold tracking-tight leading-[1.1] text-[#2c2a29]">
                             {heroSectionData.heading.line1}
                             <br />
-                            <span className="inline-block mt-2">
+                            <span className="inline-block mt-2 whitespace-nowrap">
                                 {heroSectionData.heading.line2}
                             </span>
                         </h1>

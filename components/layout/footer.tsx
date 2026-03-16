@@ -154,24 +154,26 @@ export default function Footer() {
             data-footer-animate
             style={{ animationDelay: "0.1s" }}
           >
-            <Link href="/" className="flex items-center gap-3 mb-8 group">
+            <Link href="/" className="flex flex-col items-start gap-1 mb-8 group shrink-0">
               <Image
-                src="/images/logo_new.png"
+                src="/images/logo_new.svg"
                 alt="ELV Technology Solutions"
-                width={200}
-                height={200}
-                className="w-[200px] sm:w-[220px] h-auto transition-transform duration-300 group-hover:scale-105"
+                width={120}
+                height={120}
+                className="w-[100px] sm:w-[120px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
               />
+              <span className="text-[11px] sm:text-[12px] font-extrabold text-white tracking-widest mt-2 pointer-events-none select-none transition-colors group-hover:text-accent">
+                ELV TECHNOLOGY SOLUTIONS
+              </span>
             </Link>
             <p className="text-sm leading-relaxed text-white mb-8 max-w-xs">
               ELV Technology Solutions, one of the best ELV & Audio-Visual
               Integrators in Abu Dhabi.
             </p>
 
-            {/* Contact info */}
             <div className="flex flex-col gap-4 mb-8">
               <a
-                href="https://maps.google.com"
+                href="https://maps.app.goo.gl/16dAZSietMquBWUw6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 group"
@@ -258,16 +260,30 @@ export default function Footer() {
           data-footer-animate
           style={{ animationDelay: "0.6s" }}
         >
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.6768!2d54.3666!3d24.4869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDI5JzEyLjgiTiA1NMKwMjInMDAuMCJF!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
-            width="100%"
-            height="200"
-            style={{ border: 0, filter: "invert(0.9) hue-rotate(180deg)" }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="ELV Technology Solutions Location"
-          />
+          <a
+            href="https://maps.app.goo.gl/16dAZSietMquBWUw6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative group cursor-pointer"
+          >
+            <div className="absolute inset-0 z-10 bg-black/0 transition-colors duration-300 group-hover:bg-white/10 flex items-center justify-center">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                Open in Google Maps
+              </span>
+            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14524.742248818517!2d54.35250187629337!3d24.479026608716584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e4302c2a57b27%3A0xac5b0d59d8799824!2sELV%20Technology%20Solutions%20-%20CCTV%20Installation%20%7C%20Access%20Control%20System%20%7C%20Audio%20Visual%20Solutions%20%7C%20BGM%20%7C%20Digital%20Signages!5e0!3m2!1sen!2sae!4v1773615165943!5m2!1sen!2sae"
+              width="100%"
+              height="200"
+              style={{ border: 0, filter: "invert(0.9) hue-rotate(180deg)" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="ELV Technology Solutions Location"
+              className="pointer-events-none"
+            />
+          </a>
         </div>
 
         {/* Careers */}

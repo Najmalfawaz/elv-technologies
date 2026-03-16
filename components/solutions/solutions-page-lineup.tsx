@@ -74,6 +74,20 @@ export default function SolutionsPageLineup() {
                                             <Icon className="h-7 w-7 text-white" />
                                         </div>
 
+                                        {/* ETS Logo Top Right */}
+                                        <div className="absolute top-6 right-6 z-20 flex flex-col items-center justify-center transition-transform duration-500 group-hover:-rotate-2">
+                                            <Image 
+                                                src="/images/1.png" 
+                                                alt="ETS Logo" 
+                                                width={45}
+                                                height={45}
+                                                className="object-contain h-auto w-auto max-h-[45px] drop-shadow-md"
+                                            />
+                                            <span className="text-white font-bold text-sm tracking-widest mt-1 drop-shadow-md">
+                                                ETS
+                                            </span>
+                                        </div>
+
                                         <div className="absolute bottom-8 left-8 right-8 z-20">
                                             <h2 className="text-3xl font-bold text-white mb-2 leading-tight">
                                                 {vertical.title}

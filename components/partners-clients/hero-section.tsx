@@ -63,12 +63,12 @@ export function HeroSection() {
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10 justify-center text-center">
             <div className="flex flex-col items-center gap-2 bg-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
               <Users className="h-8 w-8 text-blue-400 mb-2" />
-              <span className="text-3xl font-bold">2k+</span>
+              <span className="text-3xl font-bold">100+</span>
               <span className="text-gray-400 font-normal">Global Partners</span>
             </div>
             <div className="flex flex-col items-center gap-2 bg-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/10">
               <Trophy className="h-8 w-8 text-yellow-400 mb-2" />
-              <span className="text-3xl font-bold">500+</span>
+              <span className="text-3xl font-bold">2k+</span>
               <span className="text-gray-400 font-normal">Happy Clients</span>
             </div>
             <div className="flex flex-col items-center gap-2 bg-white/5 rounded-2xl p-4 backdrop-blur-sm border border-white/10">

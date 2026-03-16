@@ -85,16 +85,17 @@ export default function TrustedPartner() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-[4/3] overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-2xl group"
+              className="relative aspect-video overflow-hidden rounded-[2.5rem] border border-slate-200 bg-black shadow-2xl group"
             >
-              <Image
-                src="/images/aboutUS/AboutUS.jpeg"
-                alt="Trusted Partner"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
+              <video
+                src="/images/aboutUS/aboutus.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="object-contain w-full h-full transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
             </motion.div>
           </div>
         </div>

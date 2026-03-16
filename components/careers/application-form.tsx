@@ -19,7 +19,16 @@ const formSchema = z.object({
     email: z.string().email('Invalid email address'),
     phone: z.string().min(10, 'Phone number must be at least 10 digits'),
     position: z.string().min(1, 'Please select a position'),
+    otherPosition: z.string().optional(),
     message: z.string().optional(),
+}).refine(data => {
+    if (data.position === 'Other') {
+        return !!data.otherPosition && data.otherPosition.trim().length > 0;
+    }
+    return true;
+}, {
+    message: "Please specify the position",
+    path: ["otherPosition"],
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -37,11 +46,19 @@ export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
         register,
         handleSubmit,
         setValue,
+        watch,
         reset,
         formState: { errors },
     } = useForm<FormData>({
         resolver: zodResolver(formSchema),
+        defaultValues: {
+            position: '',
+            otherPosition: '',
+            message: '',
+        }
     });
+
+    const selectedPosition = watch('position');
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -156,6 +173,24 @@ export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
                             {errors.position && <p className="text-xs text-red-500">{errors.position.message}</p>}
                         </div>
                     </div>
+
+                    {selectedPosition === 'Other' && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="space-y-2 overflow-hidden"
+                        >
+                            <Label htmlFor="otherPosition">Please Specify Position <span className="text-red-500">*</span></Label>
+                            <Input
+                                id="otherPosition"
+                                placeholder="Please specify the position"
+                                {...register('otherPosition')}
+                                className={errors.otherPosition ? 'border-red-500 focus-visible:ring-red-500' : ''}
+                            />
+                            {errors.otherPosition && <p className="text-xs text-red-500">{errors.otherPosition.message}</p>}
+                        </motion.div>
+                    )}
 
                     <div className="space-y-2">
                         <Label>Upload CV / Resume (PDF, DOCX - Max 5MB)</Label>

@@ -171,15 +171,18 @@ export default function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 lg:h-[88px] items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group shrink-0">
+            <Link href="/" className="flex flex-col items-center justify-center group shrink-0">
               <Image
-                src="/images/logo_new.png"
+                src="/images/logo_new.svg"
                 alt="ELV Technology Solutions"
-                width={200}
-                height={200}
-                className="w-[200px] sm:w-[220px] h-auto transition-transform duration-300 group-hover:scale-105"
+                width={90}
+                height={90}
+                className="w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
                 priority
               />
+              <span className="text-[9px] sm:text-[10px] font-extrabold text-[#1b1b1b] tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none">
+                ELV TECHNOLOGY SOLUTIONS
+              </span>
             </Link>
 
             {/* Desktop nav */}

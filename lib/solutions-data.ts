@@ -150,7 +150,7 @@ export const solutionsData = {
         title: "2. Audio Visual Solutions",
         id: "audio-visual",
         description: "Advancements in audio-visual technology are reshaping how organizations collaborate, train, and communicate.",
-        image: "/images/solutions/audio-visual/Audio Visual Solutions.jpg",
+        image: "/images/solutions/audio-visual/hero.png",
         image2: "/images/solutions/audio-visual/hero1.png",
         items: [
             {

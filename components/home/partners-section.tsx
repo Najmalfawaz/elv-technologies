@@ -62,6 +62,8 @@ export default function PartnersSection() {
                                                 src={item.src}
                                                 alt={item.alt}
                                                 fill
+                                                quality={100}
+                                                unoptimized
                                                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                                                 className="object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                                             />
