@@ -48,10 +48,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-serif text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm"
+          className="font-serif text-5xl font-extrabold pb-2 tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm leading-[1.2] sm:leading-[1.1]"
         >
           <span className="block text-slate-900">Comprehensive</span>
-          <span className="mt-2 block bg-gradient-to-r from-red-600 via-red-500 to-red-600 bg-clip-text text-transparent">
+          <span className="mt-2 block text-slate-900">
             Technology Solutions
           </span>
         </motion.h1>
@@ -60,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-slate-600"
+          className="mx-auto mt-8 max-w-3xl text-lg md:text-xl font-medium leading-relaxed text-slate-800"
         >
           {hero.description}
         </motion.p>
