@@ -100,23 +100,23 @@ export default function Chatbot() {
   return (
     <>
       {/* Floating Button */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+      <div className="fixed bottom-6 right-6 z-50 flex flex-row items-center pointer-events-none">
         <AnimatePresence>
           {showTooltip && !isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 10, scale: 0.9 }}
-              className="pointer-events-auto mb-4 bg-white/90 backdrop-blur-md text-gray-800 text-sm px-5 py-3 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-white/20 relative"
+              initial={{ opacity: 0, x: 20, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 20, scale: 0.9 }}
+              className="pointer-events-auto mr-4 select-none bg-white/90 backdrop-blur-md text-gray-800 text-sm px-5 py-3 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-white/20 relative hidden sm:block"
             >
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
-                <p className="font-medium">Need a quick quotation?</p>
+                <p className="font-medium whitespace-nowrap">Need a quick quotation?</p>
               </div>
-              <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white/90 backdrop-blur-md rotate-45 border-r border-b border-white/20"></div>
+              <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white/90 backdrop-blur-md rotate-45 border-t border-r border-white/20"></div>
             </motion.div>
           )}
         </AnimatePresence>
