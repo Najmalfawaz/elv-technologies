@@ -19,8 +19,8 @@ export default function SolutionVerticalHero({ title, description, bgImage }: Pr
                         src={bgImage}
                         alt={`${title} background`}
                         fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-priority
+                        sizes="100vw"
+                        priority
                         className="object-cover object-center"
                     />
                 ) : (
@@ -28,9 +28,9 @@ priority
                 )}
             </div>
 
-            {/* Gradient Overlays for Readability (MUST be above image, below text) */}
-            <div className="absolute inset-0 -z-10 bg-slate-900/40">
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-transparent" />
+            {/* Gradient Overlays for Readability (Lighter to show more image) */}
+            <div className="absolute inset-0 -z-10 bg-slate-950/20">
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-950/30 to-transparent" />
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-20">
@@ -43,7 +43,7 @@ priority
                         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
                             {title}
                         </h1>
-                        <p className="text-lg leading-8 text-gray-300 max-w-xl">
+                        <p className="text-lg leading-8 text-gray-200 max-w-xl">
                             {description}
                         </p>
                     </motion.div>

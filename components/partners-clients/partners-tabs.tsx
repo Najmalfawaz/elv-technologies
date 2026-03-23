@@ -52,9 +52,9 @@ export function PartnersTabs() {
                                             {category.logos.map((logo, index) => (
                                                 <Card
                                                     key={`${category.title}-${index}`}
-                                                    className="flex items-center justify-center p-6 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group"
+                                                    className="flex items-center justify-center p-3 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group"
                                                 >
-                                                    <div className="relative h-16 w-full transition-all duration-300 transform group-hover:scale-110">
+                                                    <div className="relative h-20 w-full transition-all duration-300 transform group-hover:scale-110">
                                                         <Image
                                                             src={logo.src}
                                                             alt={logo.alt}

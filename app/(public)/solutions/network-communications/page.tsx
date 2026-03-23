@@ -1,5 +1,6 @@
 import { solutionsData } from "@/lib/solutions-data";
 import SolutionVerticalHero from "@/components/solutions/solution-vertical-hero";
+import SolutionVideoHero from "@/components/solutions/solution-video-hero";
 import SolutionDetailSection from "@/components/solutions/solution-detail-section";
 import { CTASection } from "@/components/partners-clients/cta-section";
 
@@ -12,6 +13,13 @@ export default function NetworkCommunicationsPage() {
                 title={data.title}
                 description={data.description}
                 bgImage={data.image}
+            />
+
+            <SolutionVideoHero
+                videoSrc="/images/solutions/network-communications/hero.mp4"
+                tag="Connected & Reliable"
+                title={<>Future-Proof <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Network Infrastructure</span></>}
+                description="Enterprise-grade wired and wireless connectivity built for stability, speed, and security."
             />
 
             {/* Intro text specific to this section */}

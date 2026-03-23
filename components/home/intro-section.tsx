@@ -61,15 +61,15 @@ export default function IntroSection() {
                             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                         >
-                            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 text-white leading-snug">
-                                Transform complexity into a competitive advantage.
-                            </h3>
-                            <p className="text-neutral-300 text-sm lg:text-base leading-relaxed mb-4 font-medium">
-                                Don't let outdated technology bottleneck your growth. We design, deploy, and manage intelligent networks, robust security, and seamless AV environments tailored to your organization's unique workflows.
-                            </p>
-                            <p className="text-neutral-400 text-sm lg:text-base leading-relaxed mb-8">
-                                Experience zero-downtime integrations and intuitive systems that empower your team to work faster, safer, and smarter from day one.
-                            </p>
+                                <h3 className="text-xl sm:text-2xl lg:text-2xl font-bold mb-4 text-white leading-snug">
+                                    Transform complexity into a competitive advantage.
+                                </h3>
+                                <p className="text-neutral-300 text-lg sm:text-lg leading-relaxed mb-4 font-normal">
+                                    Don't let outdated technology bottleneck your growth. We design, deploy, and manage intelligent networks, robust security, and seamless AV environments tailored to your organization's unique workflows.
+                                </p>
+                                <p className="text-neutral-400 text-lg sm:text-lg leading-relaxed mb-8">
+                                    Experience zero-downtime integrations and intuitive systems that empower your team to work faster, safer, and smarter from day one.
+                                </p>
 
                             {/* Stats Grid */}
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-white/10">

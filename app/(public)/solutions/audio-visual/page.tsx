@@ -1,5 +1,6 @@
 import { solutionsData } from "@/lib/solutions-data";
 import SolutionVerticalHero from "@/components/solutions/solution-vertical-hero";
+import SolutionVideoHero from "@/components/solutions/solution-video-hero";
 import SolutionDetailSection from "@/components/solutions/solution-detail-section";
 import { CTASection } from "@/components/partners-clients/cta-section";
 
@@ -12,6 +13,13 @@ export default function AudioVisualPage() {
                 title={data.title}
                 description={data.description}
                 bgImage={data.image}
+            />
+
+            <SolutionVideoHero
+                videoSrc="/images/solutions/audio-visual/hero.mp4"
+                tag="Immersive Experience"
+                title={<>Your Vision, Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">A/V Reality</span></>}
+                description="Next-generation audio-visual systems tailored for seamless collaboration and exceptional quality."
             />
 
             <div className="flex flex-col">

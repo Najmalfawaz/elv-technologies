@@ -1,5 +1,6 @@
 import { solutionsData } from "@/lib/solutions-data";
 import SolutionVerticalHero from "@/components/solutions/solution-vertical-hero";
+import SolutionVideoHero from "@/components/solutions/solution-video-hero";
 import SolutionDetailSection from "@/components/solutions/solution-detail-section";
 import { CTASection } from "@/components/partners-clients/cta-section";
 
@@ -12,6 +13,13 @@ export default function SecuritySurveillancePage() {
                 title={data.title}
                 description={data.description}
                 bgImage={data.image}
+            />
+
+            <SolutionVideoHero
+                videoSrc="/images/solutions/security-surveillance/hero.mp4"
+                tag="Intelligent Defense"
+                title={<>AI-Powered <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Security Systems</span></>}
+                description="Protecting your assets with smart, proactive monitoring and real-time behavioral analytics."
             />
 
             <div className="flex flex-col">

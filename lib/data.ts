@@ -3,7 +3,7 @@ export const heroSectionData = {
     line1: "Welcome to",
     line2: "ELV Technology Solutions!",
   },
-  subheading: "A Leading Audio-Visual &\nELV Company in Abu Dhabi, UAE",
+  subheading: "A Leading Audio-Visual, IT, Home Automation & ELV Company across the UAE. We design, supply, install, program, and commission fully customised systems that stay reliable, easy to use, and simple to manage.",
   buttons: {
     primary: {
       text: "Talk to an Expert",
@@ -14,18 +14,6 @@ export const heroSectionData = {
       link: "/about",
     },
   },
-  slides: [
-    { src: "/images/home/slides/HomePage2.png", alt: "AI features and technology" },
-    { src: "/images/home/slides/HomePage1.png", alt: "CCTV systems or security camera" },
-    // { src: "/images/slides/led.jpg", alt: "LED" },
-    // { src: "/images/slides/outdoor-led.jpg", alt: "Outdoor LED" },
-    // { src: "/images/slides/conference-room.jpg", alt: "Conference room" },
-    // { src: "/images/slides/professional-sound-systems.jpg", alt: "Professional sound systems" },
-    // { src: "/images/slides/stage-lights.jpg", alt: "Stage Lights" },
-    // { src: "/images/slides/audio-systems.jpg", alt: "Audio systems" },
-    // { src: "/images/slides/biometric-access-control.jpg", alt: "Biometric or face recognition access control" },
-    // { src: "/images/slides/data-center.jpg", alt: "Data centre and structure cabling" },
-  ],
 };
 
 export const introSectionData = {

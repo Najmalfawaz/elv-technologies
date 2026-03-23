@@ -331,8 +331,8 @@ export const solutionsData = {
                 title: "Structured Cabling Solutions",
                 id: "structured-cabling",
                 icon: Network,
-                image: "/images/solutions/network-communications/Structured Cabling Solutions.jpeg",
-                image2: "/images/solutions/network-communications/Structured Cabling Solutions1.png",
+                image: "/images/solutions/network-communications/Structured Cabling Solutions.png",
+                image2: "/images/solutions/network-communications/Structured Cabling Solutions1.jpeg",
                 content: {
                     heading: "Structured Cabling Solutions in UAE",
                     description: [
