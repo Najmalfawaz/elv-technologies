@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function BlogHero() {
     return (
-        <section className="relative isolate overflow-hidden bg-slate-900 py-24 sm:py-32 h-[500px] flex items-center">
+        <section className="relative isolate overflow-hidden bg-slate-900 py-24 sm:py-32 lg:py-40 h-[500px] flex items-center">
             {/* Background gradients - Matching Case Studies */}
             <div
                 className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -35,7 +35,7 @@ export default function BlogHero() {
             </div>
 
             <div className="relative mx-auto max-w-7xl px-6 lg:px-8 z-10 w-full">
-                <div className="mx-auto max-w-2xl lg:mx-0">
+                <div className="mx-auto max-w-2xl text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

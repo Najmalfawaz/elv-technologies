@@ -39,36 +39,34 @@ export function PartnersTabs() {
 
                     <div className="min-h-[400px]">
                         <AnimatePresence mode="wait">
-                            {partnerCategories.map((category) => (
-                                <TabsContent key={category.title} value={category.title} className="mt-0 focus-visible:outline-none">
-                                    {activeTab === category.title && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -10 }}
-                                            transition={{ duration: 0.3 }}
-                                            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-                                        >
-                                            {category.logos.map((logo, index) => (
-                                                <Card
-                                                    key={`${category.title}-${index}`}
-                                                    className="flex items-center justify-center p-3 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group"
-                                                >
-                                                    <div className="relative h-20 w-full transition-all duration-300 transform group-hover:scale-110">
-                                                        <Image
-                                                            src={logo.src}
-                                                            alt={logo.alt}
-                                                            fill
-                                                            quality={100}
-                                                            unoptimized
-                                                            className="object-contain"
-                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        />
-                                                    </div>
-                                                </Card>
-                                            ))}
-                                        </motion.div>
-                                    )}
+                            {partnerCategories.filter(cat => cat.title === activeTab).map((category) => (
+                                <TabsContent key={category.title} value={category.title} className="mt-0 focus-visible:outline-none" forceMount>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+                                    >
+                                        {category.logos.map((logo, index) => (
+                                            <Card
+                                                key={`${category.title}-${index}`}
+                                                className="flex items-center justify-center p-3 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group"
+                                            >
+                                                <div className="relative h-20 w-full transition-all duration-300 transform group-hover:scale-110">
+                                                    <Image
+                                                        src={logo.src}
+                                                        alt={logo.alt}
+                                                        fill
+                                                        quality={100}
+                                                        unoptimized
+                                                        className="object-contain"
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    />
+                                                </div>
+                                            </Card>
+                                        ))}
+                                    </motion.div>
                                 </TabsContent>
                             ))}
                         </AnimatePresence>

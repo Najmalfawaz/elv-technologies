@@ -1,9 +1,29 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, animate, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Trophy, Users, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect, useRef, useState } from 'react';
+
+const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
+    const [displayValue, setDisplayValue] = useState(0);
+    const count = useMotionValue(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    useEffect(() => {
+        if (isInView) {
+            animate(count, value, {
+                duration: 2,
+                ease: "easeOut",
+                onUpdate: (latest) => setDisplayValue(Math.round(latest))
+            });
+        }
+    }, [isInView, value, count]);
+
+    return <span ref={ref}>{displayValue}{suffix}</span>;
+};
 
 export function HeroSection() {
     return (
@@ -36,7 +56,7 @@ export function HeroSection() {
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20">
+                <div className="mx-auto max-w-2xl py-24 sm:py-32 lg:py-40">
                     <div className="text-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -71,22 +91,28 @@ export function HeroSection() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="mx-auto mt-8 max-w-2xl lg:mx-0 lg:max-w-none"
+                    className="mx-auto mt-8 max-w-4xl"
                 >
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10 justify-center text-center">
-                        <div className="flex flex-col items-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 border border-slate-700">
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:grid-cols-3 lg:gap-x-10 justify-center text-center">
+                        <div className="flex flex-col items-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 shadow-xl transition-transform duration-300 hover:scale-105">
                             <Users className="h-8 w-8 text-blue-400 mb-2" />
-                            <span className="text-3xl font-bold italic">100+</span>
+                            <span className="text-3xl font-bold italic">
+                                <AnimatedCounter value={100} suffix="+" />
+                            </span>
                             <span className="text-slate-400 font-normal text-sm">Global Partners</span>
                         </div>
-                        <div className="flex flex-col items-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 border border-slate-700">
+                        <div className="flex flex-col items-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 shadow-xl transition-transform duration-300 hover:scale-105">
                             <Trophy className="h-8 w-8 text-yellow-400 mb-2" />
-                            <span className="text-3xl font-bold italic">2k+</span>
+                            <span className="text-3xl font-bold italic">
+                                <AnimatedCounter value={2000} suffix="+" />
+                            </span>
                             <span className="text-slate-400 font-normal text-sm">Happy Clients</span>
                         </div>
-                        <div className="flex flex-col items-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 border border-slate-700">
+                        <div className="flex flex-col items-center gap-2 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 shadow-xl transition-transform duration-300 hover:scale-105">
                             <ShieldCheck className="h-8 w-8 text-green-400 mb-2" />
-                            <span className="text-3xl font-bold italic">100%</span>
+                            <span className="text-3xl font-bold italic">
+                                <AnimatedCounter value={100} suffix="%" />
+                            </span>
                             <span className="text-slate-400 font-normal text-sm">Secure Solutions</span>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ export default function AudioVisualPage() {
             <SolutionVideoHero
                 videoSrc="/images/solutions/audio-visual/hero.mp4"
                 tag="Immersive Experience"
-                title={<>Your Vision, Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">A/V Reality</span></>}
+                title={<>Your Vision, Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Audio Visual Reality</span></>}
                 description="Next-generation audio-visual systems tailored for seamless collaboration and exceptional quality."
             />
 

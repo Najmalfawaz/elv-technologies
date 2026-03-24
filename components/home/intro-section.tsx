@@ -1,19 +1,38 @@
 'use client';
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, useMotionValue, animate } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+
+const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
+    const [displayValue, setDisplayValue] = useState(0);
+    const count = useMotionValue(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    useEffect(() => {
+        if (isInView) {
+            animate(count, value, {
+                duration: 2,
+                ease: "easeOut",
+                onUpdate: (latest) => setDisplayValue(Math.round(latest))
+            });
+        }
+    }, [isInView, value, count]);
+
+    return <span ref={ref}>{displayValue >= 1000 ? (displayValue / 1000).toFixed(0) + 'k' : displayValue}{suffix}</span>;
+};
 
 export default function IntroSection() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     const stats = [
-        { value: "2k+", label: "Successful\nProjects" },
-        { value: "500+", label: "Enterprise\nClients" },
-        { value: "7+", label: "Years of\nExcellence" },
-        { value: "24/7", label: "Dedicated\nSupport" },
+        { value: 2000, suffix: "+", label: "Successful\nProjects" },
+        { value: 500, suffix: "+", label: "Enterprise\nClients" },
+        { value: 7, suffix: "+", label: "Years of\nExcellence" },
+        { value: 24, suffix: "/7", label: "Dedicated\nSupport" },
     ];
 
     return (
@@ -81,7 +100,9 @@ export default function IntroSection() {
                                         transition={{ duration: 0.6, delay: 0.4 + (index * 0.1), ease: "easeOut" }}
                                         className="flex flex-col gap-1"
                                     >
-                                        <div className="text-2xl lg:text-3xl font-bold text-white tracking-tight">{stat.value}</div>
+                                        <div className="text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                                            <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                                        </div>
                                         <div className="text-xs font-medium text-neutral-400 whitespace-pre-wrap">{stat.label}</div>
                                     </motion.div>
                                 ))}
