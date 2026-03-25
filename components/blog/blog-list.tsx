@@ -132,7 +132,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
                 <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
                     <div>
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tighter">
-                            Our Recent Articles
+                            Our Recent Blogs
                         </h2>
                         <p className="text-slate-500 dark:text-slate-400 font-bold text-lg">
                             Stay Informed with Our Latest Insights
