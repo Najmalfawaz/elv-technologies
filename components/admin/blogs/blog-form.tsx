@@ -150,7 +150,14 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
                                 <Input
                                     id="title"
                                     value={formData.title}
-                                    onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                    onChange={e => {
+                                        const title = e.target.value;
+                                        setFormData(prev => ({
+                                            ...prev, 
+                                            title,
+                                            slug: !isEditing ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') : prev.slug
+                                        }));
+                                    }}
                                     required
                                 />
                             </div>

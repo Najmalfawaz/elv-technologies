@@ -29,12 +29,12 @@ export default function CaseStudiesList({ initialData }: { initialData: any[] })
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         {/* Search Control */}
-        <div className="flex flex-col mb-16 items-start justify-start p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm w-full lg:w-1/2 min-w-[300px]">
+        <div className="flex flex-col mb-12 items-end justify-end w-full max-w-md ml-auto">
           <div className="relative w-full group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 group-focus-within:text-red-500 transition-colors" />
             <Input
               placeholder="Search by project, client, or technology..."
-              className="pl-12 h-14 bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 rounded-2xl focus-visible:ring-red-500/20 focus-visible:border-red-500 transition-all shadow-sm w-full"
+              className="pl-12 h-14 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 rounded-2xl focus-visible:ring-red-500/20 focus-visible:border-red-500 transition-all shadow-sm w-full text-base"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
