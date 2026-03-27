@@ -64,7 +64,7 @@ export default function PartnersSection() {
                         <CarouselContent className="-ml-4 md:-ml-8">
                             {allPartners.map((item, index) => (
                                 <CarouselItem key={index} className="pl-4 md:pl-8 basis-[60%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                                    <div className="w-[180px] sm:w-[220px] mx-auto aspect-[4/3] bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center p-8 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-all duration-300">
+                                    <div className="w-[180px] sm:w-[220px] mx-auto aspect-[4/3] flex items-center justify-center p-4 hover:scale-105 transition-all duration-300">
                                         <div className="relative w-full h-full">
                                             <Image
                                                 src={item.src}
