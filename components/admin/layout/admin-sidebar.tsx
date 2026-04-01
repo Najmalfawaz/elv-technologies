@@ -61,11 +61,6 @@ const contentItems = [
         url: "/admin/testimonials",
         icon: MessageSquare,
     },
-    {
-        title: "Partners & Clients",
-        url: "/admin/partners-clients",
-        icon: Building,
-    },
 ];
 
 export function AdminSidebar() {

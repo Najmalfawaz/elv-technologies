@@ -27,7 +27,7 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: strin
 
 export function HeroSection() {
     return (
-        <div className="relative isolate overflow-hidden bg-slate-900 pb-16 pt-14 sm:pb-20">
+        <div className="relative isolate overflow-hidden bg-slate-900 pb-10 pt-10 sm:pb-12">
             {/* Background gradients - Matching Blog/Case Studies */}
             <div
                 className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -56,7 +56,7 @@ export function HeroSection() {
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl py-24 sm:py-32 lg:py-40">
+                <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20">
                     <div className="text-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
