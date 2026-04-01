@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
@@ -43,6 +44,10 @@ export async function PATCH(
             }
         });
 
+        revalidatePath('/');
+        revalidatePath('/blog');
+        revalidatePath(`/blog/${blog.slug}`);
+
         return NextResponse.json(blog);
     } catch (error) {
         console.error('Failed to update blog:', error);
@@ -55,9 +60,21 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
+        // Find the blog first to get the slug for revalidation
+        const blog = await prisma.blog.findUnique({
+            where: { id: params.id },
+            select: { slug: true }
+        });
+
         await prisma.blog.delete({
             where: { id: params.id }
         });
+
+        revalidatePath('/');
+        revalidatePath('/blog');
+        if (blog?.slug) {
+            revalidatePath(`/blog/${blog.slug}`);
+        }
 
         return NextResponse.json({ message: 'Blog deleted successfully' });
     } catch (error) {

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -28,6 +29,9 @@ export async function POST(request: Request) {
                 slug,
             }
         });
+
+        revalidatePath('/');
+        revalidatePath('/case-studies');
 
         return NextResponse.json(newCaseStudy);
     } catch (error) {

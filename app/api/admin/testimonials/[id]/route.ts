@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
@@ -39,6 +40,8 @@ export async function PATCH(
             }
         });
 
+        revalidatePath('/');
+
         return NextResponse.json(testimonial);
     } catch (error) {
         console.error('Failed to update testimonial:', error);
@@ -54,6 +57,8 @@ export async function DELETE(
         await prisma.testimonial.delete({
             where: { id: params.id }
         });
+
+        revalidatePath('/');
 
         return NextResponse.json({ message: 'Testimonial deleted successfully' });
     } catch (error) {

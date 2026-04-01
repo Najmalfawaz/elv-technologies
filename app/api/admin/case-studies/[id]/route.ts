@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -33,6 +34,10 @@ export async function PATCH(
             data: body
         });
 
+        revalidatePath('/');
+        revalidatePath('/case-studies');
+        revalidatePath(`/case-studies/${updatedCaseStudy.slug}`);
+
         return NextResponse.json(updatedCaseStudy);
     } catch (error) {
         return NextResponse.json({ error: 'Failed to update case study' }, { status: 500 });
@@ -44,9 +49,20 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
+        const caseStudy = await prisma.caseStudy.findUnique({
+            where: { id: params.id },
+            select: { slug: true }
+        });
+
         await prisma.caseStudy.delete({
             where: { id: params.id }
         });
+
+        revalidatePath('/');
+        revalidatePath('/case-studies');
+        if (caseStudy?.slug) {
+            revalidatePath(`/case-studies/${caseStudy.slug}`);
+        }
 
         return NextResponse.json({ success: true });
     } catch (error) {
