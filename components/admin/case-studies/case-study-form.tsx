@@ -143,7 +143,19 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="project">Project Title</Label>
-                                <Input id="project" value={formData.project} onChange={e => setFormData({ ...formData, project: e.target.value })} required />
+                                <Input
+                                    id="project"
+                                    value={formData.project}
+                                    onChange={e => {
+                                        const project = e.target.value;
+                                        setFormData((prev: any) => ({
+                                            ...prev,
+                                            project,
+                                            slug: !isEditing ? project.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') : prev.slug
+                                        }));
+                                    }}
+                                    required
+                                />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="slug">Slug</Label>
