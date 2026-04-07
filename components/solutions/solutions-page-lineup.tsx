@@ -76,9 +76,9 @@ export default function SolutionsPageLineup() {
 
                                         {/* ETS Logo Top Right */}
                                         <div className="absolute top-6 right-6 z-20 flex flex-col items-center justify-center transition-transform duration-500 group-hover:-rotate-2">
-                                            <Image 
-                                                src="/images/1.png" 
-                                                alt="ETS Logo" 
+                                            <Image
+                                                src="/images/1.png"
+                                                alt="ETS Logo"
                                                 width={45}
                                                 height={45}
                                                 className="object-contain h-auto w-auto max-h-[45px] drop-shadow-md"
@@ -109,9 +109,9 @@ export default function SolutionsPageLineup() {
                                             </div>
 
                                             {/* Sub-item count indicator or subtle accent */}
-                                            <div className="text-[10px] font-black text-slate-100 group-hover:text-slate-200 transition-colors select-none">
+                                            {/* <div className="text-[10px] font-black text-slate-100 group-hover:text-slate-200 transition-colors select-none">
                                                 ETS SOLUTIONS
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </Link>

@@ -101,11 +101,6 @@ export default function CaseStudySlugPage({ study, allStudies }: CaseStudySlugPa
               <Link href="/case-studies" className="inline-flex items-center text-slate-300 hover:text-white mb-6 transition-colors">
                 <ChevronLeft className="mr-1 h-4 w-4" /> Back to Case Studies
               </Link>
-              <div className="flex flex-wrap gap-3 mb-4">
-                <Badge className="bg-red-600 hover:bg-red-700 text-white border-none text-sm py-1 px-3">
-                  {study.category || 'Infrastructure'}
-                </Badge>
-              </div>
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl max-w-4xl">
                 {study.client}
               </h1>

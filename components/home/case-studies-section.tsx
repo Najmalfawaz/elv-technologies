@@ -58,7 +58,7 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                                         <div className="absolute bottom-6 left-6 right-6 text-white drop-shadow-lg">
-                                            <h3 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2 group-hover:text-accent/10 transition-colors">
+                                            <h3 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2 group-hover:text-accent transition-colors">
                                                 {study.client}
                                             </h3>
                                             <div className="text-sm font-medium text-neutral-200 line-clamp-2 leading-snug">
@@ -69,13 +69,10 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
 
                                     {/* Content */}
                                     <div className="p-8 flex flex-col flex-grow">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <Badge variant="secondary" className="bg-accent/10 text-accent font-semibold hover:bg-accent/20 border-0">
-                                                {study.category || 'Infrastructure'}
-                                            </Badge>
-                                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground ml-auto bg-neutral-100 px-2 py-1 rounded-md">
-                                                <MapPin className="h-3 w-3 text-accent" />
-                                                <span className="truncate max-w-[150px]">{study.location}</span>
+                                        <div className="flex items-center justify-start mb-4">
+                                            <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-neutral-100 px-2 py-1 rounded-[4px] flex-wrap">
+                                                <MapPin className="h-3 w-3 text-accent flex-shrink-0" />
+                                                <span>{study.location}</span>
                                             </div>
                                         </div>
 

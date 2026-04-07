@@ -7,7 +7,7 @@ export const solutionsData = {
         description: "ELV Technology Solutions provides end-to-end integrated systems for security, audio-visual, networking, and automation needs across the UAE.",
     },
     securityAndSurveillance: {
-        title: "1. Security and Surveillance",
+        title: "Security and Surveillance",
         id: "security-surveillance",
         description: "Modern security is no longer about passive monitoring—it’s about intelligent systems that think, analyse, and act in real time.",
         image: "/images/solutions/security-surveillance/hero1.png",
@@ -147,7 +147,7 @@ export const solutionsData = {
         ]
     },
     audioVisual: {
-        title: "2. Audio Visual Solutions",
+        title: "Audio Visual Solutions",
         id: "audio-visual",
         description: "Advancements in audio-visual technology are reshaping how organizations collaborate, train, and communicate.",
         image: "/images/solutions/audio-visual/hero.png",
@@ -315,7 +315,7 @@ export const solutionsData = {
         ]
     },
     networkAndCommunications: {
-        title: "3. Network & Communications",
+        title: "Network & Communications",
         id: "network-communications",
         description: "ELV Technology Solutions provides professional networking services in Abu Dhabi and across the UAE, specializing in structured cabling, wired networks, and enterprise-grade wireless (Wi-Fi) solutions.",
         image: "/images/solutions/network-communications/hero.png",
@@ -577,7 +577,7 @@ export const solutionsData = {
         ]
     },
     homeAutomation: {
-        title: "4. Home Automation & Lighting Control System",
+        title: "Home Automation & Lighting Control System",
         id: "home-automation",
         description: "ELV Technology Solutions provides advanced home automation and lighting control systems in Abu Dhabi, Dubai, and across the UAE, delivering smart, energy-efficient, and user-friendly solutions.",
         image: "/images/solutions/home-automation/hero.png",
