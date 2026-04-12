@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Chatbot from "@/components/chatbot/chatbot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-background text-foreground`}>
         {children}
         <Toaster richColors position="top-right" />
+        <Chatbot />
       </body>
     </html>
   );

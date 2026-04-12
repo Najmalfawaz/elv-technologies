@@ -1,96 +1,105 @@
 import { NextResponse } from 'next/server';
+import { google } from '@ai-sdk/google';
+import { generateText } from 'ai';
+import { findRelevantContext } from '@/lib/chatbot/vector-store';
 
-// This is the knowledge base extracted from the system prompt
-const KNOWLEDGE_BASE = {
-    company: {
-        name: "ELV Technology Solutions (ETS)",
-        track_record: "2,000+ successful projects, 500+ enterprise clients, 7+ years of excellence",
-        location: "Head Office in Al Danah, Abu Dhabi (Al Falah St.)",
-    },
-    solutions: [
+const INTENTS = {
+    OUT_OF_SCOPE: [
         {
-            ids: ['security', 'cctv', 'surveillance', 'camera'],
-            text: "**Security & Surveillance:** We offer AI-powered CCTV, Biometric Access Control, Gate Barriers (ANPR/RFID), Nurse Call Systems, and Disabled Toilet Alarms. All our systems are designed for real-time analytics and threat detection."
+            keywords: ['weapon', 'gun', 'kill', 'bomb', 'harm', 'illegal', 'crime', 'murder', 'drugs', 'suicide', 'abuse', 'violence', 'how to make a'],
+            answer: "I cannot fulfill this request. I am a corporate virtual assistant for ELV Technology Solutions. Please keep your inquiries relevant to our business services (AV, Security, and Networking)."
         },
         {
-            ids: ['av', 'audio', 'visual', 'meeting', 'video wall', 'signage', 'led'],
-            text: "**Audio-Visual (AV) Solutions:** We specialize in Boardroom & Meeting Room integration (MS Teams/Zoom), large-scale Indoor/Outdoor LED Walls, Digital Signage, and Multi-zone Background Music (BGM) systems for hospitality and retail."
+            keywords: ['website', 'web dev', 'app ', 'software', 'seo', 'cloud hosting', 'erp', 'accounting', 'marketing', 'social media'],
+            answer: "No, web and app development is outside our scope. We focus on physical technology integration like ELV and AV systems."
         },
         {
-            ids: ['network', 'wifi', 'cabling', 'fiber', 'internet', 'it'],
-            text: "**Network & Communications:** Our expertise includes Structured Cabling (Fiber Optic & Cat6A), Enterprise Wi-Fi (Aruba/Cisco/Ruckus), IP Telephony (Cisco/Avaya), and IPTV/SMATV for high-rise buildings and hotels."
+            keywords: ['repair laptop', 'repair phone', 'repair ac', 'fix laptop', 'fix computer', 'fix phone', 'desktop', 'smartphone', 'printer', 'hvac', 'water heater', 'air conditioning', 'fridge'],
+            answer: "No, we do not repair personal devices (laptops, phones) or MEP systems (like HVAC/AC). We specialize in enterprise technology integration."
         },
         {
-            ids: ['home', 'automation', 'lighting', 'smart'],
-            text: "**Smart Home & Lighting:** We provide advanced Home Automation and Lighting Control systems for luxury villas and commercial buildings, focusing on energy efficiency and intuitive control."
+            keywords: ['hack', 'hidden camera', 'recover deleted', 'spy', 'unauthorized'],
+            answer: "No, absolutely not. We do not engage in hacking, data recovery, or installing hidden cameras."
         }
     ],
-    faq: [
+    GREETINGS: [
         {
-            keywords: ['price', 'cost', 'expensive', 'quote', 'quotation', 'charges'],
-            answer: "Pricing depends on your specific site requirements and the scope of work. We highly recommend a **Free Site Survey** so we can provide an accurate customized quote. Would you like me to note down your details for a callback?"
-        },
-        {
-            keywords: ['time', 'how long', 'duration', 'days'],
-            answer: "Small projects like villa CCTV typically take 1-2 days. Larger commercial integrations usually take 3-7 days depending on the complexity of the systems involved."
-        },
-        {
-            keywords: ['maintenance', 'amc', 'support', 'repair', 'fix'],
-            answer: "Yes, we offer comprehensive **Annual Maintenance Contracts (AMC)** for all our ELV, AV, and Networking systems to ensure zero-downtime and long-term reliability."
+            keywords: ['hi', 'hello', 'hey', 'how are you', 'how are u', 'good morning', 'good afternoon', 'greetings', 'morning', 'evening'],
+            answer: "Hello! 👋 I'm the ETS Virtual Assistant. I can help you with Security, AV, Networking, and Smart Home solutions. What can I assist you with today?"
         }
     ]
 };
 
+const SYSTEM_PROMPT = `
+You are the ETS Assistant representing ELV Technology Solutions (Abu Dhabi, UAE).
+You provide expert advice on Security (CCTV), AV, Networking, and Smart Automation.
+
+GUIDELINES:
+1. USE ONLY the provided context to answer the user's question.
+2. If the answer is NOT in the context, politely say you don't have that specific information and suggest they speak to our engineering team.
+3. Keep responses professional, helpful, and concise (2-4 sentences).
+4. Always mention "free site assessment" for project inquiries.
+5. Do NOT mention competitors or services outside our ELV scope.
+`;
+
+function shouldCaptureLead(input: string): boolean {
+    const triggers = ['quote', 'price', 'install', 'need', 'project', 'looking for', 'schedule', 'visit', 'survey', 'buy', 'cost', 'site assessment'];
+    return triggers.some(t => input.toLowerCase().includes(t));
+}
+
 export async function POST(req: Request) {
     try {
-        const { message } = await req.json();
+        const { message, history = [] } = await req.json();
         const lowerMessage = message.toLowerCase();
 
-        // --- FUTURE AI INTEGRATION START ---
-        // if (process.env.OPENAI_API_KEY) {
-        //   // Call OpenAI/Gemini here using the system prompt
-        //   // return NextResponse.json({ text: aiResponse });
-        // }
-        // --- FUTURE AI INTEGRATION END ---
-
-        // Smart Router Fallback
-        let responseText = "";
-
-        // 1. Check for pricing/quote intent first
-        const pricingMatch = KNOWLEDGE_BASE.faq[0].keywords.some(k => lowerMessage.includes(k));
-        if (pricingMatch) {
-            responseText = KNOWLEDGE_BASE.faq[0].answer;
+        // 1. FAST PATH: Out of Scope
+        const outOfScopeMatch = INTENTS.OUT_OF_SCOPE.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k))
+        );
+        if (outOfScopeMatch) {
+            return NextResponse.json({ text: outOfScopeMatch.answer, captureLead: false });
         }
 
-        // 2. Check solutions
-        if (!responseText) {
-            const solution = KNOWLEDGE_BASE.solutions.find(s => s.ids.some(id => lowerMessage.includes(id)));
-            if (solution) {
-                responseText = `${solution.text}\n\nWe offer free site visits to design the best setup for you. Shall I schedule one?`;
-            }
+        // 2. FAST PATH: Greetings
+        const greetingMatch = INTENTS.GREETINGS.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k)) && lowerMessage.length < 20
+        );
+        if (greetingMatch) {
+            return NextResponse.json({ text: greetingMatch.answer, captureLead: false });
         }
 
-        // 3. Check other FAQs
-        if (!responseText) {
-            const otherFaq = KNOWLEDGE_BASE.faq.slice(1).find(f => f.keywords.some(k => lowerMessage.includes(k)));
-            if (otherFaq) responseText = otherFaq.answer;
+        // 3. RAG PATH: Semantic Retrieval
+        let context = "";
+        try {
+            context = await findRelevantContext(message);
+        } catch (dbError) {
+            console.error("Vector Store Error:", dbError);
+            // Non-blocking: continue without context if DB isn't ready locally
         }
 
-        // 4. Default Fallback
-        if (!responseText) {
-            responseText = "I'm the ETS Assistant! I can help you with Security, AV, Networking, and Smart Home solutions in the UAE. \n\nCould you tell me a bit more about what you're looking for, or would you prefer a quick callback from our engineering team?";
-        }
+        // 4. LLM GENERATION: Grounded by Context
+        const { text } = await generateText({
+            model: google('gemini-1.5-flash'),
+            system: `${SYSTEM_PROMPT}\n\nCONTEXT FROM KNOWLEDGE BASE:\n${context}`,
+            messages: [...history, { role: 'user', content: message }],
+            temperature: 0.2, // Lower temperature for higher factuality
+        });
 
-        // Add a signature feel
-        // responseText = `**ETS Assistant:**\n\n${responseText}`;
+        const captureLead = shouldCaptureLead(message) || shouldCaptureLead(text);
 
-        return NextResponse.json({
-            text: responseText,
-            timestamp: new Date().toISOString()
+        // Logging
+        console.log(`[RAG-Chatbot] msg: "${message}" | context: ${context ? 'found' : 'none'} | capture: ${captureLead}`);
+
+        return NextResponse.json({ 
+            text, 
+            captureLead 
         });
 
     } catch (error) {
         console.error('Chatbot API Error:', error);
-        return NextResponse.json({ error: 'Failed to process message' }, { status: 500 });
+        return NextResponse.json({ 
+            text: "I apologize, but I'm having a technical issue. Please try again or contact us directly at **+971 54 792 2800**.", 
+            captureLead: false 
+        });
     }
 }

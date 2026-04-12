@@ -1,11 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { toast } from 'sonner';
 
@@ -14,9 +16,11 @@ const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }),
   subject: z.string().min(5, { message: 'Subject must be at least 5 characters.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
+  isNotRobot: z.boolean().refine(val => val === true, { message: 'Please confirm you are not a robot' }),
 });
 
 export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,15 +28,32 @@ export default function ContactForm() {
       email: '',
       subject: '',
       message: '',
+      isNotRobot: false,
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(values);
-    toast.success('Your message has been sent!');
-    form.reset();
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        toast.success('Your message has been sent!');
+        form.reset();
+      } else {
+        toast.error(result.error || 'Failed to send message.');
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -98,8 +119,28 @@ export default function ContactForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" size="lg" className="w-full">
-            Send Message
+          <FormField
+            control={form.control}
+            name="isNotRobot"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel>
+                    I'm not a robot
+                  </FormLabel>
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+          <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </Button>
         </form>
       </Form>

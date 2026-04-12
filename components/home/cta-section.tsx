@@ -24,8 +24,8 @@ export default function CTASection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           className={`relative rounded-3xl bg-accent overflow-hidden transition-all duration-1000 ${isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-12"
             }`}
         >
           {/* Background pattern */}
@@ -67,11 +67,11 @@ export default function CTASection() {
                     +971 2 441 8186
                   </a>
                   <a
-                    href="mailto:info@etssmart.com"
+                    href="mailto:najmalfawaznfz1234@gmail.com"
                     className="flex items-center gap-2.5 text-sm text-background/60 transition-colors hover:text-background"
                   >
                     <Mail className="h-4 w-4" />
-                    info@etssmart.com
+                    najmalfawaznfz1234@gmail.com
                   </a>
                 </div>
               </div>

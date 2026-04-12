@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Upload, CheckCircle2, Loader2, FileText, X } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -21,6 +22,7 @@ const formSchema = z.object({
     position: z.string().min(1, 'Please select a position'),
     otherPosition: z.string().optional(),
     message: z.string().optional(),
+    isNotRobot: z.boolean().refine(val => val === true, { message: 'Please confirm you are not a robot' }),
 }).refine(data => {
     if (data.position === 'Other') {
         return !!data.otherPosition && data.otherPosition.trim().length > 0;
@@ -55,10 +57,12 @@ export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
             position: '',
             otherPosition: '',
             message: '',
+            isNotRobot: false,
         }
     });
 
     const selectedPosition = watch('position');
+    const isNotRobot = watch('isNotRobot');
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -80,15 +84,38 @@ export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
         }
 
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        
+        try {
+            const formData = new window.FormData();
+            formData.append('fullName', data.fullName);
+            formData.append('email', data.email);
+            formData.append('phone', data.phone);
+            formData.append('position', data.position);
+            if (data.otherPosition) formData.append('otherPosition', data.otherPosition);
+            if (data.message) formData.append('message', data.message);
+            formData.append('isNotRobot', 'true');
+            formData.append('file', selectedFile);
 
-        console.log('Application submitted:', { ...data, file: selectedFile.name });
-        setIsSubmitting(false);
-        setIsSuccess(true);
-        toast.success('Application submitted successfully!');
-        reset();
-        setSelectedFile(null);
+            const res = await fetch('/api/careers', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                toast.success('Application submitted successfully!');
+                setIsSuccess(true);
+                reset();
+                setSelectedFile(null);
+            } else {
+                toast.error(result.error || 'Failed to submit application.');
+            }
+        } catch (error) {
+            toast.error('An unexpected error occurred.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (isSuccess) {
@@ -233,6 +260,22 @@ export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
                             {...register('message')}
                             className="min-h-[120px] resize-none"
                         />
+                    </div>
+
+                    <div className="space-y-4">
+                        <div className="flex flex-row items-start space-x-3 space-y-0">
+                            <Checkbox
+                                id="isNotRobot"
+                                checked={isNotRobot}
+                                onCheckedChange={(checked) => setValue('isNotRobot', checked as boolean, { shouldValidate: true })}
+                            />
+                            <div className="space-y-1 leading-none">
+                                <Label htmlFor="isNotRobot">
+                                    I'm not a robot
+                                </Label>
+                                {errors.isNotRobot && <p className="text-xs text-red-500 mt-1">{errors.isNotRobot.message}</p>}
+                            </div>
+                        </div>
                     </div>
 
                     <Button type="submit" className="w-full h-14 text-lg font-bold bg-accent hover:bg-red-700 text-white shadow-lg shadow-red-500/20" disabled={isSubmitting}>

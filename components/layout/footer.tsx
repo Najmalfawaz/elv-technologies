@@ -185,12 +185,12 @@ export default function Footer() {
                 </p>
               </a>
               <a
-                href="mailto:info@etssmart.com"
+                href="mailto:najmalfawaznfz1234@gmail.com"
                 className="flex items-center gap-3 group"
               >
                 <Mail className="h-4 w-4 shrink-0 text-slate-200 transition-colors group-hover:text-white" />
                 <span className="text-sm text-white font-medium transition-colors group-hover:text-white">
-                  info@etssmart.com
+                  najmalfawaznfz1234@gmail.com
                 </span>
               </a>
               <a
@@ -301,10 +301,10 @@ export default function Footer() {
             <p className="text-sm text-slate-100 leading-relaxed font-medium">
               Interested in joining our team? Submit your CV to{" "}
               <a
-                href="mailto:info@etssmart.com"
+                href="mailto:najmalfawaznfz1234@gmail.com"
                 className="text-white underline underline-offset-4 decoration-white/50 transition-colors hover:decoration-white"
               >
-                info@etssmart.com
+                najmalfawaznfz1234@gmail.com
               </a>
               , and we{"'"}ll be in touch after reviewing your application.
             </p>
