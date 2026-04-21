@@ -90,7 +90,7 @@ export default function BlogSlugPage({ post }: BlogSlugPageProps) {
     return (
         <div className="bg-white dark:bg-slate-950 min-h-screen pb-24">
             {/* Hero Section */}
-            <div className="relative h-[50vh] min-h-[400px] w-full">
+            <div className="relative h-[65vh] lg:h-[75vh] min-h-[500px] w-full">
                 <Image
                     src={post.image}
                     alt={post.title}
@@ -100,8 +100,8 @@ export default function BlogSlugPage({ post }: BlogSlugPageProps) {
                     priority
                 />
                 <div className="absolute inset-0 bg-stone-900/40 dark:bg-slate-950/60" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="mx-auto max-w-4xl w-full px-6 lg:px-8 text-center text-white">
+                <div className="absolute inset-0 flex items-center pt-24">
+                    <div className="max-w-7xl w-full px-6 lg:px-8 text-left text-white">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -110,12 +110,12 @@ export default function BlogSlugPage({ post }: BlogSlugPageProps) {
                             <Link href="/blog" className="inline-flex items-center text-slate-200 hover:text-white mb-8 transition-colors text-sm font-medium">
                                 <ChevronLeft className="mr-1 h-4 w-4" /> Back to Blog
                             </Link>
-                            <div className="flex justify-center gap-3 mb-6">
+                            <div className="flex justify-start gap-3 mb-6">
                                 <Badge className="bg-accent text-white border-none text-xs py-1 px-3">
                                     {post.category}
                                 </Badge>
                             </div>
-                            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl drop-shadow-md">
+                            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl drop-shadow-2xl max-w-4xl">
                                 {post.title}
                             </h1>
                         </motion.div>

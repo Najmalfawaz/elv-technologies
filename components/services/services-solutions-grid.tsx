@@ -90,18 +90,18 @@ export default function ServicesSolutionsGrid() {
                     }}
                     className="w-full relative px-4 xl:px-8"
                 >
-                    <CarouselContent className="-ml-6">
+                    <CarouselContent className="-ml-6 items-stretch">
                     {displayedSolutions.map((solution, idx) => {
                         const Icon = distinctIcons[idx % distinctIcons.length];
                         return (
-                        <CarouselItem key={solution.title} className="pl-6 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                        <CarouselItem key={solution.title} className="pl-6 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 h-auto flex">
                         <motion.div
                             key={solution.title}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-slate-800/80 backdrop-blur-xl shadow-lg border border-slate-700/50 hover:border-red-500/30 transition-all hover:shadow-[0_10px_40px_-10px_rgba(239,68,68,0.1)] hover:-translate-y-2"
+                            className="group relative flex flex-col h-full overflow-hidden rounded-[2rem] bg-slate-800/80 backdrop-blur-xl shadow-lg border border-slate-700/50 hover:border-red-500/30 transition-all hover:shadow-[0_10px_40px_-10px_rgba(239,68,68,0.1)] hover:-translate-y-2"
                         >
                             <div className="relative h-56 w-full overflow-hidden border-b border-slate-700/50 flex-shrink-0">
                                 <Image
@@ -155,9 +155,10 @@ className="object-cover transition-transform duration-700 group-hover:scale-110"
                     );})}
                     </CarouselContent>
                     
-                    <div className="hidden xl:block">
-                        <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-slate-800 text-white border-slate-700 hover:bg-red-500 hover:text-white" />
-                        <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-slate-800 text-white border-slate-700 hover:bg-red-500 hover:text-white" />
+                    {/* Navigation Buttons - Positioned at sides with safe offsets */}
+                    <div className="hidden md:block">
+                        <CarouselPrevious className="absolute left-0 lg:-left-7 top-1/2 -translate-y-1/2 bg-slate-800/90 text-white border-slate-700 hover:bg-accent hover:text-white transition-all w-14 h-14 z-20 backdrop-blur-sm" />
+                        <CarouselNext className="absolute right-0 lg:-right-7 top-1/2 -translate-y-1/2 bg-slate-800/90 text-white border-slate-700 hover:bg-accent hover:text-white transition-all w-14 h-14 z-20 backdrop-blur-sm" />
                     </div>
                 </Carousel>
             </div>

@@ -69,8 +69,15 @@ export const solutionsData = {
                         "We design and install electronic access control systems using card readers, biometric devices, PIN keypads, and mobile credentials. Our solutions support doors, turnstiles, barriers, and restricted areas, with centralized monitoring and reporting.",
                         "For workforce management, we deliver time attendance systems that accurately track employee working hours, shifts, overtime, and absenteeism. These systems integrate with HR and payroll software, reducing manual errors and administrative overhead.",
                         "As an experienced ELV system integrator in the UAE, ELV Technology Solutions ensures secure installation, proper system configuration, and compliance with organizational security policies. Our access control and attendance installations in Abu Dhabi and Dubai are scalable and suitable for offices, commercial buildings, industrial facilities, schools, and healthcare environments.",
-                        "For businesses seeking reliable access control and time attendance installation in the UAE, ELV Technology Solutions delivers systems focused on security, accuracy, and long-term reliability."
-                    ]
+                    "For businesses seeking reliable access control and time attendance installation in the UAE, ELV Technology Solutions delivers systems focused on security, accuracy, and long-term reliability."
+                    ],
+                    keyFeatures: {
+                        points: [
+                            "Card & Biometric Access Control",
+                            "Time & Attendance Tracking",
+                            "Scalable Security Management"
+                        ]
+                    }
                 }
             },
             {
@@ -86,8 +93,15 @@ export const solutionsData = {
                         "We design and install automatic gate barrier systems suitable for residential compounds, commercial buildings, parking areas, industrial facilities, and government premises. Our solutions support RFID cards, access cards, ANPR (number plate recognition), remote controls, biometric access, and integration with access control systems.",
                         "Each gate barrier installation in Abu Dhabi and Dubai is engineered based on traffic volume, site layout, security requirements, and operating conditions. We supply durable barrier arms, high-duty motors, safety sensors, and control panels designed for continuous operation in UAE climate conditions.",
                         "As an experienced ELV system integrator in the UAE, ELV Technology Solutions ensures seamless integration of gate barrier systems with CCTV, access control, parking management, and building management systems (BMS).",
-                        "For organizations seeking dependable gate barrier system installation in the UAE, ELV Technology Solutions delivers solutions focused on security, reliability, and long-term operational performance."
-                    ]
+                    "For organizations seeking dependable gate barrier system installation in the UAE, ELV Technology Solutions delivers solutions focused on security, reliability, and long-term operational performance."
+                    ],
+                    keyFeatures: {
+                        points: [
+                            "Automatic Vehicle Access Control",
+                            "RFID & ANPR Integration",
+                            "Durable Weatherproof Barriers"
+                        ]
+                    }
                 }
             },
             {
@@ -103,8 +117,15 @@ export const solutionsData = {
                         "We design and install nurse call systems that enable patients to alert nurses using bedside call buttons, pull cords, or wall-mounted units. Alerts are displayed visually and audibly at nurse stations, corridor displays, and staff mobile devices, ensuring rapid response and improved patient safety.",
                         "Our nurse call system installations in Abu Dhabi and Dubai are suitable for hospitals, clinics, medical centre’s, rehabilitation facilities, and care homes. Systems support features such as room identification, call prioritization, emergency alerts, staff presence indication, and event reporting.",
                         "As an experienced ELV system integrator in the UAE, ELV Technology Solutions ensures proper system design, compliant installation, testing, and commissioning. Our nurse call solutions are scalable, reliable, and compatible with hospital workflows and future expansion.",
-                        "For healthcare facilities seeking dependable nurse call system installation in the UAE, ELV Technology Solutions delivers communication systems focused on safety, clarity, and operational efficiency."
-                    ]
+                    "For healthcare facilities seeking dependable nurse call system installation in the UAE, ELV Technology Solutions delivers communication systems focused on safety, clarity, and operational efficiency."
+                    ],
+                    keyFeatures: {
+                        points: [
+                            "Real-time Patient Alert Systems",
+                            "Emergency Call Monitoring",
+                            "Staff Presence & Coordination"
+                        ]
+                    }
                 }
             },
             {
@@ -224,8 +245,15 @@ export const solutionsData = {
                         "ELV Technology Solutions provides professional Indoor video wall solutions in Abu Dhabi, Dubai, and across the UAE, delivering high-resolution visual systems for corporate, education, and mission-critical environments.",
                         "Our indoor LED video wall solutions are designed for clear visibility, consistent colour performance, and seamless system integration. From design and engineering to installation and commissioning, ETS delivers complete AV and ELV system integration tailored to the operational needs of each project.",
                         "We specialize in indoor video wall installation in Abu Dhabi and Dubai for boardrooms, control rooms, classrooms, auditoriums, experience centres, and corporate lobbies. Using fine pixel-pitch LED panels, professional calibration, and industry-proven hardware, we ensure reliable performance and long-term usability.",
-                        "For organizations seeking dependable indoor LED wall solutions in the UAE, ELV Technology Solutions delivers scalable systems built on technical precision, not generic marketing claims."
-                    ]
+                    "For organizations seeking dependable indoor LED wall solutions in the UAE, ELV Technology Solutions delivers scalable systems built on technical precision, not generic marketing claims."
+                    ],
+                    keyFeatures: {
+                        points: [
+                            "High-Resolution LED Displays",
+                            "Seamless Multi-Screen Playback",
+                            "Professional Calibration & Setup"
+                        ]
+                    }
                 }
             },
             {
@@ -258,8 +286,15 @@ export const solutionsData = {
                         "We specialize in meeting room AV system design and installation for huddle rooms, conference rooms, and executive boardrooms. Our solutions support presentations, video conferencing, and wireless content sharing, using high-quality displays, projectors, microphones, speakers, cameras, and user-friendly AV control systems—configured to match real workplace requirements.",
                         "Our meeting room AV installations in Abu Dhabi and Dubai focus on clarity, ease of operation, and system stability, ensuring fast startup, minimal training, and consistent performance. For executive spaces, our boardroom AV solutions in the UAE include large-format displays or video walls, ceiling microphones, high-fidelity audio systems, secure video conferencing, and centralized control for professional and confidential meetings.",
                         "As an experienced AV and ELV system integrator in the UAE, ELV Technology Solutions ensures seamless integration with leading platforms such as Microsoft Teams and Zoom, along with clean cabling, professional installation, and scalable system design for future expansion.",
-                        "For businesses seeking dependable meeting room and boardroom AV installation in the UAE, ELV Technology Solutions delivers practical, future-ready solutions engineered for long-term performance—supporting collaboration, decision-making, and leadership environments."
-                    ]
+                    "For businesses seeking dependable meeting room and boardroom AV installation in the UAE, ELV Technology Solutions delivers practical, future-ready solutions engineered for long-term performance—supporting collaboration, decision-making, and leadership environments."
+                    ],
+                    keyFeatures: {
+                        points: [
+                            "HD Video Conferencing Setup",
+                            "Wireless Content Sharing",
+                            "Integrated Audio & Speaker Systems"
+                        ]
+                    }
                 }
             },
             {
@@ -275,8 +310,15 @@ export const solutionsData = {
                         "We deliver complete digital signage system design, installation, and integration, including commercial displays, LED screens, media players, content management systems, and centralized control. Our digital signage solutions are tailored for retail stores, corporate offices, hotels, malls, hospitals, educational institutions, and public spaces.",
                         "From single display units to large-scale digital signage networks, ELV Technology Solutions ensures reliable performance, high visibility, and easy content updates. Our digital signage installations in Abu Dhabi and Dubai support real-time information, advertising, promotions, wayfinding, and corporate messaging.",
                         "As a trusted AV and ELV system integrator in the UAE, we focus on system stability, clean installation, and long-term usability. All digital signage systems are designed for continuous operation, remote management, and future expansion.",
-                        "For businesses seeking dependable digital signage installation in the UAE, ELV Technology Solutions delivers scalable solutions that combine visual impact with operational efficiency."
-                    ]
+                    "For businesses seeking dependable digital signage installation in the UAE, ELV Technology Solutions delivers scalable solutions that combine visual impact with operational efficiency."
+                    ],
+                    keyFeatures: {
+                        points: [
+                            "Dynamic Content Management",
+                            "Centralized Advertising Display",
+                            "Remote Monitoring & Updates"
+                        ]
+                    }
                 }
             },
             {

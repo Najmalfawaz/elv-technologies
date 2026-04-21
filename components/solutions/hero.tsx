@@ -8,7 +8,7 @@ export default function SolutionsHero() {
     return (
         <div className="relative">
             {/* Hero Image Banner - this merges with transparent header */}
-            <div className="relative h-[50vh] lg:h-[60vh] w-full overflow-hidden bg-slate-900">
+            <div className="relative h-[65vh] lg:h-[75vh] w-full overflow-hidden bg-slate-900">
                 <Image
                     src="/images/solutions/network-communications/hero.png"
                     alt="ELV Solutions Engineering"
