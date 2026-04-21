@@ -11,9 +11,9 @@ export function PartnersTabs() {
     const [activeTab, setActiveTab] = useState(partnerCategories[0].title);
 
     return (
-        <section className="py-24 bg-slate-50 dark:bg-slate-950">
+        <section className="py-12 bg-slate-50 dark:bg-slate-950">
             <div className="w-full px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10">
                     <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                         Our Trusted Partners
                     </h2>
@@ -46,14 +46,14 @@ export function PartnersTabs() {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.3 }}
-                                        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-6"
+                                        className="flex flex-wrap justify-center gap-4"
                                     >
                                         {category.logos.map((logo, index) => (
                                             <Card
                                                 key={`${category.title}-${index}`}
-                                                className="flex items-center justify-center p-2 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group"
+                                                className="flex items-center justify-center p-2 w-32 sm:w-40 md:w-44 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group rounded-[3px]"
                                             >
-                                                <div className="relative h-24 w-full transition-all duration-300 transform group-hover:scale-110">
+                                                <div className="relative h-20 w-full transition-all duration-300 transform group-hover:scale-110">
                                                     <Image
                                                         src={logo.src}
                                                         alt={logo.alt}

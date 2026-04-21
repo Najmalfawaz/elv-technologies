@@ -161,11 +161,11 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Main nav bar - white background */}
+      {/* Main nav bar - transparent or white background */}
       <div
-        className={`bg-background transition-all duration-500 ${isScrolled
-          ? "shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
-          : "shadow-[0_1px_0_0_hsl(var(--border))]"
+        className={`transition-all duration-500 ${isScrolled
+          ? "bg-background shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
+          : "bg-transparent border-transparent"
           }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -180,7 +180,7 @@ export default function Header() {
                 className="w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
                 priority
               />
-              <span className="text-[9px] sm:text-[10px] font-extrabold text-[#1b1b1b] tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none">
+              <span className={`text-[9px] sm:text-[10px] font-extrabold tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none ${isScrolled ? "text-[#1b1b1b]" : "text-white"}`}>
                 ELV TECHNOLOGY SOLUTIONS
               </span>
             </Link>
@@ -206,14 +206,14 @@ export default function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`relative flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 ${isActive
+                        className={`relative flex items-center gap-1 px-3.5 py-2 text-[15px] font-semibold transition-colors duration-300 ${isActive
                           ? "text-accent"
-                          : "text-foreground/70 hover:text-foreground"
+                          : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
                           }`}
                       >
                         {link.label}
                         <ChevronDown
-                          className={`h-3 w-3 transition-transform duration-300 ${openDropdown === link.label ? "rotate-180" : ""
+                          className={`h-4 w-4 transition-transform duration-300 ${openDropdown === link.label ? "rotate-180" : ""
                             }`}
                         />
                       </Link>
@@ -274,9 +274,9 @@ export default function Header() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`relative px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 group ${isActive
+                    className={`relative px-3.5 py-2 text-[15px] font-semibold transition-colors duration-300 group ${isActive
                       ? "text-accent"
-                      : "text-foreground/70 hover:text-foreground"
+                      : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
                       }`}
                   >
                     {link.label}
@@ -300,16 +300,16 @@ export default function Header() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground/70 transition-all duration-300 hover:text-foreground hover:scale-110"
+                    className={`transition-all duration-300 hover:text-accent hover:scale-110 ${isScrolled ? "text-foreground" : "text-white"}`}
                     aria-label={social.label}
                   >
-                    <social.icon className="h-4 w-4" />
+                    <social.icon className="h-5 w-5" />
                   </a>
                 ))}
               </div>
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
               >
                 Contact Us
               </Link>
@@ -317,7 +317,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="xl:hidden flex items-center justify-center h-10 w-10 rounded-lg text-foreground transition-all duration-300 hover:bg-secondary"
+                className={`xl:hidden flex items-center justify-center h-10 w-10 rounded-lg transition-all duration-300 hover:bg-secondary ${isScrolled ? "text-foreground" : "text-white"}`}
                 aria-label="Toggle menu"
                 aria-expanded={isMobileMenuOpen}
               >

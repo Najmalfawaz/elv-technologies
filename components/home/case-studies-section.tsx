@@ -48,7 +48,7 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                             <Link href={`/case-studies/${study.slug}`} className="group block h-full">
                                 <div className="relative h-full flex flex-col bg-white rounded-3xl overflow-hidden border border-neutral-200/60 shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-2">
                                     {/* Image Header */}
-                                    <div className="relative h-64 w-full overflow-hidden bg-neutral-100">
+                                    <div className="relative h-56 w-full overflow-hidden bg-neutral-100">
                                         <Image
                                             src={study.image}
                                             alt={study.project}
@@ -56,19 +56,17 @@ export default function CaseStudiesSection({ initialData }: { initialData?: any[
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                                        <div className="absolute bottom-6 left-6 right-6 text-white drop-shadow-lg">
-                                            <h3 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2 group-hover:text-accent transition-colors">
-                                                {study.client}
-                                            </h3>
-                                            <div className="text-sm font-medium text-neutral-200 line-clamp-2 leading-snug">
-                                                {study.project}
-                                            </div>
-                                        </div>
                                     </div>
 
                                     {/* Content */}
                                     <div className="p-8 flex flex-col flex-grow">
+                                        <h3 className="text-xl sm:text-xl font-extrabold leading-tight text-foreground mb-2 group-hover:text-accent transition-colors">
+                                            {study.client}
+                                        </h3>
+                                        <div className="text-sm font-medium text-slate-500 mb-4 line-clamp-2 leading-snug">
+                                            {study.project}
+                                        </div>
+
                                         <div className="flex items-center justify-start mb-4">
                                             <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-neutral-100 px-2 py-1 rounded-[4px] flex-wrap">
                                                 <MapPin className="h-3 w-3 text-accent flex-shrink-0" />

@@ -14,12 +14,10 @@ export async function POST(req: Request) {
     }
 
     const fromEmail = process.env.CONTACT_FROM_EMAIL 
-      ? `${name} <${process.env.CONTACT_FROM_EMAIL}>` 
-      : `${name} <onboarding@resend.dev>`;
+      ? `${name} (${email}) <${process.env.CONTACT_FROM_EMAIL}>` 
+      : `${name} (${email}) <onboarding@resend.dev>`;
 
-    const defaultToEmail = process.env.NODE_ENV === 'production' 
-      ? 'info@etssmart.com' 
-      : 'mp.najmalfawaz@gmail.com';
+    const defaultToEmail = 'info@etssmart.com';
     const toEmail = process.env.CONTACT_TO_EMAIL || defaultToEmail;
 
     const data = await resend.emails.send({

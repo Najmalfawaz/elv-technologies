@@ -9,11 +9,7 @@ export default function AudioVisualPage() {
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
-            <SolutionVerticalHero
-                title={data.title}
-                description={data.description}
-                bgImage={data.image}
-            />
+            
 
             <SolutionVideoHero
                 videoSrc="/images/solutions/audio-visual/hero.mp4"

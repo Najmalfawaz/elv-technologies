@@ -45,7 +45,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
             <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
                 {/* Search & Filter Header (kept from previous modern version for functionality) */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-16">
-                    <div className="flex flex-wrap justify-center md:justify-start gap-2">
+                    <div className="flex flex-wrap justify-start gap-2">
                         {categories.map((cat) => (
                             <button
                                 key={cat}
@@ -85,7 +85,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
                                 <div className="group relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                                     {/* Left Side: Image with Decorative Elements */}
                                     <div className="relative">
-                                        <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(220,38,38,0.15)] ring-1 ring-white/10">
+                                        <div className="relative aspect-[4/3] rounded-[5px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-500 group-hover:shadow-[0_20px_60px_rgba(220,38,38,0.15)] ring-1 ring-white/10">
                                             <Image
                                                 src={featuredPost.image}
                                                 alt={featuredPost.title}
@@ -164,7 +164,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
                                 <Link href={`/blog/${post.slug}`}>
                                     <div className="group flex flex-col h-full bg-white dark:bg-slate-900 border-none transition-all duration-300">
                                         {/* Image Section */}
-                                        <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                                        <div className="relative aspect-[16/10] rounded-[5px] overflow-hidden mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
                                             <Image
                                                 src={post.image}
                                                 alt={post.title}

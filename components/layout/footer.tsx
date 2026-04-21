@@ -103,15 +103,15 @@ function FooterLinkGroup({
 }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold text-white mb-5 uppercase tracking-[0.15em]">
+      <h3 className="text-base font-bold text-white mb-4 uppercase tracking-widest">
         {title}
       </h3>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-1.5">
         {links.map((link) => (
           <li key={link.label}>
             <Link
               href={link.href}
-              className="text-sm text-slate-100 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
+              className="text-[14px] text-slate-200 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
             >
               {link.label}
             </Link>
@@ -146,15 +146,15 @@ export default function Footer() {
   return (
     <footer ref={footerRef} className="bg-slate-500 text-slate-300">
       {/* Main footer */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-6">
           {/* Company Info */}
           <div
             className="lg:col-span-2"
             data-footer-animate
             style={{ animationDelay: "0.1s" }}
           >
-            <Link href="/" className="flex flex-col items-start gap-1 mb-8 group shrink-0">
+            <Link href="/" className="flex flex-col items-start gap-1 mb-5 group shrink-0">
               <Image
                 src="/images/logo_new.svg"
                 alt="ELV Technology Solutions"
@@ -166,12 +166,12 @@ export default function Footer() {
                 ELV TECHNOLOGY SOLUTIONS
               </span>
             </Link>
-            <p className="text-sm leading-relaxed text-white mb-8 max-w-xs">
+            <p className="text-sm leading-relaxed text-white mb-5 max-w-xs">
               ELV Technology Solutions, one of the best ELV & Audio-Visual
               Integrators in Abu Dhabi.
             </p>
 
-            <div className="flex flex-col gap-4 mb-8">
+            <div className="flex flex-col gap-3 mb-5">
               <a
                 href="https://maps.app.goo.gl/16dAZSietMquBWUw6"
                 target="_blank"
@@ -185,12 +185,12 @@ export default function Footer() {
                 </p>
               </a>
               <a
-                href="mailto:najmalfawaznfz1234@gmail.com"
+                href="mailto:info@etssmart.com"
                 className="flex items-center gap-3 group"
               >
                 <Mail className="h-4 w-4 shrink-0 text-slate-200 transition-colors group-hover:text-white" />
                 <span className="text-sm text-white font-medium transition-colors group-hover:text-white">
-                  najmalfawaznfz1234@gmail.com
+                  info@etssmart.com
                 </span>
               </a>
               <a
@@ -240,13 +240,13 @@ export default function Footer() {
           <div data-footer-animate style={{ animationDelay: "0.5s" }}>
             <FooterLinkGroup title="Network & Communications" links={networkComms} />
 
-            <div className="mt-8">
-              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-[0.15em]">
+            <div className="mt-6">
+              <h3 className="text-base font-bold text-white mb-4 uppercase tracking-widest">
                 Home Automation
               </h3>
               <Link
                 href="/solutions/home-automation#automation"
-                className="text-sm text-slate-100 transition-all duration-300 hover:text-white font-medium hover:translate-x-1 inline-block"
+                className="text-[14px] text-slate-200 transition-all duration-300 hover:text-white font-medium hover:translate-x-1 inline-block"
               >
                 Home Automation & Lighting Control System
               </Link>
@@ -301,10 +301,10 @@ export default function Footer() {
             <p className="text-sm text-slate-100 leading-relaxed font-medium">
               Interested in joining our team? Submit your CV to{" "}
               <a
-                href="mailto:najmalfawaznfz1234@gmail.com"
+                href="mailto:info@etssmart.com"
                 className="text-white underline underline-offset-4 decoration-white/50 transition-colors hover:decoration-white"
               >
-                najmalfawaznfz1234@gmail.com
+                info@etssmart.com
               </a>
               , and we{"'"}ll be in touch after reviewing your application.
             </p>

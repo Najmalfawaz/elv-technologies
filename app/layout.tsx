@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Chatbot from "@/components/chatbot/chatbot";
 
-const inter = Inter({ subsets: ["latin"] });
+const playfair = Playfair_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ELV Technology Solutions",
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-foreground`}>
+      <body className={`${playfair.className} bg-background text-foreground`}>
         {children}
         <Toaster richColors position="top-right" />
         <Chatbot />

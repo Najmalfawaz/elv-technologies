@@ -27,9 +27,9 @@ export function ClientsSlider() {
     }
 
     return (
-        <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+        <section className="py-12 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
             <div className="w-full">
-                <div className="text-center mb-16 px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-10 px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                         Our Esteemed Clients
                     </h2>
@@ -57,7 +57,7 @@ export function ClientsSlider() {
                                                 whileHover={{ scale: 1.05 }}
                                                 className="transition-transform duration-300"
                                             >
-                                                <Card className="border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden">
+                                                <Card className="border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all duration-300 rounded-[3px] overflow-hidden">
                                                     <CardContent className="flex aspect-[4/3] items-center justify-center p-1">
                                                         <div className="relative h-full w-full">
                                                             <Image

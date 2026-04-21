@@ -24,14 +24,14 @@ export default function Programming() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
-        <div className="grid gap-16 lg:grid-cols-2 items-center">
+        <div className="grid gap-16 lg:grid-cols-2 items-stretch">
 
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[600px] w-full overflow-hidden rounded-[2rem] shadow-2xl border border-slate-800 group shadow-slate-900/50"
+            className="relative h-full min-h-[400px] w-full overflow-hidden rounded-[5px] shadow-2xl border border-slate-800 group shadow-slate-900/50"
           >
             <Image
               src={programming.image}

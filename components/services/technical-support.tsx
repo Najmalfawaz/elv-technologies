@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { servicesData } from '@/lib/services-data';
-import { CheckCircle, Server, Shield, Monitor } from 'lucide-react';
+import { CheckCircle, Server, Shield, Monitor, Clock, ShieldCheck, BarChart3, Users, Wrench, FileText, Layers } from 'lucide-react';
 
 export default function TechnicalSupport() {
   const { technicalSupport } = servicesData;
@@ -22,7 +22,7 @@ export default function TechnicalSupport() {
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         {/* Intro Section */}
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -74,7 +74,7 @@ export default function TechnicalSupport() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[500px] w-full overflow-hidden rounded-[2rem] shadow-2xl border border-slate-100 group shadow-slate-200/50"
+            className="relative h-full min-h-[400px] w-full overflow-hidden rounded-[5px] shadow-2xl border border-slate-100 group shadow-slate-200/50"
           >
             <Image
               src={technicalSupport.image}
@@ -162,7 +162,8 @@ export default function TechnicalSupport() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {technicalSupport.whyChooseUs.items.map((item, idx) => {
-              const Icon = technicalSupport.whyChooseUs.icon;
+              const Icons = [Clock, ShieldCheck, BarChart3, Users];
+              const Icon = Icons[idx % Icons.length];
               return (
                 <motion.div
                   key={item}

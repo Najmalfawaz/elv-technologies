@@ -9,11 +9,7 @@ export default function SecuritySurveillancePage() {
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
-            <SolutionVerticalHero
-                title={data.title}
-                description={data.description}
-                bgImage={data.image}
-            />
+            
 
             <SolutionVideoHero
                 videoSrc="/images/solutions/security-surveillance/hero.mp4"

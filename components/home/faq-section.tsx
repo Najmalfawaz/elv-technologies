@@ -30,7 +30,7 @@ function FAQItem({
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-start justify-between gap-4 py-6 text-left group"
+        className="w-full flex items-start justify-between gap-4 py-4 text-left group"
         aria-expanded={isOpen}
       >
         <span
@@ -56,11 +56,11 @@ function FAQItem({
           opacity: isOpen ? 1 : 0,
         }}
       >
-        <p className="pb-6 text-sm sm:text-base text-muted-foreground leading-relaxed pr-12">
+        <p className="pb-4 text-sm sm:text-base text-muted-foreground leading-relaxed pr-12">
           {faq.answer}
         </p>
       </div>
-    </div>
+    </div >
   );
 }
 
@@ -96,9 +96,9 @@ export default function FAQSection({ initialData }: { initialData?: any[] }) {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-white">
+    <section ref={sectionRef} className="py-16 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Left heading */}
           <div
             className={`lg:col-span-2 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

@@ -94,7 +94,7 @@ export default function IndustriesSection() {
                             <Link
                                 href="/services"
                                 key={index}
-                                className={`group relative w-full h-full rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:shadow-accent/10 border border-neutral-200/60 transition-all duration-500 ${colSpan} ${rowSpan}`}
+                                className={`group relative w-full h-full rounded-[5px] overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:shadow-accent/10 border border-neutral-200/60 transition-all duration-500 ${colSpan} ${rowSpan}`}
                             >
                                 <div className="absolute inset-0 bg-neutral-100">
                                     <Image

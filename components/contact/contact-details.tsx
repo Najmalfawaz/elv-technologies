@@ -6,8 +6,8 @@ const contactMethods = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'najmalfawaznfz1234@gmail.com',
-    href: 'mailto:najmalfawaznfz1234@gmail.com',
+    value: 'info@etssmart.com',
+    href: 'mailto:info@etssmart.com',
   },
   {
     icon: Phone,

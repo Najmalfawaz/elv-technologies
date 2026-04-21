@@ -3,7 +3,14 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { solutionsData } from '@/lib/solutions-data';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Shield, Key, PlusSquare, Music, MonitorPlay, Users, Monitor, Wifi, Network, Tv, Home, Lightbulb } from 'lucide-react';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from '@/components/ui/carousel';
 import Link from 'next/link';
 
 export default function ServicesSolutionsGrid() {
@@ -39,6 +46,11 @@ export default function ServicesSolutionsGrid() {
         priorityList.some(p => item.title.includes(p) || p.includes(item.title))
     );
 
+    const distinctIcons = [
+        Shield, Key, PlusSquare, Music, MonitorPlay, Users, 
+        Monitor, Wifi, Network, Tv, Home, Lightbulb
+    ];
+
     return (
         <section className="py-24 bg-slate-900 relative overflow-hidden">
             {/* Dark Theme Background Effects */}
@@ -68,8 +80,21 @@ export default function ServicesSolutionsGrid() {
                     </p>
                 </motion.div>
 
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {displayedSolutions.map((solution, idx) => (
+                <Carousel
+                    opts={{
+                        align: "start",
+                        slidesToScroll: 1, // scroll 1
+                        breakpoints: {
+                            '(min-width: 1280px)': { slidesToScroll: 4 }
+                        }
+                    }}
+                    className="w-full relative px-4 xl:px-8"
+                >
+                    <CarouselContent className="-ml-6">
+                    {displayedSolutions.map((solution, idx) => {
+                        const Icon = distinctIcons[idx % distinctIcons.length];
+                        return (
+                        <CarouselItem key={solution.title} className="pl-6 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                         <motion.div
                             key={solution.title}
                             initial={{ opacity: 0, y: 30 }}
@@ -89,7 +114,7 @@ className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
                                 <div className="absolute bottom-4 left-4 z-10 flex items-center justify-center h-12 w-12 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700 text-red-400 group-hover:bg-red-500 group-hover:text-white transition-colors shadow-xl">
-                                    <solution.icon className="h-6 w-6" />
+                                    <Icon className="h-6 w-6" />
                                 </div>
                             </div>
 
@@ -126,8 +151,15 @@ className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 </div>
                             </div>
                         </motion.div>
-                    ))}
-                </div>
+                        </CarouselItem>
+                    );})}
+                    </CarouselContent>
+                    
+                    <div className="hidden xl:block">
+                        <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2 bg-slate-800 text-white border-slate-700 hover:bg-red-500 hover:text-white" />
+                        <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 bg-slate-800 text-white border-slate-700 hover:bg-red-500 hover:text-white" />
+                    </div>
+                </Carousel>
             </div>
         </section>
     );

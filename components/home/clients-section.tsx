@@ -28,7 +28,7 @@ export default function ClientsSection() {
   return (
     <section 
       ref={sectionRef} 
-      className='py-20 sm:py-32 bg-background overflow-hidden relative border-y border-border'
+      className='py-12 sm:py-16 bg-background overflow-hidden relative border-y border-border'
     >
       <div className='w-full'>
         <div
@@ -55,16 +55,16 @@ export default function ClientsSection() {
             ]}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-8">
+            <CarouselContent className="-ml-3 md:-ml-4">
               {clients.map((item, index) => (
-                                <CarouselItem key={index} className="pl-4 md:pl-8 basis-[60%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                  <div className="w-[180px] sm:w-[220px] mx-auto aspect-[4/3] flex items-center justify-center p-4 hover:scale-105 transition-all duration-300">
+                <CarouselItem key={index} className="pl-3 md:pl-4 basis-[60%] sm:basis-1/3 md:basis-1/4 lg:basis-[20%]">
+                  <div className="w-full h-28 sm:h-36 flex items-center justify-center p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-accent/20 transition-all duration-300">
                     <div className="relative w-full h-full">
                       <Image
                         src={item.src}
                         alt={item.alt}
                         fill
-                        className="object-contain opacity-100 transition-all duration-300"
+                        className="object-contain opacity-100 transition-transform duration-500 hover:scale-105"
                         sizes="(max-width: 768px) 150px, 200px"
                       />
                     </div>

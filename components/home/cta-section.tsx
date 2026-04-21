@@ -67,11 +67,11 @@ export default function CTASection() {
                     +971 2 441 8186
                   </a>
                   <a
-                    href="mailto:najmalfawaznfz1234@gmail.com"
+                    href="mailto:info@etssmart.com"
                     className="flex items-center gap-2.5 text-sm text-background/60 transition-colors hover:text-background"
                   >
                     <Mail className="h-4 w-4" />
-                    najmalfawaznfz1234@gmail.com
+                    info@etssmart.com
                   </a>
                 </div>
               </div>

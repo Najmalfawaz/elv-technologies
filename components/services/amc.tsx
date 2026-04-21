@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { servicesData } from '@/lib/services-data';
-import { CheckCircle, ShieldCheck, Wrench, Clock, Activity, Zap, ArrowRight } from 'lucide-react';
+import { CheckCircle, ShieldCheck, Wrench, Clock, Activity, Zap, ArrowRight, Users, FileText, Layers } from 'lucide-react';
 
 export default function Amc() {
   const { amc } = servicesData;
@@ -48,17 +48,17 @@ export default function Amc() {
           </div>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-12 items-stretch">
+        <div className="grid gap-6 lg:grid-cols-12 items-stretch">
           {/* Systems Covered - Bento Grid */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 flex flex-col gap-8"
+            className="lg:col-span-7 flex flex-col gap-6 h-full"
           >
             {/* Systems Glass Card */}
-            <div className="relative rounded-[2rem] border border-slate-100 bg-white p-8 backdrop-blur-xl overflow-hidden group h-full shadow-xl shadow-slate-200/50">
+            <div className="relative rounded-[2rem] border border-slate-100 bg-white p-6 backdrop-blur-xl overflow-hidden group h-full shadow-xl shadow-slate-200/50">
               <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3 relative z-10">
@@ -85,7 +85,7 @@ export default function Amc() {
             </div>
 
             {/* Image Card */}
-            <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden border border-slate-100 group shrink-0 bg-slate-100">
+            <div className="relative w-full aspect-[16/10] sm:aspect-video lg:aspect-auto lg:flex-1 rounded-[5px] min-h-[450px] overflow-hidden border border-slate-100 group bg-slate-100">
               <Image
                 src={amc.image}
                 alt="AMC Services"
@@ -109,16 +109,16 @@ export default function Amc() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col gap-8 h-full"
+            className="lg:col-span-5 flex flex-col gap-6 h-full"
           >
             {/* What includes */}
-            <div className="relative rounded-[2rem] border border-slate-100 bg-white p-8 backdrop-blur-xl overflow-hidden group shadow-xl shadow-slate-200/50">
+            <div className="relative rounded-[2rem] border border-slate-100 bg-white p-6 backdrop-blur-xl overflow-hidden group shadow-xl shadow-slate-200/50">
               <div className="absolute inset-0 bg-gradient-to-bl from-blue-50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <h3 className="text-2xl font-bold text-slate-900 mb-3 relative z-10">
                 {amc.includes.title}
               </h3>
-              <p className="text-sm text-slate-600 mb-8 relative z-10">{amc.includes.description}</p>
+              <p className="text-sm text-slate-600 mb-2 relative z-10">{amc.includes.description}</p>
 
               <div className="space-y-4 relative z-10">
                 {amc.includes.visits.map((visit, idx) => (
@@ -136,7 +136,7 @@ export default function Amc() {
             </div>
 
             {/* Why Choose Us */}
-            <div className="relative rounded-[2rem] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-8 overflow-hidden flex-1 shadow-xl shadow-slate-200/50">
+            <div className="relative rounded-[2rem] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-6 overflow-hidden flex-1 shadow-xl shadow-slate-200/50">
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-red-100 rounded-full blur-[80px]" />
 
               <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 relative z-10">
@@ -144,20 +144,24 @@ export default function Amc() {
                 Why Choose Us?
               </h3>
               <ul className="space-y-4 relative z-10">
-                {amc.whyChooseUs.items.map((item, idx) => (
-                  <motion.li
-                    key={idx}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * idx }}
-                    className="flex items-center gap-3 text-slate-600 bg-white p-3 rounded-xl border border-slate-100 hover:border-red-100 transition-colors"
-                  >
-                    <div className="flex items-center justify-center w-6 h-6 rounded-full bg-red-50 text-red-600 shrink-0 ring-1 ring-red-100">
-                      <ArrowRight className="w-3 h-3" />
-                    </div>
-                    <span className="text-sm font-bold">{item}</span>
-                  </motion.li>
-                ))}
+                {amc.whyChooseUs.items.map((item, idx) => {
+                  const Icons = [Clock, Users, ShieldCheck, FileText, Layers];
+                  const Icon = Icons[idx % Icons.length];
+                  return (
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * idx }}
+                      className="flex items-center gap-3 text-slate-600 bg-white p-3 rounded-xl border border-slate-100 hover:border-red-100 transition-colors"
+                    >
+                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 shrink-0 ring-1 ring-red-100">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-sm font-bold">{item}</span>
+                    </motion.li>
+                  );
+                })}
               </ul>
             </div>
           </motion.div>

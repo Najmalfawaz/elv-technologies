@@ -35,10 +35,10 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
     const points = getSubPoints(item.content);
 
     return (
-        <section id={item.id} className={`py-20 ${index % 2 === 0 ? 'bg-white dark:bg-slate-950' : 'bg-slate-50 dark:bg-slate-900/50'}`}>
+        <section id={item.id} className={`py-12 ${index % 2 === 0 ? 'bg-white dark:bg-slate-950' : 'bg-slate-50 dark:bg-slate-900/50'}`}>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 {/* Block 1: First Image & First Half of Text */}
-                <div className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center mb-24`}>
+                <div className={`flex flex-col lg:flex-row gap-12 lg:gap-16 items-center mb-12`}>
                     {/* Content Side */}
                     <div className="flex-1 space-y-8">
                         <div className="flex items-center gap-4">
@@ -64,7 +64,7 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
 
                     {/* Image Side */}
                     <div className="flex-1 w-full">
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 dark:shadow-slate-900/50">
+                        <div className="relative aspect-[4/3] rounded-[5px] overflow-hidden shadow-2xl shadow-slate-200 dark:shadow-slate-900/50">
                             <Image
                                 src={item.image || "/images/placeholders/default.jpg"}
                                 alt={item.title}
@@ -78,7 +78,7 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
                 </div>
 
                 {/* Block 2: Second Image & Second Half of Text + Features */}
-                <div className={`flex flex-col lg:flex-row-reverse gap-12 lg:gap-20 items-start`}>
+                <div className={`flex flex-col lg:flex-row-reverse gap-12 lg:gap-16 items-start`}>
                     {/* Content Side */}
                     <div className="flex-1 space-y-8">
                         <div className="prose prose-slate dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
@@ -105,7 +105,7 @@ export default function SolutionDetailSection({ categoryKey, itemId, index }: So
 
                     {/* Image Side */}
                     <div className="flex-1 w-full sticky top-32">
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-slate-200 dark:shadow-slate-900/50 group">
+                        <div className="relative aspect-[4/3] rounded-[5px] overflow-hidden shadow-xl shadow-slate-200 dark:shadow-slate-900/50 group">
                             <Image
                                 src={(item as any).image2 || item.image || "/images/placeholders/default.jpg"}
                                 alt={`${item.title} secondary features`}

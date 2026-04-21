@@ -12,7 +12,7 @@ export default function PublicLayout({
     return (
         <>
             <Header />
-            <main className="pt-20 lg:pt-[88px]">{children}</main>
+            <main>{children}</main>
             <Footer />
             <ScrollToTop />
             <Chatbot />

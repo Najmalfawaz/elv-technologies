@@ -31,14 +31,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const defaultToEmail = process.env.NODE_ENV === 'production' 
-      ? 'info@etssmart.com' 
-      : 'mp.najmalfawaz@gmail.com';
+    const defaultToEmail = 'info@etssmart.com';
     const toEmail = process.env.CONTACT_TO_EMAIL || defaultToEmail;
     
     const fromEmail = process.env.CONTACT_FROM_EMAIL 
-      ? `${fullName} <${process.env.CONTACT_FROM_EMAIL}>` 
-      : `${fullName} <onboarding@resend.dev>`;
+      ? `${fullName} (${email}) <${process.env.CONTACT_FROM_EMAIL}>` 
+      : `${fullName} (${email}) <onboarding@resend.dev>`;
 
     const role = position === 'Other' ? otherPosition : position;
 

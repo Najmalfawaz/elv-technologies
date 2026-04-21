@@ -1,4 +1,4 @@
-import HeroSection from "@/components/home/hero-section";
+
 import VideoSection from "@/components/home/video-section";
 import IntroSection from "@/components/home/intro-section";
 import CaseStudiesSection from "@/components/home/case-studies-section";
@@ -17,8 +17,7 @@ export default function HomeLayout({ initialData }: { initialData: any }) {
 
   return (
     <main>
-      {/* 1. Hero */}
-      <HeroSection />
+
 
       {/* 2. Video - Sticky Background */}
       <div className="sticky top-0 z-0">
