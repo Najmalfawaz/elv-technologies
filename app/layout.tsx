@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
+import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Chatbot from "@/components/chatbot/chatbot";
 
-const playfair = Playfair_Display({ subsets: ["latin"] });
+const sourceSans = Source_Sans_3({ 
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-source-sans",
+});
 
 export const metadata: Metadata = {
   title: "ELV Technology Solutions",
@@ -21,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.className} bg-background text-foreground`}>
+      <body className={`${sourceSans.className} bg-background text-foreground`}>
         {children}
         <Toaster richColors position="top-right" />
         <Chatbot />

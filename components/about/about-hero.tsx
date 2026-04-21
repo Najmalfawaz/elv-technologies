@@ -16,7 +16,7 @@ export default function AboutHero() {
           className="object-cover opacity-100"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-slate-50/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/40 to-slate-900/60" />
       </div>
 
       {/* Dynamic Background Effects */}
@@ -32,7 +32,7 @@ export default function AboutHero() {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-slate-800 backdrop-blur-md shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
@@ -45,12 +45,12 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-serif text-5xl font-extrabold tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm"
+          className="font-serif text-5xl font-extrabold tracking-tight text-white sm:text-7xl drop-shadow-2xl"
         >
-          <span className="block text-slate-900">
+          <span className="block text-white">
             ELV Technology Solutions !!!
           </span>
-          <span className="mt-2 block text-slate-900">
+          <span className="mt-2 block text-white">
             The Best Audio-Visual Integrator in UAE!!!
           </span>
         </motion.h1>
@@ -59,7 +59,7 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-slate-600 font-medium"
+          className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-white font-medium drop-shadow-lg"
         >
           ETS is one of the top technology integrators and solution providers
           in the UAE, specializing in security and surveillance systems, Audio

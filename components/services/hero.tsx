@@ -19,7 +19,7 @@ export default function Hero() {
           className="object-cover opacity-100"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/40 to-slate-50/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/40 to-slate-900/60" />
       </div>
 
       {/* Dynamic Background Effects */}
@@ -35,7 +35,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-slate-600 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white backdrop-blur-md">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-elv-primary-red opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-elv-primary-red"></span>
@@ -48,10 +48,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-serif text-5xl font-extrabold pb-2 tracking-tight text-slate-900 sm:text-7xl drop-shadow-sm leading-[1.2] sm:leading-[1.1]"
+          className="font-serif text-5xl font-extrabold pb-2 tracking-tight text-white sm:text-7xl drop-shadow-2xl leading-[1.2] sm:leading-[1.1]"
         >
-          <span className="block text-slate-900">Comprehensive</span>
-          <span className="mt-2 block text-slate-900">
+          <span className="block text-white">Comprehensive</span>
+          <span className="mt-2 block text-white">
             Technology Solutions
           </span>
         </motion.h1>
@@ -60,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-8 max-w-3xl text-lg md:text-xl font-medium leading-relaxed text-slate-800"
+          className="mx-auto mt-8 max-w-3xl text-lg md:text-xl font-medium leading-relaxed text-white drop-shadow-lg"
         >
           {hero.description}
         </motion.p>
