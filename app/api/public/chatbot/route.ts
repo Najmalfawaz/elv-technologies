@@ -25,7 +25,55 @@ const INTENTS = {
     GREETINGS: [
         {
             keywords: ['hi', 'hello', 'hey', 'how are you', 'how are u', 'good morning', 'good afternoon', 'greetings', 'morning', 'evening'],
-            answer: "Hello! 👋 I'm the ETS Virtual Assistant. I can help you with Security, AV, Networking, and Smart Home solutions. What can I assist you with today?"
+            answer: "Hello! 👋 I'm the ETS Virtual Assistant. I can help you with Security, AV, Networking, and Smart Home solutions in the UAE. What can I assist you with today?"
+        }
+    ],
+    GEOGRAPHY: [
+        {
+            keywords: ['india', 'pakistan', 'uk', 'usa', 'outside', 'abroad', 'other country'],
+            answer: "We currently provide our services exclusively within the **United Arab Emirates (UAE)**, covering all 7 Emirates including Abu Dhabi, Dubai, Sharjah, and more. We do not have operations in India or other countries at this time.",
+            suggestions: ["Our Solutions", "Service Locations"]
+        },
+        {
+            keywords: ['location', 'where are you', 'address', 'office', 'uae', 'emirates', 'dubai', 'abu dhabi', 'sharjah', 'ajman', 'rak', 'fujairah', 'um al quwain'],
+            answer: "ELV Technology Solutions is based in **Abu Dhabi, UAE**. We provide professional design and installation services across all 7 Emirates. Would you like to schedule a free site assessment for your project in the UAE?",
+            suggestions: ["Schedule Assessment", "View Solutions"]
+        }
+    ],
+    WHAT_WE_DO: [
+        {
+            keywords: ['what are your services', 'what are your solutions', 'what do you do', 'list of services', 'tell me about ets'],
+            answer: "ETS specializes in integrated technology solutions across the UAE. Our core service pillars are:\n1. **Security & Surveillance** (AI CCTV, Access Control)\n2. **Audio Visual Solutions** (Smart Meetings, LED Walls)\n3. **Network & Communications** (Structured Cabling, IT)\n4. **Smart Home & Automation** (Lighting & Control)\n\nWhich of these would you like to explore in detail?",
+            suggestions: ["Security & Surveillance", "Audio Visual Solutions", "Network & Communications", "Smart Home & Automation", "Get a Quote"]
+        }
+    ],
+    SOLUTIONS_DETAIL: [
+        {
+            keywords: ['security', 'surveillance', 'cctv', 'camera', 'access control', 'gate barrier', 'anpr'],
+            answer: "Our **Security & Surveillance** solutions combine cutting-edge AI with robust hardware. We provide high-definition AI CCTV with facial recognition, ANPR (Automatic Number Plate Recognition), advanced access control systems (Biometric/RFID), and automated gate barriers. All systems are SIRA/MCC compliant and designed for 24/7 reliability in the UAE.",
+            suggestions: ["Audio Visual Solutions", "Get a Quote"]
+        },
+        {
+            keywords: ['audio visual', 'av ', 'meeting room', 'led screen', 'video wall', 'bgm', 'public address', 'pa system'],
+            answer: "We deliver immersive **Audio Visual Solutions** for corporate and commercial spaces. This includes smart meeting rooms (Teams/Zoom integrated), high-impact indoor/outdoor LED video walls, background music (BGM) systems, and professional Public Address (PA) systems. We focus on seamless integration and user-friendly control interfaces.",
+            suggestions: ["Network & Communications", "Get a Quote"]
+        },
+        {
+            keywords: ['network', 'communication', 'cabling', 'it equipment', 'wi-fi', 'wifi', 'server', 'rack', 'cabinet', 'switch'],
+            answer: "Our **Network & Communications** services build the backbone of your business. We specialize in TIA/EIA standard structured cabling (Fiber/Copper), enterprise-grade Wi-Fi 6 solutions, server room setups (racks, cooling, management), and full IT hardware provisioning (switches, firewalls, and storage).",
+            suggestions: ["Security & Surveillance", "Get a Quote"]
+        },
+        {
+            keywords: ['smart home', 'automation', 'lighting control', 'curtain', 'blind', 'smart building', 'knx', 'zigbee'],
+            answer: "Experience the future with **Smart Home & Automation**. We offer centralized control for lighting, motorized curtains/blinds, climate control, and AV systems. Using protocols like KNX and Zigbee, we create intelligent environments that are energy-efficient and can be controlled via voice, smartphone, or elegant touch panels.",
+            suggestions: ["Security & Surveillance", "Get a Quote"]
+        }
+    ],
+    GET_QUOTE: [
+        {
+            keywords: ['quote', 'quotation', 'price', 'pricing', 'cost', 'how much', 'get a quote', 'estimate'],
+            answer: "I would be happy to help you get a professional quotation for your project. Please provide a few details below, and our engineering team will get back to you with a tailored proposal.",
+            suggestions: []
         }
     ]
 };
@@ -33,6 +81,10 @@ const INTENTS = {
 const SYSTEM_PROMPT = `
 You are the ETS Assistant representing ELV Technology Solutions (Abu Dhabi, UAE).
 You provide expert advice on Security (CCTV), AV, Networking, and Smart Automation.
+
+GEOGRAPHY:
+- We operate **ONLY within the United Arab Emirates (UAE)**.
+- If a user asks about services in India, Pakistan, or any other country outside the UAE, politely state that we only provide services within the UAE.
 
 GUIDELINES:
 1. USE ONLY the provided context to answer the user's question.
@@ -49,6 +101,12 @@ function shouldCaptureLead(input: string): boolean {
 
 export async function POST(req: Request) {
     try {
+        // 0. CHECK ENVIRONMENT
+        if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+            console.error("CRITICAL: GOOGLE_GENERATIVE_AI_API_KEY is missing in environment variables.");
+            // We will proceed to try intents first, then fail gracefully at LLM step.
+        }
+
         const { message, history = [] } = await req.json();
         const lowerMessage = message.toLowerCase();
 
@@ -57,7 +115,7 @@ export async function POST(req: Request) {
             item.keywords.some(k => lowerMessage.includes(k))
         );
         if (outOfScopeMatch) {
-            return NextResponse.json({ text: outOfScopeMatch.answer, captureLead: false });
+            return NextResponse.json({ text: outOfScopeMatch.answer, captureLead: false, suggestions: ["View Services", "Contact Us"] });
         }
 
         // 2. FAST PATH: Greetings
@@ -65,10 +123,42 @@ export async function POST(req: Request) {
             item.keywords.some(k => lowerMessage.includes(k)) && lowerMessage.length < 20
         );
         if (greetingMatch) {
-            return NextResponse.json({ text: greetingMatch.answer, captureLead: false });
+            return NextResponse.json({ text: greetingMatch.answer, captureLead: false, suggestions: ["Our Solutions", "Service Locations"] });
         }
 
-        // 3. RAG PATH: Semantic Retrieval
+        // 3. FAST PATH: Geography
+        const geoMatch = INTENTS.GEOGRAPHY.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k))
+        );
+        if (geoMatch) {
+            return NextResponse.json({ text: geoMatch.answer, captureLead: false, suggestions: geoMatch.suggestions });
+        }
+
+        // 4. FAST PATH: What We Do
+        const whatWeDoMatch = INTENTS.WHAT_WE_DO.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k))
+        );
+        if (whatWeDoMatch) {
+            return NextResponse.json({ text: whatWeDoMatch.answer, captureLead: false, suggestions: whatWeDoMatch.suggestions });
+        }
+
+        // 5. FAST PATH: Solution Details
+        const solutionDetailMatch = INTENTS.SOLUTIONS_DETAIL.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k))
+        );
+        if (solutionDetailMatch) {
+            return NextResponse.json({ text: solutionDetailMatch.answer, captureLead: false, suggestions: solutionDetailMatch.suggestions });
+        }
+
+        // 6. FAST PATH: Get Quote
+        const getQuoteMatch = INTENTS.GET_QUOTE.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k))
+        );
+        if (getQuoteMatch) {
+            return NextResponse.json({ text: getQuoteMatch.answer, captureLead: true, suggestions: getQuoteMatch.suggestions });
+        }
+
+        // 7. RAG PATH: Semantic Retrieval
         let context = "";
         try {
             context = await findRelevantContext(message);
@@ -95,10 +185,18 @@ export async function POST(req: Request) {
             captureLead 
         });
 
-    } catch (error) {
-        console.error('Chatbot API Error:', error);
+    } catch (error: any) {
+        console.error('Chatbot API Error Details:', {
+            message: error.message,
+            stack: error.stack,
+            envSet: !!process.env.GOOGLE_GENERATIVE_AI_API_KEY
+        });
+        
+        // Fallback for LLM Failure
+        const fallbackResponse = "I have a detailed understanding of Security, AV, and Networking in the UAE. Could you please specify which service you are interested in? Alternatively, you can contact our technical team directly at **+971 54 792 2800** for a detailed consultation.";
+
         return NextResponse.json({ 
-            text: "I apologize, but I'm having a technical issue. Please try again or contact us directly at **+971 54 792 2800**.", 
+            text: fallbackResponse, 
             captureLead: false 
         });
     }

@@ -45,7 +45,7 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-serif text-5xl font-extrabold tracking-tight text-white sm:text-7xl drop-shadow-2xl"
+          className="font-serif text-4xl font-extrabold tracking-tight text-white sm:text-6xl drop-shadow-2xl"
         >
           <span className="block text-white">
             ELV Technology Solutions !!!

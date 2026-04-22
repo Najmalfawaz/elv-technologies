@@ -147,7 +147,7 @@ export default function Footer() {
     <footer ref={footerRef} className="bg-slate-500 text-slate-300">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-10 lg:gap-6">
           {/* Company Info */}
           <div
             className="lg:col-span-2"
@@ -236,21 +236,26 @@ export default function Footer() {
             <FooterLinkGroup title="AV Solutions" links={avSolutions} />
           </div>
 
-          {/* Network & Comms + Home Automation */}
+          {/* Network & Communications */}
           <div data-footer-animate style={{ animationDelay: "0.5s" }}>
             <FooterLinkGroup title="Network & Communications" links={networkComms} />
+          </div>
 
-            <div className="mt-6">
-              <h3 className="text-base font-bold text-white mb-4 uppercase tracking-widest">
-                Home Automation
-              </h3>
-              <Link
-                href="/solutions/home-automation#automation"
-                className="text-[14px] text-slate-200 transition-all duration-300 hover:text-white font-medium hover:translate-x-1 inline-block"
-              >
-                Home Automation & Lighting Control System
-              </Link>
-            </div>
+          {/* Home Automation */}
+          <div data-footer-animate style={{ animationDelay: "0.6s" }}>
+            <h3 className="text-base font-bold text-white mb-4 uppercase tracking-widest">
+              Home Automation
+            </h3>
+            <ul className="flex flex-col gap-1.5">
+              <li>
+                <Link
+                  href="/solutions/home-automation#automation"
+                  className="text-[14px] text-slate-200 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
+                >
+                  Home Automation & Lighting Control System
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 

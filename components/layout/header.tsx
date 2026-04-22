@@ -180,7 +180,7 @@ export default function Header() {
                 className="w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
                 priority
               />
-              <span className={`text-[9px] sm:text-[10px] font-extrabold tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none ${isScrolled ? "text-[#1b1b1b]" : "text-white"}`}>
+              <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none ${isScrolled ? "text-[#1b1b1b]" : "text-white"}`}>
                 ELV TECHNOLOGY SOLUTIONS
               </span>
             </Link>
@@ -206,7 +206,7 @@ export default function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`relative flex items-center gap-1 px-3.5 py-2 text-[15px] font-semibold transition-colors duration-300 ${isActive
+                        className={`relative flex items-center gap-1 px-3.5 py-2 text-[16px] font-semibold transition-colors duration-300 ${isActive
                           ? "text-accent"
                           : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
                           }`}
@@ -274,7 +274,7 @@ export default function Header() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`relative px-3.5 py-2 text-[15px] font-semibold transition-colors duration-300 group ${isActive
+                    className={`relative px-3.5 py-2 text-[16px] font-semibold transition-colors duration-300 group ${isActive
                       ? "text-accent"
                       : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
                       }`}
@@ -309,7 +309,7 @@ export default function Header() {
               </div>
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-[16px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
               >
                 Contact Us
               </Link>
@@ -363,7 +363,7 @@ export default function Header() {
                           mobileSubmenuOpen === link.label ? null : link.label
                         )
                       }
-                      className={`w-full flex items-center justify-between rounded-xl px-5 py-3.5 text-[15px] font-medium transition-all duration-300 ${isActive
+                      className={`w-full flex items-center justify-between rounded-xl px-5 py-3.5 text-[16px] font-medium transition-all duration-300 ${isActive
                         ? "bg-accent/5 text-accent"
                         : "text-foreground/70 hover:bg-secondary hover:text-foreground"
                         }`}
@@ -441,7 +441,7 @@ export default function Header() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`rounded-xl px-5 py-3.5 text-[15px] font-medium transition-all duration-300 ${isActive
+                  className={`rounded-xl px-5 py-3.5 text-[16px] font-medium transition-all duration-300 ${isActive
                     ? "bg-accent/5 text-accent"
                     : "text-foreground/70 hover:bg-secondary hover:text-foreground"
                     }`}

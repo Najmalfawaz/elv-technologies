@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { CONTACT_CONFIG } from '@/lib/contact-config';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -31,8 +32,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const defaultToEmail = 'info@etssmart.com';
-    const toEmail = process.env.CONTACT_TO_EMAIL || defaultToEmail;
+    const toEmail = process.env.CONTACT_TO_EMAIL || CONTACT_CONFIG.toEmail;
     
     const fromEmail = process.env.CONTACT_FROM_EMAIL 
       ? `${fullName} (${email}) <${process.env.CONTACT_FROM_EMAIL}>` 

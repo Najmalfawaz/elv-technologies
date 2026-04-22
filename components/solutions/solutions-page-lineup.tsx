@@ -83,21 +83,21 @@ export default function SolutionsPageLineup() {
                                                 height={45}
                                                 className="object-contain h-auto w-auto max-h-[45px] drop-shadow-md"
                                             />
-                                            <span className="text-white font-bold text-sm tracking-widest mt-1 drop-shadow-md">
+                                            <span className="text-red-600 font-bold text-sm tracking-widest mt-1 drop-shadow-md">
                                                 ETS
                                             </span>
-                                        </div>
-
-                                        <div className="absolute bottom-8 left-8 right-8 z-20">
-                                            <h2 className="text-3xl font-bold text-white mb-2 leading-tight">
-                                                {vertical.title}
-                                            </h2>
-                                            <div className="h-1 w-12 bg-red-600 rounded-full transition-all duration-500 group-hover:w-24 group-hover:bg-red-500" />
                                         </div>
                                     </div>
 
                                     {/* Content Area with refined typography */}
-                                    <div className="p-10 flex flex-col h-[calc(100%-320px)]">
+                                    <div className="p-10 flex flex-col h-full">
+                                        <div className="mb-6">
+                                            <h2 className="text-3xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-red-600 transition-colors">
+                                                {vertical.title}
+                                            </h2>
+                                            <div className="h-1 w-12 bg-red-600 rounded-full transition-all duration-500 group-hover:w-24 group-hover:bg-red-500" />
+                                        </div>
+
                                         <p className="text-slate-600 text-lg leading-relaxed mb-8 line-clamp-3">
                                             {vertical.description}
                                         </p>

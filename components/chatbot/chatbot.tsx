@@ -15,6 +15,7 @@ interface Message {
   timestamp: Date;
   isMarkdown?: boolean;
   captureLead?: boolean;
+  suggestions?: string[];
 }
 
 const formatBotMessage = (text: string) => {
@@ -120,10 +121,17 @@ export default function Chatbot() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const addMessage = (text: string, sender: 'user' | 'bot', captureLead = false) => {
+  const addMessage = (text: string, sender: 'user' | 'bot', captureLead = false, suggestions?: string[]) => {
     setMessages((prev) => [
       ...prev,
-      { id: uuidv4(), text, sender, timestamp: new Date(), captureLead },
+      { 
+        id: uuidv4(), 
+        text, 
+        sender, 
+        timestamp: new Date(), 
+        captureLead,
+        suggestions
+      },
     ]);
   };
 
@@ -150,9 +158,8 @@ export default function Chatbot() {
     }
   }, [isOpen]);
 
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const userMessage = inputValue.trim();
+  const sendMessage = async (text: string) => {
+    const userMessage = text.trim();
     if (!userMessage) return;
 
     addMessage(userMessage, 'user');
@@ -174,12 +181,17 @@ export default function Chatbot() {
       const data = await response.json();
 
       setIsTyping(false);
-      addMessage(data.text, 'bot', data.captureLead);
+      addMessage(data.text, 'bot', data.captureLead, data.suggestions);
 
     } catch (error) {
       setIsTyping(false);
       addMessage("I apologize, but I encountered an error. Please contact us at +971 54 792 2800 for immediate assistance.", 'bot');
     }
+  };
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    sendMessage(inputValue);
   };
 
   return (
@@ -260,7 +272,22 @@ export default function Chatbot() {
                     <div className={`px-4 py-3 rounded-2xl text-[14px] leading-relaxed shadow-sm ${msg.sender === 'user' ? 'bg-red-600 text-white rounded-br-none' : 'bg-white border border-gray-100 text-gray-800 rounded-bl-none'}`}>
                       <div className="whitespace-pre-wrap">{msg.sender === 'user' ? msg.text : formatBotMessage(msg.text)}</div>
                       {msg.captureLead && (
-                        <LeadForm onComplete={() => addMessage("Thank you! You can also reach us at **info@etssmart.com** or **+971 54 792 2800**.", 'bot')} />
+                        <LeadForm onComplete={() => addMessage("Our team will contact you shortly. Thank you! \n\nYou can also reach us directly at **+971 54 792 2800** or **info@etssmart.com**.", 'bot')} />
+                      )}
+                      
+                      {/* Contextual Suggestions for this message */}
+                      {msg.suggestions && msg.suggestions.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-gray-50">
+                          {msg.suggestions.map((suggestion, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => sendMessage(suggestion)}
+                              className="px-3 py-1.5 bg-gray-50 border border-gray-100 hover:border-red-200 hover:text-red-600 text-gray-600 rounded-full text-[11px] font-medium transition-all active:scale-95 shadow-sm"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </div>

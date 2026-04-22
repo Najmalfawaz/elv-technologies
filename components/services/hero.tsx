@@ -48,7 +48,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-serif text-5xl font-extrabold pb-2 tracking-tight text-white sm:text-7xl drop-shadow-2xl leading-[1.2] sm:leading-[1.1]"
+          className="font-serif text-4xl font-extrabold pb-2 tracking-tight text-white sm:text-6xl drop-shadow-2xl leading-[1.2] sm:leading-[1.1]"
         >
           <span className="block text-white">Comprehensive</span>
           <span className="mt-2 block text-white">
