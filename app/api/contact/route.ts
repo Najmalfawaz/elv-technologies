@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { CONTACT_CONFIG } from '@/lib/contact-config';
+import { prisma } from '@/lib/prisma';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,6 +13,22 @@ export async function POST(req: Request) {
     // Server-side validation
     if (!name || !email || !subject || !message || !isNotRobot) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    // Save to database
+    try {
+      await prisma.inquiry.create({
+        data: {
+          name,
+          email,
+          subject,
+          message,
+        },
+      });
+    } catch (dbError) {
+      console.error('Failed to save inquiry to database:', dbError);
+      // We continue with email sending even if DB fails, 
+      // or we could return an error here.
     }
 
     const fromEmail = process.env.CONTACT_FROM_EMAIL 

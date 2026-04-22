@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { CONTACT_CONFIG } from '@/lib/contact-config';
+import { prisma } from '@/lib/prisma';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -32,13 +33,29 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    const role = position === 'Other' ? otherPosition : position;
+
+    // Save to database
+    try {
+      await prisma.application.create({
+        data: {
+          fullName,
+          email,
+          phone,
+          position: role,
+          message,
+          resumeUrl: file ? file.name : null, // Storing filename as a reference
+        },
+      });
+    } catch (dbError) {
+      console.error('Failed to save application to database:', dbError);
+    }
+
     const toEmail = process.env.CONTACT_TO_EMAIL || CONTACT_CONFIG.toEmail;
     
     const fromEmail = process.env.CONTACT_FROM_EMAIL 
       ? `${fullName} (${email}) <${process.env.CONTACT_FROM_EMAIL}>` 
       : `${fullName} (${email}) <onboarding@resend.dev>`;
-
-    const role = position === 'Other' ? otherPosition : position;
 
     const data = await resend.emails.send({
       from: fromEmail,

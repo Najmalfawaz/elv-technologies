@@ -35,14 +35,14 @@ const INTENTS = {
             suggestions: ["Our Solutions", "Service Locations"]
         },
         {
-            keywords: ['location', 'where are you', 'address', 'office', 'uae', 'emirates', 'dubai', 'abu dhabi', 'sharjah', 'ajman', 'rak', 'fujairah', 'um al quwain'],
+            keywords: ['service locations', 'location', 'where are you', 'address', 'office', 'uae', 'emirates', 'dubai', 'abu dhabi', 'sharjah', 'ajman', 'rak', 'fujairah', 'um al quwain'],
             answer: "ELV Technology Solutions is based in **Abu Dhabi, UAE**. We provide professional design and installation services across all 7 Emirates. Would you like to schedule a free site assessment for your project in the UAE?",
             suggestions: ["Schedule Assessment", "View Solutions"]
         }
     ],
     WHAT_WE_DO: [
         {
-            keywords: ['what are your services', 'what are your solutions', 'what do you do', 'list of services', 'tell me about ets'],
+            keywords: ['view solutions', 'our solutions', 'our services', 'what are your services', 'what are your solutions', 'what do you do', 'list of services', 'tell me about ets'],
             answer: "ETS specializes in integrated technology solutions across the UAE. Our core service pillars are:\n1. **Security & Surveillance** (AI CCTV, Access Control)\n2. **Audio Visual Solutions** (Smart Meetings, LED Walls)\n3. **Network & Communications** (Structured Cabling, IT)\n4. **Smart Home & Automation** (Lighting & Control)\n\nWhich of these would you like to explore in detail?",
             suggestions: ["Security & Surveillance", "Audio Visual Solutions", "Network & Communications", "Smart Home & Automation", "Get a Quote"]
         }

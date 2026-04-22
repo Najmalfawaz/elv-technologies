@@ -10,6 +10,8 @@ import {
     LogOut,
     ChevronRight,
     Building,
+    Mail,
+    UserCheck,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -60,6 +62,16 @@ const contentItems = [
         title: "Testimonials",
         url: "/admin/testimonials",
         icon: MessageSquare,
+    },
+    {
+        title: "Inquiries",
+        url: "/admin/inquiries",
+        icon: Mail,
+    },
+    {
+        title: "Applications",
+        url: "/admin/applications",
+        icon: UserCheck,
     },
 ];
 
