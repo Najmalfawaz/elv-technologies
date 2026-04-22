@@ -34,7 +34,7 @@ export const faqSectionData = {
   subheading: "Everything you need to know about our ELV and Audio-Visual solutions. Can't find what you're looking for? Contact our team directly.",
   button: {
     text: "Ask us on WhatsApp",
-    link: "https://wa.me/971547922800",
+    link: "https://wa.me/97124418186",
   },
   faqs: [
     {

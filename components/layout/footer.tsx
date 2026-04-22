@@ -194,7 +194,7 @@ export default function Footer() {
                 </span>
               </a>
               <a
-                href="tel:+971547922800"
+                href="tel:+97124418186"
                 className="flex items-center gap-3 group"
               >
                 <Phone className="h-4 w-4 shrink-0 text-slate-200 transition-colors group-hover:text-white" />

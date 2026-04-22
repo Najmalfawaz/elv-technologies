@@ -115,7 +115,11 @@ export async function POST(req: Request) {
             item.keywords.some(k => lowerMessage.includes(k))
         );
         if (outOfScopeMatch) {
-            return NextResponse.json({ text: outOfScopeMatch.answer, captureLead: false, suggestions: ["View Services", "Contact Us"] });
+            return NextResponse.json({ 
+                text: outOfScopeMatch.answer, 
+                captureLead: false, 
+                suggestions: ["Our Solutions", "Service Locations", "Get a Quote"] 
+            });
         }
 
         // 2. FAST PATH: Solution Details (Moved priority UP to catch specific services first)
@@ -192,12 +196,13 @@ export async function POST(req: Request) {
             envSet: !!process.env.GOOGLE_GENERATIVE_AI_API_KEY
         });
         
-        // Fallback for LLM Failure
-        const fallbackResponse = "I have a detailed understanding of Security, AV, and Networking in the UAE. Could you please specify which service you are interested in? Alternatively, you can contact our technical team directly at **+971 54 792 2800** for a detailed consultation.";
+        // Fallback for LLM Failure or unrecognized input
+        const fallbackResponse = "I focus on Security, AV, and Networking solutions in the UAE. I'm afraid I don't have information on that specific topic. \n\nWould you like to explore our core services or contact our technical team at **+971 2 441 8186** for a consultation?";
 
         return NextResponse.json({ 
             text: fallbackResponse, 
-            captureLead: false 
+            captureLead: false,
+            suggestions: ["Our Solutions", "Service Locations", "Get a Quote"]
         });
     }
 }

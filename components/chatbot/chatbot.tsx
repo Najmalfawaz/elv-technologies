@@ -279,7 +279,7 @@ export default function Chatbot() {
                     <div className={`px-4 py-3 rounded-2xl text-[14px] leading-relaxed shadow-sm ${msg.sender === 'user' ? 'bg-red-600 text-white rounded-br-none' : 'bg-white border border-gray-100 text-gray-800 rounded-bl-none'}`}>
                       <div className="whitespace-pre-wrap">{msg.sender === 'user' ? msg.text : formatBotMessage(msg.text)}</div>
                       {msg.captureLead && (
-                        <LeadForm onComplete={() => addMessage("Our team will contact you shortly. Thank you! \n\nYou can also reach us directly at **+971 54 792 2800** or **info@etssmart.com**.", 'bot')} />
+                        <LeadForm onComplete={() => addMessage("Our team will contact you shortly. Thank you! \n\nYou can also reach us directly at **+971 2 441 8186** or **info@etssmart.com**.", 'bot')} />
                       )}
                       
                       {/* Contextual Suggestions for this message */}
