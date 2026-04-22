@@ -30,7 +30,7 @@ const formatBotMessage = (text: string) => {
 };
 
 function LeadForm({ onComplete }: { onComplete: () => void }) {
-  const [formData, setFormData] = useState({ name: '', email: '', requirements: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -44,8 +44,9 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: 'New Lead from ETS Chatbot',
-          message: `Project Details: ${formData.requirements}`,
+          subject: formData.subject || 'New Lead from Chatbot',
+          message: formData.message,
+          source: 'chatbot',
           isNotRobot: true
         }),
       });
@@ -72,7 +73,7 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
           </div>
           <span className="font-bold">Sent Successfully!</span>
         </div>
-        <p className="opacity-90 leading-relaxed font-medium">Our engineering team has received your requirements and will get back to you shortly.</p>
+        <p className="opacity-90 leading-relaxed font-medium">Our engineering team has received your message and will get back to you shortly.</p>
       </div>
     );
   }
@@ -80,32 +81,45 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
   return (
     <form onSubmit={handleSubmit} className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm space-y-3 mt-2 animate-in slide-in-from-top-2">
       <div>
-        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Full Name</label>
+        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Name</label>
         <input 
           required 
           className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors" 
           value={formData.name}
           onChange={e => setFormData({...formData, name: e.target.value})}
+          placeholder="Enter your name"
         />
       </div>
       <div>
-        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Business Email</label>
+        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Email</label>
         <input 
           required 
           type="email"
           className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors" 
           value={formData.email}
           onChange={e => setFormData({...formData, email: e.target.value})}
+          placeholder="Enter your email"
         />
       </div>
       <div>
-        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Project Requirements</label>
+        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Subject</label>
+        <input 
+          required 
+          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors" 
+          value={formData.subject}
+          onChange={e => setFormData({...formData, subject: e.target.value})}
+          placeholder="Nature of inquiry"
+        />
+      </div>
+      <div>
+        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Message</label>
         <textarea 
           required 
           rows={2}
           className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors resize-none" 
-          value={formData.requirements}
-          onChange={e => setFormData({...formData, requirements: e.target.value})}
+          value={formData.message}
+          onChange={e => setFormData({...formData, message: e.target.value})}
+          placeholder="How can we help you?"
         />
       </div>
       <Button 
@@ -113,7 +127,7 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
         disabled={isSubmitting}
         className="w-full bg-red-600 hover:bg-red-700 text-white text-xs h-9 rounded-lg shadow-sm"
       >
-        {isSubmitting ? 'Sending...' : 'Submit Requirements'}
+        {isSubmitting ? 'Sending...' : 'Send Message'}
       </Button>
     </form>
   );

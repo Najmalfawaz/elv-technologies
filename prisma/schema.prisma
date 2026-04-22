@@ -105,6 +105,7 @@ model Inquiry {
   email     String
   subject   String
   message   String   @db.Text
+  source    String   @default("website")
   status    String   @default("new")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

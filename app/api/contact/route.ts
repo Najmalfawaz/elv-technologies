@@ -8,7 +8,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, subject, message, isNotRobot } = body;
+    const { name, email, subject, message, isNotRobot, source = 'website' } = body;
 
     // Server-side validation
     if (!name || !email || !subject || !message || !isNotRobot) {
@@ -23,6 +23,7 @@ export async function POST(req: Request) {
           email,
           subject,
           message,
+          source,
         },
       });
     } catch (dbError) {
