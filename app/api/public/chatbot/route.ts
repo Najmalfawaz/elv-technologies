@@ -71,9 +71,9 @@ const INTENTS = {
     ],
     GET_QUOTE: [
         {
-            keywords: ['quote', 'quotation', 'price', 'pricing', 'cost', 'how much', 'get a quote', 'estimate'],
-            answer: "I would be happy to help you get a professional quotation for your project. Please provide a few details below, and our engineering team will get back to you with a tailored proposal.",
-            suggestions: []
+            keywords: ['quote', 'quotation', 'price', 'pricing', 'how much', 'get a quote', 'estimate', 'schedule', 'assessment', 'site visit', 'survey', 'appointment'],
+            answer: "I would be happy to help you get a professional quotation or schedule a free site assessment. Please provide a few details below, and our engineering team will get back to you to coordinate the next steps.",
+            suggestions: ["Security & Surveillance", "Audio Visual Solutions"]
         }
     ]
 };
