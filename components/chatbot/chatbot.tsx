@@ -63,9 +63,16 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
 
   if (isSubmitted) {
     return (
-      <div className="bg-green-50 border border-green-100 p-4 rounded-xl text-green-800 text-sm animate-in zoom-in-95 duration-300">
-        <p className="font-semibold">Thank you! Your request has been sent.</p>
-        <p className="mt-1 opacity-90">Our engineering team will review your requirements and get back to you shortly.</p>
+      <div className="bg-green-50 border border-green-100 p-5 rounded-2xl text-green-900 text-sm animate-in zoom-in-95 duration-300">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <span className="font-bold">Sent Successfully!</span>
+        </div>
+        <p className="opacity-90 leading-relaxed font-medium">Our engineering team has received your requirements and will get back to you shortly.</p>
       </div>
     );
   }
