@@ -42,7 +42,7 @@ const INTENTS = {
     ],
     WHAT_WE_DO: [
         {
-            keywords: ['view solutions', 'our solutions', 'our services', 'what are your services', 'what are your solutions', 'what do you do', 'list of services', 'tell me about ets'],
+            keywords: ['solutions', 'services', 'offer', 'help', 'view solutions', 'our solutions', 'our services', 'what are your services', 'what are your solutions', 'what do you do', 'list of services', 'tell me about ets'],
             answer: "ETS specializes in integrated technology solutions across the UAE. Our core service pillars are:\n1. **Security & Surveillance** (AI CCTV, Access Control)\n2. **Audio Visual Solutions** (Smart Meetings, LED Walls)\n3. **Network & Communications** (Structured Cabling, IT)\n4. **Smart Home & Automation** (Lighting & Control)\n\nWhich of these would you like to explore in detail?",
             suggestions: ["Security & Surveillance", "Audio Visual Solutions", "Network & Communications", "Smart Home & Automation", "Get a Quote"]
         }
