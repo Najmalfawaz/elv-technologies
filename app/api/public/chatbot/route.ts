@@ -49,24 +49,24 @@ const INTENTS = {
     ],
     SOLUTIONS_DETAIL: [
         {
-            keywords: ['security', 'surveillance', 'cctv', 'camera', 'access control', 'gate barrier', 'anpr'],
+            keywords: ['security', 'surveillance', 'cctv', 'camera', 'access control', 'gate barrier', 'anpr', 'facial recognition', 'people counting', 'sira', 'mcc', 'biometric', 'rfid', 'turnstile', 'nurse call', 'toilet alarm', 'government', 'safety'],
             answer: "Our **Security & Surveillance** solutions combine cutting-edge AI with robust hardware. We provide high-definition AI CCTV with facial recognition, ANPR (Automatic Number Plate Recognition), advanced access control systems (Biometric/RFID), and automated gate barriers. All systems are SIRA/MCC compliant and designed for 24/7 reliability in the UAE.",
-            suggestions: ["Audio Visual Solutions", "Get a Quote"]
+            suggestions: ["Audio Visual Solutions", "Network & Communications", "Smart Home & Automation", "Get a Quote"]
         },
         {
-            keywords: ['audio visual', 'av ', 'meeting room', 'led screen', 'video wall', 'bgm', 'public address', 'pa system'],
+            keywords: ['audio visual', 'av ', 'meeting room', 'led screen', 'video wall', 'bgm', 'public address', 'pa system', 'music system', 'conference room', 'boardroom', 'digital signage', 'led wall', 'multi-room audio', 'hospitality', 'hotel', 'retail'],
             answer: "We deliver immersive **Audio Visual Solutions** for corporate and commercial spaces. This includes smart meeting rooms (Teams/Zoom integrated), high-impact indoor/outdoor LED video walls, background music (BGM) systems, and professional Public Address (PA) systems. We focus on seamless integration and user-friendly control interfaces.",
-            suggestions: ["Network & Communications", "Get a Quote"]
+            suggestions: ["Security & Surveillance", "Network & Communications", "Smart Home & Automation", "Get a Quote"]
         },
         {
-            keywords: ['network', 'communication', 'cabling', 'it equipment', 'wi-fi', 'wifi', 'server', 'rack', 'cabinet', 'switch'],
+            keywords: ['network', 'communication', 'cabling', 'it equipment', 'wi-fi', 'wifi', 'server', 'rack', 'cabinet', 'switch', 'fiber', 'fibre', 'cat 6', 'cisco', 'aruba', 'ruckus', 'structured cabling', 'ip phone', 'pbx', 'voip', 'iptv', 'smatv', 'tra', 'tdra', 'iso'],
             answer: "Our **Network & Communications** services build the backbone of your business. We specialize in TIA/EIA standard structured cabling (Fiber/Copper), enterprise-grade Wi-Fi 6 solutions, server room setups (racks, cooling, management), and full IT hardware provisioning (switches, firewalls, and storage).",
-            suggestions: ["Security & Surveillance", "Get a Quote"]
+            suggestions: ["Security & Surveillance", "Audio Visual Solutions", "Smart Home & Automation", "Get a Quote"]
         },
         {
-            keywords: ['smart home', 'automation', 'lighting control', 'curtain', 'blind', 'smart building', 'knx', 'zigbee'],
+            keywords: ['smart home', 'automation', 'lighting control', 'curtain', 'blind', 'smart building', 'knx', 'zigbee', 'home automation', 'dimming', 'shades', 'motorized curtain', 'villa', 'residential'],
             answer: "Experience the future with **Smart Home & Automation**. We offer centralized control for lighting, motorized curtains/blinds, climate control, and AV systems. Using protocols like KNX and Zigbee, we create intelligent environments that are energy-efficient and can be controlled via voice, smartphone, or elegant touch panels.",
-            suggestions: ["Security & Surveillance", "Get a Quote"]
+            suggestions: ["Security & Surveillance", "Audio Visual Solutions", "Network & Communications", "Get a Quote"]
         }
     ],
     GET_QUOTE: [
@@ -118,23 +118,15 @@ export async function POST(req: Request) {
             return NextResponse.json({ text: outOfScopeMatch.answer, captureLead: false, suggestions: ["View Services", "Contact Us"] });
         }
 
-        // 2. FAST PATH: Greetings
-        const greetingMatch = INTENTS.GREETINGS.find(item => 
-            item.keywords.some(k => lowerMessage.includes(k)) && lowerMessage.length < 20
-        );
-        if (greetingMatch) {
-            return NextResponse.json({ text: greetingMatch.answer, captureLead: false, suggestions: ["Our Solutions", "Service Locations"] });
-        }
-
-        // 3. FAST PATH: Geography
-        const geoMatch = INTENTS.GEOGRAPHY.find(item => 
+        // 2. FAST PATH: Solution Details (Moved priority UP to catch specific services first)
+        const solutionDetailMatch = INTENTS.SOLUTIONS_DETAIL.find(item => 
             item.keywords.some(k => lowerMessage.includes(k))
         );
-        if (geoMatch) {
-            return NextResponse.json({ text: geoMatch.answer, captureLead: false, suggestions: geoMatch.suggestions });
+        if (solutionDetailMatch) {
+            return NextResponse.json({ text: solutionDetailMatch.answer, captureLead: false, suggestions: solutionDetailMatch.suggestions });
         }
 
-        // 4. FAST PATH: What We Do
+        // 3. FAST PATH: What We Do (General list)
         const whatWeDoMatch = INTENTS.WHAT_WE_DO.find(item => 
             item.keywords.some(k => lowerMessage.includes(k))
         );
@@ -142,12 +134,20 @@ export async function POST(req: Request) {
             return NextResponse.json({ text: whatWeDoMatch.answer, captureLead: false, suggestions: whatWeDoMatch.suggestions });
         }
 
-        // 5. FAST PATH: Solution Details
-        const solutionDetailMatch = INTENTS.SOLUTIONS_DETAIL.find(item => 
+        // 4. FAST PATH: Greetings
+        const greetingMatch = INTENTS.GREETINGS.find(item => 
+            item.keywords.some(k => lowerMessage.includes(k)) && lowerMessage.length < 20
+        );
+        if (greetingMatch) {
+            return NextResponse.json({ text: greetingMatch.answer, captureLead: false, suggestions: ["Our Solutions", "Service Locations"] });
+        }
+
+        // 5. FAST PATH: Geography
+        const geoMatch = INTENTS.GEOGRAPHY.find(item => 
             item.keywords.some(k => lowerMessage.includes(k))
         );
-        if (solutionDetailMatch) {
-            return NextResponse.json({ text: solutionDetailMatch.answer, captureLead: false, suggestions: solutionDetailMatch.suggestions });
+        if (geoMatch) {
+            return NextResponse.json({ text: geoMatch.answer, captureLead: false, suggestions: geoMatch.suggestions });
         }
 
         // 6. FAST PATH: Get Quote
