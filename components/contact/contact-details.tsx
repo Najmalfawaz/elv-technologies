@@ -19,7 +19,7 @@ const contactMethods = [
     icon: MapPin,
     title: 'Address',
     value: 'P.O. Box 36815 Grand Outlet Building, M01, Al Danah E18_02 Al Falah St., Abu Dhabi, UAE',
-    href: 'https://maps.app.goo.gl/3yrQnC9J4Q3Y4g9f9',
+    href: 'https://maps.app.goo.gl/16dAZSietMquBWUw6',
   },
 ];
 
