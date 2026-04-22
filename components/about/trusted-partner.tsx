@@ -79,13 +79,13 @@ export default function TrustedPartner() {
 
           {/* Image */}
           <div className="relative lg:sticky lg:top-32 h-fit">
-            <div className="absolute -inset-4 rounded-[3rem] bg-red-500/20 blur-2xl opacity-50" />
+            <div className="absolute -inset-4 rounded-[5px] bg-red-500/20 blur-2xl opacity-50" />
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-video overflow-hidden rounded-[2.5rem] border border-slate-200 bg-black shadow-2xl group"
+              className="relative aspect-video overflow-hidden rounded-[5px] border border-slate-200 bg-black shadow-2xl group"
             >
               <video
                 src="/images/aboutUS/aboutus.mp4"
