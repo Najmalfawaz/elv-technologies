@@ -44,7 +44,7 @@ export default function ContactForm() {
       const result = await res.json();
 
       if (res.ok) {
-        toast.success('Your message has been sent!');
+        setIsSubmitted(true);
         form.reset();
       } else {
         toast.error(result.error || 'Failed to send message.');
@@ -54,6 +54,33 @@ export default function ContactForm() {
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  if (isSubmitted) {
+    return (
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="rounded-2xl bg-white p-12 shadow-2xl border border-gray-100 flex flex-col items-center text-center space-y-6"
+      >
+        <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-4">
+          <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Thank You!</h2>
+        <p className="text-gray-600 text-lg max-w-sm leading-relaxed">
+          Your message has been received. Our technical team will review your inquiry and get back to you within 24 hours.
+        </p>
+        <Button 
+          variant="outline" 
+          onClick={() => setIsSubmitted(false)}
+          className="mt-4 px-8 rounded-full border-gray-200 hover:bg-gray-50 transition-all font-semibold"
+        >
+          Send Another Message
+        </Button>
+      </motion.div>
+    );
   }
 
   return (
@@ -139,7 +166,7 @@ export default function ContactForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white transition-all shadow-md" disabled={isSubmitting}>
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </Button>
         </form>
