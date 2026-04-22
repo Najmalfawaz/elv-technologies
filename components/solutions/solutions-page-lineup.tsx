@@ -56,7 +56,7 @@ export default function SolutionsPageLineup() {
                             <motion.div key={vertical.id} variants={itemVariants}>
                                 <Link
                                     href={`/solutions/${vertical.id}`}
-                                    className="group block relative h-full bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:-translate-y-2"
+                                    className="group block relative h-full bg-white rounded-[5px] overflow-hidden border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:-translate-y-2"
                                 >
                                     {/* Image Container with sophisticated overlay */}
                                     <div className="relative h-80 w-full overflow-hidden">
@@ -70,7 +70,7 @@ export default function SolutionsPageLineup() {
                                         />
 
                                         {/* Floating Icon Badge */}
-                                        <div className="absolute top-6 left-6 z-20 h-14 w-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
+                                        <div className="absolute top-6 left-6 z-20 h-14 w-14 rounded-[5px] bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
                                             <Icon className="h-7 w-7 text-white" />
                                         </div>
 
