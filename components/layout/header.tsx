@@ -99,7 +99,7 @@ const socialLinks = [
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/971547922800",
+    href: "https://wa.me/97124418186",
     icon: MessageCircle,
   },
 ];
@@ -186,7 +186,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden xl:flex items-center gap-0.5">
+            <nav className="hidden xl:flex items-center gap-0">
               {navLinks.map((link) => {
                 const isActive =
                   pathname === link.href ||
@@ -206,7 +206,7 @@ export default function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`relative flex items-center gap-1 px-3.5 py-2 text-[16px] font-semibold transition-colors duration-300 ${isActive
+                        className={`relative flex items-center gap-1 px-3 py-2 text-[14.5px] font-semibold transition-colors duration-300 ${isActive
                           ? "text-accent"
                           : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
                           }`}
@@ -274,7 +274,7 @@ export default function Header() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`relative px-3.5 py-2 text-[16px] font-semibold transition-colors duration-300 group ${isActive
+                    className={`relative px-3 py-2 text-[14.5px] font-semibold transition-colors duration-300 group ${isActive
                       ? "text-accent"
                       : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
                       }`}
@@ -309,7 +309,7 @@ export default function Header() {
               </div>
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-[16px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
               >
                 Contact Us
               </Link>
@@ -472,6 +472,14 @@ export default function Header() {
           </div>
 
           <div className="mt-6 flex items-center justify-center gap-4">
+            <a
+              href="https://wa.me/97124418186"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 rounded-full border border-background/20 px-8 py-4 text-sm font-medium text-background transition-all duration-300 hover:bg-background/10 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              WhatsApp Us
+            </a>
             {socialLinks.map((social) => (
               <a
                 key={social.label}
