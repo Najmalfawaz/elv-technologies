@@ -67,6 +67,26 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
         setLoading(true);
 
         try {
+            let finalImageUrl = formData.image;
+            
+            // Upload file if it's a new File object
+            if (formData.image instanceof File) {
+                toast.loading('Uploading image...', { id: 'upload-toast' });
+                
+                const { uploadFiles } = await import('@/lib/uploadthing');
+                const res = await uploadFiles("imageUploader", {
+                    files: [formData.image],
+                });
+                
+                if (res && res[0]) {
+                    finalImageUrl = res[0].url;
+                    toast.dismiss('upload-toast');
+                } else {
+                    toast.dismiss('upload-toast');
+                    throw new Error('Failed to upload image');
+                }
+            }
+
             const url = isEditing
                 ? `/api/admin/blogs/${initialData.id}`
                 : '/api/admin/blogs';
@@ -75,9 +95,8 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
 
             const payload = {
                 ...formData,
-                // React-Quill outputs string HTML by default, no need to stringify
+                image: finalImageUrl,
                 content: formData.content,
-                // map excerpt from description if needed, logic handled in state init
             };
 
             const res = await fetch(url, {
@@ -95,6 +114,7 @@ export function BlogForm({ initialData, isEditing }: BlogFormProps) {
             toast.error('Error saving blog');
         } finally {
             setLoading(false);
+            toast.dismiss('upload-toast');
         }
     };
 

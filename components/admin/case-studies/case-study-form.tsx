@@ -65,16 +65,58 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
         setLoading(true);
 
         try {
+            let finalImageUrl = formData.image;
+            let finalGallery = [...formData.gallery];
+            
+            const { uploadFiles } = await import('@/lib/uploadthing');
+
+            // 1. Upload featured image if it's a new File
+            if (formData.image instanceof File) {
+                toast.loading('Uploading featured image...', { id: 'upload-toast' });
+                const res = await uploadFiles("imageUploader", { files: [formData.image] });
+                if (res && res[0]) {
+                    finalImageUrl = res[0].url;
+                } else {
+                    throw new Error('Failed to upload featured image');
+                }
+            }
+
+            // 2. Upload gallery images if they are new Files
+            const newGalleryFiles = finalGallery.filter(f => f instanceof File) as File[];
+            if (newGalleryFiles.length > 0) {
+                toast.loading('Uploading gallery images...', { id: 'upload-toast' });
+                const res = await uploadFiles("galleryUploader", { files: newGalleryFiles });
+                if (res) {
+                    let uploadIndex = 0;
+                    finalGallery = finalGallery.map(item => {
+                        if (item instanceof File) {
+                            return res[uploadIndex++].url;
+                        }
+                        return item;
+                    });
+                } else {
+                    throw new Error('Failed to upload gallery images');
+                }
+            }
+
+            toast.loading('Saving case study...', { id: 'upload-toast' });
+
             const url = isEditing
                 ? `/api/admin/case-studies/${initialData.id}`
                 : '/api/admin/case-studies';
 
             const method = isEditing ? 'PATCH' : 'POST';
 
+            const payload = {
+                ...formData,
+                image: finalImageUrl,
+                gallery: finalGallery,
+            };
+
             const res = await fetch(url, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             });
 
             if (res.ok) {
@@ -86,6 +128,7 @@ export function CaseStudyForm({ initialData, isEditing }: CaseStudyFormProps) {
             toast.error('Error saving case study');
         } finally {
             setLoading(false);
+            toast.dismiss('upload-toast');
         }
     };
 
