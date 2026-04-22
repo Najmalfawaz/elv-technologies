@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -33,6 +33,13 @@ export default function ContactForm() {
       isNotRobot: false,
     },
   });
+
+  const name = form.watch('name');
+  const email = form.watch('email');
+  const subject = form.watch('subject');
+  const message = form.watch('message');
+
+  const allFieldsFilled = name && email && subject && message;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
@@ -148,27 +155,43 @@ export default function ContactForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="isNotRobot"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel>
-                    I'm not a robot
-                  </FormLabel>
-                  <FormMessage />
+          
+          <AnimatePresence>
+            {allFieldsFilled ? (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                <FormField
+                  control={form.control}
+                  name="isNotRobot"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 pt-4 border-t border-gray-200 mt-4">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="cursor-pointer">
+                          I'm not a robot
+                        </FormLabel>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
+              </motion.div>
+            ) : (
+                <div className="text-[11px] text-gray-400 font-medium italic mt-4">
+                  Please fill in all fields above to verify you are not a robot.
                 </div>
-              </FormItem>
             )}
-          />
-          <Button type="submit" size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white transition-all shadow-md" disabled={isSubmitting}>
+          </AnimatePresence>
+
+          <Button type="submit" size="lg" className="w-full bg-red-600 hover:bg-red-700 text-white transition-all shadow-md group" disabled={isSubmitting}>
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </Button>
         </form>
