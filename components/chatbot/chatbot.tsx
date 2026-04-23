@@ -8,6 +8,39 @@ import { Input } from '@/components/ui/input';
 import { AnimatePresence, motion } from 'framer-motion';
 import { v4 as uuidv4 } from 'uuid';
 
+const CustomBotIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={className} xmlns="http://www.w3.org/2000/svg">
+    {/* Base shape (Head, Ears, Antenna, Tail) */}
+    <path fill="currentColor" d="
+      M 6 38 h 9 v 24 h -9 z
+      M 85 38 h 9 v 24 h -9 z
+      M 46 16 h 8 v 9 h -8 z
+      M 50 5 a 6 6 0 1 0 0 12 a 6 6 0 1 0 0 -12 z
+      M 25 25
+      H 75
+      A 10 10 0 0 1 85 35
+      V 65
+      A 10 10 0 0 1 75 75
+      H 55
+      L 35 92
+      V 75
+      H 25
+      A 10 10 0 0 1 15 65
+      V 35
+      A 10 10 0 0 1 25 25
+      Z
+    " />
+    {/* Eyes and Mouth (White) */}
+    <path fill="white" d="
+      M 35 39 a 6 6 0 1 0 0 12 a 6 6 0 1 0 0 -12 z
+      M 65 39 a 6 6 0 1 0 0 12 a 6 6 0 1 0 0 -12 z
+      M 33 58
+      H 67
+      A 17 17 0 0 1 33 58
+      Z
+    " />
+  </svg>
+);
 interface Message {
   id: string;
   text: string;
@@ -172,6 +205,35 @@ export default function Chatbot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const playNotificationSound = () => {
+    try {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContextClass) return;
+      const ctx = new AudioContextClass();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.5);
+    } catch (e) {
+      console.log('Audio playback blocked by browser policy');
+    }
+  };
+
+  // Open chatbot by default shortly after page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+      setShowTooltip(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping]);
@@ -182,6 +244,7 @@ export default function Chatbot() {
         setIsTyping(true);
         setTimeout(() => {
           setIsTyping(false);
+          playNotificationSound();
           addMessage(
             "Hi! 👋 I'm the AI ETS Assistant. I can help you with Security, AV, Networking, and Smart Home solutions in the UAE. \n\nWhat can I assist you with today?",
             'bot'
@@ -214,6 +277,7 @@ export default function Chatbot() {
       const data = await response.json();
 
       setIsTyping(false);
+      playNotificationSound();
       addMessage(data.text, 'bot', data.captureLead, data.suggestions);
 
     } catch (error) {
@@ -251,18 +315,20 @@ export default function Chatbot() {
         </AnimatePresence>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05, y: -4 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => {
             setIsOpen(!isOpen);
             setShowTooltip(false);
           }}
-          className="pointer-events-auto group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(220,38,38,0.2)] transition-all overflow-hidden border border-gray-100"
+          className="pointer-events-auto group relative flex items-center justify-center transition-all text-red-600 hover:text-red-700 drop-shadow-[0_10px_20px_rgba(220,38,38,0.4)]"
         >
-          {isOpen ? <X className="relative z-10 w-7 h-7 text-gray-600" /> : (
-            <div className="relative z-10 w-full h-full flex items-center justify-center p-3 bg-red-600">
-              <Bot className="w-8 h-8 text-white transition-transform group-hover:scale-110" />
+          {isOpen ? (
+            <div className="flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-red-600 shadow-lg border border-red-500">
+              <X className="w-8 h-8 text-white" />
             </div>
+          ) : (
+            <CustomBotIcon className="w-[68px] h-[68px] transition-transform group-hover:scale-105 group-hover:-rotate-6" />
           )}
         </motion.button>
       </div>

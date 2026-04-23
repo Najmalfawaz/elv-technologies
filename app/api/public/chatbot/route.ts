@@ -36,7 +36,7 @@ const INTENTS = {
         },
         {
             keywords: ['service locations', 'location', 'where are you', 'address', 'office', 'uae', 'emirates', 'dubai', 'abu dhabi', 'sharjah', 'ajman', 'rak', 'fujairah', 'um al quwain'],
-            answer: "ELV Technology Solutions is based in **Abu Dhabi, UAE**. We provide professional design and installation services across all 7 Emirates. Would you like to schedule a free site assessment for your project in the UAE?",
+            answer: "Our headquarters is located in **Abu Dhabi, UAE**. We provide professional technology integration services across all 7 Emirates.\n\n📍 ELV Technology Solutions, Abu Dhabi, UAE.\n\nWould you like to schedule a free site assessment?",
             suggestions: ["Schedule Assessment", "View Solutions"]
         }
     ],
@@ -71,8 +71,8 @@ const INTENTS = {
     ],
     GET_QUOTE: [
         {
-            keywords: ['quote', 'quotation', 'price', 'pricing', 'how much', 'get a quote', 'estimate', 'schedule', 'assessment', 'site visit', 'survey', 'appointment'],
-            answer: "I would be happy to help you get a professional quotation or schedule a free site assessment. Please provide a few details below, and our engineering team will get back to you to coordinate the next steps.",
+            keywords: ['quote', 'quotation', 'price', 'pricing', 'how much', 'get a quote', 'estimate', 'schedule', 'assessment', 'site visit', 'survey', 'appointment', 'callback', 'call back', 'contact', 'reach you', 'phone', 'email', 'number'],
+            answer: "Our team will contact you shortly. Please give us your details below to schedule a call back.\n\nYou can also reach our corporate office directly:\n📞 **+971 2 441 8186**\n✉️ **info@etssmart.com**",
             suggestions: ["Security & Surveillance", "Audio Visual Solutions"]
         }
     ]

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { LogoIcon } from "@/components/ui/logo";
 import {
   Instagram,
   Facebook,
@@ -155,13 +155,7 @@ export default function Footer() {
             style={{ animationDelay: "0.1s" }}
           >
             <Link href="/" className="flex flex-col items-start gap-1 mb-5 group shrink-0">
-              <Image
-                src="/images/logo_new.svg"
-                alt="ELV Technology Solutions"
-                width={120}
-                height={120}
-                className="w-[100px] sm:w-[120px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
-              />
+              <LogoIcon className="w-[100px] sm:w-[120px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none text-white" />
               <span className="text-[11px] sm:text-[12px] font-extrabold text-white tracking-widest mt-2 pointer-events-none select-none transition-colors group-hover:text-accent">
                 ELV TECHNOLOGY SOLUTIONS
               </span>

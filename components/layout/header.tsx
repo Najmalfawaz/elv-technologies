@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { LogoIcon } from "@/components/ui/logo";
 import {
   Menu,
   X,
@@ -172,14 +172,7 @@ export default function Header() {
           <div className="flex h-20 lg:h-[88px] items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex flex-col items-center justify-center group shrink-0">
-              <Image
-                src="/images/logo_new.svg"
-                alt="ELV Technology Solutions"
-                width={90}
-                height={90}
-                className="w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
-                priority
-              />
+              <LogoIcon className={`w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`} />
               <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`}>
                 <span className="group-hover:text-red-600 transition-colors">E</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>LV </span>
                 <span className="group-hover:text-red-600 transition-colors">T</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>ECHNOLOGY </span>
