@@ -15,6 +15,7 @@ import { toast } from 'sonner';
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email.' }),
+  phone: z.string().min(8, { message: 'Phone number must be at least 8 characters.' }),
   subject: z.string().min(5, { message: 'Subject must be at least 5 characters.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
   isNotRobot: z.boolean().refine(val => val === true, { message: 'Please confirm you are not a robot' }),
@@ -28,6 +29,7 @@ export default function ContactForm() {
     defaultValues: {
       name: '',
       email: '',
+      phone: '',
       subject: '',
       message: '',
       isNotRobot: false,
@@ -36,10 +38,11 @@ export default function ContactForm() {
 
   const name = form.watch('name');
   const email = form.watch('email');
+  const phone = form.watch('phone');
   const subject = form.watch('subject');
   const message = form.watch('message');
 
-  const allFieldsFilled = name && email && subject && message;
+  const allFieldsFilled = name && email && phone && subject && message;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
@@ -124,6 +127,19 @@ export default function ContactForm() {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Your email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input placeholder="Your phone number" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

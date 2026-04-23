@@ -99,7 +99,7 @@ const socialLinks = [
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/97124418186",
+    href: "https://wa.me/971547922800",
     icon: MessageCircle,
   },
 ];
@@ -180,7 +180,7 @@ export default function Header() {
                 className="w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
                 priority
               />
-              <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none ${isScrolled ? "text-[#1b1b1b]" : "text-white"}`}>
+              <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none text-white`}>
                 ELV TECHNOLOGY SOLUTIONS
               </span>
             </Link>
@@ -355,18 +355,9 @@ export default function Header() {
 
               if (link.submenu) {
                 return (
-                  <div key={link.label}>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setMobileSubmenuOpen(
-                          mobileSubmenuOpen === link.label ? null : link.label
-                        )
-                      }
-                      className={`w-full flex items-center justify-between rounded-xl px-5 py-3.5 text-[16px] font-medium transition-all duration-300 ${isActive
-                        ? "bg-accent/5 text-accent"
-                        : "text-foreground/70 hover:bg-secondary hover:text-foreground"
-                        }`}
+                  <div key={link.label} className="flex flex-col">
+                    <div 
+                      className="flex items-center justify-between rounded-xl px-5 py-3.5 transition-all duration-300"
                       style={{
                         transitionDelay: isMobileMenuOpen
                           ? `${i * 50}ms`
@@ -377,12 +368,31 @@ export default function Header() {
                         opacity: isMobileMenuOpen ? 1 : 0,
                       }}
                     >
-                      {link.label}
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-300 ${mobileSubmenuOpen === link.label ? "rotate-180" : ""
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`text-[16px] font-medium flex-1 ${isActive
+                          ? "text-accent"
+                          : "text-foreground/70 hover:text-foreground"
                           }`}
-                      />
-                    </button>
+                      >
+                        {link.label}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileSubmenuOpen(
+                            mobileSubmenuOpen === link.label ? null : link.label
+                          )
+                        }
+                        className="p-2 -mr-2 text-foreground/50 hover:text-accent transition-colors"
+                      >
+                        <ChevronDown
+                          className={`h-5 w-5 transition-transform duration-300 ${mobileSubmenuOpen === link.label ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+                    </div>
                     <div
                       className={`overflow-hidden transition-all duration-300 ${mobileSubmenuOpen === link.label
                         ? "max-h-[800px] opacity-100" /* Increased max-height for nested items */
@@ -473,7 +483,7 @@ export default function Header() {
 
           <div className="mt-6 flex items-center justify-center gap-4">
             <a
-              href="https://wa.me/97124418186"
+              href="https://wa.me/971547922800"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2.5 rounded-full border border-background/20 px-8 py-4 text-sm font-medium text-background transition-all duration-300 hover:bg-background/10 hover:-translate-y-0.5 active:translate-y-0"

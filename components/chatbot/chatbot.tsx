@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { X, User, Send } from 'lucide-react';
+import { X, User, Send, Bot, Phone, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,7 +30,7 @@ const formatBotMessage = (text: string) => {
 };
 
 function LeadForm({ onComplete }: { onComplete: () => void }) {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -44,6 +44,7 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           subject: formData.subject || 'New Lead from Chatbot',
           message: formData.message,
           source: 'chatbot',
@@ -82,48 +83,59 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
     <form onSubmit={handleSubmit} className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm space-y-3 mt-2 animate-in slide-in-from-top-2">
       <div>
         <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Name</label>
-        <input 
-          required 
-          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors" 
+        <input
+          required
+          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors"
           value={formData.name}
-          onChange={e => setFormData({...formData, name: e.target.value})}
+          onChange={e => setFormData({ ...formData, name: e.target.value })}
           placeholder="Enter your name"
         />
       </div>
       <div>
         <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Email</label>
-        <input 
-          required 
+        <input
+          required
           type="email"
-          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors" 
+          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors"
           value={formData.email}
-          onChange={e => setFormData({...formData, email: e.target.value})}
+          onChange={e => setFormData({ ...formData, email: e.target.value })}
           placeholder="Enter your email"
         />
       </div>
       <div>
+        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Phone Number</label>
+        <input
+          required
+          type="tel"
+          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors"
+          value={formData.phone}
+          onChange={e => setFormData({ ...formData, phone: e.target.value })}
+          placeholder="Enter your phone number"
+        />
+      </div>
+      <div>
         <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Subject</label>
-        <input 
-          required 
-          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors" 
+        <input
+          required
+          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors"
           value={formData.subject}
-          onChange={e => setFormData({...formData, subject: e.target.value})}
+          onChange={e => setFormData({ ...formData, subject: e.target.value })}
           placeholder="Nature of inquiry"
         />
       </div>
       <div>
         <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Message</label>
-        <textarea 
-          required 
+        <textarea
+          required
           rows={2}
-          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors resize-none" 
+          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors resize-none"
           value={formData.message}
-          onChange={e => setFormData({...formData, message: e.target.value})}
+          onChange={e => setFormData({ ...formData, message: e.target.value })}
           placeholder="How can we help you?"
         />
       </div>
-      <Button 
-        type="submit" 
+      <Button
+        type="submit"
         disabled={isSubmitting}
         className="w-full bg-red-600 hover:bg-red-700 text-white text-xs h-9 rounded-lg shadow-sm"
       >
@@ -145,11 +157,11 @@ export default function Chatbot() {
   const addMessage = (text: string, sender: 'user' | 'bot', captureLead = false, suggestions?: string[]) => {
     setMessages((prev) => [
       ...prev,
-      { 
-        id: uuidv4(), 
-        text, 
-        sender, 
-        timestamp: new Date(), 
+      {
+        id: uuidv4(),
+        text,
+        sender,
+        timestamp: new Date(),
         captureLead,
         suggestions
       },
@@ -171,7 +183,7 @@ export default function Chatbot() {
         setTimeout(() => {
           setIsTyping(false);
           addMessage(
-            "Hi! 👋 I'm the ETS Assistant. I can help you with Security, AV, Networking, and Smart Home solutions in the UAE. \n\nWhat can I assist you with today?",
+            "Hi! 👋 I'm the AI ETS Assistant. I can help you with Security, AV, Networking, and Smart Home solutions in the UAE. \n\nWhat can I assist you with today?",
             'bot'
           );
         }, 1500);
@@ -231,7 +243,7 @@ export default function Chatbot() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
-                <p className="font-medium whitespace-nowrap">Need a quick quotation?</p>
+                <p className="font-medium whitespace-nowrap">AI ETS Assistant</p>
               </div>
               <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-t border-r border-gray-100"></div>
             </motion.div>
@@ -248,8 +260,8 @@ export default function Chatbot() {
           className="pointer-events-auto group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(220,38,38,0.2)] transition-all overflow-hidden border border-gray-100"
         >
           {isOpen ? <X className="relative z-10 w-7 h-7 text-gray-600" /> : (
-            <div className="relative z-10 w-full h-full flex items-center justify-center p-3">
-              <Image src="/images/1.png" alt="ETS Logo" width={32} height={32} className="object-contain transition-transform group-hover:scale-110" />
+            <div className="relative z-10 w-full h-full flex items-center justify-center p-3 bg-red-600">
+              <Bot className="w-8 h-8 text-white transition-transform group-hover:scale-110" />
             </div>
           )}
         </motion.button>
@@ -266,11 +278,11 @@ export default function Chatbot() {
             <div className="bg-gradient-to-r from-red-600 to-red-700 p-5 text-white shadow-md relative z-10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-2">
-                     <Image src="/images/1.png" alt="ETS Logo" width={28} height={28} className="object-contain" />
+                  <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-inner overflow-hidden p-2 text-red-600">
+                    <Bot size={28} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg leading-tight">ETS Assistant</h3>
+                    <h3 className="font-bold text-lg leading-tight">AI ETS Assistant</h3>
                     <div className="flex items-center gap-1.5 opacity-90 mt-0.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
                       <span className="text-xs font-medium">Online & Ready</span>
@@ -284,41 +296,62 @@ export default function Chatbot() {
             </div>
 
             <div className="flex-1 bg-[#F9FAFB] p-5 overflow-y-auto space-y-5">
-              {messages.map((msg) => (
+              {messages.map((msg, msgIndex) => {
+                const isLastBotMessage = msg.sender === 'bot' && messages.slice(msgIndex + 1).every(m => m.sender !== 'bot');
+                return (
                 <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2`}>
                   <div className={`flex items-end gap-2 max-w-[85%] ${msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden shadow-sm ${msg.sender === 'user' ? 'bg-gray-200' : 'bg-white border border-gray-100 p-1'}`}>
-                      {msg.sender === 'user' ? <User size={14} className="text-gray-500" /> : <Image src="/images/1.png" alt="ETS Logo" width={20} height={20} className="object-contain" />}
+                    <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden shadow-sm ${msg.sender === 'user' ? 'bg-gray-200' : 'bg-white border border-gray-100 p-1 text-red-600'}`}>
+                      {msg.sender === 'user' ? <User size={14} className="text-gray-500" /> : <Bot size={20} />}
                     </div>
                     <div className={`px-4 py-3 rounded-2xl text-[14px] leading-relaxed shadow-sm ${msg.sender === 'user' ? 'bg-red-600 text-white rounded-br-none' : 'bg-white border border-gray-100 text-gray-800 rounded-bl-none'}`}>
                       <div className="whitespace-pre-wrap">{msg.sender === 'user' ? msg.text : formatBotMessage(msg.text)}</div>
                       {msg.captureLead && (
-                        <LeadForm onComplete={() => addMessage("Our team will contact you shortly. Thank you! \n\nYou can also reach us directly at **+971 2 441 8186** or **info@etssmart.com**.", 'bot')} />
+                        <div className="space-y-4">
+                          <p className="text-sm font-semibold text-gray-700 mt-2">Do you want to call back?</p>
+                          <LeadForm onComplete={() => addMessage("Our team will contact you shortly. Thank you! \n\nYou can also reach us directly at **+971 2 441 8186** or **info@etssmart.com**.", 'bot')} />
+                        </div>
                       )}
                       
-                      {/* Contextual Suggestions for this message */}
-                      {msg.suggestions && msg.suggestions.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-gray-50">
-                          {msg.suggestions.map((suggestion, idx) => (
-                            <button
-                              key={idx}
-                              onClick={() => sendMessage(suggestion)}
-                              className="px-3 py-1.5 bg-gray-50 border border-gray-100 hover:border-red-200 hover:text-red-600 text-gray-600 rounded-full text-[11px] font-medium transition-all active:scale-95 shadow-sm"
-                            >
-                              {suggestion}
-                            </button>
-                          ))}
-                        </div>
+                      {/* Contextual Suggestions + WhatsApp - only on last bot message */}
+                      {isLastBotMessage && (
+                      <div className="flex flex-col gap-2 mt-4 pt-3 border-t border-gray-50">
+                        {/* Live Chat WhatsApp Link */}
+                        <a 
+                          href="https://wa.me/971547922800" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+                        >
+                          <MessageSquare size={14} />
+                          Live Chat via WhatsApp
+                        </a>
+
+                        {msg.suggestions && msg.suggestions.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {msg.suggestions.map((suggestion, idx) => (
+                              <button
+                                key={idx}
+                                onClick={() => sendMessage(suggestion)}
+                                className="px-3 py-1.5 bg-gray-50 border border-gray-100 hover:border-red-200 hover:text-red-600 text-gray-600 rounded-full text-[11px] font-medium transition-all active:scale-95 shadow-sm"
+                              >
+                                {suggestion}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                       )}
                     </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="flex items-end gap-2">
-                    <div className="w-8 h-8 rounded-full bg-white border border-gray-100 flex-shrink-0 flex items-center justify-center shadow-sm p-1">
-                       <Image src="/images/1.png" alt="ETS Logo" width={20} height={20} className="object-contain" />
+                    <div className="w-8 h-8 rounded-full bg-white border border-gray-100 flex-shrink-0 flex items-center justify-center shadow-sm p-1 text-red-600">
+                       <Bot size={20} />
                     </div>
                     <div className="bg-white border border-gray-100 px-4 py-4 rounded-2xl rounded-bl-none shadow-sm">
                       <div className="flex gap-1.5">

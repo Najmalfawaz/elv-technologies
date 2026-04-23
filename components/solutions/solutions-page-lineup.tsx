@@ -47,7 +47,7 @@ export default function SolutionsPageLineup() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, margin: "0px" }}
                     className="grid md:grid-cols-2 gap-10 lg:gap-16"
                 >
                     {verticals.map((vertical) => {
