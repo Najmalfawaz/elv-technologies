@@ -1,14 +1,15 @@
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Plus, Pencil, Trash2, Users } from "lucide-react";
 import Image from "next/image";
-import { DeletePartnerButton } from "./delete-partner-button";
+import { DeletePartnerButton } from "@/app/admin/(dashboard)/partners/delete-partner-button";
 
 export default async function PartnersPage() {
   const partners = await prisma.partner.findMany({
     orderBy: { priority: "asc" },
-  });
+  }) as any[];
 
   // Group partners by category
   const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
@@ -29,10 +30,13 @@ export default async function PartnersPage() {
   }));
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">Partners</h1>
-        <Button asChild>
+    <div className="space-y-16 pb-20">
+      <div className="flex items-center justify-between mb-4">
+        <div className="space-y-1">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Partners</h1>
+          <p className="text-slate-500 text-sm">Manage your technology partners and their display priority.</p>
+        </div>
+        <Button asChild className="bg-red-600 hover:bg-red-700">
           <Link href="/admin/partners/new">
             <Plus className="mr-2 h-4 w-4" />
             Add Partner
@@ -41,7 +45,7 @@ export default async function PartnersPage() {
       </div>
 
       {groupedPartners.map((group) => (
-        <div key={group.title} className="space-y-4">
+        <div key={group.title} className="space-y-6">
           <div className="flex items-center gap-4">
             <h2 className="text-xl font-semibold text-slate-900 dark:text-white px-1">
               {group.title}

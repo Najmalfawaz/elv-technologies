@@ -1,14 +1,15 @@
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import Image from "next/image";
-import { DeleteClientButton } from "./delete-client-button";
+import { DeleteClientButton } from "@/app/admin/(dashboard)/clients/delete-client-button";
 
 export default async function ClientsPage() {
   const clients = await prisma.client.findMany({
     orderBy: { priority: "asc" },
-  });
+  }) as any[];
 
   return (
     <div className="space-y-6">

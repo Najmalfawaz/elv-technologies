@@ -93,7 +93,7 @@ export function PartnersTabs() {
                         </TabsList>
                     </div>
 
-                    <div className="min-h-[400px]">
+                    <div className="min-h-[400px] mt-8">
                         <AnimatePresence mode="wait">
                             {partnerCategories.filter(cat => cat.title === activeTab).map((category) => (
                                 <TabsContent key={category.title} value={category.title} className="mt-0 focus-visible:outline-none" forceMount>

@@ -174,7 +174,7 @@ export default function BlogList({ initialPosts }: { initialPosts: any[] }) {
                                         </div>
 
                                         {/* Content Section */}
-                                        <div className="flex flex-col flex-grow">
+                                        <div className="flex flex-col flex-grow px-5 pb-8">
                                             {/* Metadata: Author & Date */}
                                             <div className="flex items-center justify-between mb-4">
                                                 <span className="text-sm font-bold text-orange-600 uppercase tracking-tight">
