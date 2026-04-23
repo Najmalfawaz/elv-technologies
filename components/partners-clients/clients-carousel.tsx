@@ -10,13 +10,44 @@ import {
     CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
-import { clients } from '@/lib/clients-data';
+import { Skeleton } from '@/components/ui/skeleton';
 import Autoplay from 'embla-carousel-autoplay';
 
 export function ClientsCarousel() {
+    const [clientsList, setClientsList] = React.useState<any[]>([]);
+    const [loading, setLoading] = React.useState(true);
     const plugin = React.useRef(
         Autoplay({ delay: 2000, stopOnInteraction: true })
     );
+
+    React.useEffect(() => {
+        async function fetchClients() {
+            try {
+                const res = await fetch('/api/admin/clients');
+                const data = await res.json();
+                setClientsList(data);
+            } catch (error) {
+                console.error("Failed to fetch clients:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchClients();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div className="flex gap-4 overflow-hidden">
+                        {[1, 2, 3, 4, 5].map(i => <Skeleton key={i} className="aspect-square w-40 flex-shrink-0" />)}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (clientsList.length === 0) return null;
 
     return (
         <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
@@ -38,15 +69,15 @@ export function ClientsCarousel() {
                         onMouseLeave={plugin.current.reset}
                     >
                         <CarouselContent className="-ml-4">
-                            {clients.map((client, index) => (
-                                <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+                            {clientsList.map((client) => (
+                                <CarouselItem key={client.id} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
                                     <div className="p-1">
                                         <Card className="border-none shadow-none bg-transparent">
                                             <CardContent className="flex aspect-square items-center justify-center p-6">
                                                 <div className="relative h-20 w-full filter hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100">
                                                     <Image
-                                                        src={client.src}
-                                                        alt={client.alt}
+                                                        src={client.logo}
+                                                        alt={client.name}
                                                         fill
                                                         quality={100}
                                                         unoptimized

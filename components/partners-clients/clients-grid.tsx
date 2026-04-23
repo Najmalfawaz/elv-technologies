@@ -1,11 +1,44 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import { clients } from '@/lib/clients-data';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export function ClientsGrid() {
+    const [clientsList, setClientsList] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchClients() {
+            try {
+                const res = await fetch('/api/admin/clients');
+                const data = await res.json();
+                setClientsList(data);
+            } catch (error) {
+                console.error("Failed to fetch clients:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchClients();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => <Skeleton key={i} className="h-32 rounded-2xl" />)}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (clientsList.length === 0) return null;
+
     return (
         <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -19,9 +52,9 @@ export function ClientsGrid() {
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                    {clients.map((client, index) => (
+                    {clientsList.map((client, index) => (
                         <motion.div
-                            key={index}
+                            key={client.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -31,8 +64,8 @@ export function ClientsGrid() {
                                 <CardContent className="p-0 flex items-center justify-center w-full h-full">
                                     <div className="relative h-16 w-full transition-all duration-300 transform group-hover:scale-110">
                                         <Image
-                                            src={client.src}
-                                            alt={client.alt}
+                                            src={client.logo}
+                                            alt={client.name}
                                             fill
                                             quality={100}
                                             unoptimized

@@ -19,7 +19,18 @@ export function PartnersTabs() {
                 const partners = await res.json();
                 
                 // Group by category and maintain priority order within category
-                const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)));
+                const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
+                
+                const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)))
+                    .sort((a: any, b: any) => {
+                        const indexA = CATEGORY_ORDER.indexOf(a);
+                        const indexB = CATEGORY_ORDER.indexOf(b);
+                        if (indexA === -1 && indexB === -1) return a.localeCompare(b);
+                        if (indexA === -1) return 1;
+                        if (indexB === -1) return -1;
+                        return indexA - indexB;
+                    });
+
                 const categories = categoryTitles.map(title => ({
                     title,
                     logos: partners.filter((p: any) => p.category === title)
@@ -27,7 +38,7 @@ export function PartnersTabs() {
                 
                 setPartnerCategories(categories);
                 if (categories.length > 0) {
-                    setActiveTab(categories[0].title);
+                    setActiveTab(categories[0].title as string);
                 }
             } catch (error) {
                 console.error("Failed to fetch partners:", error);
