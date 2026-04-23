@@ -11,20 +11,55 @@ import {
     CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
-import { clients } from '@/lib/clients-data';
+import { Skeleton } from '@/components/ui/skeleton';
 import Autoplay from 'embla-carousel-autoplay';
 
 export function ClientsSlider() {
+    const [clientsList, setClientsList] = React.useState<any[]>([]);
+    const [loading, setLoading] = React.useState(true);
     const plugin = React.useRef(
         Autoplay({ delay: 3000, stopOnInteraction: false })
     );
 
+    React.useEffect(() => {
+        async function fetchClients() {
+            try {
+                const res = await fetch('/api/admin/clients');
+                const data = await res.json();
+                setClientsList(data);
+            } catch (error) {
+                console.error("Failed to fetch clients:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchClients();
+    }, []);
+
     // Group clients into sets of 3 for the rows
     const rows = 3;
     const groupedClients = [];
-    for (let i = 0; i < clients.length; i += rows) {
-        groupedClients.push(clients.slice(i, i + rows));
+    for (let i = 0; i < clientsList.length; i += rows) {
+        groupedClients.push(clientsList.slice(i, i + rows));
     }
+
+    if (loading) {
+        return (
+            <section className="py-12 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+                <div className="w-full px-4">
+                    <div className="flex gap-4 overflow-hidden">
+                        {[1, 2, 3, 4, 5, 6].map(i => (
+                            <div key={i} className="flex flex-col gap-2 min-w-[150px]">
+                                {[1, 2, 3].map(j => <Skeleton key={j} className="aspect-[4/3] w-full" />)}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (clientsList.length === 0) return null;
 
     return (
         <section className="py-12 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
@@ -34,7 +69,7 @@ export function ClientsSlider() {
                         Our Esteemed Clients
                     </h2>
                     <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
-                        A legacy of trust across 37+ major organizations.
+                        A legacy of trust across {clientsList.length}+ major organizations.
                     </p>
                 </div>
 
@@ -53,7 +88,7 @@ export function ClientsSlider() {
                                     <div className="flex flex-col gap-2 py-2">
                                         {group.map((client, clientIndex) => (
                                             <motion.div
-                                                key={`${groupIndex}-${clientIndex}`}
+                                                key={client.id}
                                                 whileHover={{ scale: 1.05 }}
                                                 className="transition-transform duration-300"
                                             >
@@ -61,8 +96,8 @@ export function ClientsSlider() {
                                                     <CardContent className="flex aspect-[4/3] items-center justify-center p-1">
                                                         <div className="relative h-full w-full">
                                                             <Image
-                                                                src={client.src}
-                                                                alt={client.alt}
+                                                                src={client.logo}
+                                                                alt={client.name}
                                                                 fill
                                                                 quality={100}
                                                                 className="object-contain"

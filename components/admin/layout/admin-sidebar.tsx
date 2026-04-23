@@ -73,6 +73,16 @@ const contentItems = [
         url: "/admin/applications",
         icon: UserCheck,
     },
+    {
+        title: "Partners",
+        url: "/admin/partners",
+        icon: Users,
+    },
+    {
+        title: "Clients",
+        url: "/admin/clients",
+        icon: Building,
+    },
 ];
 
 export function AdminSidebar() {

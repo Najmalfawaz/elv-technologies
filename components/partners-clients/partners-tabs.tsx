@@ -1,14 +1,59 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
-import { partnerCategories } from '@/lib/partners-data';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export function PartnersTabs() {
-    const [activeTab, setActiveTab] = useState(partnerCategories[0].title);
+    const [partnerCategories, setPartnerCategories] = useState<any[]>([]);
+    const [activeTab, setActiveTab] = useState("");
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchPartners() {
+            try {
+                const res = await fetch('/api/admin/partners');
+                const partners = await res.json();
+                
+                // Group by category and maintain priority order within category
+                const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)));
+                const categories = categoryTitles.map(title => ({
+                    title,
+                    logos: partners.filter((p: any) => p.category === title)
+                }));
+                
+                setPartnerCategories(categories);
+                if (categories.length > 0) {
+                    setActiveTab(categories[0].title);
+                }
+            } catch (error) {
+                console.error("Failed to fetch partners:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchPartners();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-12 bg-slate-50 dark:bg-slate-950">
+                <div className="w-full px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-center mb-8 gap-4">
+                        {[1, 2, 3, 4].map(i => <Skeleton key={i} className="h-10 w-24 rounded-full" />)}
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        {[1, 2, 3, 4, 5, 6].map(i => <Skeleton key={i} className="h-24 w-44" />)}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (partnerCategories.length === 0) return null;
 
     return (
         <section className="py-12 bg-slate-50 dark:bg-slate-950">
@@ -22,7 +67,7 @@ export function PartnersTabs() {
                     </p>
                 </div>
 
-                <Tabs defaultValue={partnerCategories[0].title} className="w-full" onValueChange={setActiveTab}>
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                     <div className="flex justify-center mb-8 overflow-x-auto pb-4">
                         <TabsList className="h-auto flex-wrap justify-center gap-2 bg-transparent p-0">
                             {partnerCategories.map((category) => (
@@ -48,15 +93,15 @@ export function PartnersTabs() {
                                         transition={{ duration: 0.3 }}
                                         className="flex flex-wrap justify-center gap-4"
                                     >
-                                        {category.logos.map((logo, index) => (
+                                        {category.logos.map((logo: any, index: number) => (
                                             <Card
-                                                key={`${category.title}-${index}`}
+                                                key={logo.id}
                                                 className="flex items-center justify-center p-2 w-32 sm:w-40 md:w-44 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow duration-300 group rounded-[3px]"
                                             >
                                                 <div className="relative h-20 w-full transition-all duration-300 transform group-hover:scale-110">
                                                     <Image
-                                                        src={logo.src}
-                                                        alt={logo.alt}
+                                                        src={logo.logo}
+                                                        alt={logo.name}
                                                         fill
                                                         quality={100}
                                                         unoptimized
