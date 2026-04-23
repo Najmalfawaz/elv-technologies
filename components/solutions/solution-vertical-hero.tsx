@@ -11,7 +11,7 @@ interface Props {
 
 export default function SolutionVerticalHero({ title, description, bgImage }: Props) {
     return (
-        <div className="relative isolate overflow-hidden bg-slate-900 py-24 sm:py-32">
+        <div className="relative isolate overflow-hidden bg-slate-900 py-32 sm:py-40 min-h-[60vh] lg:min-h-[70vh] flex items-center">
             {/* Background Image Layer */}
             <div className="absolute inset-0 -z-20 bg-slate-950">
                 {bgImage ? (

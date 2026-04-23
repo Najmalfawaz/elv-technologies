@@ -27,8 +27,8 @@ export default function Programming() {
         <div className="grid gap-16 lg:grid-cols-2 items-stretch">
 
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative h-full min-h-[400px] w-full overflow-hidden rounded-[5px] shadow-2xl border border-slate-800 group shadow-slate-900/50"
@@ -54,8 +54,8 @@ export default function Programming() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
@@ -89,9 +89,9 @@ export default function Programming() {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-slate-400 border border-slate-700 shadow-sm group-hover/feature:text-red-400 group-hover/feature:border-red-900/50 group-hover/feature:bg-slate-800 transition-colors">
                     <feature.icon className="h-5 w-5" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-white text-base mb-1 group-hover/feature:text-red-400 transition-colors">{feature.title}</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed font-medium">{feature.desc}</p>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-white text-base mb-1 group-hover/feature:text-red-400 transition-colors break-words">{feature.title}</h4>
+                    <p className="text-sm text-slate-400 leading-relaxed font-medium break-words">{feature.desc}</p>
                   </div>
                 </motion.div>
               ))}

@@ -8,7 +8,7 @@ export default function Hero() {
   const { hero } = servicesData;
 
   return (
-    <section className="relative flex min-h-[60vh] md:min-h-[70vh] items-center justify-center overflow-hidden bg-slate-50 px-6 py-24">
+    <section className="relative flex min-h-[85vh] md:min-h-[90vh] items-center justify-center overflow-hidden bg-slate-50 px-6 py-24">
       {/* Background Image with Premium Overlay */}
       <div className="absolute inset-0 z-0">
         <Image

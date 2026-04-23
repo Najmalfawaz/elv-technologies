@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-import Chatbot from "@/components/chatbot/chatbot";
-
 const sourceSans = Source_Sans_3({ 
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -28,7 +26,6 @@ export default function RootLayout({
       <body className={`${sourceSans.className} bg-background text-foreground`}>
         {children}
         <Toaster richColors position="top-right" />
-        <Chatbot />
       </body>
     </html>
   );

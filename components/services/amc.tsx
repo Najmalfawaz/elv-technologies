@@ -48,24 +48,24 @@ export default function Amc() {
           </div>
         </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-12 items-stretch">
+        <div className="grid gap-6 xl:grid-cols-12 items-stretch">
           {/* Systems Covered - Bento Grid */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 flex flex-col gap-6 h-full"
+            className="xl:col-span-7 flex flex-col gap-6 h-full"
           >
             {/* Systems Glass Card */}
             <div className="relative rounded-[2rem] border border-slate-100 bg-white p-6 backdrop-blur-xl overflow-hidden group h-full shadow-xl shadow-slate-200/50">
               <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3 relative z-10">
-                <div className="p-2.5 rounded-xl bg-red-50 text-red-600 ring-1 ring-red-100">
+              <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-start sm:items-center gap-3 relative z-10">
+                <div className="p-2.5 rounded-xl bg-red-50 text-red-600 ring-1 ring-red-100 shrink-0">
                   <Activity className="w-5 h-5" />
                 </div>
-                {amc.systemsCovered.title}
+                <span className="flex-1 break-words">{amc.systemsCovered.title}</span>
               </h3>
 
               <div className="grid sm:grid-cols-2 gap-3 relative z-10">
@@ -76,7 +76,7 @@ export default function Amc() {
                     className="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-red-200 hover:bg-white transition-colors"
                   >
                     <CheckCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium text-slate-600">
+                    <span className="text-sm font-medium text-slate-600 flex-1 break-words">
                       {item}
                     </span>
                   </motion.div>
@@ -85,7 +85,7 @@ export default function Amc() {
             </div>
 
             {/* Image Card */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-video lg:aspect-auto lg:flex-1 rounded-[5px] min-h-[450px] overflow-hidden border border-slate-100 group bg-slate-100">
+            <div className="relative w-full h-[250px] sm:h-[350px] xl:h-auto xl:min-h-[450px] xl:flex-1 rounded-[5px] overflow-hidden border border-slate-100 group bg-slate-100">
               <Image
                 src={amc.image}
                 alt="AMC Services"
@@ -105,11 +105,11 @@ export default function Amc() {
 
           {/* Includes & Why Choose Us */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col gap-6 h-full"
+            className="xl:col-span-5 flex flex-col gap-6 h-full"
           >
             {/* What includes */}
             <div className="relative rounded-[2rem] border border-slate-100 bg-white p-6 backdrop-blur-xl overflow-hidden group shadow-xl shadow-slate-200/50">
@@ -126,9 +126,9 @@ export default function Amc() {
                     <div className="shrink-0 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-slate-500 border border-slate-200 group-hover/item:text-blue-600 group-hover/item:scale-110 group-hover/item:border-blue-200 transition-all shadow-sm">
                       {idx === 0 ? <Wrench className="h-5 w-5" /> : <Clock className="h-5 w-5" />}
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-900 mb-1 group-hover/item:text-blue-600 transition-colors">{visit.title}</h4>
-                      <p className="text-xs text-slate-600 leading-relaxed font-medium">{visit.description}</p>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-slate-900 mb-1 group-hover/item:text-blue-600 transition-colors break-words">{visit.title}</h4>
+                      <p className="text-xs text-slate-600 leading-relaxed font-medium break-words">{visit.description}</p>
                     </div>
                   </div>
                 ))}
@@ -139,9 +139,9 @@ export default function Amc() {
             <div className="relative rounded-[2rem] border border-slate-100 bg-gradient-to-br from-slate-50 to-white p-6 overflow-hidden flex-1 shadow-xl shadow-slate-200/50">
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-red-100 rounded-full blur-[80px]" />
 
-              <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3 relative z-10">
-                <ShieldCheck className="text-red-600 w-6 h-6" />
-                Why Choose Us?
+              <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-start sm:items-center gap-3 relative z-10">
+                <ShieldCheck className="text-red-600 w-6 h-6 shrink-0 mt-0.5 sm:mt-0" />
+                <span className="flex-1 break-words">Why Choose Us?</span>
               </h3>
               <ul className="space-y-4 relative z-10">
                 {amc.whyChooseUs.items.map((item, idx) => {
@@ -155,10 +155,10 @@ export default function Amc() {
                       transition={{ delay: 0.1 * idx }}
                       className="flex items-center gap-3 text-slate-600 bg-white p-3 rounded-xl border border-slate-100 hover:border-red-100 transition-colors"
                     >
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 shrink-0 ring-1 ring-red-100">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-600 shrink-0 ring-1 ring-red-100 mt-0.5">
                         <Icon className="w-4 h-4" />
                       </div>
-                      <span className="text-sm font-bold">{item}</span>
+                      <span className="text-sm font-bold flex-1 break-words">{item}</span>
                     </motion.li>
                   );
                 })}

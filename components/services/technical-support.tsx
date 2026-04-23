@@ -24,8 +24,8 @@ export default function TechnicalSupport() {
         {/* Intro Section */}
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-stretch">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
@@ -53,16 +53,16 @@ export default function TechnicalSupport() {
             {/* Key Features / Highlights Box */}
             <div className="mt-8 p-6 bg-white backdrop-blur-xl rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/50">
               <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                <div className="p-2 rounded-lg bg-red-50 border border-red-100">
+                <div className="p-2 rounded-lg bg-red-50 border border-red-100 shrink-0">
                   <Server className="w-5 h-5 text-red-600" />
                 </div>
-                Key Service Highlights
+                <span className="flex-1 break-words">Key Service Highlights</span>
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {['24/7 Monitoring', 'Rapid Response', 'Certified Engineers', 'Proactive Maintenance'].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
-                    <span className="font-medium">{item}</span>
+                  <li key={item} className="flex items-start sm:items-center gap-3 text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)] mt-1.5 sm:mt-0" />
+                    <span className="font-medium flex-1 break-words">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -136,7 +136,7 @@ export default function TechnicalSupport() {
                       {section.items.map((item) => (
                         <li key={item} className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-slate-200 transition-colors">
                           <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-500 opacity-80" />
-                          <span className="text-slate-600 leading-snug text-sm font-medium">{item}</span>
+                          <span className="text-slate-600 leading-snug text-sm font-medium flex-1 break-words">{item}</span>
                         </li>
                       ))}
                     </ul>

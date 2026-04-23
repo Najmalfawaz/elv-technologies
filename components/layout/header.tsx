@@ -180,8 +180,10 @@ export default function Header() {
                 className="w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
                 priority
               />
-              <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors group-hover:text-[#b42129] pointer-events-none select-none text-white`}>
-                ELV TECHNOLOGY SOLUTIONS
+              <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`}>
+                <span className="group-hover:text-red-600 transition-colors">E</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>LV </span>
+                <span className="group-hover:text-red-600 transition-colors">T</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>ECHNOLOGY </span>
+                <span className="group-hover:text-red-600 transition-colors">S</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>OLUTIONS</span>
               </span>
             </Link>
 
@@ -404,14 +406,22 @@ export default function Header() {
                           <div key={sub.label}>
                             {sub.items ? (
                               <>
-                                <button
-                                  type="button"
-                                  onClick={() => setMobileNestedOpen(mobileNestedOpen === sub.label ? null : sub.label)}
-                                  className="w-full flex items-center justify-between rounded-lg px-4 py-2.5 text-sm text-foreground/80 transition-colors hover:text-accent hover:bg-accent/5"
-                                >
-                                  {sub.label}
-                                  <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${mobileNestedOpen === sub.label ? "rotate-180" : ""}`} />
-                                </button>
+                                <div className="flex items-center justify-between rounded-lg px-2 py-1 text-sm text-foreground/80 transition-colors hover:bg-accent/5">
+                                  <Link
+                                    href={sub.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="flex-1 px-2 py-1.5 hover:text-accent"
+                                  >
+                                    {sub.label}
+                                  </Link>
+                                  <button
+                                    type="button"
+                                    onClick={() => setMobileNestedOpen(mobileNestedOpen === sub.label ? null : sub.label)}
+                                    className="p-2 text-foreground/50 hover:text-accent"
+                                  >
+                                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileNestedOpen === sub.label ? "rotate-180" : ""}`} />
+                                  </button>
+                                </div>
 
                                 {/* Nested Accordion Content */}
                                 <div className={`overflow-hidden transition-all duration-300 ${mobileNestedOpen === sub.label ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>

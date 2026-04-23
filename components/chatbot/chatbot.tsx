@@ -317,15 +317,24 @@ export default function Chatbot() {
                       {isLastBotMessage && (
                       <div className="flex flex-col gap-2 mt-4 pt-3 border-t border-gray-50">
                         {/* Live Chat WhatsApp Link */}
-                        <a 
-                          href="https://wa.me/971547922800" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
-                        >
-                          <MessageSquare size={14} />
-                          Live Chat via WhatsApp
-                        </a>
+                        <div className="flex gap-2 w-full">
+                           <a 
+                             href="https://wa.me/971547922800" 
+                             target="_blank" 
+                             rel="noopener noreferrer"
+                             className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+                           >
+                             <MessageSquare size={14} />
+                             Live chat
+                           </a>
+                           <button
+                             onClick={() => sendMessage("Can I get a call back?")}
+                             className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm"
+                           >
+                             <Phone size={14} />
+                             Get a call back
+                           </button>
+                        </div>
 
                         {msg.suggestions && msg.suggestions.length > 0 && (
                           <div className="flex flex-wrap gap-2">

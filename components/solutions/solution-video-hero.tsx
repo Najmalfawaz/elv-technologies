@@ -12,7 +12,7 @@ interface Props {
 
 export default function SolutionVideoHero({ videoSrc, tag, title, description }: Props) {
     return (
-        <section className="relative h-[60vh] lg:h-[80vh] w-full overflow-hidden bg-slate-900">
+        <section className="relative h-[85vh] lg:h-[90vh] w-full overflow-hidden bg-slate-900">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video

@@ -95,7 +95,7 @@ GUIDELINES:
 `;
 
 function shouldCaptureLead(input: string): boolean {
-    const triggers = ['quote', 'price', 'install', 'need', 'project', 'looking for', 'schedule', 'visit', 'survey', 'buy', 'cost', 'site assessment'];
+    const triggers = ['quote', 'price', 'install', 'need', 'project', 'looking for', 'schedule', 'visit', 'survey', 'buy', 'cost', 'site assessment', 'call back', 'callback', 'call'];
     return triggers.some(t => input.toLowerCase().includes(t));
 }
 
