@@ -130,7 +130,7 @@ export default function ApplicationForm({ jobRoles }: ApplicationFormProps) {
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Application Received!</h3>
                 <p className="text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-8">
-                    Thank you for your interest in joining ELV Technology Solutions. Our recruitment team will review your application and get back to you soon.
+                    Thank you for your interest in joining ELV Technology Solutions. Our team will contact you shortly.
                 </p>
                 <Button onClick={() => setIsSuccess(false)} variant="outline">
                     Submit Another Application

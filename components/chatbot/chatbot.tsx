@@ -107,7 +107,7 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
           </div>
           <span className="font-bold">Sent Successfully!</span>
         </div>
-        <p className="opacity-90 leading-relaxed font-medium">Our engineering team has received your message and will get back to you shortly.</p>
+        <p className="opacity-90 leading-relaxed font-medium">Our team will contact you shortly.</p>
       </div>
     );
   }

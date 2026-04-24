@@ -82,7 +82,7 @@ export default function ContactForm() {
         </div>
         <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Thank You!</h2>
         <p className="text-gray-600 text-lg max-w-sm leading-relaxed">
-          Your message has been received. Our technical team will review your inquiry and get back to you within 24 hours.
+          Your message has been received. Our team will contact you shortly.
         </p>
         <Button 
           variant="outline" 

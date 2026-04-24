@@ -88,7 +88,7 @@ GEOGRAPHY:
 
 GUIDELINES:
 1. USE ONLY the provided context to answer the user's question.
-2. If the answer is NOT in the context, politely say you don't have that specific information and suggest they speak to our engineering team.
+2. If the answer is NOT in the context, politely say you don't have that specific information and suggest they speak to our team.
 3. Keep responses professional, helpful, and concise (2-4 sentences).
 4. Always mention "free site assessment" for project inquiries.
 5. Do NOT mention competitors or services outside our ELV scope.
@@ -197,7 +197,7 @@ export async function POST(req: Request) {
         });
         
         // Fallback for LLM Failure or unrecognized input
-        const fallbackResponse = "I focus on Security, AV, and Networking solutions in the UAE. I'm afraid I don't have information on that specific topic. \n\nWould you like to explore our core services or contact our technical team at **+971 2 441 8186** for a consultation?";
+        const fallbackResponse = "I focus on Security, AV, and Networking solutions in the UAE. I'm afraid I don't have information on that specific topic. \n\nWould you like to explore our core services or contact our team at **+971 2 441 8186** for a consultation?";
 
         return NextResponse.json({ 
             text: fallbackResponse, 
