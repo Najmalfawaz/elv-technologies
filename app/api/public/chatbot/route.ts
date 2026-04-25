@@ -99,8 +99,17 @@ function shouldCaptureLead(input: string): boolean {
     return triggers.some(t => input.toLowerCase().includes(t));
 }
 
+import { rateLimit, getIp } from '@/lib/rate-limit';
+
 export async function POST(req: Request) {
     try {
+        const ip = getIp(req);
+        
+        // Rate limit: 10 requests per minute per IP
+        if (!rateLimit(ip, { limit: 10, windowMs: 60 * 1000 })) {
+            return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+        }
+
         // 0. CHECK ENVIRONMENT
         if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
             console.error("CRITICAL: GOOGLE_GENERATIVE_AI_API_KEY is missing in environment variables.");

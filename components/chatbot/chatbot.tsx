@@ -184,6 +184,7 @@ export default function Chatbot() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
+  const [lastSentTime, setLastSentTime] = useState(0);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -257,6 +258,10 @@ export default function Chatbot() {
   const sendMessage = async (text: string) => {
     const userMessage = text.trim();
     if (!userMessage) return;
+
+    const now = Date.now();
+    if (now - lastSentTime < 2000) return; // Throttle 2 seconds
+    setLastSentTime(now);
 
     addMessage(userMessage, 'user');
     setInputValue('');

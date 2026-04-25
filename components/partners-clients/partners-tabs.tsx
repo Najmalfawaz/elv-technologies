@@ -7,39 +7,34 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export function PartnersTabs() {
+interface Partner {
+    id: string;
+    name: string;
+    logo: string;
+    category: string;
+    priority: number;
+}
+
+interface PartnersTabsProps {
+    initialData?: Partner[];
+}
+
+export function PartnersTabs({ initialData }: PartnersTabsProps) {
     const [partnerCategories, setPartnerCategories] = useState<any[]>([]);
     const [activeTab, setActiveTab] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(!initialData);
 
     useEffect(() => {
+        if (initialData) {
+            processPartners(initialData);
+            return;
+        }
+
         async function fetchPartners() {
             try {
                 const res = await fetch('/api/admin/partners');
                 const partners = await res.json();
-                
-                // Group by category and maintain priority order within category
-                const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
-                
-                const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)))
-                    .sort((a: any, b: any) => {
-                        const indexA = CATEGORY_ORDER.indexOf(a);
-                        const indexB = CATEGORY_ORDER.indexOf(b);
-                        if (indexA === -1 && indexB === -1) return a.localeCompare(b);
-                        if (indexA === -1) return 1;
-                        if (indexB === -1) return -1;
-                        return indexA - indexB;
-                    });
-
-                const categories = categoryTitles.map(title => ({
-                    title,
-                    logos: partners.filter((p: any) => p.category === title)
-                }));
-                
-                setPartnerCategories(categories);
-                if (categories.length > 0) {
-                    setActiveTab(categories[0].title as string);
-                }
+                processPartners(partners);
             } catch (error) {
                 console.error("Failed to fetch partners:", error);
             } finally {
@@ -47,7 +42,33 @@ export function PartnersTabs() {
             }
         }
         fetchPartners();
-    }, []);
+    }, [initialData]);
+
+    const processPartners = (partners: Partner[]) => {
+        // Group by category and maintain priority order within category
+        const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
+        
+        const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)))
+            .sort((a: any, b: any) => {
+                const indexA = CATEGORY_ORDER.indexOf(a as string);
+                const indexB = CATEGORY_ORDER.indexOf(b as string);
+                if (indexA === -1 && indexB === -1) return (a as string).localeCompare(b as string);
+                if (indexA === -1) return 1;
+                if (indexB === -1) return -1;
+                return indexA - indexB;
+            });
+
+        const categories = categoryTitles.map(title => ({
+            title,
+            logos: partners.filter((p: any) => p.category === title)
+        }));
+        
+        setPartnerCategories(categories);
+        if (categories.length > 0) {
+            setActiveTab(categories[0].title as string);
+        }
+        setLoading(false);
+    };
 
     if (loading) {
         return (

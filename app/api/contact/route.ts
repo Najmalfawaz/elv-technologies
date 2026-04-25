@@ -2,18 +2,39 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { CONTACT_CONFIG } from '@/lib/contact-config';
 import { prisma } from '@/lib/prisma';
+import { rateLimit, getIp } from '@/lib/rate-limit';
+import { z } from 'zod';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const contactSchema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email(),
+  phone: z.string().optional(),
+  subject: z.string().min(2).max(200),
+  message: z.string().min(10).max(2000),
+  source: z.string().optional().default('website'),
+  isNotRobot: z.boolean().refine(val => val === true, "Must be a human"),
+});
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { name, email, phone, subject, message, isNotRobot, source = 'website' } = body;
-
-    // Server-side validation
-    if (!name || !email || !subject || !message || !isNotRobot) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    const ip = getIp(req);
+    
+    // Rate limit: 3 submissions per 10 minutes per IP
+    if (!rateLimit(ip, { limit: 3, windowMs: 10 * 60 * 1000 })) {
+      return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
     }
+
+    const body = await req.json();
+    
+    // Server-side validation
+    const validation = contactSchema.safeParse(body);
+    if (!validation.success) {
+      return NextResponse.json({ error: 'Invalid input data', details: validation.error.format() }, { status: 400 });
+    }
+
+    const { name, email, phone, subject, message, source } = validation.data;
 
     // Save to database
     try {

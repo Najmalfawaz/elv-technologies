@@ -14,14 +14,27 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import Autoplay from 'embla-carousel-autoplay';
 
-export function ClientsSlider() {
-    const [clientsList, setClientsList] = React.useState<any[]>([]);
-    const [loading, setLoading] = React.useState(true);
+interface Client {
+    id: string;
+    name: string;
+    logo: string;
+    category?: string;
+}
+
+interface ClientsSliderProps {
+    initialData?: Client[];
+}
+
+export function ClientsSlider({ initialData }: ClientsSliderProps) {
+    const [clientsList, setClientsList] = React.useState<Client[]>(initialData || []);
+    const [loading, setLoading] = React.useState(!initialData);
     const plugin = React.useRef(
         Autoplay({ delay: 3000, stopOnInteraction: false })
     );
 
     React.useEffect(() => {
+        if (initialData) return;
+
         async function fetchClients() {
             try {
                 const res = await fetch('/api/admin/clients');
@@ -34,7 +47,7 @@ export function ClientsSlider() {
             }
         }
         fetchClients();
-    }, []);
+    }, [initialData]);
 
     // Group clients into sets of 3 for the rows
     const rows = 3;
