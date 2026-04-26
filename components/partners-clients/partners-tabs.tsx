@@ -47,7 +47,7 @@ export function PartnersTabs({ initialData }: PartnersTabsProps) {
     const processPartners = (partners: Partner[]) => {
         // Group by category and maintain priority order within category
         const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
-        
+
         const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)))
             .sort((a: any, b: any) => {
                 const indexA = CATEGORY_ORDER.indexOf(a as string);
@@ -62,7 +62,7 @@ export function PartnersTabs({ initialData }: PartnersTabsProps) {
             title,
             logos: partners.filter((p: any) => p.category === title)
         }));
-        
+
         setPartnerCategories(categories);
         if (categories.length > 0) {
             setActiveTab(categories[0].title as string);

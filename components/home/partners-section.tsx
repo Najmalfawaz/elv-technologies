@@ -19,7 +19,7 @@ export default function PartnersSection() {
     useEffect(() => {
         async function fetchPartners() {
             try {
-                const res = await fetch('/api/admin/partners');
+                const res = await fetch('/api/public/partners');
                 const data = await res.json();
                 const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
                 const sortedData = [...data].sort((a, b) => {
