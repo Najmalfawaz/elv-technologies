@@ -103,7 +103,7 @@ function FooterLinkGroup({
 }) {
   return (
     <div>
-      <h3 className="text-base font-bold text-white mb-4 uppercase tracking-widest">
+      <h3 className="text-[13px] font-black font-montserrat text-white mb-5 uppercase tracking-[0.2em]">
         {title}
       </h3>
       <ul className="flex flex-col gap-1.5">
@@ -156,7 +156,7 @@ export default function Footer() {
           >
             <Link href="/" className="flex flex-col items-start gap-1 mb-5 group shrink-0">
               <LogoIcon className="w-[100px] sm:w-[120px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none text-white" />
-              <span className="text-[11px] sm:text-[12px] font-extrabold text-white tracking-widest mt-2 pointer-events-none select-none transition-colors group-hover:text-accent">
+              <span className="text-[11px] sm:text-[12px] font-black font-montserrat text-white tracking-[0.2em] mt-3 pointer-events-none select-none transition-colors group-hover:text-accent uppercase">
                 ELV TECHNOLOGY SOLUTIONS
               </span>
             </Link>
@@ -237,7 +237,7 @@ export default function Footer() {
 
           {/* Home Automation */}
           <div data-footer-animate style={{ animationDelay: "0.6s" }}>
-            <h3 className="text-base font-bold text-white mb-4 uppercase tracking-widest">
+            <h3 className="text-[13px] font-black font-montserrat text-white mb-5 uppercase tracking-[0.2em]">
               Home Automation
             </h3>
             <ul className="flex flex-col gap-1.5">

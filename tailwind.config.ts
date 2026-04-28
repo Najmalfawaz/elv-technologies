@@ -92,6 +92,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
+        montserrat: ['var(--font-montserrat)'],
+        'space-grotesk': ['var(--font-space-grotesk)'],
+        inter: ['var(--font-inter)'],
         mono: ['var(--font-geist-mono)'],
       },
       keyframes: {

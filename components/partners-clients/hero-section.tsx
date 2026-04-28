@@ -63,7 +63,7 @@ export function HeroSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                            <h1 className="text-4xl font-extrabold font-montserrat tracking-[0.1em] uppercase text-white sm:text-6xl">
                                 Collaborating for <span className="text-red-500">Excellence</span>
                             </h1>
                             <p className="mt-6 text-lg md:text-xl leading-8 text-slate-300 max-w-2xl mx-auto">
@@ -78,7 +78,7 @@ export function HeroSection() {
                             className="mt-10 flex items-center justify-center gap-x-6"
                         >
                             <Link href="/case-studies">
-                                <Button size="lg" className="bg-red-600 text-white hover:bg-red-700 h-14 px-8 text-lg font-semibold rounded-xl group transition-all duration-300 shadow-lg shadow-red-500/20">
+                                <Button size="lg" className="bg-red-600 text-white hover:bg-red-700 h-14 px-8 text-lg font-bold font-montserrat uppercase tracking-wider rounded-xl group transition-all duration-300 shadow-lg shadow-red-500/20">
                                     View Our Works <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </Button>
                             </Link>

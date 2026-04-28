@@ -1,4 +1,6 @@
+'use client';
 
+import { useState, useEffect } from "react";
 import VideoSection from "@/components/home/video-section";
 import IntroSection from "@/components/home/intro-section";
 import CaseStudiesSection from "@/components/home/case-studies-section";
@@ -11,17 +13,27 @@ import PartnersSection from "@/components/home/partners-section";
 import IndustriesSection from "@/components/home/industries-section";
 import CTASection from "@/components/home/cta-section";
 import FAQSection from "@/components/home/faq-section";
+import LoadingScreen from "@/components/ui/loading-screen";
 
 export default function HomeLayout({ initialData }: { initialData: any }) {
+  const [isLoading, setIsLoading] = useState(true);
   const { caseStudies, blogs, testimonials, faqs } = initialData || {};
+
+  // Final fallback to ensure loader disappears even if video fails
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000); // Max 5 seconds loading
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <main>
-
+      <LoadingScreen isLoading={isLoading} />
 
       {/* 2. Video - Sticky Background */}
       <div className="sticky top-0 z-0">
-        <VideoSection />
+        <VideoSection onVideoLoad={() => setIsLoading(false)} />
       </div>
 
       {/* Content wrapper that slides over the sticky video */}

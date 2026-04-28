@@ -160,20 +160,19 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Main nav bar - transparent or white background */}
-      <div
-        className={`transition-all duration-500 ${isScrolled
-          ? "bg-background shadow-[0_2px_20px_rgba(0,0,0,0.08)]"
-          : "bg-transparent border-transparent"
-          }`}
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 lg:h-[88px] items-center justify-between">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? "bg-background/95 backdrop-blur-md shadow-lg py-2"
+        : "bg-transparent py-4"
+        }`}
+    >
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-8 lg:gap-12">
+          <div className="flex items-center gap-4 lg:gap-8">
             {/* Logo */}
             <Link href="/" className="flex flex-col items-center justify-center group shrink-0">
-              <LogoIcon className={`w-[75px] sm:w-[85px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`} />
-              <span className={`text-[10px] sm:text-[11px] font-extrabold tracking-wider mt-1.5 transition-colors pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`}>
+              <LogoIcon className={`w-[60px] sm:w-[70px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`} />
+              <span className={`text-[8px] sm:text-[9px] font-bold font-space-grotesk tracking-[0.15em] uppercase mt-2 transition-colors pointer-events-none select-none ${isScrolled ? "text-foreground" : "text-white"}`}>
                 <span className="group-hover:text-red-600 transition-colors">E</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>LV </span>
                 <span className="group-hover:text-red-600 transition-colors">T</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>ECHNOLOGY </span>
                 <span className="group-hover:text-red-600 transition-colors">S</span><span className={`group-hover:${isScrolled ? "text-foreground" : "text-white"} transition-colors`}>OLUTIONS</span>
@@ -181,7 +180,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden xl:flex items-center gap-0">
+            <nav className="hidden xl:flex items-center gap-4 lg:gap-6">
               {navLinks.map((link) => {
                 const isActive =
                   pathname === link.href ||
@@ -201,14 +200,14 @@ export default function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`relative flex items-center gap-1 px-3 py-2 text-[14.5px] font-semibold transition-colors duration-300 ${isActive
-                          ? "text-accent"
-                          : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
+                        className={`relative flex items-center gap-1.5 px-1 py-2 text-[13px] font-bold font-space-grotesk uppercase tracking-normal whitespace-nowrap transition-colors duration-300 ${isActive
+                          ? "text-[#D61F26]"
+                          : isScrolled ? "text-foreground hover:text-[#D61F26]" : "text-white hover:text-[#D61F26]"
                           }`}
                       >
                         {link.label}
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-300 ${openDropdown === link.label ? "rotate-180" : ""
+                          className={`h-3 w-3 shrink-0 transition-transform duration-300 ${openDropdown === link.label ? "rotate-180" : ""
                             }`}
                         />
                       </Link>
@@ -269,45 +268,46 @@ export default function Header() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`relative px-3 py-2 text-[14.5px] font-semibold transition-colors duration-300 group ${isActive
-                      ? "text-accent"
-                      : isScrolled ? "text-foreground hover:text-accent" : "text-white hover:text-accent"
+                    className={`relative px-1 py-2 text-[13px] font-bold font-space-grotesk uppercase tracking-normal whitespace-nowrap transition-colors duration-300 group ${isActive
+                      ? "text-[#D61F26]"
+                      : isScrolled ? "text-foreground hover:text-[#D61F26]" : "text-white hover:text-[#D61F26]"
                       }`}
                   >
                     {link.label}
                     <span
-                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-accent rounded-full transition-all duration-300 ${isActive
-                        ? "w-5"
-                        : "w-0 group-hover:w-5"
+                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-[#D61F26] rounded-full transition-all duration-300 ${isActive
+                        ? "w-4"
+                        : "w-0 group-hover:w-4"
                         }`}
                     />
                   </Link>
                 );
               })}
             </nav>
+          </div>
 
-            {/* Contact Us button + Mobile toggle */}
-            <div className="flex items-center gap-3">
-              <div className="hidden xl:flex items-center gap-4 mr-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`transition-all duration-300 hover:text-accent hover:scale-110 ${isScrolled ? "text-foreground" : "text-white"}`}
-                    aria-label={social.label}
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </a>
-                ))}
-              </div>
-              <Link
-                href="/contact"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/20 hover:-translate-y-0.5 active:translate-y-0"
-              >
-                Contact Us
-              </Link>
+          {/* Contact Us button + Mobile toggle */}
+          <div className="flex items-center gap-6">
+            <div className="hidden xl:flex items-center gap-2.5 mr-2">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`transition-all duration-300 hover:text-[#D61F26] hover:scale-110 ${isScrolled ? "text-foreground" : "text-white"}`}
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-4.5 w-4.5" />
+                </a>
+              ))}
+            </div>
+            <Link
+              href="/contact"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#D61F26] px-6 py-2.5 text-[13px] font-bold font-space-grotesk uppercase tracking-wide text-white whitespace-nowrap transition-all duration-300 hover:bg-[#D61F26]/90 hover:shadow-lg hover:shadow-[#D61F26]/20 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              Contact Us
+            </Link>
 
               <button
                 type="button"
@@ -332,7 +332,6 @@ export default function Header() {
                 </span>
               </button>
             </div>
-          </div>
         </div>
       </div>
 
@@ -478,19 +477,20 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center rounded-full bg-red-600 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-red-700"
+              className="flex items-center justify-center rounded-full bg-[#D61F26] px-6 py-3.5 text-sm font-black font-montserrat uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#D61F26]/90 shadow-lg shadow-[#D61F26]/20"
             >
               Contact Us
             </Link>
           </div>
 
-          <div className="mt-6 flex items-center justify-center gap-4">
+          <div className="mt-6 flex flex-col items-center justify-center gap-4">
             <a
               href="https://wa.me/971547922800"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 rounded-full border border-background/20 px-8 py-4 text-sm font-medium text-background transition-all duration-300 hover:bg-background/10 hover:-translate-y-0.5 active:translate-y-0"
+              className="w-full inline-flex items-center justify-center gap-2.5 rounded-full border border-[#D61F26] px-8 py-3.5 text-sm font-black font-montserrat uppercase tracking-wider text-[#D61F26] transition-all duration-300 hover:bg-[#D61F26]/5"
             >
+              <MessageCircle className="h-4 w-4" />
               WhatsApp Us
             </a>
             {socialLinks.map((social) => (

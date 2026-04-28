@@ -32,7 +32,7 @@ export default function AboutHero() {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold font-montserrat uppercase tracking-widest text-white backdrop-blur-md shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
@@ -45,13 +45,13 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-serif text-4xl font-extrabold tracking-tight text-white sm:text-6xl drop-shadow-2xl"
+          className="font-montserrat text-4xl font-extrabold tracking-[0.1em] uppercase text-white sm:text-6xl drop-shadow-2xl"
         >
           <span className="block text-white">
-            ELV Technology Solutions !!!
+            ELV Technology Solutions
           </span>
-          <span className="mt-2 block text-white">
-            The Best Audio-Visual Integrator in UAE!!!
+          <span className="mt-2 block text-white text-3xl sm:text-5xl">
+            The Best Audio-Visual Integrator in UAE
           </span>
         </motion.h1>
 

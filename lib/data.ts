@@ -1,7 +1,8 @@
 export const heroSectionData = {
   heading: {
     line1: "Welcome to",
-    line2: "ELV Technology Solutions!",
+    line2: "ELV Technology",
+    line3: "Solutions!",
   },
   subheading: "A Leading Audio-Visual, IT, Home Automation & ELV Company across the UAE. We design, supply, install, program, and commission fully customised systems that stay reliable, easy to use, and simple to manage.",
   buttons: {

@@ -26,10 +26,10 @@ export default function SolutionsHero() {
                         transition={{ duration: 0.7, ease: "easeOut" }}
                         className="max-w-4xl text-center"
                     >
-                        <div className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium leading-6 text-white ring-1 ring-inset ring-white/20 mb-8 bg-white/10 backdrop-blur-sm">
+                        <div className="inline-flex items-center rounded-full px-4 py-1.5 text-xs font-bold font-montserrat uppercase tracking-widest text-white ring-1 ring-inset ring-white/20 mb-8 bg-white/10 backdrop-blur-sm">
                             Solutions
                         </div>
-                        <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-8 drop-shadow-lg">
+                        <h1 className="text-4xl font-extrabold font-montserrat tracking-[0.1em] uppercase text-white sm:text-5xl lg:text-6xl mb-8 drop-shadow-lg">
                             Transforming Ideas into<br />
                             <span className="text-red-500 drop-shadow-md">Technology Solutions</span>
                         </h1>
