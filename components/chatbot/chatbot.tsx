@@ -226,11 +226,10 @@ export default function Chatbot() {
     }
   };
 
-  // Open chatbot by default shortly after page load
+  // Show tooltip shortly after page load, but do not auto-open the chat
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsOpen(true);
-      setShowTooltip(false);
+      setShowTooltip(true);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);

@@ -84,7 +84,7 @@ export function PartnersTabs({ initialData }: PartnersTabsProps) {
         <section className="py-12 bg-slate-50 dark:bg-slate-950">
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-10">
-                    <h2 className="text-3xl font-extrabold font-montserrat tracking-[0.1em] uppercase text-slate-900 dark:text-white sm:text-4xl">
+                    <h2 className="text-3xl font-extrabold font-montserrat uppercase text-slate-900 dark:text-white sm:text-4xl">
                         Our Trusted Partners
                     </h2>
                     <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">

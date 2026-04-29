@@ -53,7 +53,7 @@ export function ClientsCarousel() {
         <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                    <h2 className="text-3xl font-extrabold font-montserrat uppercase text-slate-900 dark:text-white sm:text-4xl">
                         Our Esteemed Clients
                     </h2>
                     <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">

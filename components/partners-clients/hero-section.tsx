@@ -56,32 +56,55 @@ export function HeroSection() {
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-20">
-                    <div className="text-center">
+                <div className="mx-auto py-12 sm:py-16 lg:py-20 w-full">
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="flex justify-center w-full mb-8 lg:mb-12"
+                    >
+                        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold font-montserrat uppercase tracking-widest text-white backdrop-blur-md shadow-sm">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                            </span>
+                            PARTNERS & CLIENTS
+                        </div>
+                    </motion.div>
+
+                    <div className="grid lg:grid-cols-[1.4fr,1fr] gap-10 items-start">
+                        {/* Left Column: Heading */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
                         >
-                            <h1 className="text-4xl font-extrabold font-montserrat tracking-[0.1em] uppercase text-white sm:text-6xl">
-                                Collaborating for <span className="text-red-500">Excellence</span>
+
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold font-space-grotesk tracking-tight leading-[0.95] text-white">
+                                <span className="block mb-0.5">COLLABORATING</span>
+                                <span className="block text-[#D61F26] mb-0.5">FOR</span>
+                                <span className="block text-white">EXCELLENCE</span>
                             </h1>
-                            <p className="mt-6 text-lg md:text-xl leading-8 text-slate-300 max-w-2xl mx-auto">
-                                We bridge the gap between innovation and execution by partnering with top-tier technology providers and serving a diverse clientele. Together, we build the future.
-                            </p>
                         </motion.div>
 
+                        {/* Right Column: Content + Buttons */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="mt-10 flex items-center justify-center gap-x-6"
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                            className="flex flex-col gap-8"
                         >
-                            <Link href="/case-studies">
-                                <Button size="lg" className="bg-red-600 text-white hover:bg-red-700 h-14 px-8 text-lg font-bold font-montserrat uppercase tracking-wider rounded-xl group transition-all duration-300 shadow-lg shadow-red-500/20">
-                                    View Our Works <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                                </Button>
-                            </Link>
+                            <p className="text-lg md:text-xl text-slate-200 leading-relaxed font-normal font-inter">
+                                We bridge the gap between innovation and execution by partnering with top-tier technology providers and serving a diverse clientele. Together, we build the future.
+                            </p>
+
+                            <div className="flex flex-wrap items-center gap-6">
+                                <Link href="/case-studies">
+                                    <Button size="lg" className="bg-[#D61F26] text-white hover:bg-[#D61F26]/90 h-14 px-8 text-base font-bold font-space-grotesk uppercase tracking-wider rounded-none transition-all duration-300 shadow-xl shadow-[#D61F26]/20">
+                                        View Our Works <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                            </div>
                         </motion.div>
                     </div>
                 </div>

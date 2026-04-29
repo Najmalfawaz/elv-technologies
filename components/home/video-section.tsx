@@ -25,7 +25,7 @@ export default function VideoSection({ onVideoLoad }: { onVideoLoad?: () => void
       <div className="absolute inset-0 bg-black/50 z-0"></div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-32 lg:pt-40">
-        <div className="grid lg:grid-cols-[1.4fr,1fr] gap-10 items-center">
+        <div className="grid lg:grid-cols-[1.4fr,1fr] gap-10 items-start">
           {/* Left Column: Heading */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
