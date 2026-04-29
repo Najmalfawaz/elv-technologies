@@ -39,7 +39,7 @@ export default function VideoSection({ onVideoLoad }: { onVideoLoad?: () => void
               <span className="block text-[#D61F26] mb-0.5">
                 {heroSectionData.heading.line2}
               </span>
-              <span className="block text-[#D61F26]">
+              <span className="block mb-0.5">
                 {heroSectionData.heading.line3}
               </span>
             </h1>
