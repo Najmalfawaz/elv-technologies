@@ -103,7 +103,7 @@ function FooterLinkGroup({
 }) {
   return (
     <div>
-      <h3 className="text-[13px] font-black font-montserrat text-white mb-5 uppercase tracking-[0.2em]">
+      <h3 className="text-[11px] font-black font-montserrat text-white mb-5 uppercase tracking-[0.2em]">
         {title}
       </h3>
       <ul className="flex flex-col gap-1.5">
@@ -111,7 +111,7 @@ function FooterLinkGroup({
           <li key={link.label}>
             <Link
               href={link.href}
-              className="text-[14px] text-slate-200 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
+              className="text-[12px] text-slate-200 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
             >
               {link.label}
             </Link>
@@ -237,14 +237,14 @@ export default function Footer() {
 
           {/* Home Automation */}
           <div data-footer-animate style={{ animationDelay: "0.6s" }}>
-            <h3 className="text-[13px] font-black font-montserrat text-white mb-5 uppercase tracking-[0.2em]">
+            <h3 className="text-[11px] font-black font-montserrat text-white mb-5 uppercase tracking-[0.2em]">
               Home Automation
             </h3>
             <ul className="flex flex-col gap-1.5">
               <li>
                 <Link
                   href="/solutions/home-automation#automation"
-                  className="text-[14px] text-slate-200 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
+                  className="text-[12px] text-slate-200 font-medium transition-all duration-300 hover:text-white hover:translate-x-1 inline-block"
                 >
                   Home Automation & Lighting Control System
                 </Link>

@@ -19,22 +19,39 @@ interface PartnersTabsProps {
     initialData?: Partner[];
 }
 
+function buildCategories(partners: Partner[]) {
+    const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
+    const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)))
+        .sort((a: any, b: any) => {
+            const indexA = CATEGORY_ORDER.indexOf(a as string);
+            const indexB = CATEGORY_ORDER.indexOf(b as string);
+            if (indexA === -1 && indexB === -1) return (a as string).localeCompare(b as string);
+            if (indexA === -1) return 1;
+            if (indexB === -1) return -1;
+            return indexA - indexB;
+        });
+    return categoryTitles.map(title => ({
+        title,
+        logos: partners.filter((p: any) => p.category === title)
+    }));
+}
+
 export function PartnersTabs({ initialData }: PartnersTabsProps) {
-    const [partnerCategories, setPartnerCategories] = useState<any[]>([]);
-    const [activeTab, setActiveTab] = useState("");
+    const initialCategories = initialData ? buildCategories(initialData) : [];
+    const [partnerCategories, setPartnerCategories] = useState<any[]>(initialCategories);
+    const [activeTab, setActiveTab] = useState(initialCategories.length > 0 ? String(initialCategories[0].title) : "");
     const [loading, setLoading] = useState(!initialData);
 
     useEffect(() => {
-        if (initialData) {
-            processPartners(initialData);
-            return;
-        }
+        if (initialData) return; // already initialized synchronously
 
         async function fetchPartners() {
             try {
                 const res = await fetch('/api/admin/partners');
                 const partners = await res.json();
-                processPartners(partners);
+                const categories = buildCategories(partners);
+                setPartnerCategories(categories);
+                if (categories.length > 0) setActiveTab(String(categories[0].title));
             } catch (error) {
                 console.error("Failed to fetch partners:", error);
             } finally {
@@ -44,31 +61,7 @@ export function PartnersTabs({ initialData }: PartnersTabsProps) {
         fetchPartners();
     }, [initialData]);
 
-    const processPartners = (partners: Partner[]) => {
-        // Group by category and maintain priority order within category
-        const CATEGORY_ORDER = ["Security", "AV", "Network & communication", "Home Automation"];
 
-        const categoryTitles = Array.from(new Set(partners.map((p: any) => p.category)))
-            .sort((a: any, b: any) => {
-                const indexA = CATEGORY_ORDER.indexOf(a as string);
-                const indexB = CATEGORY_ORDER.indexOf(b as string);
-                if (indexA === -1 && indexB === -1) return (a as string).localeCompare(b as string);
-                if (indexA === -1) return 1;
-                if (indexB === -1) return -1;
-                return indexA - indexB;
-            });
-
-        const categories = categoryTitles.map(title => ({
-            title,
-            logos: partners.filter((p: any) => p.category === title)
-        }));
-
-        setPartnerCategories(categories);
-        if (categories.length > 0) {
-            setActiveTab(categories[0].title as string);
-        }
-        setLoading(false);
-    };
 
     if (loading) {
         return (

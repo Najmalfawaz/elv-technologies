@@ -107,12 +107,13 @@ export function ClientsSlider({ initialData }: ClientsSliderProps) {
                                             >
                                                 <Card className="border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all duration-300 rounded-[3px] overflow-hidden">
                                                     <CardContent className="flex aspect-[4/3] items-center justify-center p-1">
-                                                        <div className="relative h-full w-full">
+                                                        <div className="relative h-20 w-full">
                                                             <Image
                                                                 src={client.logo}
                                                                 alt={client.name}
                                                                 fill
                                                                 quality={100}
+                                                                unoptimized
                                                                 className="object-contain"
                                                                 sizes="(max-width: 768px) 50vw, 25vw"
                                                             />

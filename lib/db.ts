@@ -44,6 +44,10 @@ export const getCollection = async (collection: string, options: FetchOptions = 
                     isFeatured: true,
                     priority: true,
                     overview: includeContent,
+                    challenges: includeContent,
+                    solution: includeContent,
+                    gallery: includeContent,
+                    outcomes: includeContent,
                 },
                 orderBy: [
                     { isFeatured: 'desc' },

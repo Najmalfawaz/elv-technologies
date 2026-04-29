@@ -156,7 +156,8 @@ export default function TechnicalSupport() {
             className="text-center mb-16"
           >
             <h3 className="text-4xl font-extrabold text-slate-900 tracking-tight">
-              {technicalSupport.whyChooseUs.title}
+              Why Choose{' '}
+              <span className="text-red-600">ELV Technology Solutions</span>
             </h3>
           </motion.div>
 

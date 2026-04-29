@@ -133,7 +133,7 @@ export default function CaseStudySlugPage({ study, allStudies }: CaseStudySlugPa
 
               <Separator className="my-12" />
 
-              {study.challenges.length > 0 && (
+              {study.challenges && study.challenges.length > 0 && (
                 <div className="mb-12">
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">The Challenge</h2>
                   <div className="bg-slate-50 dark:bg-slate-900/50 border-l-4 border-red-600 p-6 rounded-r-lg">
@@ -152,7 +152,7 @@ export default function CaseStudySlugPage({ study, allStudies }: CaseStudySlugPa
               <div className="mb-12">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">The Solution</h2>
                 <div className="space-y-6">
-                  <p className="font-medium text-slate-900 dark:text-white text-xl">{study.solution.title}</p>
+                  {study.solution && <p className="font-medium text-slate-900 dark:text-white text-xl">{study.solution.title}</p>}
 
                   {/* Render Quill HTML dynamically styled to look strictly identical to legacy boxes */}
                   {study.solution.html ? (
@@ -202,7 +202,7 @@ export default function CaseStudySlugPage({ study, allStudies }: CaseStudySlugPa
                 </div>
               )}
 
-              {study.outcomes.length > 0 && (
+              {study.outcomes && study.outcomes.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Outcomes</h2>
                   <div className="grid sm:grid-cols-2 gap-4">

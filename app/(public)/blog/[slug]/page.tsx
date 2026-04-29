@@ -7,7 +7,7 @@ import { Blog } from "@prisma/client";
 export const dynamic = 'force-dynamic';
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-    const posts = await getCollection('blogs') as Blog[];
+    const posts = await getCollection('blogs', { includeContent: true, take: 500 }) as Blog[];
     const post = posts.find((p: any) => p.slug === params.slug);
 
     if (!post) {

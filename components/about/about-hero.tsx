@@ -45,12 +45,12 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-montserrat text-4xl font-extrabold tracking-[0.1em] uppercase text-white sm:text-6xl drop-shadow-2xl"
+          className="font-montserrat text-3xl font-extrabold tracking-[0.1em] uppercase text-white sm:text-5xl drop-shadow-2xl"
         >
-          <span className="block text-white">
-            ELV Technology Solutions
+          <span className="block">
+            <span className="text-red-500">ELV Technology Solutions</span>
           </span>
-          <span className="mt-2 block text-white text-3xl sm:text-5xl">
+          <span className="mt-2 block text-white text-2xl sm:text-4xl">
             The Best Audio-Visual Integrator in UAE
           </span>
         </motion.h1>
@@ -59,7 +59,7 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-white font-medium drop-shadow-lg"
+          className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-white font-medium drop-shadow-lg"
         >
           ETS is one of the top technology integrators and solution providers
           in the UAE, specializing in security and surveillance systems, Audio
