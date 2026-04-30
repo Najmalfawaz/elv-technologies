@@ -247,7 +247,9 @@ export default function Chatbot() {
           playNotificationSound();
           addMessage(
             "Hi! 👋 I'm the AI ETS Assistant. I can help you with Security, AV, Networking, and Smart Home solutions in the UAE. \n\nWhat can I assist you with today?",
-            'bot'
+            'bot',
+            false,
+            ["Security & Surveillance", "Audio Visual Solutions", "Home Automation", "Network & Communications"]
           );
         }, 1500);
       }, 500);

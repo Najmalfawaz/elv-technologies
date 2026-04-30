@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
+import { deleteFilesFromUploadThing } from "@/lib/uploadthing-server";
 
 export async function GET(
     req: Request,
@@ -29,6 +30,16 @@ export async function PATCH(
     try {
         const body = await req.json();
         const { title, slug, excerpt, content, image, category, author, date } = body;
+
+        // 1. Fetch existing blog to check for image changes
+        const existingBlog = await prisma.blog.findUnique({
+            where: { id: params.id },
+        });
+
+        // 2. If image is changing, delete the old one from UploadThing
+        if (existingBlog && image && existingBlog.image !== image) {
+            await deleteFilesFromUploadThing(existingBlog.image);
+        }
 
         const blog = await prisma.blog.update({
             where: { id: params.id },
@@ -60,15 +71,20 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
-        // Find the blog first to get the slug for revalidation
+        // Find the blog first to get the slug for revalidation and image URL for deletion
         const blog = await prisma.blog.findUnique({
             where: { id: params.id },
-            select: { slug: true }
+            select: { slug: true, image: true }
         });
 
         await prisma.blog.delete({
             where: { id: params.id }
         });
+
+        // Delete image from UploadThing
+        if (blog?.image) {
+            await deleteFilesFromUploadThing(blog.image);
+        }
 
         revalidatePath('/');
         revalidatePath('/blog');

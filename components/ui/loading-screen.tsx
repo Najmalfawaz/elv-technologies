@@ -28,55 +28,85 @@ export default function LoadingScreen({ isLoading }: LoadingScreenProps) {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black"
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] bg-[#020617] flex items-center"
         >
-          <div className="relative flex flex-col items-center">
-            {/* Logo with pulse animation */}
+          {/* Grid structure mimicking the hero section */}
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-32 lg:pt-40">
+            <div className="grid lg:grid-cols-[1.4fr,1fr] gap-10 items-start">
+              
+              {/* Left Column: Heading Skeleton */}
+              <div className="flex flex-col gap-4">
+                <motion.div 
+                  initial={{ opacity: 0.4 }}
+                  animate={{ opacity: [0.4, 0.7, 0.4] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-14 sm:h-20 w-3/4 bg-slate-800/50 rounded-xl"
+                />
+                <motion.div 
+                  initial={{ opacity: 0.4 }}
+                  animate={{ opacity: [0.4, 0.7, 0.4] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                  className="h-14 sm:h-20 w-1/2 bg-red-900/20 rounded-xl"
+                />
+                <motion.div 
+                  initial={{ opacity: 0.4 }}
+                  animate={{ opacity: [0.4, 0.7, 0.4] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                  className="h-14 sm:h-20 w-2/3 bg-slate-800/50 rounded-xl"
+                />
+              </div>
+
+              {/* Right Column: Content Skeleton */}
+              <div className="flex flex-col gap-10">
+                <div className="space-y-4">
+                  <motion.div 
+                    initial={{ opacity: 0.3 }}
+                    animate={{ opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="h-4 w-full bg-slate-800/40 rounded-full"
+                  />
+                  <motion.div 
+                    initial={{ opacity: 0.3 }}
+                    animate={{ opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                    className="h-4 w-full bg-slate-800/40 rounded-full"
+                  />
+                  <motion.div 
+                    initial={{ opacity: 0.3 }}
+                    animate={{ opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                    className="h-4 w-4/5 bg-slate-800/40 rounded-full"
+                  />
+                </div>
+
+                <div className="flex flex-wrap gap-6">
+                  <motion.div 
+                    initial={{ opacity: 0.4 }}
+                    animate={{ opacity: [0.4, 0.6, 0.4] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    className="h-14 w-48 bg-red-900/30 rounded-lg"
+                  />
+                  <motion.div 
+                    initial={{ opacity: 0.4 }}
+                    animate={{ opacity: [0.4, 0.6, 0.4] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                    className="h-14 w-32 bg-slate-800/50 rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Subtle logo pulse at bottom */}
+          <div className="absolute bottom-10 right-10">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ 
-                scale: [0.9, 1.05, 1],
-                opacity: 1 
-              }}
-              transition={{ 
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut"
-              }}
-              className="w-32 sm:w-48 h-auto"
+              animate={{ opacity: [0.2, 0.5, 0.2] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-24 h-auto opacity-20"
             >
               <LogoIcon className="text-white w-full h-full" />
             </motion.div>
-
-            {/* Loading Bar */}
-            <motion.div 
-              className="mt-12 w-48 h-1 bg-white/10 rounded-full overflow-hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <motion.div 
-                className="h-full bg-[#D61F26]"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ 
-                  duration: 3, 
-                  ease: "easeInOut",
-                  repeat: Infinity 
-                }}
-              />
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-6 text-white/60 font-space-grotesk text-xs tracking-[0.3em] uppercase"
-            >
-              Initializing Solutions
-            </motion.p>
           </div>
         </motion.div>
       )}

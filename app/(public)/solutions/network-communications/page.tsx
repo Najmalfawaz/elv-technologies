@@ -14,7 +14,13 @@ export default function NetworkCommunicationsPage() {
             <SolutionVideoHero
                 videoSrc="/images/solutions/network-communications/hero.mp4"
                 tag="Connected & Reliable"
-                title={<>Future-Proof <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Network Infrastructure</span></>}
+                title={
+                    <>
+                        <span className="block">Robust</span>
+                        <span className="block text-[#D61F26]">Network</span>
+                        <span className="block text-white">Solutions</span>
+                    </>
+                }
                 description="Enterprise-grade wired and wireless connectivity built for stability, speed, and security."
             />
 

@@ -14,7 +14,13 @@ export default function SecuritySurveillancePage() {
             <SolutionVideoHero
                 videoSrc="/images/solutions/security-surveillance/hero.mp4"
                 tag="Intelligent Defense"
-                title={<>AI-Powered <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Security Systems</span></>}
+                title={
+                    <>
+                        <span className="block">Smart</span>
+                        <span className="block text-[#D61F26]">Security</span>
+                        <span className="block text-white">Solutions</span>
+                    </>
+                }
                 description="Protecting your assets with smart, proactive monitoring and real-time behavioral analytics."
             />
 

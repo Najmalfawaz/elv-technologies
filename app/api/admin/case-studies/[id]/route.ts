@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
+import { deleteFilesFromUploadThing } from "@/lib/uploadthing-server";
 
 export async function GET(
     request: Request,
@@ -29,6 +28,28 @@ export async function PATCH(
 ) {
     try {
         const body = await request.json();
+
+        // 1. Fetch existing case study to check for file changes
+        const existingCaseStudy = await prisma.caseStudy.findUnique({
+            where: { id: params.id },
+        });
+
+        if (existingCaseStudy) {
+            // Delete old main image if changed
+            if (body.image && existingCaseStudy.image !== body.image) {
+                await deleteFilesFromUploadThing(existingCaseStudy.image);
+            }
+            // Delete old gallery images that are no longer in the updated gallery
+            if (body.gallery && Array.isArray(body.gallery)) {
+                const removedGalleryImages = existingCaseStudy.gallery.filter(
+                    url => !body.gallery.includes(url)
+                );
+                if (removedGalleryImages.length > 0) {
+                    await deleteFilesFromUploadThing(removedGalleryImages);
+                }
+            }
+        }
+
         const updatedCaseStudy = await prisma.caseStudy.update({
             where: { id: params.id },
             data: body
@@ -51,12 +72,20 @@ export async function DELETE(
     try {
         const caseStudy = await prisma.caseStudy.findUnique({
             where: { id: params.id },
-            select: { slug: true }
+            select: { slug: true, image: true, gallery: true }
         });
 
         await prisma.caseStudy.delete({
             where: { id: params.id }
         });
+
+        // Delete all files from UploadThing
+        if (caseStudy) {
+            const filesToDelete = [caseStudy.image, ...caseStudy.gallery].filter(Boolean) as string[];
+            if (filesToDelete.length > 0) {
+                await deleteFilesFromUploadThing(filesToDelete);
+            }
+        }
 
         revalidatePath('/');
         revalidatePath('/case-studies');
