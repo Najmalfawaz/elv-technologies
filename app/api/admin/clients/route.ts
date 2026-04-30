@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
@@ -24,6 +25,10 @@ export async function POST(req: Request) {
         priority: body.priority || 100,
       },
     });
+
+    revalidatePath("/");
+    revalidatePath("/partners-clients");
+
     return NextResponse.json(client);
   } catch (error) {
     return NextResponse.json({ error: "Failed to create client" }, { status: 500 });

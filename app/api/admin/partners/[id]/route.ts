@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { deleteFilesFromUploadThing } from "@/lib/uploadthing-server";
 
 export async function PATCH(
@@ -29,6 +30,10 @@ export async function PATCH(
         priority: body.priority,
       },
     });
+
+    revalidatePath("/");
+    revalidatePath("/partners-clients");
+
     return NextResponse.json(partner);
   } catch (error) {
     return NextResponse.json({ error: "Failed to update partner" }, { status: 500 });
@@ -54,6 +59,9 @@ export async function DELETE(
     if (partner?.logo) {
       await deleteFilesFromUploadThing(partner.logo);
     }
+
+    revalidatePath("/");
+    revalidatePath("/partners-clients");
 
     return NextResponse.json({ success: true });
   } catch (error) {
