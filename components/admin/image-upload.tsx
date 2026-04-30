@@ -29,14 +29,15 @@ export const ImageUpload = ({
 
     if (displayUrl) {
         return (
-            <div className="relative aspect-video w-full max-w-[400px] mt-2 rounded-2xl overflow-hidden group border border-slate-200">
-                <Image
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    src={displayUrl}
-                    alt="Upload"
-                    className="object-cover transition-transform group-hover:scale-105"
-                />
+            <div className="relative aspect-square w-full max-w-[240px] mt-2 rounded-[2rem] overflow-hidden group border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm flex items-center justify-center p-4">
+                <div className="relative w-full h-full">
+                    <Image
+                        fill
+                        src={displayUrl}
+                        alt="Upload"
+                        className="object-contain transition-transform group-hover:scale-105"
+                    />
+                </div>
                 <button
                     onClick={() => {
                         if (value instanceof File) {
@@ -44,8 +45,9 @@ export const ImageUpload = ({
                         }
                         onRemove();
                     }}
-                    className="absolute top-2 right-2 bg-red-600 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-red-700 active:scale-95"
+                    className="absolute -top-1 -right-1 bg-red-600 text-white p-2 rounded-full shadow-xl transition-all hover:bg-red-700 active:scale-90 border-2 border-white dark:border-slate-900 z-10"
                     type="button"
+                    title="Remove image"
                 >
                     <X className="h-4 w-4" />
                 </button>

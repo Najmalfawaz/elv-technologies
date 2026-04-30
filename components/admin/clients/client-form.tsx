@@ -94,9 +94,10 @@ export function ClientForm({ initialData }: ClientFormProps) {
         <div className="space-y-2">
           <Label>Client Logo</Label>
           <ImageUpload
-            value={typeof formData.logo === "string" ? formData.logo : ""}
+            value={formData.logo}
             onChange={(file) => setFormData({ ...formData, logo: file })}
             onRemove={() => setFormData({ ...formData, logo: null })}
+            endpoint="imageUploader"
           />
           <p className="text-xs text-slate-500 mt-2">
             Recommended: PNG or JPEG with high resolution
