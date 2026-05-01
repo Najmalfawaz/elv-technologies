@@ -177,8 +177,16 @@ export default function Header() {
               {/* Logo */}
               <Link href="/" className="flex flex-col items-center justify-center group shrink-0">
                 <LogoIcon className={`w-[60px] sm:w-[70px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none ${isDark ? "text-slate-900 dark:text-white" : "text-white"}`} />
-                <span className="text-[8px] sm:text-[9px] font-bold font-space-grotesk tracking-[0.15em] uppercase mt-2 pointer-events-none select-none text-red-600">
-                  ELV TECHNOLOGY SOLUTIONS
+                <span className="text-[8px] sm:text-[9px] font-bold font-space-grotesk tracking-[0.15em] uppercase mt-2 pointer-events-none select-none">
+                  {/* E-L-V */}
+                  <span style={{ color: '#D61F26' }}>E</span>
+                  <span style={{ color: isDark ? '#0f172a' : '#ffffff' }}>LV </span>
+                  {/* T-E-C-H-N-O-L-O-G-Y */}
+                  <span style={{ color: '#D61F26' }}>T</span>
+                  <span style={{ color: isDark ? '#0f172a' : '#ffffff' }}>ECHNOLOGY </span>
+                  {/* S-O-L-U-T-I-O-N-S */}
+                  <span style={{ color: '#D61F26' }}>S</span>
+                  <span style={{ color: isDark ? '#0f172a' : '#ffffff' }}>OLUTIONS</span>
                 </span>
               </Link>
 

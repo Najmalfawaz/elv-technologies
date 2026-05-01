@@ -299,7 +299,7 @@ export default function Chatbot() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-row items-center pointer-events-none">
+      <div className="fixed bottom-6 right-4 sm:right-6 z-[200] flex flex-row items-center pointer-events-none">
         <AnimatePresence>
           {showTooltip && !isOpen && (
             <motion.div
@@ -345,7 +345,7 @@ export default function Chatbot() {
             initial={{ opacity: 0, scale: 0.95, y: 20, transformOrigin: 'bottom right' }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 sm:w-[380px] h-[600px] max-h-[calc(100vh-120px)] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] rounded-3xl flex flex-col overflow-hidden border border-gray-100 z-50"
+            className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 sm:w-[380px] h-[600px] max-h-[calc(100vh-120px)] bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] rounded-3xl flex flex-col overflow-hidden border border-gray-100 z-[200]"
           >
             <div className="bg-gradient-to-r from-red-600 to-red-700 p-5 text-white shadow-md relative z-10">
               <div className="flex items-center justify-between">
@@ -385,8 +385,8 @@ export default function Chatbot() {
                         </div>
                       )}
                       
-                      {/* Contextual Suggestions + WhatsApp - only on last bot message */}
-                      {isLastBotMessage && (
+                      {/* Contextual Suggestions + WhatsApp - only on last bot message, hidden while call-back form is showing */}
+                      {isLastBotMessage && !msg.captureLead && (
                       <div className="flex flex-col gap-2 mt-4 pt-3 border-t border-gray-50">
                         {/* Live Chat WhatsApp Link */}
                         <div className="flex gap-2 w-full">
