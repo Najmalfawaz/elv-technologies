@@ -2,6 +2,7 @@
 
 import { solutionsData } from "@/lib/solutions-data";
 import { ArrowRight, Shield, Music, Wifi, Home } from "lucide-react"; // Import relevant icons
+import { LogoIcon } from "@/components/ui/logo";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -76,16 +77,7 @@ export default function SolutionsPageLineup() {
 
                                         {/* ETS Logo Top Right */}
                                         <div className="absolute top-6 right-6 z-20 flex flex-col items-center justify-center transition-transform duration-500 group-hover:-rotate-2">
-                                            <Image
-                                                src="/images/1.png"
-                                                alt="ETS Logo"
-                                                width={45}
-                                                height={45}
-                                                className="object-contain h-auto w-auto max-h-[45px] drop-shadow-md"
-                                            />
-                                            <span className="text-red-600 font-bold text-sm tracking-widest mt-1 drop-shadow-md">
-                                                ETS
-                                            </span>
+                                            <LogoIcon className="w-[80px] h-auto text-[#D61F26] drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                     </div>
 
