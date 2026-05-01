@@ -77,7 +77,7 @@ export default function SolutionsPageLineup() {
 
                                         {/* ETS Logo Top Right */}
                                         <div className="absolute top-6 right-6 z-20 flex flex-col items-center justify-center transition-transform duration-500 group-hover:-rotate-2">
-                                            <LogoIcon className="w-[80px] h-auto text-[#D61F26] drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity" />
+                                            <LogoIcon className="w-[80px] h-auto text-white drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                     </div>
 
