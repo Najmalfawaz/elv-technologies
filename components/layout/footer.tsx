@@ -154,9 +154,9 @@ export default function Footer() {
             data-footer-animate
             style={{ animationDelay: "0.1s" }}
           >
-            <Link href="/" className="flex flex-col items-start gap-1 mb-5 group shrink-0">
+            <Link href="/" className="inline-flex flex-col items-center gap-1 mb-5 group shrink-0">
               <LogoIcon className="w-[100px] sm:w-[120px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none text-white" />
-              <span className="text-[11px] sm:text-[12px] font-black font-montserrat text-white tracking-[0.2em] mt-3 pointer-events-none select-none transition-colors group-hover:text-accent uppercase">
+              <span className="text-[11px] sm:text-[12px] font-black font-montserrat text-white tracking-[0.2em] mt-3 pointer-events-none select-none uppercase">
                 ELV TECHNOLOGY SOLUTIONS
               </span>
             </Link>

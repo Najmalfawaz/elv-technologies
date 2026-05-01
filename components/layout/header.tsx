@@ -300,7 +300,7 @@ export default function Header() {
             {/* Contact Us button + Mobile toggle */}
             <div className="flex items-center gap-6">
               <div className="hidden xl:flex items-center gap-2.5 mr-2">
-                {socialLinks.filter(s => s.label !== "WhatsApp").map((social) => (
+                {socialLinks.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
@@ -309,7 +309,7 @@ export default function Header() {
                     className={`transition-all duration-300 hover:text-[#D61F26] hover:scale-110 ${isDark ? "text-slate-900 dark:text-white" : "text-white"}`}
                     aria-label={social.label}
                   >
-                    <social.icon className="h-4.5 w-4.5" />
+                    <social.icon className="h-[18px] w-[18px]" />
                   </a>
                 ))}
               </div>
@@ -497,7 +497,7 @@ export default function Header() {
 
         <div className="mt-6 flex flex-col items-center justify-center gap-4">
           <div className="flex items-center gap-4">
-            {socialLinks.filter(s => s.label !== "WhatsApp").map((social) => (
+            {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}

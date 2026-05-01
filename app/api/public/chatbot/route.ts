@@ -72,7 +72,7 @@ const INTENTS = {
     GET_QUOTE: [
         {
             keywords: ['quote', 'quotation', 'price', 'pricing', 'how much', 'get a quote', 'estimate', 'schedule', 'assessment', 'site visit', 'survey', 'appointment', 'callback', 'call back', 'contact', 'reach you', 'phone', 'email', 'number'],
-            answer: "Our team will contact you shortly. Please give us your details below to schedule a call back.\n\nYou can also reach our corporate office directly:\n📞 **+971 2 441 8186**\n✉️ **info@etssmart.com**",
+            answer: "Our team will contact you shortly. Please give us your details below to schedule a call back.",
             suggestions: ["Security & Surveillance", "Audio Visual Solutions", "Network & Communications", "Smart Home & Automation"]
         }
     ]

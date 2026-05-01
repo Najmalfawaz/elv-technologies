@@ -63,7 +63,7 @@ const formatBotMessage = (text: string) => {
 };
 
 function LeadForm({ onComplete }: { onComplete: () => void }) {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -78,7 +78,7 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          subject: formData.subject || 'New Lead from Chatbot',
+          subject: 'New Lead from Chatbot',
           message: formData.message,
           source: 'chatbot',
           isNotRobot: true
@@ -146,16 +146,7 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
           placeholder="Enter your phone number"
         />
       </div>
-      <div>
-        <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Subject</label>
-        <input
-          required
-          className="w-full text-sm border-b border-gray-100 py-1 focus:border-red-500 outline-none transition-colors"
-          value={formData.subject}
-          onChange={e => setFormData({ ...formData, subject: e.target.value })}
-          placeholder="Nature of inquiry"
-        />
-      </div>
+
       <div>
         <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Message</label>
         <textarea
