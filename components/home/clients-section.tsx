@@ -78,7 +78,7 @@ export default function ClientsSection() {
               <CarouselContent className="-ml-3 md:-ml-4">
                 {clientsList.map((item) => (
                   <CarouselItem key={item.id} className="pl-3 md:pl-4 basis-[60%] sm:basis-1/3 md:basis-1/4 lg:basis-[20%]">
-                    <div className="w-full h-28 sm:h-36 flex items-center justify-center p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-accent/20 transition-all duration-300">
+                    <div className="w-full h-28 sm:h-36 flex items-center justify-center p-3 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-accent/20 transition-all duration-300">
                       <div className="relative w-full h-full">
                         <Image
                           src={item.logo}
