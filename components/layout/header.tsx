@@ -177,10 +177,8 @@ export default function Header() {
               {/* Logo */}
               <Link href="/" className="flex flex-col items-center justify-center group shrink-0">
                 <LogoIcon className={`w-[60px] sm:w-[70px] h-auto transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none ${isDark ? "text-slate-900 dark:text-white" : "text-white"}`} />
-                <span className={`text-[8px] sm:text-[9px] font-bold font-space-grotesk tracking-[0.15em] uppercase mt-2 transition-colors pointer-events-none select-none ${isDark ? "text-slate-900 dark:text-white" : "text-white"}`}>
-                  <span className="group-hover:text-red-600 transition-colors">E</span><span className={`group-hover:${isDark ? "text-slate-900 dark:text-white" : "text-white"} transition-colors`}>LV </span>
-                  <span className="group-hover:text-red-600 transition-colors">T</span><span className={`group-hover:${isDark ? "text-slate-900 dark:text-white" : "text-white"} transition-colors`}>ECHNOLOGY </span>
-                  <span className="group-hover:text-red-600 transition-colors">S</span><span className={`group-hover:${isDark ? "text-slate-900 dark:text-white" : "text-white"} transition-colors`}>OLUTIONS</span>
+                <span className="text-[8px] sm:text-[9px] font-bold font-space-grotesk tracking-[0.15em] uppercase mt-2 pointer-events-none select-none text-red-600">
+                  ELV TECHNOLOGY SOLUTIONS
                 </span>
               </Link>
 
