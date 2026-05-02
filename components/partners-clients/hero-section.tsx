@@ -82,8 +82,7 @@ export function HeroSection() {
 
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold font-space-grotesk tracking-tight leading-[0.95] text-white">
                                 <span className="block mb-0.5">COLLABORATING</span>
-                                <span className="block text-[#D61F26] mb-0.5">FOR</span>
-                                <span className="block text-white">EXCELLENCE</span>
+                                <span className="block text-[#D61F26]">FOR EXCELLENCE</span>
                             </h1>
                         </motion.div>
 
