@@ -3,7 +3,7 @@ import { Source_Sans_3, Montserrat, Space_Grotesk, Inter } from "next/font/googl
 import "./globals.css";
 import { Toaster } from "sonner";
 
-const sourceSans = Source_Sans_3({ 
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-source-sans",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   title: "ELV Technology Solutions",
   description: "Leading provider of integrated technology solutions in the UAE.",
   icons: {
-    icon: "/images/1.png",
+    icon: "/images/logo.svg",
   },
 };
 

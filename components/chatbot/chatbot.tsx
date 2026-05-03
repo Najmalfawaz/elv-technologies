@@ -66,10 +66,12 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -88,6 +90,9 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
       if (response.ok) {
         setIsSubmitted(true);
         setTimeout(onComplete, 3000);
+      } else {
+        const data = await response.json();
+        setError(data.error || 'Something went wrong. Please try again.');
       }
     } catch (err) {
       console.error(err);
@@ -114,6 +119,11 @@ function LeadForm({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white border border-gray-100 p-4 rounded-xl shadow-sm space-y-3 mt-2 animate-in slide-in-from-top-2">
+      {error && (
+        <div className="bg-red-50 border border-red-100 p-2 rounded-lg text-red-600 text-[10px] font-bold text-center">
+          {error}
+        </div>
+      )}
       <div>
         <label className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Name</label>
         <input
