@@ -25,7 +25,7 @@ export const introSectionData = {
   ],
   video: {
     id: "dQw4w9WgXcQ",
-    thumbnail: "/images/home/slides/videos/Home page Vedio.mp4",
+    thumbnail: "/images/home/slides/videos/hero_new.mp4",
     alt: "Promotional video thumbnail",
   },
 };
